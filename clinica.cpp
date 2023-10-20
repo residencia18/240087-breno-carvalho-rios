@@ -90,7 +90,7 @@ class Paciente{
     Data * dtNascimento;
 
     public:
-        Paciente(string _nome, string _cpf, Data * _dtNascimento){
+        Paciente(string _cpf, string _nome, Data * _dtNascimento){
             this->setNome(_nome);
             this->setCpf(_cpf);
             this->setDtNascimento(_dtNascimento);
