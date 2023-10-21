@@ -135,9 +135,34 @@ class Medico{
 };
 
 class App{
+    int op = -1;
     vector<Paciente*> pacientes;
 
     public:
+        void run(){
+            while(this->op != 0){
+                lerOpcao();
+            }
+        }
+
+        void lerOpcao(){
+            do{
+                mostrarMenu();
+                cout << "Digite uma opção: ";
+                cin >> this->op;
+            } while(this->op < 0 || this->op > 5);
+        }
+
+        void mostrarMenu(){
+            cout << endl;
+            cout << "1. Incluir Paciente" << endl;
+            cout << "2. Excluir Paciente" << endl;
+            cout << "3. Alterar Paciente" << endl;
+            cout << "4. Listar Pacientes" << endl;
+            cout << "5. Localizar Paciente (por CPF)" << endl;
+            cout << "0. Sair" << endl;
+        }
+
         void criarPaciente(){
             int _dia, _mes, _ano;
             string _cpf, _nome;
@@ -168,10 +193,9 @@ class App{
 };
 
 int main(){
-    App app = App();
+    App * app = new App();
 
-    app.criarPaciente();
-    app.imiprimirListaPacientes();
+    app->run();
 
     return 0;
 }
