@@ -90,7 +90,6 @@ class Data{
             return dataValida(_data->getDia(), _data->getMes(), _data->getAno());
         }
 };
-
 class Paciente{
     string cpf, nome;
     Data * dtNascimento;
@@ -104,7 +103,7 @@ class Paciente{
 
         string toString(){
             stringstream ss;
-            ss << "Cpf: " << this->cpf << endl;
+            ss << "CPF: " << this->cpf << endl;
             ss << "Nome: " << this->nome << endl;
             ss << "Data de Nascimento: " << this->dtNascimento->toString();
             return ss.str();
@@ -139,20 +138,63 @@ class Paciente{
         }
 
         static bool cpfValido(string _cpf){
-            return regex_match (_cpf, regex("[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}") );
+            return regex_match(_cpf, regex("[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"));
         }
 };
-
 class Medico{
     string crm, nome, especialidade;
-};
 
-class App{
+    public:
+        Medico(string _crm, string _nome, string _especialidade){
+            this->setCrm(_crm);
+            this->setNome(_nome);
+            this->setEspecialidade(_especialidade);
+        }
+
+        string toString(){
+            stringstream ss;
+            ss << "CRM: " << this->crm << endl;
+            ss << "Nome: " << this->nome << endl;
+            ss << "Especialidade: " << this->especialidade;
+            return ss.str();
+        }
+
+        void setCrm(string _crm){
+            if(Medico::crmValido(_crm)){
+                this->crm = _crm;
+            }
+        }
+
+        string getCrm(){
+            return this->crm;
+        }
+
+        void setNome(string _nome){
+            this->nome = _nome;
+        }
+
+        string getNome(){
+            return this->nome;
+        }
+
+        void setEspecialidade(string _especialidade){
+            this->especialidade = _especialidade;
+        }
+
+        string getEspecialidade(){
+            return this->especialidade;
+        }
+
+        static bool crmValido(string _crm){
+            return regex_match(_crm, regex("[0-9]{6}/[A-B]{2}"));
+        }
+};
+class ControlePacientes{
     int op;
     vector<Paciente*> pacientes;
 
     public:
-        App(){
+        ControlePacientes(){
             op = -1;
         }
 
@@ -205,7 +247,7 @@ class App{
         string lerCpf(){
             string _cpf;
             while(true){
-                cout << "Digite o cpf do paciente: " << endl;
+                cout << "Digite o CPF do paciente: " << endl;
                 getline(cin >> ws, _cpf);
 
                 if(!Paciente::cpfValido(_cpf)){
@@ -337,12 +379,229 @@ class App{
             return false;
         }
 };
+class ControleMedicos{
+    int op;
+    vector<Medico*> medicos;
+
+    public:
+        ControleMedicos(){
+            op = -1;
+        }
+
+        void run(){
+            while(this->op != 0){
+                lerOpcao();
+            }
+        }
+
+        void lerOpcao(){
+            do{
+                mostrarMenu();
+                cout << "Digite uma opção: ";
+                cin >> this->op;
+
+                if(op == 1){
+                    this->criarMedico();
+                } else if(op == 2){
+                    this->excluirMedico();
+                } else if(op == 3){
+                    this->alterarMedico();
+                } else if(op == 4){
+                    this->imiprimirListaMedicos();
+                } else if(op == 5){
+                    this->imiprimirDadosMedico();
+                } else if(op == 0){
+                    return;
+                } else {
+                    cout << "Opção Inválida" << endl;
+                }
+            } while(this->op < 0 || this->op > 5);
+        }
+
+        string lerCrm(){
+            string _crm;
+            while(true){
+                cout << "Digite o CRM do médico: " << endl;
+                getline(cin >> ws, _crm);
+
+                if(!Medico::crmValido(_crm)){
+                    cout << "CRM inválido!" << endl;
+                } else if(medicoJaExiste(_crm)){
+                    cout << "CRM já cadastrado!" << endl;
+                } else{
+                    return _crm;
+                }
+            }
+        }
+
+        void mostrarMenu(){
+            cout << endl;
+            cout << "1. Incluir Médico" << endl;
+            cout << "2. Excluir Médico (por CRM)" << endl;
+            cout << "3. Alterar Médico (por CRM)" << endl;
+            cout << "4. Listar Médicos" << endl;
+            cout << "5. Localizar Médico (por CRM)" << endl;
+            cout << "0. Sair" << endl;
+            cout << "-------------------" << endl;
+        }
+
+        void criarMedico(){
+            string _crm, _nome, _especialidade;
+
+            _crm = this->lerCrm();
+
+            cout << "Digite o nome do médico: " << endl;
+            getline(cin >> ws, _nome);
+
+            cout << "Digite a especialidade do médico: " << endl;
+            getline(cin >> ws, _especialidade);
+
+            Medico * novoMedico = new Medico(_crm, _nome, _especialidade);
+
+            medicos.push_back(novoMedico);
+        }
+
+        void excluirMedico(){
+            int index = this->localizarMedico();
+            if(index == -1){
+                return;
+            }
+
+            this->medicos.erase(this->medicos.begin() + index);
+            cout << "Médico excluído!" << endl;
+        }
+
+        void alterarMedico(){
+            string _crm, _nome, _especialidade, _op;
+            int index = this->localizarMedico();
+
+            if(index == -1){
+                return;
+            }
+
+            Medico * medico = this->medicos.at(index);
+            cout << "-------------------" << endl;
+            cout << "Dados de " << medico->getNome() << endl;
+            cout << medico->toString() << endl;
+            cout << "-------------------" << endl;
+            
+            cout << "Deseja alterar o nome? (S/N)" << endl;
+            cin >> _op;
+            if(_op == "S" || _op == "s"){
+                cout << "Digite o novo nome: " << endl;
+                getline(cin >> ws, _nome);
+                medico->setNome(_nome);
+                cout << "Nome alterado!" << endl;
+            }
+            
+            cout << "Deseja alterar a especialidade? (S/N)" << endl;
+            cin >> _op;
+            if(_op == "S" || _op == "s"){
+                cout << "Digite a nova especialidade: " << endl;
+                getline(cin >> ws, _especialidade);
+                medico->setEspecialidade(_especialidade);
+                cout << "Especialidade alterada!" << endl;
+            }
+        }
+
+        void imiprimirListaMedicos(){
+            cout << "Lista de Medicos" << endl;
+            for(auto medico: this->medicos) {
+                cout << "-------------------" << endl;
+                cout << medico->toString() << endl;
+            }
+        }
+
+        void imiprimirDadosMedico(){
+            int medicoIndex = this->localizarMedico();
+
+            if(medicoIndex == -1){
+                return;
+            }
+
+            Medico * medico = this->medicos.at(medicoIndex);
+            cout << "-------------------" << endl;
+            cout << "Dados do(a) Doutor(a) " << medico->getNome() << endl;
+            cout << medico->toString() << endl;
+        }
+
+        int localizarMedico(){
+            string _crm;
+            cout << "Digite o CRM do médico:" << endl;
+            getline(cin >> ws, _crm);
+
+            int index = 0;
+            for(auto medico: this->medicos){
+                if(medico->getCrm() == _crm){
+                    return index;
+                }
+                index++;
+            }
+            cout << "Médico não encontrado!" << endl;
+
+            return -1;
+        }
+
+        int medicoJaExiste(string _crm){
+            for(auto medico: this->medicos){
+                if(medico->getCrm() == _crm){
+                    return true;
+                }
+            }
+
+            return false;
+        }
+};
+class App{
+    int op;
+    ControlePacientes * controlePacientes = new ControlePacientes();
+    ControleMedicos * controleMedicos = new ControleMedicos();
+
+    public:
+        App(){
+            op = -1;
+        }
+
+        void run(){
+            while(this->op != 0){
+                lerOpcao();
+            }
+        }
+
+        void lerOpcao(){
+            do{
+                mostrarMenu();
+                cout << "Digite uma opção: ";
+                cin >> this->op;
+
+                if(op == 1){
+                    this->controlePacientes->run();
+                } else if(op == 2){
+                    this->controleMedicos->run();
+                } else if(op == 3){
+                    // ToDo
+                } else if(op == 0){
+                    return;
+                } else {
+                    cout << "Opção Inválida" << endl;
+                }
+            } while(this->op < 0 || this->op > 3);
+        }
+
+        void mostrarMenu(){
+            cout << endl;
+            cout << "1. Gestão de Pacientes" << endl;
+            cout << "2. Gestão de Médicos" << endl;
+            cout << "3. Gestão de Consultas" << endl;
+            cout << "0. Sair" << endl;
+            cout << "-------------------" << endl;
+        }
+};
 
 int main(){
     App * app = new App();
 
     app->run();
-
 
     return 0;
 }
