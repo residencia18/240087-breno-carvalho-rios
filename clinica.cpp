@@ -186,7 +186,7 @@ class Medico{
         }
 
         static bool crmValido(string _crm){
-            return regex_match(_crm, regex("[0-9]{6}/[A-B]{2}"));
+            return _crm.size() == 6;
         }
 };
 class ControlePacientes{
@@ -194,11 +194,8 @@ class ControlePacientes{
     vector<Paciente*> pacientes;
 
     public:
-        ControlePacientes(){
-            op = -1;
-        }
-
         void run(){
+            op = -1;
             while(this->op != 0){
                 lerOpcao();
             }
@@ -247,7 +244,7 @@ class ControlePacientes{
         string lerCpf(){
             string _cpf;
             while(true){
-                cout << "Digite o CPF do paciente: " << endl;
+                cout << "Digite o CPF do paciente (XXX.XXX.XXX-XX): " << endl;
                 getline(cin >> ws, _cpf);
 
                 if(!Paciente::cpfValido(_cpf)){
@@ -384,11 +381,8 @@ class ControleMedicos{
     vector<Medico*> medicos;
 
     public:
-        ControleMedicos(){
-            op = -1;
-        }
-
         void run(){
+            op = -1;
             while(this->op != 0){
                 lerOpcao();
             }
@@ -421,7 +415,7 @@ class ControleMedicos{
         string lerCrm(){
             string _crm;
             while(true){
-                cout << "Digite o CRM do médico: " << endl;
+                cout << "Digite o CRM do médico (6 dígitos): " << endl;
                 getline(cin >> ws, _crm);
 
                 if(!Medico::crmValido(_crm)){
@@ -558,11 +552,8 @@ class App{
     ControleMedicos * controleMedicos = new ControleMedicos();
 
     public:
-        App(){
-            op = -1;
-        }
-
         void run(){
+            op = -1;
             while(this->op != 0){
                 lerOpcao();
             }
@@ -592,7 +583,6 @@ class App{
             cout << endl;
             cout << "1. Gestão de Pacientes" << endl;
             cout << "2. Gestão de Médicos" << endl;
-            cout << "3. Gestão de Consultas" << endl;
             cout << "0. Sair" << endl;
             cout << "-------------------" << endl;
         }
