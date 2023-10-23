@@ -551,7 +551,7 @@ class ControleMedicos{
             return false;
         }
 };
-class ControleConsulta{
+class ControleConsultas{
     int op;
 
     public:
@@ -581,7 +581,7 @@ class ControleConsulta{
                 } else {
                     cout << "Opção Inválida" << endl;
                 }
-            } while(this->op < 0 || this->op > 5);
+            } while(this->op < 0 || this->op > 4);
         }
 
         void mostrarMenu(){
@@ -598,6 +598,7 @@ class App{
     int op;
     ControlePacientes * controlePacientes = new ControlePacientes();
     ControleMedicos * controleMedicos = new ControleMedicos();
+    ControleConsultas * controleConsultas = new ControleConsultas();
 
     public:
         void run(){
@@ -618,7 +619,7 @@ class App{
                 } else if(op == 2){
                     this->controleMedicos->run();
                 } else if(op == 3){
-                    // ToDo
+                    this->controleConsultas->run();
                 } else if(op == 0){
                     return;
                 } else {
@@ -631,6 +632,7 @@ class App{
             cout << endl;
             cout << "1. Gestão de Pacientes" << endl;
             cout << "2. Gestão de Médicos" << endl;
+            cout << "3. Gestão de Consultas" << endl;
             cout << "0. Sair" << endl;
             cout << "-------------------" << endl;
         }
