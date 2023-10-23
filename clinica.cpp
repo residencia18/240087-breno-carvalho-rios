@@ -189,6 +189,11 @@ class Medico{
             return _crm.size() == 6;
         }
 };
+class Consulta{
+    string realizada, convenio;
+    Data dataHora;
+    int duracao;
+};
 class ControlePacientes{
     int op;
     vector<Paciente*> pacientes;
@@ -544,6 +549,49 @@ class ControleMedicos{
             }
 
             return false;
+        }
+};
+class ControleConsulta{
+    int op;
+
+    public:
+        void run(){
+            op = -1;
+            while(this->op != 0){
+                lerOpcao();
+            }
+        }
+
+        void lerOpcao(){
+            do{
+                mostrarMenu();
+                cout << "Digite uma opção: ";
+                cin >> this->op;
+
+                if(op == 1){
+                    // ToDo this->criarConsulta();
+                } else if(op == 2){
+                    // ToDo this->excluirConsulta();
+                } else if(op == 3){
+                    // ToDo this->alterarConsulta();
+                } else if(op == 4){
+                    // ToDo this->imiprimirListaConsultas();
+                } else if(op == 0){
+                    return;
+                } else {
+                    cout << "Opção Inválida" << endl;
+                }
+            } while(this->op < 0 || this->op > 5);
+        }
+
+        void mostrarMenu(){
+            cout << endl;
+            cout << "1. Incluir Consulta" << endl;
+            cout << "2. Excluir Consulta" << endl;
+            cout << "3. Alterar Consulta" << endl;
+            cout << "4. Listar Consultas" << endl;
+            cout << "0. Sair" << endl;
+            cout << "-------------------" << endl;
         }
 };
 class App{
