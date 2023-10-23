@@ -2,6 +2,12 @@
 
 Programa que incrementa o cadastro de pacientes e médicos em uma clínica da etapa anterior
 
+## Integrantes
+
+* Breno Rios
+* Ian Rodrigues
+* Rafaela Brito
+
 # Tarefas:
 
 ## Acrescentar um menu inicial ao seu programa com as seguintes opções
