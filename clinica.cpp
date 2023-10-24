@@ -716,11 +716,11 @@ class ControleConsultas{
                 if(op == 1){
                     // ToDo this->criarConsulta();
                 } else if(op == 2){
-                    // ToDo this->excluirConsulta();
+                    this->excluirConsulta();
                 } else if(op == 3){
                     this->alterarConsulta();
                 } else if(op == 4){
-                    // ToDo this->imiprimirListaConsultas();
+                    this->listarConsultas();
                 } else if(op == 0){
                     return;
                 } else {
@@ -813,7 +813,7 @@ class ControleConsultas{
             Medico * medico = this->controleMedicos->getMedicos().at(medicoIndex);
 
             cout << "Lista de pacientes com consulta agendada com o(a) Dr(a) " << medico->getNome() << endl;
-            this->listarPacientesConsultaMarcada();
+            this->listarPacientesConsultaMarcada(medico);
 
             int pacienteIndex = this->controlePacientes->localizarPaciente();
 
@@ -835,9 +835,26 @@ class ControleConsultas{
             return -1;
         }
 
-        void listarPacientesConsultaMarcada(){
+        void listarPacientesConsultaMarcada(Medico * _medico){
             for(auto consulta: consultas){
-                cout << consulta->getPaciente()->getCpf() << " - " << consulta->getPaciente()->getNome() << endl;
+                if(_medico->getCrm()==consulta->getMedico()->getCrm()){
+                    cout << consulta->getPaciente()->getCpf() << " - " << consulta->getPaciente()->getNome() << endl;
+                }
+            }
+        }
+        void excluirConsulta(){
+            int index = this->localizarConsulta();
+            if(index == -1){
+                return;
+            }
+            consultas.erase(this->consultas.begin()+index);
+            cout << "Consulta excluida com sucesso!" << endl;
+        } 
+        void listarConsultas(){
+            cout << "Lista de consultas: " << endl;
+            for(auto consulta : this->consultas){
+                cout << "--------------------- " << endl;
+                cout << consulta->toString();  
             }
         }
 };
