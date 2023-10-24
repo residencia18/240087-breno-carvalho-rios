@@ -78,7 +78,7 @@ class Data{
             this->ano = _ano;
         }
 
-        string toString(){
+        string dataToString(){
             stringstream ss;
             ss << this->dia << "/" << this->mes << "/" << this->ano;
             return ss.str();
@@ -124,7 +124,7 @@ class Data{
             this->minuto = _minuto;
         }
 
-        string toString(){
+        string horaToString(){
             stringstream ss;
             ss << this->hora << ":" << this->minuto;
             return ss.str();
@@ -159,7 +159,7 @@ class Paciente{
             stringstream ss;
             ss << "CPF: " << this->cpf << endl;
             ss << "Nome: " << this->nome << endl;
-            ss << "Data de Nascimento: " << this->dtNascimento->toString();
+            ss << "Data de Nascimento: " << this->dtNascimento->dataToString();
             return ss.str();
         }
 
@@ -244,13 +244,15 @@ class Medico{
         }
 };
 class Consulta{
-    string statusConsulta = "n", convenio;
+    Medico *medico;
+    Paciente *paciente;
+    string statusConsulta , convenio;
     Data *dataHoraConsulta;
     int duracao;
     
     public:
-        Consulta(string _statusConsulta, Data * _dataHoraConsulta, int _duracao, string _convenio){
-            this->setStatusConsulta(_statusConsulta);
+        Consulta( Medico * _medico, Paciente * _paciente, Data * _dataHoraConsulta, int _duracao, string _convenio){
+            this->setStatusConsulta("n");
             this->setDataHoraConsulta(_dataHoraConsulta);
             this->setDuracao(_duracao);
             this->setConvenio(_convenio);
@@ -267,12 +269,28 @@ class Consulta{
         string toString(){
             stringstream ss;
             ss << "Status: " << this->statusConsulta << endl;
-            ss << "Data e hora: " << this->dataHoraConsulta->toString();
+            ss << "Data: " << this->dataHoraConsulta->dataToString();
+            ss << "Hora: " << this->dataHoraConsulta->horaToString();
             ss << "Duração: " << this->duracao << endl;
             ss << "Convênio: " << this->convenio << endl;
             return ss.str();
         }
 
+        void setPaciente(Paciente * _paciente){
+            this-> paciente = _paciente;
+        }
+
+        Paciente * getPaciente(){
+            return paciente;
+        }
+
+        void setMedico(Medico * _medico){
+            this-> medico = _medico;
+        }
+
+        Medico * getMedico(){
+            return medico;
+        }
         void setStatusConsulta(string _statusConsulta){
             this->statusConsulta = _statusConsulta;
         }
@@ -300,14 +318,20 @@ class Consulta{
         }
 
         void setConvenio(string _convenio){
+
             this->convenio = _convenio;
         }
+
 };
 class ControlePacientes{
     int op;
     vector<Paciente*> pacientes;
 
     public:
+        vector<Paciente*> getPacientes() {
+            return pacientes;
+        }
+
         void run(){
             op = -1;
             while(this->op != 0){
@@ -495,6 +519,10 @@ class ControleMedicos{
     vector<Medico*> medicos;
 
     public:
+        vector<Medico*> getMedicos() {
+            return medicos;
+        }
+
         void run(){
             op = -1;
             while(this->op != 0){
@@ -779,7 +807,7 @@ class ControleConsultas{
             int medicoIndex = this->controleMedicos->localizarMedico();
 
             if(medicoIndex == -1){
-                return;
+                return -1;
             }
 
             Medico * medico = this->controleMedicos->getMedicos().at(medicoIndex);
@@ -790,14 +818,14 @@ class ControleConsultas{
             int pacienteIndex = this->controlePacientes->localizarPaciente();
 
             if(pacienteIndex == -1){
-                return;
+                return -1;
             }
 
             Paciente * paciente = this->controlePacientes->getPacientes().at(pacienteIndex);
 
             int index = 0;
             for(auto consulta: this->consultas){
-                if(consulta->getCrm() == medico->getCrm() && consulta->getCpf() == paciente->getCpf()){
+                if(consulta->getMedico()->getCrm() == medico->getCrm() && consulta->getPaciente()->getCpf() == paciente->getCpf()){
                     return index;
                 }
                 index++;
@@ -809,7 +837,7 @@ class ControleConsultas{
 
         void listarPacientesConsultaMarcada(){
             for(auto consulta: consultas){
-                cout << consulta->getPaciente()->getCpf() << " - " << consulta->getPaciente()->getName() << endl;
+                cout << consulta->getPaciente()->getCpf() << " - " << consulta->getPaciente()->getNome() << endl;
             }
         }
 };
