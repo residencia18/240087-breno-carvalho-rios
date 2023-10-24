@@ -6,11 +6,16 @@
 
 using namespace std;
 class Data{
-    int dia, mes, ano;
+    int dia, mes, ano, hora, minuto;
 
     public:
         Data(int _dia, int _mes, int _ano){
             this->setData(_dia, _mes, _ano);
+        }
+
+        Data(int _dia, int _mes, int _ano, int _hora, int _minuto) {
+            this->setData(_dia, _mes, _ano);
+            this->setHorario(_hora, _minuto);
         }
 
         void setDia(int _dia){
@@ -41,6 +46,26 @@ class Data{
 
         int getAno(){
             return this->ano;
+        }
+
+        void setHora(int _hora){
+            if(horaValida(_hora, this->minuto)){
+                this->hora = _hora;
+            }
+        }
+
+        int getHora(){
+            return this->hora;
+        }
+
+        void setMinuto(int _minuto){
+            if(horaValida(this->hora, _minuto)){
+                this->minuto = _minuto;
+            }
+        }
+
+        int getMinuto(){
+            return this->minuto;
         }
 
         void setData(int _dia, int _mes, int _ano){
@@ -88,6 +113,35 @@ class Data{
 
         static bool dataValida(Data * _data){
             return dataValida(_data->getDia(), _data->getMes(), _data->getAno());
+        }
+
+         void setHorario(int _hora, int _minuto){
+            if(!horaValida(_hora, _minuto)){
+                return;
+            }
+
+            this->hora = _hora;
+            this->minuto = _minuto;
+        }
+
+        string toString(){
+            stringstream ss;
+            ss << this->hora << ":" << this->minuto;
+            return ss.str();
+        }
+
+        static bool horaValida(int _hora, int _minuto){
+            
+            if((_hora < 0 || _hora > 23) || (_minuto > 59 || _minuto < 0)){
+                cout << "Horário inválido!" << endl;
+                return false;
+            }
+
+            return true;
+        }
+
+        static bool horaValida(Data * _data){
+            return horaValida(_data->getHora(), _data->getMinuto());
         }
 };
 class Paciente{
@@ -190,7 +244,7 @@ class Medico{
         }
 };
 class Consulta{
-    string statusConsulta, convenio;
+    string statusConsulta = "n", convenio;
     Data *dataHoraConsulta;
     int duracao;
     
@@ -200,6 +254,14 @@ class Consulta{
             this->setDataHoraConsulta(_dataHoraConsulta);
             this->setDuracao(_duracao);
             this->setConvenio(_convenio);
+        }
+
+        void setData (int _dia, int _mes, int _ano){
+            dataHoraConsulta->setData(_dia, _mes, _ano);
+        }
+
+        void setHorario (int _hora, int _minuto){
+            dataHoraConsulta->setHorario(_hora, _minuto);
         }
 
         string toString(){
@@ -704,7 +766,7 @@ class ControleConsultas{
                 cin >> _minuto;
 
                 if(Data::horaValida(_hora, _minuto)){
-                    consulta->setHora(_hora, _minuto);
+                    consulta->setHorario(_hora, _minuto);
                 }
 
                 cout << "Hora da consulta alterada!" << endl;
