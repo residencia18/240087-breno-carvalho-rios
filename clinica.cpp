@@ -256,6 +256,8 @@ class Consulta{
             this->setDataHoraConsulta(_dataHoraConsulta);
             this->setDuracao(_duracao);
             this->setConvenio(_convenio);
+            this->setMedico(_medico);
+            this->setPaciente(_paciente);
         }
 
         void setData (int _dia, int _mes, int _ano){
@@ -714,7 +716,7 @@ class ControleConsultas{
                 cin >> this->op;
 
                 if(op == 1){
-                    // ToDo this->criarConsulta();
+                    this->criarConsulta();
                 } else if(op == 2){
                     this->excluirConsulta();
                 } else if(op == 3){
@@ -856,6 +858,54 @@ class ControleConsultas{
                 cout << "--------------------- " << endl;
                 cout << consulta->toString();  
             }
+        }
+        void criarConsulta(){
+            int indexP, indexM, dia, mes, ano, hora, minuto, duracao;
+            string crm, cpf, convenio; 
+            Medico * medico;
+            Paciente * paciente;
+
+            indexM = this->controleMedicos->localizarMedico();
+            if(indexM == -1){
+                return;
+            }
+            medico = this->controleMedicos->getMedicos().at(indexM);
+
+            indexP = this->controlePacientes->localizarPaciente();
+            if(indexP == -1){
+                return;
+            }
+            paciente = this->controlePacientes->getPacientes().at(indexP);
+
+            cout << "Digite a nova data: " << endl;
+            cout << "Dia: ";
+            cin >> dia;
+            cout << "Mês: ";
+            cin >> mes;
+            cout << "Ano: ";
+            cin >> ano;
+
+            if(!Data::dataValida(dia, mes, ano)){
+                return;
+            }
+            cout << "Digite a nova hora: " << endl;
+            cout << "Hora: ";
+            cin >> hora;
+            cout << "Minuto: ";
+            cin >> minuto;
+
+            if(!Data::horaValida(hora, minuto)){
+                return;
+            }
+            cout << "Escreva a duração da consulta: " << endl;
+            cin >> duracao;
+            cout << "Escreva o convenio da consulta: " << endl;
+            cin >> convenio;
+            
+            Data * data = new Data(dia, mes, ano, hora, minuto);
+            Consulta * consulta = new Consulta(medico, paciente, data, duracao, convenio);
+            this->consultas.push_back(consulta);  
+             
         }
 };
 class App{
