@@ -189,6 +189,11 @@ class Medico{
             return _crm.size() == 6;
         }
 };
+class Consulta{
+    string realizada, convenio;
+    Data dataHora;
+    int duracao;
+};
 class ControlePacientes{
     int op;
     vector<Paciente*> pacientes;
@@ -322,7 +327,7 @@ class ControlePacientes{
             cin >> _op;
             if(_op == "S" || _op == "s"){
                 cout << "Digite a nova data de nascimento: " << endl;
-                Data * _data  = lerData();
+                Data * _data  = this->lerData();
                 paciente->setDtNascimento(_data);
                 cout << "Data de nascimento alterada!" << endl;
             }
@@ -546,10 +551,164 @@ class ControleMedicos{
             return false;
         }
 };
+class ControleConsultas{
+    int op;
+    ControlePacientes * controlePacientes;
+    ControleMedicos * controleMedicos;
+    vector<Consulta*> consultas;
+
+    public:
+        ControleConsultas(ControlePacientes * _controlePacientes, ControleMedicos * _controleMedicos){
+            this->controlePacientes = _controlePacientes;
+            this->controleMedicos = _controleMedicos;
+        }
+
+        void run(){
+            op = -1;
+            while(this->op != 0){
+                lerOpcao();
+            }
+        }
+
+        void lerOpcao(){
+            do{
+                mostrarMenu();
+                cout << "Digite uma opção: ";
+                cin >> this->op;
+
+                if(op == 1){
+                    // ToDo this->criarConsulta();
+                } else if(op == 2){
+                    // ToDo this->excluirConsulta();
+                } else if(op == 3){
+                    this->alterarConsulta();
+                } else if(op == 4){
+                    // ToDo this->imiprimirListaConsultas();
+                } else if(op == 0){
+                    return;
+                } else {
+                    cout << "Opção Inválida" << endl;
+                }
+            } while(this->op < 0 || this->op > 4);
+        }
+
+        void mostrarMenu(){
+            cout << endl;
+            cout << "1. Incluir Consulta" << endl;
+            cout << "2. Excluir Consulta" << endl;
+            cout << "3. Alterar Consulta" << endl;
+            cout << "4. Listar Consultas" << endl;
+            cout << "0. Sair" << endl;
+            cout << "-------------------" << endl;
+        }
+
+        void alterarConsulta(){
+            string _op;
+            int consultaIndex = this->localizarConsulta();
+            
+            if(consultaIndex == -1){
+                return;
+            }
+
+            Consulta * consulta = this->consultas.at(consultaIndex);
+
+            cout << "Deseja registrar como realizada? (S/N)" << endl;
+            cin >> _op;
+
+            if(_op == "S" || _op == "s"){
+                consulta->setRealizada("s");
+                cout << "Consulta registrada como realizada!" << endl;
+
+                return;
+            }
+            
+            cout << "Deseja alterar a data? (S/N)" << endl;
+            cin >> _op;
+
+            if(_op == "S" || _op == "s"){
+                int _dia, _mes, _ano;
+
+                cout << "Digite a nova data: " << endl;
+                cout << "Dia: ";
+                cin >> _dia;
+                cout << "Mês: ";
+                cin >> _mes;
+                cout << "Ano: ";
+                cin >> _ano;
+
+                if(Data::dataValida(_dia, _mes, _ano)){
+                    consulta->setData(_dia, _mes, _ano);
+                }
+
+                cout << "Data da consulta alterada!" << endl;
+            }
+
+            
+            cout << "Deseja alterar a hora? (S/N)" << endl;
+            cin >> _op;
+            
+            if(_op == "S" || _op == "s"){
+                int _hora, _minuto;
+
+                cout << "Digite a nova hora: " << endl;
+                cout << "Hora: ";
+                cin >> _hora;
+                cout << "Minuto: ";
+                cin >> _minuto;
+
+                if(Data::horaValida(_hora, _minuto)){
+                    consulta->setHora(_hora, _minuto);
+                }
+
+                cout << "Hora da consulta alterada!" << endl;
+            }
+        }
+
+        int localizarConsulta(){
+            string _crm, _cpf;
+
+            int medicoIndex = this->controleMedicos->localizarMedico();
+
+            if(medicoIndex == -1){
+                return;
+            }
+
+            Medico * medico = this->controleMedicos->getMedicos().at(medicoIndex);
+
+            cout << "Lista de pacientes com consulta agendada com o(a) Dr(a) " << medico->getNome() << endl;
+            this->listarPacientesConsultaMarcada();
+
+            int pacienteIndex = this->controlePacientes->localizarPaciente();
+
+            if(pacienteIndex == -1){
+                return;
+            }
+
+            Paciente * paciente = this->controlePacientes->getPacientes().at(pacienteIndex);
+
+            int index = 0;
+            for(auto consulta: this->consultas){
+                if(consulta->getCrm() == medico->getCrm() && consulta->getCpf() == paciente->getCpf()){
+                    return index;
+                }
+                index++;
+            }
+            cout << "Consulta não encontrada!" << endl;
+
+            return -1;
+        }
+
+        void listarPacientesConsultaMarcada(){
+            for(auto consulta: consultas){
+                cout << consulta->getPaciente()->getCpf() << " - " << consulta->getPaciente()->getName() << endl;
+            }
+        }
+};
 class App{
     int op;
     ControlePacientes * controlePacientes = new ControlePacientes();
     ControleMedicos * controleMedicos = new ControleMedicos();
+    ControleConsultas * controleConsultas = new ControleConsultas(controlePacientes, controleMedicos);
 
     public:
         void run(){
@@ -570,7 +729,7 @@ class App{
                 } else if(op == 2){
                     this->controleMedicos->run();
                 } else if(op == 3){
-                    // ToDo
+                    this->controleConsultas->run();
                 } else if(op == 0){
                     return;
                 } else {
@@ -583,6 +742,7 @@ class App{
             cout << endl;
             cout << "1. Gestão de Pacientes" << endl;
             cout << "2. Gestão de Médicos" << endl;
+            cout << "3. Gestão de Consultas" << endl;
             cout << "0. Sair" << endl;
             cout << "-------------------" << endl;
         }
