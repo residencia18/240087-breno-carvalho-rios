@@ -190,9 +190,56 @@ class Medico{
         }
 };
 class Consulta{
-    string realizada, convenio;
-    Data dataHora;
+    string statusConsulta, convenio;
+    Data *dataHoraConsulta;
     int duracao;
+    
+    public:
+        Consulta(string _statusConsulta, Data * _dataHoraConsulta, int _duracao, string _convenio){
+            this->setStatusConsulta(_statusConsulta);
+            this->setDataHoraConsulta(_dataHoraConsulta);
+            this->setDuracao(_duracao);
+            this->setConvenio(_convenio);
+        }
+
+        string toString(){
+            stringstream ss;
+            ss << "Status: " << this->statusConsulta << endl;
+            ss << "Data e hora: " << this->dataHoraConsulta->toString();
+            ss << "Duração: " << this->duracao << endl;
+            ss << "Convênio: " << this->convenio << endl;
+            return ss.str();
+        }
+
+        void setStatusConsulta(string _statusConsulta){
+            this->statusConsulta = _statusConsulta;
+        }
+
+        string getStatusConsulta(){
+            return this->statusConsulta;
+        }
+
+        void setDataHoraConsulta(Data * _dataHoraConsulta){
+            if(Data::dataValida(_dataHoraConsulta)){
+                this->dataHoraConsulta = _dataHoraConsulta;
+            }
+        }
+
+        Data * getDataHoraConsulta(){
+            return this->dataHoraConsulta;
+        }
+
+        void setDuracao(int _duracao){
+            this->duracao = _duracao;
+        }
+
+        int getDuracao(){
+            return this->duracao;
+        }
+
+        void setConvenio(string _convenio){
+            this->convenio = _convenio;
+        }
 };
 class ControlePacientes{
     int op;
@@ -616,7 +663,7 @@ class ControleConsultas{
             cin >> _op;
 
             if(_op == "S" || _op == "s"){
-                consulta->setRealizada("s");
+                consulta->setStatusConsulta("s");
                 cout << "Consulta registrada como realizada!" << endl;
 
                 return;
