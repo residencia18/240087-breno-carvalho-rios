@@ -327,7 +327,7 @@ class ControlePacientes{
             cin >> _op;
             if(_op == "S" || _op == "s"){
                 cout << "Digite a nova data de nascimento: " << endl;
-                Data * _data  = lerData();
+                Data * _data  = this->lerData();
                 paciente->setDtNascimento(_data);
                 cout << "Data de nascimento alterada!" << endl;
             }
@@ -553,8 +553,16 @@ class ControleMedicos{
 };
 class ControleConsultas{
     int op;
+    ControlePacientes * controlePacientes;
+    ControleMedicos * controleMedicos;
+    vector<Consulta*> consultas;
 
     public:
+        ControleConsultas(ControlePacientes * _controlePacientes, ControleMedicos * _controleMedicos){
+            this->controlePacientes = _controlePacientes;
+            this->controleMedicos = _controleMedicos;
+        }
+
         void run(){
             op = -1;
             while(this->op != 0){
@@ -573,7 +581,7 @@ class ControleConsultas{
                 } else if(op == 2){
                     // ToDo this->excluirConsulta();
                 } else if(op == 3){
-                    // ToDo this->alterarConsulta();
+                    this->alterarConsulta();
                 } else if(op == 4){
                     // ToDo this->imiprimirListaConsultas();
                 } else if(op == 0){
@@ -593,12 +601,114 @@ class ControleConsultas{
             cout << "0. Sair" << endl;
             cout << "-------------------" << endl;
         }
+
+        void alterarConsulta(){
+            string _op;
+            int consultaIndex = this->localizarConsulta();
+            
+            if(consultaIndex == -1){
+                return;
+            }
+
+            Consulta * consulta = this->consultas.at(consultaIndex);
+
+            cout << "Deseja registrar como realizada? (S/N)" << endl;
+            cin >> _op;
+
+            if(_op == "S" || _op == "s"){
+                consulta->setRealizada("s");
+                cout << "Consulta registrada como realizada!" << endl;
+
+                return;
+            }
+            
+            cout << "Deseja alterar a data? (S/N)" << endl;
+            cin >> _op;
+
+            if(_op == "S" || _op == "s"){
+                int _dia, _mes, _ano;
+
+                cout << "Digite a nova data: " << endl;
+                cout << "Dia: ";
+                cin >> _dia;
+                cout << "Mês: ";
+                cin >> _mes;
+                cout << "Ano: ";
+                cin >> _ano;
+
+                if(Data::dataValida(_dia, _mes, _ano)){
+                    consulta->setData(_dia, _mes, _ano);
+                }
+
+                cout << "Data da consulta alterada!" << endl;
+            }
+
+            
+            cout << "Deseja alterar a hora? (S/N)" << endl;
+            cin >> _op;
+            
+            if(_op == "S" || _op == "s"){
+                int _hora, _minuto;
+
+                cout << "Digite a nova hora: " << endl;
+                cout << "Hora: ";
+                cin >> _hora;
+                cout << "Minuto: ";
+                cin >> _minuto;
+
+                if(Data::horaValida(_hora, _minuto)){
+                    consulta->setHora(_hora, _minuto);
+                }
+
+                cout << "Hora da consulta alterada!" << endl;
+            }
+        }
+
+        int localizarConsulta(){
+            string _crm, _cpf;
+
+            int medicoIndex = this->controleMedicos->localizarMedico();
+
+            if(medicoIndex == -1){
+                return;
+            }
+
+            Medico * medico = this->controleMedicos->getMedicos().at(medicoIndex);
+
+            cout << "Lista de pacientes com consulta agendada com o(a) Dr(a) " << medico->getNome() << endl;
+            this->listarPacientesConsultaMarcada();
+
+            int pacienteIndex = this->controlePacientes->localizarPaciente();
+
+            if(pacienteIndex == -1){
+                return;
+            }
+
+            Paciente * paciente = this->controlePacientes->getPacientes().at(pacienteIndex);
+
+            int index = 0;
+            for(auto consulta: this->consultas){
+                if(consulta->getCrm() == medico->getCrm() && consulta->getCpf() == paciente->getCpf()){
+                    return index;
+                }
+                index++;
+            }
+            cout << "Consulta não encontrada!" << endl;
+
+            return -1;
+        }
+
+        void listarPacientesConsultaMarcada(){
+            for(auto consulta: consultas){
+                cout << consulta->getPaciente()->getCpf() << " - " << consulta->getPaciente()->getName() << endl;
+            }
+        }
 };
 class App{
     int op;
     ControlePacientes * controlePacientes = new ControlePacientes();
     ControleMedicos * controleMedicos = new ControleMedicos();
-    ControleConsultas * controleConsultas = new ControleConsultas();
+    ControleConsultas * controleConsultas = new ControleConsultas(controlePacientes, controleMedicos);
 
     public:
         void run(){
