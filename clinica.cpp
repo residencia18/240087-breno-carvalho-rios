@@ -191,7 +191,7 @@ class Medico{
 };
 class Consulta{
     string statusConsulta, convenio;
-    Data * dataHoraConsulta;
+    Data *dataHoraConsulta;
     int duracao;
     
     public:
@@ -663,7 +663,7 @@ class ControleConsultas{
             cin >> _op;
 
             if(_op == "S" || _op == "s"){
-                consulta->setRealizada("s");
+                consulta->setStatusConsulta("s");
                 cout << "Consulta registrada como realizada!" << endl;
 
                 return;
