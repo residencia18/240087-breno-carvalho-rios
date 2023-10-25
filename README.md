@@ -37,4 +37,4 @@ Link para repositório da etapa 1 (individual) de cada um dos integrantes
 
 * Breno - [avaliacao-modulo-1-etapa-1-tic18](https://github.com/brenoriios/avaliacao-modulo-1-etapa-1-tic18)
 * Ian - [primeira_prova_individual](https://github.com/IanAlexandrino/primeira_prova_individual)
-* Rafaela - [Avaliação 1](https://github.com/rcfbritto/Av1)
+* Rafaela - [Avaliação 1](https://github.com/rcfbritto/Avalia-o-1)
