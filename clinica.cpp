@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <regex>
+#include <iomanip>
 
 using namespace std;
 class Data{
@@ -80,7 +81,13 @@ class Data{
 
         string dataToString(){
             stringstream ss;
-            ss << this->dia << "/" << this->mes << "/" << this->ano;
+            ss << setfill('0') << setw(2) << this->dia << "/" << setfill('0') << setw(2) << this->mes << "/" << this->ano;
+            return ss.str();
+        }
+
+        string horaToString(){
+            stringstream ss;
+            ss << setfill('0') << setw(2) << this->hora << ":" << setfill('0') << setw(2) << this->minuto;
             return ss.str();
         }
 
@@ -122,12 +129,6 @@ class Data{
 
             this->hora = _hora;
             this->minuto = _minuto;
-        }
-
-        string horaToString(){
-            stringstream ss;
-            ss << this->hora << ":" << this->minuto;
-            return ss.str();
         }
 
         static bool horaValida(int _hora, int _minuto){
@@ -270,10 +271,10 @@ class Consulta{
 
         string toString(){
             stringstream ss;
-            ss << "Status: " << this->statusConsulta << endl;
-            ss << "Data: " << this->dataHoraConsulta->dataToString();
-            ss << "Hora: " << this->dataHoraConsulta->horaToString();
-            ss << "Duração: " << this->duracao << endl;
+            ss << "Realizada: " << this->statusConsulta << endl;
+            ss << "Data: " << this->dataHoraConsulta->dataToString() << endl;
+            ss << "Hora: " << this->dataHoraConsulta->horaToString() << endl;
+            ss << "Duração: " << this->duracao << " minuto(s)" << endl;
             ss << "Convênio: " << this->convenio << endl;
             return ss.str();
         }
@@ -800,35 +801,35 @@ class ControleConsultas{
 
                 if(Data::horaValida(_hora, _minuto)){
                     consulta->setHorario(_hora, _minuto);
+                    cout << "Hora da consulta alterada!" << endl;
                 }
-
-                cout << "Hora da consulta alterada!" << endl;
-                
-                cout << "Deseja alterar a duracao da consulta? " << endl;
-                cin >> _op;
-
-                if(_op == "S" || _op == "s"){
-                    int duracao;
-                    cout << "Qual a duracao da consulta? " << endl;
-                    cin >> duracao;
-                    consulta->setDuracao(duracao);
-                    cout << "Duracao da consulta alterada!" << endl;
-
-                    return;
-                }
-                cout << "Deseja alterar o convenio? " << endl;
-                cin >> _op;
-
-                if(_op == "S" || _op == "s"){
-                    string convenio;
-                    cout << "Qual o convenio? " << endl;
-                    getline(cin >> ws, convenio);
-                    consulta->setConvenio(convenio);
-                    cout << "Convenio alterado!" << endl;
-
-                    return;
-                }    
             }
+                
+            cout << "Deseja alterar a duracao da consulta (S/N)? " << endl;
+            cin >> _op;
+
+            if(_op == "S" || _op == "s"){
+                int duracao;
+                cout << "Qual a duracao da consulta? " << endl;
+                cin >> duracao;
+                consulta->setDuracao(duracao);
+                cout << "Duracao da consulta alterada!" << endl;
+
+                return;
+            }
+
+            cout << "Deseja alterar o convenio (S/N)? " << endl;
+            cin >> _op;
+
+            if(_op == "S" || _op == "s"){
+                string convenio;
+                cout << "Qual o convenio? " << endl;
+                getline(cin >> ws, convenio);
+                consulta->setConvenio(convenio);
+                cout << "Convenio alterado!" << endl;
+
+                return;
+            }    
         }
 
         int localizarConsulta(){
@@ -872,6 +873,7 @@ class ControleConsultas{
                 }
             }
         }
+
         void excluirConsulta(){
             int index = this->localizarConsulta();
             if(index == -1){
@@ -880,6 +882,7 @@ class ControleConsultas{
             consultas.erase(this->consultas.begin()+index);
             cout << "Consulta excluida com sucesso!" << endl;
         } 
+
         void listarConsultas(){
             cout << "Lista de consultas: " << endl;
             for(auto consulta : this->consultas){
@@ -887,6 +890,7 @@ class ControleConsultas{
                 cout << consulta->toString();  
             }
         }
+
         void criarConsulta(){
             int indexP, indexM, dia, mes, ano, hora, minuto, duracao;
             string crm, cpf, convenio; 
@@ -925,10 +929,12 @@ class ControleConsultas{
             if(!Data::horaValida(hora, minuto)){
                 return;
             }
-            cout << "Escreva a duração da consulta: " << endl;
+
+            cout << "Escreva a duração da consulta (em minutos): " << endl;
             cin >> duracao;
+
             cout << "Escreva o convenio da consulta: " << endl;
-            cin >> convenio;
+            getline(cin >> ws, convenio);
             
             Data * data = new Data(dia, mes, ano, hora, minuto);
             Consulta * consulta = new Consulta(medico, paciente, data, duracao, convenio);
