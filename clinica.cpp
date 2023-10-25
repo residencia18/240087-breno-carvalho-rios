@@ -404,7 +404,7 @@ class ControlePacientes{
             cout << "3. Alterar Paciente (por CPF)" << endl;
             cout << "4. Listar Pacientes" << endl;
             cout << "5. Localizar Paciente (por CPF)" << endl;
-            cout << "0. Sair" << endl;
+            cout << "0. Voltar" << endl;
             cout << "-------------------" << endl;
         }
 
@@ -579,7 +579,7 @@ class ControleMedicos{
             cout << "3. Alterar Médico (por CRM)" << endl;
             cout << "4. Listar Médicos" << endl;
             cout << "5. Localizar Médico (por CRM)" << endl;
-            cout << "0. Sair" << endl;
+            cout << "0. Voltar" << endl;
             cout << "-------------------" << endl;
         }
 
@@ -737,7 +737,7 @@ class ControleConsultas{
             cout << "2. Excluir Consulta" << endl;
             cout << "3. Alterar Consulta" << endl;
             cout << "4. Listar Consultas" << endl;
-            cout << "0. Sair" << endl;
+            cout << "0. Voltar" << endl;
             cout << "-------------------" << endl;
         }
 
@@ -750,7 +750,10 @@ class ControleConsultas{
             }
 
             Consulta * consulta = this->consultas.at(consultaIndex);
-
+            if(consulta->getStatusConsulta() =="s"){
+                cout << "Consulta já realizada. Não é possível alterar!" << endl;
+                return;
+            }
             cout << "Deseja registrar como realizada? (S/N)" << endl;
             cin >> _op;
 
@@ -800,6 +803,31 @@ class ControleConsultas{
                 }
 
                 cout << "Hora da consulta alterada!" << endl;
+                
+                cout << "Deseja alterar a duracao da consulta? " << endl;
+                cin >> _op;
+
+                if(_op == "S" || _op == "s"){
+                    int duracao;
+                    cout << "Qual a duracao da consulta? " << endl;
+                    cin >> duracao;
+                    consulta->setDuracao(duracao);
+                    cout << "Duracao da consulta alterada!" << endl;
+
+                    return;
+                }
+                cout << "Deseja alterar o convenio? " << endl;
+                cin >> _op;
+
+                if(_op == "S" || _op == "s"){
+                    string convenio;
+                    cout << "Qual o convenio? " << endl;
+                    getline(cin >> ws, convenio);
+                    consulta->setConvenio(convenio);
+                    cout << "Convenio alterado!" << endl;
+
+                    return;
+                }    
             }
         }
 
@@ -877,7 +905,7 @@ class ControleConsultas{
             }
             paciente = this->controlePacientes->getPacientes().at(indexP);
 
-            cout << "Digite a nova data: " << endl;
+            cout << "Digite a data da consulta: " << endl;
             cout << "Dia: ";
             cin >> dia;
             cout << "Mês: ";
@@ -888,7 +916,7 @@ class ControleConsultas{
             if(!Data::dataValida(dia, mes, ano)){
                 return;
             }
-            cout << "Digite a nova hora: " << endl;
+            cout << "Digite a hora da consulta: " << endl;
             cout << "Hora: ";
             cin >> hora;
             cout << "Minuto: ";
