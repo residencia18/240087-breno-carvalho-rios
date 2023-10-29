@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -39,31 +41,85 @@ class Lista {
 	virtual void mostraMediana() =0;
 	virtual void mostraMenor() =0;
 	virtual void mostraMaior() =0;
+	virtual void listarEmOrdem() =0;
+	virtual void listaNElementos(int n) =0;
 };
 
-class ListaNomes {
+class ListaNomes : public Lista {
 	vector<string> lista;
 	
 	public:
 	
 	/*
-	O m�todo abaixo pergunta ao usu�rios quantos
-	elementos v�o existir na lista e depois
-	solicita a digita��o de cada um deles
+	O método abaixo pergunta ao usuário quantos
+	elementos vão existir na lista e depois
+	solicita a digitação de cada um deles
 	*/	
 	void entradaDeDados() {
-		lista.push_back("Teste");
+		string _nome;
+		int _qtdElementos;
+		cout << "Quantos elementos vão existir na lista?" << endl;
+		cin >> _qtdElementos;
+
+		for(int i = 0; i < _qtdElementos; i++){
+			cout << "Digite o nome " << (i + 1) << endl;
+			getline(cin >> ws, _nome);
+			lista.push_back(_nome);
+		}
+		cout << "-----------------" << endl;
 	}
 		
 	void mostraMediana() {
+		vector<string> _auxLista = this->lista;
+		float meio;
+
+		sort(_auxLista.begin(), _auxLista.end());
+
+		meio = floor(((_auxLista.size() + 1) / 2.0) - 1);
+
 		cout << "Aqui vai mostrar a mediana da lista de strings" << endl;
+		cout << _auxLista.at(meio) << endl;
+		cout << "-----------------" << endl;
 	}
 	
 	void mostraMenor() {
+		vector<string> _auxLista = this->lista;
+
+		sort(_auxLista.begin(), _auxLista.end());
+		
 		cout << "Aqui vai mostrar o primeiro nome alfabeticamente" << endl;
+		cout << _auxLista.front() << endl;
+		cout << "-----------------" << endl;
 	}
+
 	void mostraMaior() {
-		cout << "aqui vai mostrar o ultimo nome alfabeticamente" << endl;
+		vector<string> _auxLista = this->lista;
+
+		sort(_auxLista.begin(), _auxLista.end());
+
+		cout << "Aqui vai mostrar o ultimo nome alfabeticamente" << endl;
+		cout << _auxLista.back() << endl;
+		cout << "-----------------" << endl;
+	}
+
+	void listarEmOrdem(){
+		vector<string> _auxLista = this->lista;
+
+		sort(_auxLista.begin(), _auxLista.end());
+
+		cout << "Aqui vai mostrar todos os nomes da lista ordenados alfabeticamente" << endl;
+		for(auto nome: _auxLista){
+			cout << nome << endl;
+		}
+		cout << "-----------------" << endl;
+	}
+
+	void listaNElementos(int n){
+		cout << "Aqui vai mostrar os " << n << " primeiros nomes da lista" << endl;
+		for(int i = 0; i < n; i++){
+			cout << (i + 1) << ". " << this->lista.at(i) << endl;
+		}
+		cout << "-----------------" << endl;
 	}
 };
 
@@ -166,9 +222,16 @@ int main () {
 	listaDeListas.push_back(&listaIdades);
 	
 	for (Lista* l : listaDeListas) {
+		int _n;
+
 		l->mostraMediana();
 		l->mostraMenor();
 		l->mostraMaior();
+		l->listarEmOrdem();
+
+		cout << "Quantos elementos você quer mostrar?" << endl;
+		cin >> _n;
+		l->listaNElementos(_n);
 	}
 	
 }
