@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -66,7 +67,15 @@ class ListaNomes : public Lista {
 	}
 		
 	void mostraMediana() {
+		vector<string> _auxLista = this->lista;
+		float meio;
+
+		sort(_auxLista.begin(), _auxLista.end());
+
+		meio = floor(((_auxLista.size() + 1) / 2.0) - 1);
+
 		cout << "Aqui vai mostrar a mediana da lista de strings" << endl;
+		cout << _auxLista.at(meio) << endl;
 	}
 	
 	void mostraMenor() {
