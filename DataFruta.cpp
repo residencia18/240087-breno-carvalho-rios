@@ -41,6 +41,8 @@ class Lista {
 	virtual void mostraMediana() =0;
 	virtual void mostraMenor() =0;
 	virtual void mostraMaior() =0;
+	virtual void listarEmOrdem() =0;
+	virtual void listaNElementos(int n) =0;
 };
 
 class ListaNomes : public Lista {
@@ -64,6 +66,7 @@ class ListaNomes : public Lista {
 			getline(cin >> ws, _nome);
 			lista.push_back(_nome);
 		}
+		cout << "-----------------" << endl;
 	}
 		
 	void mostraMediana() {
@@ -76,6 +79,7 @@ class ListaNomes : public Lista {
 
 		cout << "Aqui vai mostrar a mediana da lista de strings" << endl;
 		cout << _auxLista.at(meio) << endl;
+		cout << "-----------------" << endl;
 	}
 	
 	void mostraMenor() {
@@ -85,6 +89,7 @@ class ListaNomes : public Lista {
 		
 		cout << "Aqui vai mostrar o primeiro nome alfabeticamente" << endl;
 		cout << _auxLista.front() << endl;
+		cout << "-----------------" << endl;
 	}
 
 	void mostraMaior() {
@@ -94,6 +99,27 @@ class ListaNomes : public Lista {
 
 		cout << "Aqui vai mostrar o ultimo nome alfabeticamente" << endl;
 		cout << _auxLista.back() << endl;
+		cout << "-----------------" << endl;
+	}
+
+	void listarEmOrdem(){
+		vector<string> _auxLista = this->lista;
+
+		sort(_auxLista.begin(), _auxLista.end());
+
+		cout << "Aqui vai mostrar todos os nomes da lista ordenados alfabeticamente" << endl;
+		for(auto nome: _auxLista){
+			cout << nome << endl;
+		}
+		cout << "-----------------" << endl;
+	}
+
+	void listaNElementos(int n){
+		cout << "Aqui vai mostrar os " << n << " primeiros nomes da lista" << endl;
+		for(int i = 0; i < n; i++){
+			cout << (i + 1) << ". " << this->lista.at(i) << endl;
+		}
+		cout << "-----------------" << endl;
 	}
 };
 
@@ -196,9 +222,16 @@ int main () {
 	listaDeListas.push_back(&listaIdades);
 	
 	for (Lista* l : listaDeListas) {
+		int _n;
+
 		l->mostraMediana();
 		l->mostraMenor();
 		l->mostraMaior();
+		l->listarEmOrdem();
+
+		cout << "Quantos elementos você quer mostrar?" << endl;
+		cin >> _n;
+		l->listaNElementos(_n);
 	}
 	
 }
