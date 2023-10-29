@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -69,10 +70,21 @@ class ListaNomes : public Lista {
 	}
 	
 	void mostraMenor() {
+		vector<string> _auxLista = this->lista;
+
+		sort(_auxLista.begin(), _auxLista.end());
+		
 		cout << "Aqui vai mostrar o primeiro nome alfabeticamente" << endl;
+		cout << _auxLista.front() << endl;
 	}
+
 	void mostraMaior() {
-		cout << "aqui vai mostrar o ultimo nome alfabeticamente" << endl;
+		vector<string> _auxLista = this->lista;
+
+		sort(_auxLista.begin(), _auxLista.end());
+
+		cout << "Aqui vai mostrar o ultimo nome alfabeticamente" << endl;
+		cout << _auxLista.back() << endl;
 	}
 };
 
