@@ -41,18 +41,27 @@ class Lista {
 	virtual void mostraMaior() =0;
 };
 
-class ListaNomes {
+class ListaNomes : public Lista {
 	vector<string> lista;
 	
 	public:
 	
 	/*
-	O m�todo abaixo pergunta ao usu�rios quantos
-	elementos v�o existir na lista e depois
-	solicita a digita��o de cada um deles
+	O método abaixo pergunta ao usuário quantos
+	elementos vão existir na lista e depois
+	solicita a digitação de cada um deles
 	*/	
 	void entradaDeDados() {
-		lista.push_back("Teste");
+		string _nome;
+		int _qtdElementos;
+		cout << "Quantos elementos vão existir na lista?" << endl;
+		cin >> _qtdElementos;
+
+		for(int i = 0; i < _qtdElementos; i++){
+			cout << "Digite o nome " << (i + 1) << endl;
+			getline(cin >> ws, _nome);
+			lista.push_back(_nome);
+		}
 	}
 		
 	void mostraMediana() {
