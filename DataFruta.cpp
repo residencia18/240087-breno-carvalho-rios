@@ -169,7 +169,7 @@ class ListaDatas : public Lista {
 
 			for(int i = 0; i != QtdLista; i++){
 
-				cout << "Informe uma data: \n" << endl;
+				cout << "\nInforme uma data: \n" << endl;
 				cout << "Dia: ";
 				cin >> _dia;
 				cout << "Mês: ";
@@ -217,6 +217,27 @@ class ListaDatas : public Lista {
 
 			cout << "A maior data da lista em ordem cronológica é: " << at -> toString() << endl;
 		}
+
+		void listarEmOrdem(){
+			cout << "A lista de datas em ordem cronológica é: " << endl;
+			for(auto data: this->lista){
+				cout << data.toString() << endl;
+			}
+			cout << "-----------------" << endl;
+		}
+
+		void listaNElementos(int n){
+			if(n > this->lista.size()){
+				cout << "Número de elementos solicitados excede o tamanho da lista, mostrando todos os elementos..." << endl;
+				n = this->lista.size();
+			}
+			cout << "As " << n << " primeiras datas da lista são: " << endl;
+			for(int i = 0; i < n; i++){
+				cout << (i + 1) << ". " << this->lista.at(i).toString() << endl;
+			}
+			cout << "-----------------" << endl;
+		}
+
 };
 
 class ListaSalarios  {
