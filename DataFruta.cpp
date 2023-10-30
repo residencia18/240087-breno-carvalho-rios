@@ -103,60 +103,44 @@ class ListaNomes : public Lista {
 		cin >> _qtdElementos;
 
 		for(int i = 0; i < _qtdElementos; i++){
-			cout << "Digite o nome " << (i + 1) << endl;
+			cout << "Digite o nome " << (i + 1) << ": " << endl;
 			getline(cin >> ws, _nome);
 			lista.push_back(_nome);
 		}
+		sort(lista.begin(), lista.end());
 		cout << "-----------------" << endl;
 	}
 		
 	void mostraMediana() {
-		vector<string> _auxLista = this->lista;
-		float meio;
+		float meio = floor(((this->lista.size() + 1) / 2.0) - 1);
 
-		sort(_auxLista.begin(), _auxLista.end());
-
-		meio = floor(((_auxLista.size() + 1) / 2.0) - 1);
-
-		cout << "Aqui vai mostrar a mediana da lista de strings" << endl;
-		cout << _auxLista.at(meio) << endl;
+		cout << "A mediana da lista de nomes é: " << endl;
+		cout << this->lista.at(meio) << endl;
 		cout << "-----------------" << endl;
 	}
 	
-	void mostraMenor() {
-		vector<string> _auxLista = this->lista;
-
-		sort(_auxLista.begin(), _auxLista.end());
-		
-		cout << "Aqui vai mostrar o primeiro nome alfabeticamente" << endl;
-		cout << _auxLista.front() << endl;
+	void mostraMenor() {	
+		cout << "O primeiro nome em ordem alfabética é: " << endl;
+		cout << this->lista.front() << endl;
 		cout << "-----------------" << endl;
 	}
 
 	void mostraMaior() {
-		vector<string> _auxLista = this->lista;
-
-		sort(_auxLista.begin(), _auxLista.end());
-
-		cout << "Aqui vai mostrar o ultimo nome alfabeticamente" << endl;
-		cout << _auxLista.back() << endl;
+		cout << "O ultimo nome em ordem alfabética é: " << endl;
+		cout << this->lista.back() << endl;
 		cout << "-----------------" << endl;
 	}
 
 	void listarEmOrdem(){
-		vector<string> _auxLista = this->lista;
-
-		sort(_auxLista.begin(), _auxLista.end());
-
-		cout << "Aqui vai mostrar todos os nomes da lista ordenados alfabeticamente" << endl;
-		for(auto nome: _auxLista){
+		cout << "A lista de nomes em ordem alfabética é: " << endl;
+		for(auto nome: this->lista){
 			cout << nome << endl;
 		}
 		cout << "-----------------" << endl;
 	}
 
 	void listaNElementos(int n){
-		cout << "Aqui vai mostrar os " << n << " primeiros nomes da lista" << endl;
+		cout << "Os " << n << " primeiros nomes da lista são: " << endl;
 		for(int i = 0; i < n; i++){
 			cout << (i + 1) << ". " << this->lista.at(i) << endl;
 		}
@@ -312,8 +296,14 @@ int main () {
 		l->listarEmOrdem();
 
 		cout << "Quantos elementos você quer mostrar?" << endl;
-		cin >> _n;
-		l->listaNElementos(_n);
+		while(true){
+			cin >> _n;
+			if(_n > 0){
+				l->listaNElementos(_n);
+				break;
+			}
+			cout << "O número de elementos mostrados deve ser maior do que zero!" << endl;
+		}
 	}
 	
 }
