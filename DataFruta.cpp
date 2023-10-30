@@ -201,21 +201,21 @@ class ListaDatas : public Lista {
 			if(lista.size() % 2 == 0){
 				at--;
 			}
-			cout << "A mediana das datas é: " << at -> toString() << endl;
+			cout << "A mediana das datas em ordem cronológica é: " << at -> toString() << endl;
 
 		}
 		
 		void mostraMenor() {
 			vector <Data> :: iterator at = lista.begin();
 
-			cout << "A menor data da lista: " << at -> toString() << endl;
+			cout << "A menor data da lista em ordem cronológica é: " << at -> toString() << endl;
 
 			
 		}
 		void mostraMaior() {
 			vector <Data> :: reverse_iterator at = lista.rbegin();
 
-			cout << "A maior data da lista: " << at -> toString() << endl;
+			cout << "A maior data da lista em ordem cronológica é: " << at -> toString() << endl;
 		}
 };
 
