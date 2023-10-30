@@ -65,6 +65,7 @@ class Data {
 			mes = _mes;
 			ano = _ano;
 		}
+
 		string toString() {
 			string ret = "";
 			ret.append(to_string(dia));
@@ -74,6 +75,90 @@ class Data {
 			ret.append(to_string(ano));
 			return ret;
 		}
+
+		void validaData(){
+			int _dia, _mes, _ano;
+
+			cout << "\nInforme uma data: \n" << endl;
+			cout << "Dia: ";
+			cin >> _dia;
+			while(!auxDia(_dia)){
+				cout << "\nDia informado não é válido, por favor informe um dia válido! " << endl;
+                cout << "Dia: ";
+				cin >> _dia;
+			}
+			cout << "Mês: ";
+			cin >> _mes;
+			while(!auxMes(_mes)){
+				cout << "\nMês informado não é válido, por favor informe um mês válido: " << endl;
+                cout << "Mês: ";
+				cin >> _mes;				
+			}
+            while(!auxDiaMes(_dia, _mes)){
+					cout << "\nData informada até o momento não é válida, por favor informe uma data válida! \n" << endl;
+					cout << "Dia: ";
+					cin >> _dia;
+					while(!auxDia(_dia)){
+						cout << "\nDia informado não é válido, por favor informe um dia válido! \n" << endl;
+                        cout << "Dia: ";
+						cin >> _dia;
+					}
+					cout << "Mês: ";
+					cin >> _mes;
+                    while(!auxMes(_mes)){
+                        cout << "\nMês informado não é válido, por favor informe um mês válido! \n" << endl;
+                        cout << "Mês: ";
+                        cin >> _mes;				
+                    }				
+				}
+			cout << "Ano: ";
+			cin >> _ano;
+			while(!auxAno(_ano)){
+				cout << "\nAno informado não é válido, por favor informe um ano válido! \n" << endl;
+                cout << "Ano: ";
+				cin >> _ano;
+			}
+
+			this -> dia = _dia;
+            this -> mes = _mes;
+            this -> ano = _ano;
+
+		}
+
+        bool auxDia(int _dia){
+            if(_dia < 1 || _dia > 31){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        bool auxDiaMes(int _dia, int _mes){
+            if((_dia == 31) && ((_mes == 4) || (_mes == 6) || (_mes == 9) || (_mes == 11))){
+                return false;
+            }else if(_dia > 29 && _mes == 2){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        bool auxMes(int _mes){
+            if(_mes < 1 || _mes > 12){
+                return false;
+            }else{
+                return true;
+            }
+            
+        }
+
+        bool auxAno(int _ano){
+            if(_ano < 1900 || _ano > 2023){
+                return false;
+            }else{
+                return true;
+            }
+        }
 };
 
 class Lista {
@@ -162,22 +247,16 @@ class ListaDatas : public Lista {
 		solicita a digita��o de cada um deles
 		*/	
 		void entradaDeDados() {
-			int QtdLista, _dia, _mes, _ano;
+			int QtdLista;
 
 			cout << "Informe quantas datas você gostaria der inserir na lista: ";
 			cin >> QtdLista;
 
 			for(int i = 0; i != QtdLista; i++){
 
-				cout << "\nInforme uma data: \n" << endl;
-				cout << "Dia: ";
-				cin >> _dia;
-				cout << "Mês: ";
-				cin >> _mes;
-				cout << "Ano: ";
-				cin >> _ano;
+				Data *novaData = new Data(0, 0, 0); 
 
-				Data *novaData = new Data(_dia, _mes, _ano); 
+				novaData->validaData();
 
 				lista.push_back(*novaData);
 			}
