@@ -140,6 +140,10 @@ class ListaNomes : public Lista {
 	}
 
 	void listaNElementos(int n){
+		if(n > this->lista.size()){
+			cout << "Número de elementos solicitados excede o tamanho da lista, mostrando todos os elementos..." << endl;
+			n = this->lista.size();
+		}
 		cout << "Os " << n << " primeiros nomes da lista são: " << endl;
 		for(int i = 0; i < n; i++){
 			cout << (i + 1) << ". " << this->lista.at(i) << endl;
