@@ -184,7 +184,7 @@ class ListaNomes : public Lista {
 	void entradaDeDados() {
 		string _nome;
 		int _qtdElementos;
-		cout << "Quantos elementos vão existir na lista?" << endl;
+		cout << "Quantos nomes vão existir na lista?" << endl;
 		cin >> _qtdElementos;
 
 		for(int i = 0; i < _qtdElementos; i++){
@@ -226,7 +226,7 @@ class ListaNomes : public Lista {
 
 	void listaNElementos(int n){
 		if(n > this->lista.size()){
-			cout << "Número de elementos solicitados excede o tamanho da lista, mostrando todos os elementos..." << endl;
+			cout << "Número de nomes solicitados excede o tamanho da lista, mostrando todos os nomes..." << endl;
 			n = this->lista.size();
 		}
 		cout << "Os " << n << " primeiros nomes da lista são: " << endl;
