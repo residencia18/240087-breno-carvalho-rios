@@ -383,7 +383,7 @@ class ListaSalarios : public Lista {
 			cout << "Número de elementos solicitados excede o tamanho da lista, mostrando todos os elementos..." << endl;
 			n = this->lista.size();
 		}
-		cout << "Os " << n << " primeiros nomes da lista são: " << endl;
+		cout << "Os " << n << " primeiros salarios da lista são: " << endl;
 		for(int i = 0; i < n; i++){
 			cout << (i + 1) << ". " << this->lista.at(i) << endl;
 		}
@@ -392,7 +392,7 @@ class ListaSalarios : public Lista {
 };
 
 
-class ListaIdades  {
+class ListaIdades : public Lista {
 	vector<int> lista;
 	
 	public:
@@ -403,18 +403,63 @@ class ListaIdades  {
 	solicita a digita��o de cada um deles
 	*/	
 	void entradaDeDados() {
-		
+			int qtdIdades, idade;
+
+			cout << "Informe quantas idades você gostaria de inserir na lista: ";
+			cin >> qtdIdades;
+
+			for(int i = 0; i != qtdIdades; i++){
+				cout << "Digite a idade " << (i + 1) << ": " << endl;
+				while(true){
+					cin >> idade;
+					if(idade > 0){
+						lista.push_back(idade);
+						break;
+					}
+					cout << "O valor da idade deve ser maior do que zero!" << endl;
+				}
+			}
+		sort(lista.begin(), lista.end());
+		cout << "-----------------" << endl;
 	}
-	
 	void mostraMediana() {
-		cout << "Aqui vai mostrar a mediana da lista de idades" << endl;
+
+		int meio = floor(((this->lista.size() + 1) / 2.0) - 1);
+
+		cout << "A mediana da lista de idades é: " << endl;
+		cout << this->lista.at(meio) << endl;
+		cout << "-----------------" << endl;
 	}
 	
-	void mostraMenor() {
-		cout << "Aqui vai mostrar a menor das idades" << endl;
+	void mostraMenor() {	
+		cout << "A menor idade é: " << endl;
+		cout << this->lista.front() << endl;
+		cout << "-----------------" << endl;
 	}
+
 	void mostraMaior() {
-		cout << "aqui vai mostrar a maior das idades" << endl;
+		cout << "A maior idade é: " << endl;
+		cout << this->lista.back() << endl;
+		cout << "-----------------" << endl;
+	}
+
+	void listarEmOrdem(){
+		cout << "Aqui esta a lista de idades: " << endl;
+		for(auto idade: this->lista){
+			cout << idade << endl;
+		}
+		cout << "-----------------" << endl;
+	}
+	void listaNElementos(int n){
+		if(n > this->lista.size()){
+			cout << "Número de elementos solicitados excede o tamanho da lista, mostrando todos os elementos..." << endl;
+			n = this->lista.size();
+		}
+		cout << "As " << n << " primeiras idades da lista são: " << endl;
+		for(int i = 0; i < n; i++){
+			cout << (i + 1) << ". " << this->lista.at(i) << endl;
+		}
+		cout << "-----------------" << endl;
 	}
 };
  
@@ -422,16 +467,16 @@ int main () {
 	vector<Lista*> listaDeListas;
 	
 	ListaNomes listaNomes;
-	//listaNomes.entradaDeDados();
-	//listaDeListas.push_back(&listaNomes);
+	listaNomes.entradaDeDados();
+	listaDeListas.push_back(&listaNomes);
 	
 	ListaDatas listaDatas;
-	//listaDatas.entradaDeDados();
-	//listaDeListas.push_back(&listaDatas);
+	listaDatas.entradaDeDados();
+	listaDeListas.push_back(&listaDatas);
 	
 	ListaSalarios listaSalarios;
-	// listaSalarios.entradaDeDados();
-	// listaDeListas.push_back(&listaSalarios);
+	listaSalarios.entradaDeDados();
+	listaDeListas.push_back(&listaSalarios);
 	
 	ListaIdades listaIdades;
 	listaIdades.entradaDeDados();
