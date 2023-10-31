@@ -197,7 +197,7 @@ class ListaNomes : public Lista {
 	}
 		
 	void mostraMediana() {
-		float meio = floor(((this->lista.size() + 1) / 2.0) - 1);
+		int meio = floor(((this->lista.size() + 1) / 2.0) - 1);
 
 		cout << "A mediana da lista de nomes é: " << endl;
 		cout << this->lista.at(meio) << endl;
@@ -430,12 +430,12 @@ int main () {
 	//listaDeListas.push_back(&listaDatas);
 	
 	ListaSalarios listaSalarios;
-	listaSalarios.entradaDeDados();
-	listaDeListas.push_back(&listaSalarios);
+	// listaSalarios.entradaDeDados();
+	// listaDeListas.push_back(&listaSalarios);
 	
 	ListaIdades listaIdades;
-	//listaIdades.entradaDeDados();
-	//listaDeListas.push_back(&listaIdades);
+	listaIdades.entradaDeDados();
+	listaDeListas.push_back(&listaIdades);
 	
 	for (Lista* l : listaDeListas) {
 		int _n;
