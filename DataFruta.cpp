@@ -90,23 +90,23 @@ class Data {
 			cout << "Mês: ";
 			cin >> _mes;
 			while(!auxMes(_mes)){
-				cout << "\nMês informado não é válido, por favor informe um mês válido: " << endl;
+				cout << "\n Mês informado não é válido, por favor informe um mês válido: " << endl;
                 cout << "Mês: ";
 				cin >> _mes;				
 			}
             while(!auxDiaMes(_dia, _mes)){
-					cout << "\nData informada até o momento não é válida, por favor informe uma data válida! \n" << endl;
+					cout << "\n Data informada até o momento não é válida, por favor informe uma data válida! \n" << endl;
 					cout << "Dia: ";
 					cin >> _dia;
 					while(!auxDia(_dia)){
-						cout << "\nDia informado não é válido, por favor informe um dia válido! \n" << endl;
+						cout << "\n Dia informado não é válido, por favor informe um dia válido! \n" << endl;
                         cout << "Dia: ";
 						cin >> _dia;
 					}
 					cout << "Mês: ";
 					cin >> _mes;
                     while(!auxMes(_mes)){
-                        cout << "\nMês informado não é válido, por favor informe um mês válido! \n" << endl;
+                        cout << "\n Mês informado não é válido, por favor informe um mês válido! \n" << endl;
                         cout << "Mês: ";
                         cin >> _mes;				
                     }				
@@ -114,7 +114,7 @@ class Data {
 			cout << "Ano: ";
 			cin >> _ano;
 			while(!auxAno(_ano)){
-				cout << "\nAno informado não é válido, por favor informe um ano válido! \n" << endl;
+				cout << "\n Ano informado não é válido, por favor informe um ano válido! \n" << endl;
                 cout << "Ano: ";
 				cin >> _ano;
 			}
@@ -319,7 +319,7 @@ class ListaDatas : public Lista {
 
 };
 
-class ListaSalarios  {
+class ListaSalarios : public Lista {
 	vector<float> lista;
 	
 	public:
@@ -330,18 +330,64 @@ class ListaSalarios  {
 	solicita a digita��o de cada um deles
 	*/	
 	void entradaDeDados() {
-		
+			int qtdSalario;
+			float valorSalario;
+
+			cout << "Informe quantos salários você gostaria de inserir na lista: ";
+			cin >> qtdSalario;
+
+			for(int i = 0; i != qtdSalario; i++){
+				cout << "Digite o valor do salario " << (i + 1) << ": " << endl;
+				while(true){
+					cin >> valorSalario;
+					if(valorSalario > 0){
+						lista.push_back(valorSalario);
+						break;
+					}
+					cout << "O valor do salario deve ser maior do que zero!" << endl;
+				}
+			}
+		sort(lista.begin(), lista.end());
+		cout << "-----------------" << endl;
 	}
-			
 	void mostraMediana() {
-		cout << "Aqui vai mostrar a mediana da lista de salarios" << endl;
+
+		int meio = floor(((this->lista.size() + 1) / 2.0) - 1);
+
+		cout << "A mediana da lista de salarios é: " << endl;
+		cout << this->lista.at(meio) << endl;
+		cout << "-----------------" << endl;
 	}
 	
-	void mostraMenor() {
-		cout << "Aqui vai mostrar o menor dos salarios" << endl;
+	void mostraMenor() {	
+		cout << "O menor salario é: " << endl;
+		cout << this->lista.front() << endl;
+		cout << "-----------------" << endl;
 	}
+
 	void mostraMaior() {
-		cout << "aqui vai mostrar o maior dos salarios" << endl;
+		cout << "O maior salario é: " << endl;
+		cout << this->lista.back() << endl;
+		cout << "-----------------" << endl;
+	}
+
+	void listarEmOrdem(){
+		cout << "Aqui esta a lista de salarios: " << endl;
+		for(auto valorSalario: this->lista){
+			cout << valorSalario << endl;
+		}
+		cout << "-----------------" << endl;
+	}
+	void listaNElementos(int n){
+		if(n > this->lista.size()){
+			cout << "Número de elementos solicitados excede o tamanho da lista, mostrando todos os elementos..." << endl;
+			n = this->lista.size();
+		}
+		cout << "Os " << n << " primeiros nomes da lista são: " << endl;
+		for(int i = 0; i < n; i++){
+			cout << (i + 1) << ". " << this->lista.at(i) << endl;
+		}
+		cout << "-----------------" << endl;
 	}
 };
 
@@ -376,20 +422,20 @@ int main () {
 	vector<Lista*> listaDeListas;
 	
 	ListaNomes listaNomes;
-	listaNomes.entradaDeDados();
-	listaDeListas.push_back(&listaNomes);
+	//listaNomes.entradaDeDados();
+	//listaDeListas.push_back(&listaNomes);
 	
 	ListaDatas listaDatas;
-	listaDatas.entradaDeDados();
-	listaDeListas.push_back(&listaDatas);
+	//listaDatas.entradaDeDados();
+	//listaDeListas.push_back(&listaDatas);
 	
 	ListaSalarios listaSalarios;
 	listaSalarios.entradaDeDados();
 	listaDeListas.push_back(&listaSalarios);
 	
 	ListaIdades listaIdades;
-	listaIdades.entradaDeDados();
-	listaDeListas.push_back(&listaIdades);
+	//listaIdades.entradaDeDados();
+	//listaDeListas.push_back(&listaIdades);
 	
 	for (Lista* l : listaDeListas) {
 		int _n;
