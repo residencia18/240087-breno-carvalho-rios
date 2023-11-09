@@ -24,3 +24,11 @@
 
     Console.WriteLine(tipoInteiro);
 #endregion
+
+#region Operadores
+    // +, ++, +=, -, --, -=, *, /, %, \, ? :
+    // >, >=, <, <=, ==, !=, =, ===
+    // &&, ||, !
+    tipoDouble = tipoInteiro + tipoLong;
+    tipoInteiro = 10 > 5 ? 1 : 0;
+#endregion
