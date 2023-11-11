@@ -232,3 +232,7 @@ Em uma situação onde a parte fracionária importa, seria possível converter a
 double numeroD = 128.55;
 int numeroI = Convert.ToInt32(numeroD);
 ```
+
+## Questão 4
+
+Implementada no `Program.cs`

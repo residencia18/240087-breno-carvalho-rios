@@ -101,3 +101,16 @@ Console.WriteLine(numeroI);
 Console.WriteLine(numeroIConvert);
 
 #endregion
+
+#region Questão 4
+
+Console.WriteLine("-----------------");
+int x = 10;
+int y = 3;
+
+Console.WriteLine("A adição de x + y = {0} + {1} = {2}", x, y, (x + y));
+Console.WriteLine("A subtração de x - y = {0} - {1} = {2}", x, y, (x - y));
+Console.WriteLine("A multiplicação de x * y = {0} * {1} = {2}", x, y, (x * y));
+Console.WriteLine("A divisão de x / y = {0} / {1} = {2:0.00}", x, y, ((float)x / y));
+
+#endregion
