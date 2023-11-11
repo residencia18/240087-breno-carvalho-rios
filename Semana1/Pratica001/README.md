@@ -236,3 +236,7 @@ int numeroI = Convert.ToInt32(numeroD);
 ## Questão 4
 
 Implementada no `Program.cs`
+
+## Questão 5
+
+Implementada no `Program.cs`

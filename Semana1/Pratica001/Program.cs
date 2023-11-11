@@ -97,8 +97,8 @@ double numeroD = 128.55;
 int numeroI =(int)(numeroD);
 int numeroIConvert = Convert.ToInt32(numeroD);
 
-Console.WriteLine(numeroI);
-Console.WriteLine(numeroIConvert);
+Console.WriteLine("Usando (int): " + numeroI);
+Console.WriteLine("Usando Convert: " + numeroIConvert);
 
 #endregion
 
@@ -112,5 +112,15 @@ Console.WriteLine("A adição de x + y = {0} + {1} = {2}", x, y, (x + y));
 Console.WriteLine("A subtração de x - y = {0} - {1} = {2}", x, y, (x - y));
 Console.WriteLine("A multiplicação de x * y = {0} * {1} = {2}", x, y, (x * y));
 Console.WriteLine("A divisão de x / y = {0} / {1} = {2:0.00}", x, y, ((float)x / y));
+
+#endregion
+
+#region Questão 5
+
+Console.WriteLine("-----------------");
+int a = 5;
+int b = 8;
+
+Console.WriteLine((a > b) ? "A é maior que B" : "A é menor que B");
 
 #endregion
