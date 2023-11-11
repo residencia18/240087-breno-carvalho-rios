@@ -57,3 +57,158 @@ Ou para remover runtimes `apt-get remove dotnet-runtime-7.1`, onde `7.1` é a ve
 **É possível desinstalar diretamente pela lista de programas instalados no Windows.**
 
 Alternativamente existe o [.NET uninstall tool](https://aka.ms/dotnet-core-uninstall-tool) que permite que você remova SDKs .NET e runtimes .NET do sistema usando o comando `dotnet-core-uninstall`. É possível ver a lista de SDKs e runtimes que podem ser desinstaladas usando o comando `dotnet-core-uninstall list`.
+
+## Questão 2
+
+Quais são os tipos de dados numéricos inteiros disponíveis no .NET? Dê
+exemplos de uso para cada um deles através de exemplos.
+
+## sbyte
+
+Valores de `-128` até `127`.
+
+Usado para armazenar valores inteiros bem pequenos e que possam ser negativos.
+
+Exemplo:
+
+Um menu com opções limitadas, como no exemplo abaixo onde queremos que o valor de `op` sempre esteja entre 1 e 3 ou seja -1 quando sair.
+
+``` cs
+sbyte op = 3;
+Console.WriteLine("-------- Menu --------");
+Console.WriteLine("1. Incluir");
+Console.WriteLine("2. Excluir");
+Console.WriteLine("3. Listar");
+Console.WriteLine("-1. Sair");
+Console.WriteLine("A opção que está selecionada é " + op);
+```
+
+## byte
+
+Usado para armazenar valores inteiros bem pequenos e positivos.
+
+Valores de `0` até `255`.
+
+Um possível uso para o byte pode ser os parâmetros de uma cor RGB. No seguinte exemplo ela pode ser Branca, Preta, Azul, Verde ou Vermelha. Sempre com seus valores variando de 0 a 255:
+
+``` cs
+byte red = 255;
+byte green = 255;
+byte blue = 255;
+
+if(red == 255 && green == 255 && blue == 255) {
+    Console.WriteLine("Cor Branca");
+} else if(red == 0 && green == 0 && blue == 0) {
+    Console.WriteLine("Cor Preta");
+} else if(red == 255 && green == 0 && blue == 0) {
+    Console.WriteLine("Cor Vermelha");
+} else if(red == 0 && green == 255 && blue == 0) {
+    Console.WriteLine("Cor Verde");
+} else if(red == 0 && green == 0 && blue == 255) {
+    Console.WriteLine("Cor Azul");
+} else {
+    Console.WriteLine("Não conheço essa cor");
+}
+
+```
+ 
+## short
+
+Usado para armazenar valores inteiros um pouco maiores e que possam assumir valores negativos.
+
+Valores de `-32.768` até `32.767`.
+
+Um exemplo para o uso do short pode ser o gasto calórico de uma pessoa:
+
+``` cs
+short ingestaoCalorica = 2400;
+short gastoCalorico = 2200;
+short saldoCalorico = ingestaoCalorica - gastoCalorico;
+
+Console.WriteLine("Ingestão Calórica: " + ingestaoCalorica);
+Console.WriteLine("Gasto Calórico: " + ingestaoCalorica);
+if(saldoCalorico > 0){
+    Console.WriteLine("Você ingere mais calorias do que gasta, você vai engordar.");
+} else {
+    Console.WriteLine("Você ingere menos calorias do que gasta, você vai emagrecer.");
+}
+Console.WriteLine("Diferença calórica: " + saldoCalorico);
+```
+
+## ushort
+
+Usado para armazenar valores inteiros um pouco maiores e positivos.
+
+Valores de `0` até `65.535`.
+
+Um exemplo de uso do ushort poderia ser o número de uma porta de servidor:
+
+``` cs
+ushort porta = 8080;
+
+Console.WriteLine("A porta do servidor é " + porta);
+```
+
+## int
+Usado para armazenar valores inteiros maiores do que `short` e que podem assumir valores negativos.
+
+Valores de `-2.147.483.648` até `2.147.483.647`.
+
+Um exemplo possível seria a variação dos casos de COVID no Brasil.
+
+``` cs
+
+int casos2022 = 14040000;
+int casos2023 = 1660000;
+int variacaoCasos = casos2023 - casos2022;
+
+Console.WriteLine("A diferença de casos entre 2023 e 2022 é de " + variacaoCasos + " casos.");
+
+```
+
+## uint
+
+Usado para armazenar valores inteiros como o `int`, mas que só são positivos.
+
+Valores de `0` até `4.294.967.295`
+
+Um exemplo de uso pode ser o guardar número de habitantes de cidades.
+
+``` cs
+uint popIlheus = 159923;
+uint popIabuna = 185500;
+
+Console.WriteLine("A população de Ilhéus é" + popIlheus);
+Console.WriteLine("A população de Itabuna é" + popItabuna);
+```
+
+## long
+
+Usado para armazenar valores inteiros maiores do que `int` e que podem assumir valores negativos.
+
+Valores de `-9.223.372.036.854.775.808` até `9.223.372.036.854.775.807`.
+
+Exemplo variação no número de vendas de produtos de uma grande empresa:
+
+``` cs
+long vendidos2022 = 4542400064;
+long vendidos2023 = 2542402500;
+long diferenca = vendidos2023 - vendidos2022;
+
+Console.WriteLine("A diferença na venda dos produtos entre 2023 e 2022 foi: " diferenca + " produtos");
+
+```
+
+## ulong
+
+Usado para armazenar valores inteiros maiores do que `int` e que são positivos.
+
+Valores de `0` até `18.446.744.073.709.551.615`.
+
+Exemplo guardar a população mundial:
+
+``` cs
+uint popMundial = 8071250864;
+
+Console.WriteLine("A população de mundial é" + popMundial);
+```
