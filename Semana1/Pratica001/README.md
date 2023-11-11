@@ -65,7 +65,7 @@ Alternativamente existe o [.NET uninstall tool](https://aka.ms/dotnet-core-unins
 Quais são os tipos de dados numéricos inteiros disponíveis no .NET? Dê
 exemplos de uso para cada um deles através de exemplos.
 
-### sbyte
+## sbyte
 
 Valores de `-128` até `127`.
 
@@ -85,7 +85,7 @@ Console.WriteLine("-1. Sair");
 Console.WriteLine("A opção que está selecionada é " + op);
 ```
 
-### byte
+## byte
 
 Usado para armazenar valores inteiros bem pequenos e positivos.
 
@@ -114,7 +114,7 @@ if(red == 255 && green == 255 && blue == 255) {
 
 ```
  
-### short
+## short
 
 Usado para armazenar valores inteiros um pouco maiores e que possam assumir valores negativos.
 
@@ -137,7 +137,7 @@ if(saldoCalorico > 0){
 Console.WriteLine("Diferença calórica: " + saldoCalorico);
 ```
 
-### ushort
+## ushort
 
 Usado para armazenar valores inteiros um pouco maiores e positivos.
 
@@ -151,7 +151,7 @@ ushort porta = 8080;
 Console.WriteLine("A porta do servidor é " + porta);
 ```
 
-### int
+## int
 Usado para armazenar valores inteiros maiores do que `short` e que podem assumir valores negativos.
 
 Valores de `-2.147.483.648` até `2.147.483.647`.
@@ -168,7 +168,7 @@ Console.WriteLine("A diferença de casos entre 2023 e 2022 é de " + variacaoCas
 
 ```
 
-### uint
+## uint
 
 Usado para armazenar valores inteiros como o `int`, mas que só são positivos.
 
@@ -184,7 +184,7 @@ Console.WriteLine("A população de Ilhéus é" + popIlheus);
 Console.WriteLine("A população de Itabuna é" + popItabuna);
 ```
 
-### long
+## long
 
 Usado para armazenar valores inteiros maiores do que `int` e que podem assumir valores negativos.
 
@@ -201,7 +201,7 @@ Console.WriteLine("A diferença na venda dos produtos entre 2023 e 2022 foi: " d
 
 ```
 
-### ulong
+## ulong
 
 Usado para armazenar valores inteiros maiores do que `int` e que são positivos.
 
