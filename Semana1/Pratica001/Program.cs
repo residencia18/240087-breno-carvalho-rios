@@ -134,3 +134,13 @@ string str2 = "World";
 Console.WriteLine((str1 == str2) ? "As strings são iguais" : "As strings são diferentes");
 
 #endregion
+
+#region Questão 7
+
+Console.WriteLine("-----------------");
+bool condicao1 = true;
+bool condicao2 = false;
+
+Console.WriteLine((condicao1 && condicao2) ? "As 2 condições são verdadeiras" : "Alguma condição não é verdadeira");
+
+#endregion
