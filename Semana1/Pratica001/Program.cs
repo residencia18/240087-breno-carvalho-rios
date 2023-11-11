@@ -124,3 +124,13 @@ int b = 8;
 Console.WriteLine((a > b) ? "A é maior que B" : "A é menor que B");
 
 #endregion
+
+#region Questão 6
+
+Console.WriteLine("-----------------");
+string str1 = "Hello";
+string str2 = "World";
+
+Console.WriteLine((str1 == str2) ? "As strings são iguais" : "As strings são diferentes");
+
+#endregion

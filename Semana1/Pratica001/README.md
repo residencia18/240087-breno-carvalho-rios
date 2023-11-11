@@ -240,3 +240,7 @@ Implementada no `Program.cs`
 ## Questão 5
 
 Implementada no `Program.cs`
+
+## Questão 6
+
+Implementada no `Program.cs`
