@@ -144,3 +144,16 @@ bool condicao2 = false;
 Console.WriteLine((condicao1 && condicao2) ? "As 2 condições são verdadeiras" : "Alguma condição não é verdadeira");
 
 #endregion
+
+#region Questão 8
+
+Console.WriteLine("-----------------");
+int num1 = 7;
+int num2 = 3;
+int num3 = 10;
+
+Console.Write((num1 > num2) ? "num1 é maior do que num2" : "num1 é menor do que num2");
+Console.Write(" e ");
+Console.WriteLine((num3 == (num1 + num2)) ? "num3 é igual a num1 + num2" : "num3 é diferente de num1 + num2");
+
+#endregion

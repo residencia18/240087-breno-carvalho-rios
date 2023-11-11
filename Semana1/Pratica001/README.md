@@ -217,9 +217,9 @@ Console.WriteLine("A população de mundial é" + popMundial);
 
 ## Questão 3
 
-Dependeria da situação.
+Implementada no `Program.cs`
 
-Em uma situação onde é necessário apenas a parte inteira, sem considerar a parte fracionária faria uma conversão usando a conversão implícita:
+Em uma situação onde é necessário apenas a parte inteira, sem considerar a parte fracionária faria uma conversão usando a conversão explícita:
 
 ``` cs
 double numeroD = 128.55;
@@ -246,5 +246,9 @@ Implementada no `Program.cs`
 Implementada no `Program.cs`
 
 ## Questão 7
+
+Implementada no `Program.cs`
+
+## Questão 8
 
 Implementada no `Program.cs`
