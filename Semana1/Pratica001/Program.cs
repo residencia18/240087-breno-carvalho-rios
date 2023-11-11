@@ -79,13 +79,25 @@ long vendidos2022 = 4542400064;
 long vendidos2023 = 2542402500;
 long diferenca = vendidos2023 - vendidos2022;
 
-Console.WriteLine("A diferença na venda dos produtos entre 2023 e 2022 foi: " diferenca + " produtos");
+Console.WriteLine("A diferença na venda dos produtos entre 2023 e 2022 foi: " + diferenca + " produtos vendidos");
 
-// long
+// ulong
 Console.WriteLine("-----------------");
 Console.WriteLine("Exemplo 8");
-uint popMundial = 8071250864;
+long popMundial = 8071250864;
 
-Console.WriteLine("A população de mundial é" + popMundial);
+Console.WriteLine("A população de mundial é " + popMundial);
+
+#endregion
+
+#region Questão 3
+
+Console.WriteLine("-----------------");
+double numeroD = 128.55;
+int numeroI =(int)(numeroD);
+int numeroIConvert = Convert.ToInt32(numeroD);
+
+Console.WriteLine(numeroI);
+Console.WriteLine(numeroIConvert);
 
 #endregion

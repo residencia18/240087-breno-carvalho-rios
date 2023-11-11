@@ -1,5 +1,7 @@
 # Atividade Prática 001
 
+**Com exceção da questão 1, todas as questões encontram-se implementadas no arquivo `Progam.cs`**
+
 ## Questão 1
 
 ### Como você pode verificar se o .NET SDK está corretamente instalado em seu sistema e como verificar as versões do .NET?
@@ -208,7 +210,25 @@ Valores de `0` até `18.446.744.073.709.551.615`.
 Exemplo guardar a população mundial:
 
 ``` cs
-uint popMundial = 8071250864;
+ulong popMundial = 8071250864;
 
 Console.WriteLine("A população de mundial é" + popMundial);
+```
+
+## Questão 3
+
+Dependeria da situação.
+
+Em uma situação onde é necessário apenas a parte inteira, sem considerar a parte fracionária faria uma conversão usando a conversão implícita:
+
+``` cs
+double numeroD = 128.55;
+int numeroI = (int)(numeroD);
+```
+
+Em uma situação onde a parte fracionária importa, seria possível converter a variável utilizando a classe `Convert` e com isso também arredondar o valor na conversão:
+
+``` cs
+double numeroD = 128.55;
+int numeroI = Convert.ToInt32(numeroD);
 ```
