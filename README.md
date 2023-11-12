@@ -30,7 +30,7 @@ Visão geral da organização do repositório:
 ```
 ├── Semana1
 │   ├── Pratica001
-│   │   ├── PP001.ypnb
+│   │   ├── PP001.ipynb
 │   │   └── README.md
 |   └── README.md
 ├── .gitignore
