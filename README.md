@@ -37,7 +37,7 @@ Visão geral da organização do repositório:
 └── README.md
 ```
 
-## índice
+## Índice
 
 * [Breno-Rios](https://github.com/brenoriios/Python-TIC18/tree/breno-rios/Breno-Rios)
     * [Semana1](https://github.com/brenoriios/Python-TIC18/tree/breno-rios/Breno-Rios/Semana1)
