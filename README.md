@@ -26,10 +26,11 @@ Pratica`<numero_da_semana>` por exemplo: `Pratica001`
 ### Por fim dentro das pastas das práticas estarão as resoluções das práticas
 
 Visão geral da organização do repositório:
+
 ```
 ├── Semana1
 │   ├── Pratica001
-│   │   ├── P001.ypnb
+│   │   ├── PP001.ypnb
 │   │   └── README.md
 |   └── README.md
 ├── .gitignore
