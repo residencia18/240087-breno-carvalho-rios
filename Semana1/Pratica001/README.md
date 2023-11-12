@@ -640,6 +640,93 @@ Os tipos primitivos mais comuns são parecidos com os de C++ como visto na tabel
 | Float        | float    | float   |
 | Double       | double   | double  |
 | Boleano      | bool     | boolean |
-| vazio        | void     | void    |
+| Vazio        | void     | void    |
 | String       | string   | String  |
 | Caractere    | char     | char    |
+
+# Explique o conceito de herança em Java e como você pode criar uma subclasse a partir de uma classe existente. Faça um paralelo com C++, apresentando 5 exemplos.
+
+A herança é um conceito fundamental da orientação a objetos que uma classe herde características e comportamentos de outra classe existente. Em Java, assim como em C++, a herança possibilita a melhor reutilização de código e melhora a abstração e a organização do código.
+
+Em Java, chamamos uma classe pai de **superclasse** e uma classe herdeira de **subclasse**. Para criar uma subclasse em Java, é necessário usar a palavra reservada `extends`. Por exemplo:
+
+``` java
+class Subclasse extends Superclasse {
+  // Código da subclasse
+}
+```
+
+Exemplos de herança em Java:
+
+### Animal
+
+``` java
+// Superclasse
+class Animal {
+    void fazerBarulho() {
+        System.out.println("Algum som genérico");
+    }
+}
+
+// Subclasse
+class Cachorro extends Animal {
+    void fazerBarulho() {
+        System.out.println("Latindo");
+    }
+}
+```
+
+### Pessoa
+
+``` java
+// Superclasse
+class Pessoa {
+    String nome, cpf;
+}
+
+// Subclasse
+class Aluno extends Pessoa {
+    String matricula;
+}
+
+// Subclasse
+class Funcionario extends Pessoa {
+    float salario;
+}
+```
+
+### Forma Geométrica
+
+``` java
+// Superclasse
+class Forma {
+    int nLados;
+}
+
+// Subclasse
+class Circulo extends Forma {
+    void desenhar() {
+        System.out.println("Desenhando Círculo");
+    }
+}
+
+// Subclasse
+class Quadrado extends Forma {
+    void desenhar() {
+        System.out.println("Desenhando Quadrado");
+    }
+}
+```
+
+É importante notar que em C++ usamos o modificador de acesso na classe da qual herdaremos, enquanto que em java apenas usamos o `extends` e, se quisermos usar um modificador de acesso, usamos ele antes da palavra reservada `class`. Exemplo utilizando o `public`:
+
+Em C++
+``` c
+class Aluno : public Pessoa {}
+```
+
+Em Java
+
+``` java
+public class Aluno extends Pessoa {}
+```
