@@ -2,14 +2,13 @@
 
 # Python - Programa de Residência em Software TIC18
 
-Repositório dedicado à disciplina de Front End do Programa de Residência em Software TIC18
+Repositório dedicado à disciplina de Python do Programa de Residência em Software TIC18
 
 ## Informações dos membros:
 
 | Nome                | Email                  |
 | ------------------- | ---------------------- |
 | Breno Carvalho Rios | breno@brenorios.com.br |
-|                     |                        |
 
 ## Estrutura do repositório
 
@@ -28,11 +27,18 @@ Pratica`<numero_da_semana>` por exemplo: `Pratica001`
 Visão geral da organização do repositório:
 
 ```
-├── Semana1
-│   ├── Pratica001
-│   │   ├── PP001.ipynb
-│   │   └── README.md
-|   └── README.md
-├── .gitignore
+├── Breno-Rios
+|   ├── Semana1
+|   │   ├── Pratica001
+|   │   │   ├── PP001.ipynb
+|   │   │   └── README.md
+|   |   └── README.md
+|   ├── .gitignore
 └── README.md
 ```
+
+## índice
+
+* [Breno-Rios](https://github.com/brenoriios/Python-TIC18/tree/breno-rios/Breno-Rios)
+    * [Semana1](https://github.com/brenoriios/Python-TIC18/tree/breno-rios/Breno-Rios/Semana1)
+        * [Pratica001](https://github.com/brenoriios/Python-TIC18/tree/breno-rios/Breno-Rios/Semana1/Pratica001)
