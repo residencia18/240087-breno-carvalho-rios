@@ -612,3 +612,34 @@ public class Cachorro {
     }
 }
 ```
+
+# Como você declara uma variável em Java e quais são os tipos de dados primitivos mais comuns? Faça um paralelo entre isso e a mesma coisa na linguagem C++
+
+As variáveis em Java são declaradas de maneira semelhante ao C++. Existem algumas diferenças nos tipos, por exemplo `bool` em C é equivalente a `boolean` em Java e `string` em C é equivalente a `String` em Java, mas no geral seguem o seguinte formato:
+
+`<tipoDaVariavel> <nomeDaVariavel> = <valor>;`
+
+por exemplo:
+
+`String nome = "Breno Rios";`
+
+ou
+
+`<tipoDaVariavel>` `<nomeDaVariavel>`;
+
+por exemplo:
+
+`String nome;`
+
+Os tipos primitivos mais comuns são parecidos com os de C++ como visto na tabela:
+
+|  Tipo        |  C++     | Java    |
+| ------------ | -------- | ------- |
+| Inteiro      | int      | int     |
+| Inteiro Long | long int | long    |
+| Float        | float    | float   |
+| Double       | double   | double  |
+| Boleano      | bool     | boolean |
+| vazio        | void     | void    |
+| String       | string   | String  |
+| Caractere    | char     | char    |
