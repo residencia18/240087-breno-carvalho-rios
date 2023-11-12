@@ -257,6 +257,8 @@ class Medico{
 };
 ```
 
+### Classe Cachorro
+
 ``` c
 class Cachorro {
     string nome;
@@ -492,6 +494,8 @@ public class Paciente {
 }
 ```
 
+### Classe Médico
+
 ``` Java
 public class Medico {
     private String crm;
@@ -547,6 +551,8 @@ public class Medico {
     }
 }
 ```
+
+### Classe Cachorro
 
 ``` Java
 public class Cachorro {
