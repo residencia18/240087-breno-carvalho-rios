@@ -1,6 +1,6 @@
 # Atividade Prática 001
 
-# O que é uma classe em Java e qual é a diferença entre uma classe e um objeto? Dê 5 exemplos mostrando-os em C++ e em Java.
+# 1. O que é uma classe em Java e qual é a diferença entre uma classe e um objeto? Dê 5 exemplos mostrando-os em C++ e em Java.
 
 Uma classe é um tipo de dado que atua como "modelo" de um objeto, ela contém os atributos que o definem, bem como seus métodos.
 
@@ -613,7 +613,7 @@ public class Cachorro {
 }
 ```
 
-# Como você declara uma variável em Java e quais são os tipos de dados primitivos mais comuns? Faça um paralelo entre isso e a mesma coisa na linguagem C++
+# 2. Como você declara uma variável em Java e quais são os tipos de dados primitivos mais comuns? Faça um paralelo entre isso e a mesma coisa na linguagem C++
 
 As variáveis em Java são declaradas de maneira semelhante ao C++. Existem algumas diferenças nos tipos, por exemplo `bool` em C é equivalente a `boolean` em Java e `string` em C é equivalente a `String` em Java, mas no geral seguem o seguinte formato:
 
@@ -644,7 +644,7 @@ Os tipos primitivos mais comuns são parecidos com os de C++ como visto na tabel
 | String       | string   | String  |
 | Caractere    | char     | char    |
 
-# Explique o conceito de herança em Java e como você pode criar uma subclasse a partir de uma classe existente. Faça um paralelo com C++, apresentando 5 exemplos.
+# 3. Explique o conceito de herança em Java e como você pode criar uma subclasse a partir de uma classe existente. Faça um paralelo com C++, apresentando 5 exemplos.
 
 A herança é um conceito fundamental da orientação a objetos que uma classe herde características e comportamentos de outra classe existente. Em Java, assim como em C++, a herança possibilita a melhor reutilização de código e melhora a abstração e a organização do código.
 
@@ -730,3 +730,31 @@ Em Java
 ``` java
 public class Aluno extends Pessoa {}
 ```
+
+# 4. Quando declaramos uma variável em Java, temos, na verdade, um ponteiro. Em C++ é diferente. Discorra sobre esse aspecto.
+
+Em Java, quando declaramos uma variável, reservamos um espaço na memória e armazenamos na nossa variável um ponteiro que aponta para esse espaço de memória reservado. O Java não possibilita a manipulação direta de ponteiros, ele faz esse processo automáticamente, além de lidar com o gerenciamento de memória através da JVM.
+
+Como Java é uma linguagem completamente orientada a objetos, tudo que é instanciado é objeto e, consequentemente, funciona da maneira descrita acima através de ponteiros.
+
+Em C++, por outro lado, existe a possibilidade de manipular diretamente ponteiros e, junto a isso, surge a possibilidade de fazer as declarações de maneiras diferentes. Por padrão em C++ tipos primitivos são armazenados como valores em variáveis, mas ainda assim podemos utilizar ponteiros para esses tipos. Exemplo:
+
+``` c
+int* ptr = new int;
+```
+
+Com relação aos objetos também podemos instanciá-los de maneiras diferentes, sendo que uma delas armazena de fato uma instancia direta da classe, enquanto a outra utiliza um ponteiro que aponta para um objeto. Exemplo:
+
+Instancia direta
+
+``` c
+Objeto obj;
+```
+
+Ponteiro para objeto
+
+``` c
+Objeto * obj = new Objeto();
+```
+
+Por isso ser possível, o gerenciamento de memória fica por conta do programador, o que acaba sendo uma tarefa complexa e propensa a erros.
