@@ -36,12 +36,11 @@ public class Calculadora {
 	    	case 4:
 	    		System.out.println(num1 + " / " + num2 + " = " + divisao(num1, num2));
 	    		break;
-	    	case 0:
-	    		scanner.close();
-	    		break;
 	    	default:
 	    		System.out.println("Opção Inválida!");
 	    }
+		
+		scanner.close();
 	}
 	
 	public static float soma(float num1, float num2) {		
