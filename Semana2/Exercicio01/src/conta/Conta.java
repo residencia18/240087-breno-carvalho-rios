@@ -35,18 +35,23 @@ public class Conta {
 		this.saldo = saldo;
 	}
 
-	public void deposita(double valor) {
+	public boolean deposita(double valor) {
+		if (valor < 0) {
+			return false;
+		}
+		
 		this.saldo = saldo + valor;
+		return true;
 	}
 	
 	public void consulta() {
+		System.out.println("Número da Conta: " + this.numero);
 		System.out.println("Cliente: " + this.nome);
 		System.out.println("Saldo Atual: R$ " + this.saldo);
-		System.out.println("Número da Conta: " + this.numero);
 	}
 	
 	public boolean saque(double valor) {
-		if (this.saldo < valor) {
+		if (this.saldo < valor || valor < 0) {
 			return false;
 		}
 		
