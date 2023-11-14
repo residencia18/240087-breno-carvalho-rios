@@ -18,5 +18,7 @@ public class Main {
 		contaTeste.deposita(50.00);
 		contaTeste.saque(20.00);
 		contaTeste.consulta();
+		
+		scanner.close();
 	}
 }
