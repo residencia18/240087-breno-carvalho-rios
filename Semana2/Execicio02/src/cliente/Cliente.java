@@ -30,7 +30,7 @@ public class Cliente {
 		
 		System.out.println("Digite a nova idade (Deixe vazio se não quiser alterar): ");
 		String idadeString = scanner.nextLine();
-		int idade = idadeString.isEmpty() ? 0 : Integer.parseInt(idadeString);
+		int idade = idadeString.isBlank() ? 0 : Integer.parseInt(idadeString);
 		novoCliente.setIdade(idade);
 		
 		System.out.println("Novo Cliente: ");
@@ -54,7 +54,7 @@ public class Cliente {
 	}
 
 	public void setNome(String nome) {
-		if(nome.isEmpty()) {
+		if(nome.isBlank()) {
 			return;
 		}
 		
@@ -66,7 +66,7 @@ public class Cliente {
 	}
 
 	public void setCpf(String cpf) {
-		if(cpf.isEmpty()) {
+		if(cpf.isBlank()) {
 			return;
 		}
 		
