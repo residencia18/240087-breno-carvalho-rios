@@ -47,7 +47,7 @@ public class Conta {
 	public void consulta() {
 		System.out.println("Número da Conta: " + this.numero);
 		System.out.println("Cliente: " + this.nome);
-		System.out.println("Saldo Atual: R$ " + this.saldo);
+		System.out.println("Saldo Atual: R$ " + String.format("%.2f", this.saldo));
 	}
 	
 	public boolean saque(double valor) {
