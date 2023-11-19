@@ -4,9 +4,10 @@ Repositório dedicado à disciplina de Python do Programa de Residência em Soft
 
 ## Informações dos membros:
 
-| Nome                | Email                  |
-| ------------------- | ---------------------- |
-| Breno Carvalho Rios | breno@brenorios.com.br |
+| Nome                      | Email                  |
+| ------------------------- | ---------------------- |
+| Breno Carvalho Rios       | breno@brenorios.com.br |
+| Ian Rodrigues Alexandrino |            -           |
 
 ## Estrutura do repositório
 
