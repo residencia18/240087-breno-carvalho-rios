@@ -21,7 +21,7 @@ public class MaioridadeV2 {
 		
 		long idade = java.time.temporal.ChronoUnit.YEARS.between(nascimento, hoje);
 		
-		System.out.println(idade);
+		System.out.println("A pessoa é " + (idade >= 18 ? "maior" : "menor") + " de idade");
 		
 		scan.close();
 	}
