@@ -30,6 +30,8 @@ public class ConversorTemperaturaV1 {
 				System.out.println("Opção Inválida");
 			}
 		}
+		
+		scan.close();
 	}
 	
 	public static float celsiusParaFahr(float temperatura) {
