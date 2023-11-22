@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+
+h3 {
+    font-weight: normal;
+    font-family: 'Agbalumo', serif;;
+}
+
+img {
+    height: 200px;
+    width: 200px;
+}
+
+#amarelo{
+    color: #F4CE15;
+}
+
+#vermelho{
+    color: #FE0000;
+}
+
+#azul{
+    color: #00A8FF;
+}
+
+#marron {
+    color: #EAD6BB
+}
+
+#violeta {
+    color: #610C9F;
+}
