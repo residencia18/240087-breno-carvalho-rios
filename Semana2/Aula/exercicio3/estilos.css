@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Kenia&display=swap');
+
+:root {
+    font-size: 40px;
+}
+
+h2 {
+    color: brown;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h4 {
+    font-weight: 800;
+}
+
+h5 {
+    font-family: 'kenia', 'sans-serif';
+}
+
+h6 {
+    text-align: right;
+}
