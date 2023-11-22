@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+}
+
+#caixa-externa {
+    padding: 10px;
+    background-color: purple;
+}
+
+.caixa {
+    background-color: blue;
+}
+
+#caixa-externa > .caixa {
+    padding: 10px;
+}
+
+.caixa.caixa-interna {
+    padding: 0;
+}
+
+p {
+    color: yellow;
+}
+
+.texto-branco {
+    background-color: red;
+    color: white;
+}
