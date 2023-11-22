@@ -1,0 +1,23 @@
+h2, h5 {
+    color: #d7a61d;
+}
+
+.caixa > p {
+    color: #5258f3
+}
+
+ul li {
+    color: #f9a58e;
+}
+
+.lista > .usada {
+    color: #a23c76;
+}
+
+.caixa > .alimentos {
+    color: #81fefa;
+}
+
+.moveis > .usada {
+    color: #88fb1a;
+}
