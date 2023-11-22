@@ -1,0 +1,51 @@
+#caixa1, #caixa2, #caixa3, #caixa5, #caixa6 {
+    margin: 10px 0;
+}
+
+#caixa, #caixa2 {
+    position: relative;
+    left: 10px;
+    background-color: blue;
+    height: 100px;
+    width: 100px;
+}
+
+#caixa {
+    position: relative;
+    left: 10px
+}
+
+#caixa2 {
+    border-radius: 50%;
+}
+
+#caixa3 {
+    position: relative;
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    left: 20px;
+}
+
+#caixa4 {
+    position: absolute;
+    background-color: orange;
+    height: 50px;
+    width: 50px;
+    top: 10px;
+    left: 10px;
+}
+
+#caixa5 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 20px;
+}
+
+#caixa6 {
+    width: 200px;
+    border: 2px solid blue;
+    height: 20px;
+}
