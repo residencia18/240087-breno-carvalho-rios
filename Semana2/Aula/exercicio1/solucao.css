@@ -1,0 +1,28 @@
+* {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+a {
+    color: red;
+    font-size: 1.2em;
+}
+
+li[value]{
+    font-size: 0.8em;
+}
+
+.nots {
+    color: black;
+}
+
+#sulbahia {
+    color: limegreen;
+}
