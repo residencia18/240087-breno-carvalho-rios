@@ -1,0 +1,17 @@
+@media (max-width: 772px)  {
+    body {
+        background-color: #66A182;
+    }
+}
+
+@media (min-width: 773px) and (max-width: 1100px)  {
+    body {
+        background-color: #CAFFB9;
+    }
+}
+
+@media (min-width: 1101px)  {
+    body {
+        background-color: #AEF78E;
+    }
+}
