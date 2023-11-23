@@ -50,6 +50,6 @@ List<(string, float)> people = new() {
     ("Pessoa 4", 1.83f)
 };
 
-Console.WriteLine($"{people.Sum(person => person.Item2)/people.Count}");
+Console.WriteLine($"{people.Average(person => person.Item2)}");
 
 #endregion
