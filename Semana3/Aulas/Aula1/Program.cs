@@ -40,3 +40,16 @@ var orderedEvenIntegers = arrayIntegers.Where(num => num % 2 == 0).OrderByDescen
 Console.WriteLine($"{string.Join(" ", orderedEvenIntegers)}");
 
 #endregion
+
+#region Exercicio 5
+
+List<(string, float)> people = new() {
+    ("Pessoa 1", 1.70f),
+    ("Pessoa 2", 1.51f),
+    ("Pessoa 3", 1.62f),
+    ("Pessoa 4", 1.83f)
+};
+
+Console.WriteLine($"{people.Sum(person => person.Item2)/people.Count}");
+
+#endregion
