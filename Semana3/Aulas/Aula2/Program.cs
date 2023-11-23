@@ -15,7 +15,7 @@ try {
 
 float division(float n1, float n2){
     if(n2 == 0) {
-        throw new Exception("Não é possível dividir por 0!");
+        throw new DivideByZeroException("Não é possível dividir por 0!");
     }
 
     return n1 / n2;
@@ -24,8 +24,8 @@ float division(float n1, float n2){
 try {
     Console.WriteLine($"{2} / {1} = {division(2,1)}");
     Console.WriteLine($"{2} / {0} = {division(2,0)}");
-} catch {
-    Console.WriteLine($"Não é possível dividir por 0");
+} catch (DivideByZeroException exception) {
+    Console.WriteLine($"{exception.Message}");
 }
 
 #endregion
@@ -43,8 +43,8 @@ float divisionE3(float n1, float n2){
 try {
     Console.WriteLine($"{2} / {1} = {divisionE3(2,1)}");
     Console.WriteLine($"{2} / {0} = {divisionE3(2,0)}");
-} catch {
-    Console.WriteLine($"Não é possível dividir por 0");
+} catch (DivideByZeroException exception) {
+    Console.WriteLine($"{exception.Message}");
 } finally {
     Console.WriteLine($"Finalmente alcançamos o finally!");    
 }
