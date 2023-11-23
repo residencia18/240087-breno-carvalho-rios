@@ -6,10 +6,6 @@ class TaskController {
 
     public TaskController(){
         this.taskList = new();
-
-        taskList.Add(new Task("Task 1", "Descrição da Task 1", new DateTime(2024, 11, 21, 13, 0, 0)));
-        taskList.Add(new Task("Task 2", "Descrição da Task 2", new DateTime(2023, 11, 21, 23, 59, 0)));
-        taskList.Add(new Task("Task 3", "Descrição da Task 3", new DateTime(2023, 11, 21, 8, 0, 0)));
     }
 
     public void createTask(){
