@@ -17,3 +17,18 @@ Console.WriteLine($"Soma 18 com 32: {sum(18, 32)}");
 Console.WriteLine($"Soma 9 com 12: {sum(9, 12)}");
 
 #endregion
+
+#region Exercicio 3
+
+List<(string, int)> list = new() {
+    ("Breno", 22),
+    ("João", 27),
+    ("Ana", 35),
+    ("Maria", 20),
+    ("Moisés", 18),
+    ("Gabriel", 31)
+};
+
+Console.WriteLine($"{string.Join(", ", list.Where(person => person.Item2 > 30).ToList())}");
+
+#endregion
