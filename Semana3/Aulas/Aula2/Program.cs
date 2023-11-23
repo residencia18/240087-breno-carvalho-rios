@@ -34,7 +34,7 @@ try {
 
 float divisionE3(float n1, float n2){
     if(n2 == 0) {
-        throw new Exception("Não é possível dividir por 0!");
+        throw new DivideByZeroException("Não é possível dividir por 0!");
     }
 
     return n1 / n2;
@@ -66,6 +66,25 @@ try{
     Console.WriteLine(simulatedOperation(-50));
 } catch (Exception exception) {
     Console.WriteLine($"{exception.Message}");
+}
+
+#endregion
+
+#region Exercicio 5
+
+Console.WriteLine($"Digite o caminho do arquivo: ");
+string filePath = Console.ReadLine()!;
+
+try {
+    File.ReadAllLines(filePath);
+} catch (ArgumentException) {
+    Console.WriteLine($"O caminho do arquivo não pode ser vazio.");    
+} catch (FileNotFoundException){
+    Console.WriteLine($"O arquivo não foi encontrado!");
+} catch (IOException exception){
+    Console.WriteLine($"Erro de E/S: {exception.Message}");
+} catch (Exception exception){
+    Console.WriteLine($"Erro inesperado: {exception.Message}");
 }
 
 #endregion
