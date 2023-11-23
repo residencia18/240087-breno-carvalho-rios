@@ -32,3 +32,11 @@ List<(string, int)> list = new() {
 Console.WriteLine($"{string.Join(", ", list.Where(person => person.Item2 > 30).ToList())}");
 
 #endregion
+
+#region Exercicio 4
+
+int[] arrayIntegers = {1, 2, 3, 4, 5, 10, 20, 30, 40, 50};
+var orderedEvenIntegers = arrayIntegers.Where(num => num % 2 == 0).OrderByDescending(num => num).ToList();
+Console.WriteLine($"{string.Join(" ", orderedEvenIntegers)}");
+
+#endregion
