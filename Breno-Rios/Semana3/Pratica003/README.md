@@ -3,3 +3,4 @@
 Resoluções nos caminhos:
 
 * Supermercado/main.py
+* Empregados/main.py
