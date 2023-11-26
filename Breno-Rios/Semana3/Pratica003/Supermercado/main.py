@@ -12,7 +12,7 @@ def insertProduct(productList):
         return
 
     name = input("Digite o nome do novo produto: ").capitalize()
-    if(len(name) == 0):
+    if(not name or not name.strip()):
         print("O nome não pode estar em branco!")
         return
     
@@ -78,7 +78,7 @@ def findProduct(productList, code):
     return False
 
 def toString(product):
-    return f"[ {product['code']} ] {product['name']} - R$ {product['price']}"
+    return f"[ {product['code']} ] {product['name']} - R$ {'{:.2f}'.format(product['price'])}"
         
 def showMenu():
     print("----------Menu----------")

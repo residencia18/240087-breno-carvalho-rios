@@ -19,28 +19,28 @@ def registeremployee(employeeList):
     
     rg = input("Digite o rg do novo empregado (somente números): ")
     if(len(rg) != 10):
-        print("O sobrenome não pode estar em branco!")
+        print("O rg deve possuir 10 dígitos!")
         return
     
     birthYear = input("Digite o ano de nascimento do novo empregado: ")
     try:
         birthYear = int(birthYear)
     except:
-        print("Por favor digite ano válido!")
+        print("Por favor digite um ano válido!")
         return
 
     admissionYear = input("Digite o ano de admissão do novo empregado: ")
     try:
         admissionYear = int(admissionYear)
     except:
-        print("Por favor digite ano válido!")
+        print("Por favor digite um ano válido!")
         return
     
     salary = input("Digite o salário do novo empregado: ")
     try:
         salary = float(salary)
     except:
-        print("Por favor digite ano válido!")
+        print("Por favor digite um salário válido!")
         return
     
     newemployee = {
@@ -66,9 +66,7 @@ def listemployees(employeeList):
         print(toString(employee))
 
 def toString(employee):
-    salary = "{:.2f}".format(employee['salary'])
-
-    return f"{employee['name']} {employee['surname']} - R$ {salary}"
+    return f"{employee['name']} {employee['surname']} - R$ {'{:.2f}'.format(employee['salary'])}"
 
 def Reajusta_dez_porcento(employeeList):
     for employee in employeeList:
