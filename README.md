@@ -7,23 +7,22 @@ Repositório dedicado à disciplina de Python do Programa de Residência em Soft
 | Nome                      | Email                  |
 | ------------------------- | ---------------------- |
 | Breno Carvalho Rios       | breno@brenorios.com.br |
-| Ian Rodrigues Alexandrino |            -           |
+| Ian Rodrigues Alexandrino | ianr8649@gmail.com     |
 
-## Estrutura do repositório
+## Índice
 
-**Obs.: Todas as branchs compartilham da mesma estrutura.**
+* [Breno-Rios](https://github.com/brenoriios/Python-TIC18/tree/main/Breno-Rios)
+    * [Semana1](https://github.com/brenoriios/Python-TIC18/tree/main/Breno-Rios/Semana1)
+        * [Pratica001](https://github.com/brenoriios/Python-TIC18/tree/main/Breno-Rios/Semana1/Pratica001)
+    * [Semana2](https://github.com/brenoriios/Python-TIC18/tree/main/Breno-Rios/Semana2)
+        * [Pratica002](https://github.com/brenoriios/Python-TIC18/tree/main/Breno-Rios/Semana2/Pratica002)
+    * [Semana3](https://github.com/brenoriios/Python-TIC18/tree/main/Breno-Rios/Semana3)
+        * [Pratica003](https://github.com/brenoriios/Python-TIC18/tree/main/Breno-Rios/Semana3/Pratica003)
+* [Ian-Rodrigues](https://github.com/brenoriios/Python-TIC18/tree/main/Ian-Rodrigues)
+    * [Semana1](https://github.com/brenoriios/Python-TIC18/tree/main/Ian-Rodrigues/Semana1)
+        * [Pratica001](https://github.com/brenoriios/Python-TIC18/tree/main/Ian-Rodrigues/Semana1/PP-PO01)
 
-### A cada semana uma nova pasta será criada na raiz do diretório seguindo o formato:
-
-Semana`<numero_da_semana>` por exemplo: `Semana1`
-
-### Dentro das pastas das semanas estarão as pastas das práticas, por exemplo
-
-Pratica`<numero_da_pratica>` por exemplo: `Pratica001`
-
-### Por fim dentro das pastas das práticas estarão as resoluções das práticas
-
-Visão geral da organização do repositório:
+## Visão geral da estrutura do repositório:
 
 ```
 ├── Breno-Rios
@@ -37,14 +36,19 @@ Visão geral da organização do repositório:
 |   │   │   ├── PP002.py
 |   │   │   └── README.md
 |   |   └── README.md
-|   └── .gitignore
+|   └── Semana3
+|       ├── Pratica003
+|       │   ├── Empregados
+|       │   │   ├── employeeData.txt
+|       │   │   └── main.py
+|       │   ├── Supermercado
+|       │   |   └── main.py
+|       |   └── README.md
+|       └── README.md
+├── Ian-Rodrigues
+|   └── Semana1
+|       └── PP-PO01
+|           └── PP-PO01.ipynb
+├── .gitignore
 └── README.md
 ```
-
-## Índice
-
-* [Breno-Rios](https://github.com/brenoriios/Python-TIC18/tree/breno-rios/Breno-Rios)
-    * [Semana1](https://github.com/brenoriios/Python-TIC18/tree/breno-rios/Breno-Rios/Semana1)
-        * [Pratica001](https://github.com/brenoriios/Python-TIC18/tree/breno-rios/Breno-Rios/Semana1/Pratica001)
-    * [Semana2](https://github.com/brenoriios/Python-TIC18/tree/breno-rios/Breno-Rios/Semana2)
-        * [Pratica002](https://github.com/brenoriios/Python-TIC18/tree/breno-rios/Breno-Rios/Semana2/Pratica002)
