@@ -1,0 +1,4 @@
+{"name": "Breno", "surname": "Rios", "birthYear": 2001, "rg": "1234567891", "admissionYear": 2023, "salary": 1100.1432}
+{"name": "Ian", "surname": "Alexandrino", "birthYear": 2001, "rg": "9876543210", "admissionYear": 2023, "salary": 1100.1432}
+{"name": "Pessoa", "surname": "3", "birthYear": 2001, "rg": "1112223334", "admissionYear": 2022, "salary": 2500.15}
+{"name": "Pessoa", "surname": "4", "birthYear": 2001, "rg": "2221113334", "admissionYear": 2022, "salary": 1000}
