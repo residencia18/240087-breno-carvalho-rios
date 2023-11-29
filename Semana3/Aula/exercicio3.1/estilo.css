@@ -1,0 +1,52 @@
+.container-destinos {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: purple;
+}
+
+.roteiro-incluso {
+    list-style-type: none;
+    padding: 0;
+}
+
+.roteiro-incluso > li::before {
+    content: "➤";
+    margin-right: 5px;
+}
+
+.roteiros-viagens {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: lightgray;
+    border: 1px solid slategray;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.roteiros-viagens > img {
+    width: 200px;
+    height: 100px;
+}
+
+.roteiro-destino {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.roteiro-preco {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.roteiro-comprar {
+    border-radius: 5px;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    border: none;
+    margin-top: 10px;
+}
