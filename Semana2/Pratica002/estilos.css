@@ -1,14 +1,17 @@
-@media (max-width: 500px) {
-	* {
-		display: block;
-	}
+:root {
+	--color-primary: #D5DFE5;
+	--color-secondary: #C9B1BD;
+	--color-terciary: #B49594;
 }
 
 * {
-	margin: 10px;
+	margin: 0;
 	padding: 0;
-	border: 1px solid black;
 	box-sizing: border-box;
+}
+
+body {
+	background-color: var(--color-primary);
 }
 
 header {
@@ -16,10 +19,36 @@ header {
 	font-size: 2rem;
 	padding: 20px;
 	margin-bottom: 10px;
+	background-color: var(--color-secondary);
+	border-bottom: 2px solid var(--color-terciary);
+}
+
+.card {
+	background-color: var(--color-secondary);
+}
+
+.card-header {
+	background-color: var(--color-terciary);
+	border-radius: 5px 5px 0 0;
+	padding: 7px;
+	font-weight: bold;
+}
+
+.card-body {
+	padding: 5px;
+}
+
+.card-body > div {
+	margin: 7px 0;
+}
+
+.card-body a::before {
+	content: "\21b3"
 }
 
 main {
 	display: grid;
+	padding: 5px;
 }
 
 #div1 {
