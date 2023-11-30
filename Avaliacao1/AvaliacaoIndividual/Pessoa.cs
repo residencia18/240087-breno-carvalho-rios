@@ -4,15 +4,16 @@ public class Pessoa {
     private string cpf;
     private DateOnly nascimento;
 
-    public Pessoa(string nome, string cpf, DateOnly nascimento) {
-        this.Nome = nome;
-        this.Cpf = cpf;
-        this.Nascimento = nascimento;
+    public Pessoa(string _nome, string _cpf, DateOnly _nascimento) {
+        this.Nome = _nome;
+        this.Cpf = _cpf;
+        this.Nascimento = _nascimento;
     }
-    public string Cpf
-    {
+    public string Cpf {
         get { return cpf; }
-        set { cpf = value; }
+        set {
+            cpf = value;
+        }
     }
     
     public DateOnly Nascimento {
