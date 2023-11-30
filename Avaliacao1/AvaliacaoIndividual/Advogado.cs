@@ -14,7 +14,7 @@ public class Advogado : Pessoa {
         }
     }
     
-    public Advogado(string cna, string nome, string cpf, DateOnly nascimento) : base(nome, cpf, nascimento) {
+    public Advogado(string cna, string nome, string cpf, DateTime nascimento) : base(nome, cpf, nascimento) {
         this.cna = cna;
     }
 }

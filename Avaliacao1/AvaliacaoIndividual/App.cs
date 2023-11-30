@@ -10,7 +10,12 @@ public class App {
         try {
             insereAdvogado("123456789123", "Advogado 1", "12345678901", "17/07/2001");
             insereAdvogado("123456789323", "Advogado 2", "12345678902", "17/07/2001");
-            insereAdvogado("123456789123", "Advogado 1", "12345678911", "17/25/2001");
+            insereAdvogado("123456789123", "Advogado 1", "12345678911", "17/12/2001");
+            insereCliente("Cliente 1", "12345678912", "17/12/2001", "Solteiro", "Empregado");
+            insereCliente("Cliente 2", "12345678911", "17/12/2001", "Solteiro", "Empregado");
+            listaAdvogados();
+            Console.WriteLine($"-----------------");            
+            listaClientes();
         } catch (Exceptions.UniqueValueException ex) {
             Console.WriteLine($"{ex.Message}");
             
@@ -69,5 +74,17 @@ public class App {
         foreach(Cliente cliente in this.clientes){
             Console.WriteLine($"{cliente.Nome}");            
         }
+    }
+
+    public void advogadosEntreIdade(string minIdade, string maxIdade){
+        try {
+            int min = int.Parse(minIdade);
+            int max = int.Parse(maxIdade);
+        } catch(FormatException) {
+            Console.WriteLine($"Insira valores válidos para as idades");
+            return;            
+        }
+
+        
     }
 }

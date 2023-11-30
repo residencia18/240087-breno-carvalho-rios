@@ -2,9 +2,9 @@ namespace advocacia;
 public class Pessoa {
     private string nome;
     private string cpf;
-    private DateOnly nascimento;
+    private DateTime nascimento;
 
-    public Pessoa(string _nome, string _cpf, DateOnly _nascimento) {
+    public Pessoa(string _nome, string _cpf, DateTime _nascimento) {
         this.Nome = _nome;
         this.Cpf = _cpf;
         this.Nascimento = _nascimento;
@@ -22,7 +22,7 @@ public class Pessoa {
         }
     }
     
-    public DateOnly Nascimento {
+    public DateTime Nascimento {
         get { return nascimento; }
         set {
             nascimento = value;
@@ -38,5 +38,9 @@ public class Pessoa {
             nome = value;
         }
     }
-    
+
+
+    public int idade() {
+        DateTime.Now - this.Nascimento;
+    }    
 }

@@ -27,7 +27,7 @@ public class Cliente : Pessoa {
     public Cliente(
         string _nome,
         string _cpf,
-        DateOnly _nascimento,
+        DateTime _nascimento,
         string _estadoCivil,
         string _profissao
     ) : base(_nome, _cpf, _nascimento) {
