@@ -13,6 +13,24 @@ public class App {
 
         try {
             Advogado advogado = new Advogado(cna, nome, cpf, nascimento);
+            this.advogados.Add(advogado);
+        } catch (Exceptions.EmptyInputException ex) {
+            Console.WriteLine($"{ex.Message}");            
+        } catch (Exceptions.InvalidCpfException ex) {
+            Console.WriteLine($"{ex.Message}");            
+        } catch (Exceptions.InvalidCnaException ex) {
+            Console.WriteLine($"{ex.Message}");            
+        }
+    }
+
+    public void insereCliente(string cna, string nome, string cpf, DateOnly nascimento) {
+        if(this.advogados.Any(x => x.Cpf == cpf && x.Cna == cna)){
+            throw new Exceptions.UniqueValueException("CPF e CNA precisam ser únicos!");
+        }
+
+        try {
+            Advogado advogado = new Advogado(cna, nome, cpf, nascimento);
+            this.advogados.Add(advogado);
         } catch (Exceptions.EmptyInputException ex) {
             Console.WriteLine($"{ex.Message}");            
         } catch (Exceptions.InvalidCpfException ex) {

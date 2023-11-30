@@ -5,13 +5,23 @@ public class Cliente : Pessoa {
     public string Profissao
     {
         get { return profissao; }
-        set { profissao = value; }
+        set {
+            if(String.IsNullOrWhiteSpace(value)){
+                throw new Exceptions.EmptyInputException("A profissão não pode estar em branco.");
+            }
+            profissao = value;
+        }
     }
     
     public string EstadoCivil
     {
         get { return estadoCivil; }
-        set { estadoCivil = value; }
+        set {
+            if(String.IsNullOrWhiteSpace(value)){
+                throw new Exceptions.EmptyInputException("O estado civil não pode estar em branco.");
+            }
+            estadoCivil = value;
+        }
     }
     
     public Cliente(
