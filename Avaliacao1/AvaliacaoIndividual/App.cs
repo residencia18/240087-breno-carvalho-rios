@@ -9,7 +9,115 @@ public class App {
         advogados = new();
         clientes = new();
     }
-    
+
+    public void menu(){
+        Console.WriteLine($"O menu existe, mas não está chamando os métodos.");
+        Console.WriteLine($"Motivo: Foi dada prioridade a implementação e teste dos métodos, os readlines não foram feitos.");
+        
+        
+        while(true) {
+            Console.WriteLine($"----------Menu----------");
+            Console.WriteLine($"1. Insere Advogado");
+            Console.WriteLine($"2. Insere Cliente");
+            Console.WriteLine($"3. Lista Advogados");
+            Console.WriteLine($"4. Lista Clientes");
+            Console.WriteLine($"5. Relatórios");
+            Console.WriteLine($"0. Sair");
+
+            int op;
+            try {
+                op = int.Parse(Console.ReadLine() ?? "");
+            } catch (FormatException) {
+                Console.WriteLine($"Digite uma opção válida!");
+                continue;
+            } catch (Exception e) {
+                Console.WriteLine($"{e.Message}");
+                continue;
+            }
+
+            switch(op) {
+                case 1:
+                    Console.WriteLine($"Insere Advogado");
+                    break;
+                case 2:
+                    Console.WriteLine($"Insere Cliente");
+                    break;
+                case 3:
+                    Console.WriteLine($"Lista Advogados");
+                    break;
+                case 4:
+                    Console.WriteLine($"Lista Clientes");
+                    break;
+                case 5:
+                    this.relatorios();
+                    break;
+                case 0:
+                    break;
+                default:
+                    Console.WriteLine($"Opção Inválida");
+                    break;                    
+            }
+
+            if(op == 0) {
+                break;
+            }
+        }
+    }
+
+    public void relatorios() {
+        while(true) {
+            Console.WriteLine($"----------Menu----------");
+            Console.WriteLine($"1. Advogados com idade entre dois valores");
+            Console.WriteLine($"2. Clientes com idade entre dois valores");
+            Console.WriteLine($"3. Clientes com estado civil informado pelo usuário");
+            Console.WriteLine($"4. Clientes em ordem alfabética");
+            Console.WriteLine($"5. Clientes cuja profissão contenha texto informado pelo usuário");
+            Console.WriteLine($"6. Advogados e Clientes aniversariantes do mês informado");
+            Console.WriteLine($"0. Voltar");
+
+            int op;
+            try {
+                op = int.Parse(Console.ReadLine() ?? "");
+            } catch (FormatException) {
+                Console.WriteLine($"Digite uma opção válida!");
+                continue;
+            } catch (Exception e) {
+                Console.WriteLine($"{e.Message}");
+                continue;
+            }
+
+            switch(op) {
+                case 1:
+                    Console.WriteLine($"Advogados com idade entre dois valores");
+                    break;
+                case 2:
+                    Console.WriteLine($"Clientes com idade entre dois valores");
+                    break;
+                case 3:
+                    Console.WriteLine($"Clientes com estado civil informado pelo usuário");
+                    break;
+                case 4:
+                    Console.WriteLine($"4. Clientes em ordem alfabética");
+                    break;
+                case 5:
+                    Console.WriteLine($"5. Clientes cuja profissão contenha texto informado pelo usuário");
+                    break;
+                case 6:
+                    Console.WriteLine($"6. Advogados e Clientes aniversariantes do mês informado");
+                    break;
+                case 0:
+                    break;
+                default:
+                    Console.WriteLine($"Opção Inválida");
+                    break;                    
+            }
+
+            if(op == 0) {
+                break;
+            }
+        }
+    }
+
     public void testApp(){
         try {
             insereAdvogado("123456789123", "Advogado 1", "12345678901", "17/07/2001");
