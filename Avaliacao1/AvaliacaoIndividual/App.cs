@@ -9,7 +9,7 @@ public class App {
         advogados = new();
         clientes = new();
     }
-
+    
     public void testApp(){
         try {
             insereAdvogado("123456789123", "Advogado 1", "12345678901", "17/07/2001");
