@@ -1,4 +1,6 @@
 namespace advocacia;
+
+using System.Linq;
 public class App {
     List<Advogado> advogados;
     List<Cliente> clientes;
@@ -9,16 +11,44 @@ public class App {
 
         try {
             insereAdvogado("123456789123", "Advogado 1", "12345678901", "17/07/2001");
-            insereAdvogado("123456789323", "Advogado 2", "12345678902", "17/07/2001");
+            insereAdvogado("123456789323", "Advogado 2", "12345678902", "17/07/1980");
             insereAdvogado("123456789123", "Advogado 1", "12345678911", "17/12/2001");
             insereCliente("Cliente 1", "12345678912", "17/12/2001", "Solteiro", "Empregado");
-            insereCliente("Cliente 2", "12345678911", "17/12/2001", "Solteiro", "Empregado");
+            insereCliente("Cliente 2", "12345678911", "17/12/1990", "Casado", "Empregado");
+
+            Console.WriteLine($"Lista de Advogados");            
             listaAdvogados();
-            Console.WriteLine($"-----------------");            
+            Console.WriteLine($"-----------------");
+
+            Console.WriteLine($"Lista de Clientes");            
             listaClientes();
-        } catch (Exceptions.UniqueValueException ex) {
-            Console.WriteLine($"{ex.Message}");
+            Console.WriteLine($"-----------------");
             
+            Console.WriteLine($"Advogados entre idade");            
+            this.advogadosEntreIdade("25", "50");
+            Console.WriteLine($"-----------------");
+
+            Console.WriteLine($"Clientes entre idade");            
+            this.clientesEntreIdade("18", "25");
+            Console.WriteLine($"-----------------");
+
+            Console.WriteLine($"Clientes por Estado Civil");            
+            this.clientesPorEstadoCivil("Solteiro");
+            Console.WriteLine($"-----------------");
+            
+            Console.WriteLine($"Clientes ordem alfabetica");            
+            this.clientesOrdemAlfabetica();
+            Console.WriteLine($"-----------------");
+
+
+            Console.WriteLine($"Profissao clientes por keyword");
+            this.clientesPorKeyword("Empre");
+            Console.WriteLine($"-----------------");
+            
+            Console.WriteLine($"Aniversariantes do mes");
+            this.pessoasAniversariantesDoMes("07");
+        } catch (Exceptions.UniqueValueException ex) {
+            Console.WriteLine($"{ex.Message}");            
         }
     }
 
@@ -28,7 +58,7 @@ public class App {
         }
 
         try {
-            DateOnly dataNascimento = DateOnly.Parse(nascimento);
+            DateTime dataNascimento = DateTime.Parse(nascimento);
             Advogado advogado = new Advogado(cna, nome, cpf, dataNascimento);
             this.advogados.Add(advogado);
         } catch (Exceptions.EmptyInputException ex) {
@@ -50,7 +80,7 @@ public class App {
         }
 
         try {
-            DateOnly dataNascimento = DateOnly.Parse(nascimento);
+            DateTime dataNascimento = DateTime.Parse(nascimento);
             Cliente cliente = new Cliente(nome, cpf, dataNascimento, estadoCivil, profissao);
             this.clientes.Add(cliente);
         } catch (Exceptions.EmptyInputException ex) {
@@ -107,7 +137,7 @@ public class App {
     }
 
     public void clientesPorEstadoCivil(string estadoCivil){
-        foreach(Cliente cliente in this.clientes.Where(x => x.EstadoCivil.Equals(estadoCivil)).ToList()){
+        foreach(Cliente cliente in this.clientes.Where(x => x.EstadoCivil.ToLower().Equals(estadoCivil.ToLower())).ToList()){
             Console.WriteLine(cliente.ToStr());
         }
     }
@@ -118,17 +148,26 @@ public class App {
         }
     }
 
-    public void advogadosPorKeyword(string keywords){
-        foreach(Cliente cliente in this.clientes.Where(x => x.Profissao.Contains(keywords)).ToList()){
+    public void clientesPorKeyword(string keywords){
+        foreach(Cliente cliente in this.clientes.Where(x => x.Profissao.ToLower().Contains(keywords.ToLower())).ToList()){
             Console.WriteLine(cliente.ToStr());
         }
     }
 
-    public pessoasAniversariantesDoMes(){
-        List<Pessoa> pessoas = this.clientes.Concat(this.advogados);
+    public void pessoasAniversariantesDoMes(string inputMes){
+        int mes;
+        try {
+            mes = int.Parse(inputMes);
+        } catch(FormatException) {
+            Console.WriteLine($"Insira valores válidos para as idades");
+            return;            
+        }
 
-        foreach(Pessoa pessoa in pessoas){
-            Console.WriteLine($"{pessoa.ToStr}");            
+        foreach(Advogado advogado in this.advogados.Where(x => x.Nascimento.Month == mes).ToList()){
+            Console.WriteLine($"{advogado.ToStr()}");
+        }
+        foreach(Cliente cliente in this.clientes.Where(x => x.Nascimento.Month == mes).ToList()){
+            Console.WriteLine($"{cliente.ToStr()}");
         }
     }
 }
