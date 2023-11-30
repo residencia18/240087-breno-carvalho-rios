@@ -17,4 +17,8 @@ public class Advogado : Pessoa {
     public Advogado(string cna, string nome, string cpf, DateTime nascimento) : base(nome, cpf, nascimento) {
         this.cna = cna;
     }
+
+    public new string ToStr(){
+        return $"CNA: {this.Cna} | Nome: {this.Nome} | Nascimento: {this.Nascimento} | CPF: {this.Cpf}";
+    }
 }

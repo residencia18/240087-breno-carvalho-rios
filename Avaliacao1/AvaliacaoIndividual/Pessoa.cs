@@ -41,6 +41,11 @@ public class Pessoa {
 
 
     public int idade() {
-        DateTime.Now - this.Nascimento;
-    }    
+        // return DateTime.Now.Subtract(this.nascimento);
+        return DateTime.Now.Year - this.nascimento.Year;
+    }
+
+    public string ToStr(){
+        return $"CPF: {this.Cpf} | Nome: {this.Nome} | Nascimento: {this.Nascimento}";
+    }
 }

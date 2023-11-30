@@ -77,14 +77,58 @@ public class App {
     }
 
     public void advogadosEntreIdade(string minIdade, string maxIdade){
+        int min, max;
         try {
-            int min = int.Parse(minIdade);
-            int max = int.Parse(maxIdade);
+            min = int.Parse(minIdade);
+            max = int.Parse(maxIdade);
         } catch(FormatException) {
             Console.WriteLine($"Insira valores válidos para as idades");
             return;            
         }
 
-        
+        foreach(Advogado advogado in this.advogados.Where(x => x.idade() < min && x.idade() > max).ToList()){
+            Console.WriteLine(advogado.ToStr());
+        }
+    }
+
+    public void clientesEntreIdade(string minIdade, string maxIdade){
+        int min, max;
+        try {
+            min = int.Parse(minIdade);
+            max = int.Parse(maxIdade);
+        } catch(FormatException) {
+            Console.WriteLine($"Insira valores válidos para as idades");
+            return;            
+        }
+
+        foreach(Cliente cliente in this.clientes.Where(x => x.idade() < min && x.idade() > max).ToList()){
+            Console.WriteLine(cliente.ToStr());
+        }
+    }
+
+    public void clientesPorEstadoCivil(string estadoCivil){
+        foreach(Cliente cliente in this.clientes.Where(x => x.EstadoCivil.Equals(estadoCivil)).ToList()){
+            Console.WriteLine(cliente.ToStr());
+        }
+    }
+
+    public void clientesOrdemAlfabetica(){
+        foreach(Cliente cliente in this.clientes.OrderBy(x => x.Nome).ToList()){
+            Console.WriteLine(cliente.ToStr());
+        }
+    }
+
+    public void advogadosPorKeyword(string keywords){
+        foreach(Cliente cliente in this.clientes.Where(x => x.Profissao.Contains(keywords)).ToList()){
+            Console.WriteLine(cliente.ToStr());
+        }
+    }
+
+    public pessoasAniversariantesDoMes(){
+        List<Pessoa> pessoas = this.clientes.Concat(this.advogados);
+
+        foreach(Pessoa pessoa in pessoas){
+            Console.WriteLine($"{pessoa.ToStr}");            
+        }
     }
 }

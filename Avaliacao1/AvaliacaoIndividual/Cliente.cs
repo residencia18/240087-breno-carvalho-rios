@@ -34,4 +34,8 @@ public class Cliente : Pessoa {
         this.EstadoCivil = _estadoCivil;
         this.Profissao = _profissao;
     }
+
+    public new string ToStr() {
+        return $"CPF: {this.Cpf} | Nome: {this.Nome} | Profissão: {this.profissao} | Nascimento: {this.Nascimento} | Estado Civil: {this.estadoCivil}";
+    }
 }
