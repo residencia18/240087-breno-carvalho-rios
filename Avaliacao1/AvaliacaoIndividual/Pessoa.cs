@@ -12,6 +12,9 @@ public class Pessoa {
     public string Cpf {
         get { return cpf; }
         set {
+            if(cpf.Length != 11) {
+                throw new Exceptions.InvalidCpfException("CPF inválido: Precisa ter 11 dígitos.")
+            }
             cpf = value;
         }
     }
@@ -19,6 +22,9 @@ public class Pessoa {
     public DateOnly Nascimento {
         get { return nascimento; }
         set {
+            if(cpf.Length != 11) {
+                throw new Exceptions.InvalidDateException("Data Inválida");
+            }
             nascimento = value;
         }
     }

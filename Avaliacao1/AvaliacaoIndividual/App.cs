@@ -7,12 +7,18 @@ public class App {
     }
 
     public void insereAdvogado(string cna, string nome, string cpf, DateOnly nascimento) {
-        if(this.advogados.Any(x => x.Cpf == cpf)){
-            throw new Exceptions.UniqueCpfException("CPF precisa ser único!");
+        if(this.advogados.Any(x => x.Cpf == cpf && x.Cna == cna)){
+            throw new Exceptions.UniqueValueException("CPF e CNA precisam ser únicos!");
         }
-        if(this.advogados.Any(x => x.Cna == cna)){
-            throw new Exceptions.UniqueCpfException("CNA precisa ser único!");
+
+        try {
+            Advogado advogado = new Advogado(cna, nome, cpf, nascimento);
+        } catch (Exceptions.EmptyInputException ex) {
+            Console.WriteLine($"{ex.Message}");            
+        } catch (Exceptions.InvalidCpfException ex) {
+            Console.WriteLine($"{ex.Message}");            
+        } catch (Exceptions.InvalidCnaException ex) {
+            Console.WriteLine($"{ex.Message}");            
         }
-        Advogado advogado = new Advogado(cna, nome, cpf, nascimento);
     }
 }
