@@ -15,7 +15,7 @@ public class Pessoa {
             if(String.IsNullOrWhiteSpace(value)){
                 throw new Exceptions.EmptyInputException("O CPF não pode estar em branco.");
             }
-            if(value.Length != 11) {
+            if(value.Length != 11 || !value.All(char.IsDigit)) {
                 throw new Exceptions.InvalidCpfException("CPF inválido: Precisa ter 11 dígitos.");
             }
             cpf = value;
