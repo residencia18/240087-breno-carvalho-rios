@@ -20,7 +20,7 @@ public class App {
         } catch (Exceptions.UniqueValueException ex) {
             Console.WriteLine($"{ex.Message}");            
         }
-        
+
         Console.WriteLine($"Lista de Advogados");            
         listaAdvogados();
         Console.WriteLine($"-----------------");
@@ -141,7 +141,7 @@ public class App {
     }
 
     public void clientesPorEstadoCivil(string estadoCivil){
-        foreach(Cliente cliente in this.clientes.Where(x => x.EstadoCivil.ToLower().Equals(estadoCivil.ToLower())).ToList()){
+        foreach(Cliente cliente in this.clientes.Where(x => x.EstadoCivil!.ToLower().Equals(estadoCivil.ToLower())).ToList()){
             Console.WriteLine(cliente.ToStr());
         }
     }
@@ -153,7 +153,7 @@ public class App {
     }
 
     public void clientesPorKeyword(string keywords){
-        foreach(Cliente cliente in this.clientes.Where(x => x.Profissao.ToLower().Contains(keywords.ToLower())).ToList()){
+        foreach(Cliente cliente in this.clientes.Where(x => x.Profissao!.ToLower().Contains(keywords.ToLower())).ToList()){
             Console.WriteLine(cliente.ToStr());
         }
     }

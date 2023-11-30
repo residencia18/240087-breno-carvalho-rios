@@ -1,7 +1,7 @@
 namespace advocacia;
 public class Pessoa {
-    private string nome;
-    private string cpf;
+    private string? nome;
+    private string? cpf;
     private DateTime nascimento;
 
     public Pessoa(string _nome, string _cpf, DateTime _nascimento) {
@@ -9,7 +9,7 @@ public class Pessoa {
         this.Cpf = _cpf;
         this.Nascimento = _nascimento;
     }
-    public string Cpf {
+    public string? Cpf {
         get { return cpf; }
         set {
             if(String.IsNullOrWhiteSpace(value)){
@@ -29,7 +29,7 @@ public class Pessoa {
         }
     }
     
-    public string Nome {
+    public string? Nome {
         get { return nome; }
         set {
             if(String.IsNullOrWhiteSpace(value)){

@@ -1,7 +1,7 @@
 namespace advocacia;
 public class Advogado : Pessoa { 
-    private string cna;
-    public string Cna {
+    private string? cna;
+    public string? Cna {
         get { return cna; }
         set {
             if(String.IsNullOrWhiteSpace(value)){
@@ -15,7 +15,7 @@ public class Advogado : Pessoa {
     }
     
     public Advogado(string cna, string nome, string cpf, DateTime nascimento) : base(nome, cpf, nascimento) {
-        this.cna = cna;
+        this.Cna = cna;
     }
 
     public new string ToStr(){

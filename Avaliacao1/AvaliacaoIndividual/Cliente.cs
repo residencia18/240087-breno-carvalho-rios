@@ -1,8 +1,8 @@
 namespace advocacia;
 public class Cliente : Pessoa {
-    private string estadoCivil;
-    private string profissao;
-    public string Profissao
+    private string? estadoCivil;
+    private string? profissao;
+    public string? Profissao
     {
         get { return profissao; }
         set {
@@ -13,7 +13,7 @@ public class Cliente : Pessoa {
         }
     }
     
-    public string EstadoCivil
+    public string? EstadoCivil
     {
         get { return estadoCivil; }
         set {
