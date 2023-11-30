@@ -46,6 +46,6 @@ public class Pessoa {
     }
 
     public string ToStr(){
-        return $"CPF: {this.Cpf} | Nome: {this.Nome} | Nascimento: {this.Nascimento}";
+        return $"CPF: {this.Cpf} | Nome: {this.Nome} | Nascimento: {this.Nascimento.ToShortDateString()}";
     }
 }

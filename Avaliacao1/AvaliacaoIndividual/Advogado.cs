@@ -19,6 +19,6 @@ public class Advogado : Pessoa {
     }
 
     public new string ToStr(){
-        return $"CNA: {this.Cna} | Nome: {this.Nome} | Nascimento: {this.Nascimento} | CPF: {this.Cpf}";
+        return $"CNA: {this.Cna} | Nome: {this.Nome} | Nascimento: {this.Nascimento.ToShortDateString()} | CPF: {this.Cpf}";
     }
 }

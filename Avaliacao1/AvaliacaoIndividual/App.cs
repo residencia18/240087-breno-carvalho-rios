@@ -8,53 +8,58 @@ public class App {
     public App() {
         advogados = new();
         clientes = new();
+    }
 
+    public void testApp(){
         try {
             insereAdvogado("123456789123", "Advogado 1", "12345678901", "17/07/2001");
             insereAdvogado("123456789323", "Advogado 2", "12345678902", "17/07/1980");
-            insereAdvogado("123456789123", "Advogado 1", "12345678911", "17/12/2001");
-            insereCliente("Cliente 1", "12345678912", "17/12/2001", "Solteiro", "Empregado");
-            insereCliente("Cliente 2", "12345678911", "17/12/1990", "Casado", "Empregado");
-
-            Console.WriteLine($"Lista de Advogados");            
-            listaAdvogados();
-            Console.WriteLine($"-----------------");
-
-            Console.WriteLine($"Lista de Clientes");            
-            listaClientes();
-            Console.WriteLine($"-----------------");
-            
-            Console.WriteLine($"Advogados entre idade");            
-            this.advogadosEntreIdade("25", "50");
-            Console.WriteLine($"-----------------");
-
-            Console.WriteLine($"Clientes entre idade");            
-            this.clientesEntreIdade("18", "25");
-            Console.WriteLine($"-----------------");
-
-            Console.WriteLine($"Clientes por Estado Civil");            
-            this.clientesPorEstadoCivil("Solteiro");
-            Console.WriteLine($"-----------------");
-            
-            Console.WriteLine($"Clientes ordem alfabetica");            
-            this.clientesOrdemAlfabetica();
-            Console.WriteLine($"-----------------");
-
-
-            Console.WriteLine($"Profissao clientes por keyword");
-            this.clientesPorKeyword("Empre");
-            Console.WriteLine($"-----------------");
-            
-            Console.WriteLine($"Aniversariantes do mes");
-            this.pessoasAniversariantesDoMes("07");
+            insereAdvogado("123456781289", "Advogado 1", "12345678911", "17/10/2001");
+            insereCliente("Cliente 1", "12345678912", "17/10/2001", "Solteiro", "Empregado");
+            insereCliente("Cliente 2", "16732312411", "17/12/1990", "Casado", "Empregado");
         } catch (Exceptions.UniqueValueException ex) {
             Console.WriteLine($"{ex.Message}");            
         }
+        
+        Console.WriteLine($"Lista de Advogados");            
+        listaAdvogados();
+        Console.WriteLine($"-----------------");
+
+        Console.WriteLine($"Lista de Clientes");            
+        listaClientes();
+        Console.WriteLine($"-----------------");
+        
+        Console.WriteLine($"Advogados entre idade");            
+        this.advogadosEntreIdade("25", "50");
+        Console.WriteLine($"-----------------");
+
+        Console.WriteLine($"Clientes entre idade");            
+        this.clientesEntreIdade("18", "25");
+        Console.WriteLine($"-----------------");
+
+        Console.WriteLine($"Clientes por Estado Civil");            
+        this.clientesPorEstadoCivil("Solteiro");
+        Console.WriteLine($"-----------------");
+        
+        Console.WriteLine($"Clientes ordem alfabetica");            
+        this.clientesOrdemAlfabetica();
+        Console.WriteLine($"-----------------");
+
+
+        Console.WriteLine($"Profissao clientes por keyword");
+        this.clientesPorKeyword("Empre");
+        Console.WriteLine($"-----------------");
+        
+        Console.WriteLine($"Aniversariantes do mes");
+        this.pessoasAniversariantesDoMes("12");
     }
 
     public void insereAdvogado(string cna, string nome, string cpf, string nascimento) {
-        if(this.advogados.Any(x => x.Cpf == cpf && x.Cna == cna)){
-            throw new Exceptions.UniqueValueException("CPF e CNA precisam ser únicos!");
+        if(this.advogados.Any(x => x.Cpf == cpf) || this.clientes.Any(x => x.Cpf == cpf)){
+            throw new Exceptions.UniqueValueException("CPF já está cadastrado!");
+        }
+        if(this.advogados.Any(x => x.Cna == cna)){
+            throw new Exceptions.UniqueValueException("CNA precisa ser único!");
         }
 
         try {
@@ -75,10 +80,9 @@ public class App {
     }
 
     public void insereCliente(string nome, string cpf, string nascimento, string estadoCivil, string profissao) {
-        if(this.clientes.Any(x => x.Cpf == cpf)){
-            throw new Exceptions.UniqueValueException("CPF precisa ser único!");
+        if(this.advogados.Any(x => x.Cpf == cpf) || this.clientes.Any(x => x.Cpf == cpf)){
+            throw new Exceptions.UniqueValueException("CPF já está cadastrado!");
         }
-
         try {
             DateTime dataNascimento = DateTime.Parse(nascimento);
             Cliente cliente = new Cliente(nome, cpf, dataNascimento, estadoCivil, profissao);
@@ -116,7 +120,7 @@ public class App {
             return;            
         }
 
-        foreach(Advogado advogado in this.advogados.Where(x => x.idade() < min && x.idade() > max).ToList()){
+        foreach(Advogado advogado in this.advogados.Where(x => x.idade() > min && x.idade() < max).ToList()){
             Console.WriteLine(advogado.ToStr());
         }
     }
@@ -131,7 +135,7 @@ public class App {
             return;            
         }
 
-        foreach(Cliente cliente in this.clientes.Where(x => x.idade() < min && x.idade() > max).ToList()){
+        foreach(Cliente cliente in this.clientes.Where(x => x.idade() > min && x.idade() < max).ToList()){
             Console.WriteLine(cliente.ToStr());
         }
     }
