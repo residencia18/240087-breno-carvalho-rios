@@ -1,4 +1,3 @@
-
 from abc import ABC, abstractmethod
 
 class Data:
@@ -73,23 +72,21 @@ class Data:
                 if self.__dia > outraData.__dia:
                     return True
         return False
+	
+	
+    def __init__ (self, _dia, _mes, _ano):
+        self.dia = _dia
+        self.mes = _mes
+        self.ano = _ano
     
-	
-	
-	Data (int _dia, int _mes, int _ano) {
-		dia = _dia;
-		mes = _mes;
-		ano = _ano;
-	}
-	string toString() {
-		string ret = "";
-		ret.append(to_string(dia));
-		ret.append("/");
-		ret.append(to_string(mes));
-		ret.append("/");
-		ret.append(to_string(ano));
-		return ret;
-	}
+    def toString(self):
+        ret = ""
+        ret.append(str(self.__dia))
+        ret.append("/")
+        ret.append(str(self.__mes))
+        ret.append("/")
+        ret.append(str(self.__ano))
+        return ret
 
 class AnaliseDados(ABC): 
 
@@ -125,29 +122,60 @@ class ListaNomes(AnaliseDados):
         elementos vão existir na lista e depois
         solicita a digitação de cada um deles.
         '''
-        pass
+        qtdElementos = input("Quantos nomes vão existir na lista? ")
+        try:
+            qtdElementos = int(qtdElementos)
+        except:
+            print("Digite uma quantidade válida!")
+            return
+        
+        if qtdElementos <= 0:
+            print("Digite uma quantidade válida!")
+            return
+
+        for i in range(qtdElementos):
+            nome = input(f"Digite o nome {i + 1}: ")
+
+            if len(nome.strip()) <= 0:
+                print("O nome não pode estar em branco!")
+                return
+            
+            self.__lista.append(nome)
+		
 
     def mostraMediana(self):
         '''
         Este método ordena a lista e mostra o
         elemento que está na metade da lista
         '''
-        pass    
+        if len(self.__lista) <= 0:
+            return
+
+        meio = (((len(self.__lista) + 1) // 2) - 1)
+        self.__lista.sort()
+
+        print("A mediana da lista de nomes é: ", self.__lista[meio])
 
     def mostraMenor(self):
         '''
         Este método retorna o menos elemento da lista
         '''
-        pass
+        if len(self.__lista) <= 0:
+            return
+
+        print("O primeiro nome em ordem alfabética é: ", min(self.__lista))
 
     def mostraMaior(self):
         '''
         Este método retorna o maior elemento da lista
         '''
-        pass    
+        if len(self.__lista) <= 0:
+            return
+
+        print("O último nome em ordem alfabética é: ", max(self.__lista))
 
     def __str__(self):
-        pass
+        return '\n'.join(self.__lista)
 	
 class ListaDatas(AnaliseDados):
         
@@ -197,29 +225,70 @@ class ListaSalarios(AnaliseDados):
         elementos vão existir na lista e depois
         solicita a digitação de cada um deles
         '''
-        pass
+        qtdElementos = input("Quantos salários vão existir na lista? ")
+
+        try:
+            qtdElementos = int(qtdElementos)
+        except:
+            print("Digite uma quantidade válida!")
+            return
+
+        if qtdElementos <= 0:
+            print("Digite uma quantidade válida!")
+            return
+        
+        for i in range(qtdElementos):
+            salario = input(f"Digite o salario {i + 1}: ")
+            try:
+                salario = int(salario)
+            except:
+                print("Digite um salário válido!")
+                return
+
+            if salario <= 0:
+                print("O salário deve ser positivo!")
+                return
+            
+            self.__lista.append(salario)
 
     def mostraMediana(self):
         '''
         Este método ordena a lista e mostra o
         elemento que está na metade da lista
         '''
-        pass    
+        if len(self.__lista) <= 0:
+            return
+
+        meio = (((len(self.__lista) + 1) // 2) - 1)
+        self.__lista.sort()
+
+        mediana = self.__lista[meio]
+
+        if len(self.__lista) % 2 == 0:
+            mediana += self.__lista[meio + 1]
+
+        print("A mediana da lista de salários é: ", mediana)    
 
     def mostraMenor(self):
         '''
         Este método retorna o menos elemento da lista
         '''
-        pass
+        if len(self.__lista) <= 0:
+            return
+
+        print("O menor salário é: ", min(self.__lista))
 
     def mostraMaior(self):
         '''
         Este método retorna o maior elemento da lista
         '''
-        pass
+        if len(self.__lista) <= 0:
+            return
+
+        print("O maior salário é: ", max(self.__lista))
     
     def __str__(self):
-        pass
+        return '\n'.join(self.__lista)
 
 class ListaIdades(AnaliseDados):
     
