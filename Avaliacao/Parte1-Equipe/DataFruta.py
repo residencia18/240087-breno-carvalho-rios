@@ -265,7 +265,7 @@ class ListaSalarios(AnaliseDados):
         mediana = self.__lista[meio]
 
         if len(self.__lista) % 2 == 0:
-            mediana += self.__lista[meio + 1]
+            mediana = (self.__lista[meio] + self.__lista[meio + 1]) / 2
 
         print("A mediana da lista de salários é: ", mediana)    
 
