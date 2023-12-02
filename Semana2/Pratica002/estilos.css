@@ -1,17 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Nova+Square&family=Press+Start+2P&display=swap');
 
 :root {
 	--color-primary: #D5DFE5;
 	--color-secondary: #C9B1BD;
 	--color-terciary: #B49594;
 
-	--font-highlight: "Press Start 2P";
+	--font-common: "Nova Square";
+	--font-cursive: "Dancing Script";
+	--font-display: "Press Start 2P";
 }
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: var(--font-common);
 }
 
 body {
@@ -20,15 +23,19 @@ body {
 
 header {
 	text-align: center;
-	font-size: 2rem;
+	font-size: 2.5rem;
 	padding: 20px;
 	margin-bottom: 10px;
 	background-color: var(--color-secondary);
 	border-bottom: 2px solid var(--color-terciary);
+	font-family: var(--font-cursive);
+	box-shadow: 0px 2px 2px 1px rgba(60, 62, 65, 0.3);
 }
 
 .card {
 	background-color: var(--color-secondary);
+	border-radius: 5px 5px 0 0;
+	box-shadow: 1px 2px 2px 1px rgba(60, 62, 65, 0.5);
 }
 
 .card-header {
@@ -36,11 +43,14 @@ header {
 	border-radius: 5px 5px 0 0;
 	padding: 10px;
 	font-size: 0.85em;
-	font-family: var(--font-highlight);
+	font-family: var(--font-display);
 }
 
 .card-body {
+	display: flex;
+	flex-direction: column;
 	padding: 10px;
+	gap: 10px;
 }
 
 .card-body > div {
@@ -48,26 +58,40 @@ header {
 }
 
 .card-body a {
-	padding-left: 10px;
+	color: darkblue;
+	text-decoration: underline;
 }
 
-.card-body a::before {
-	content: "\21b3"
+.card-body img {
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+.card-body span::before {
+	content: "\21b3";
+	margin-right: 5px;
+	margin-left: 10px;
+}
+
+.destaques {
+	text-align: center;
 }
 
 main {
 	display: grid;
 	padding: 5px;
+	margin-bottom: 2.4em;
 }
 
-#div1 {
+#section1 {
 	display: grid;
 	grid-template-columns: 1fr 1fr 20%;
 	gap: 5px;
 	margin-bottom: 5px;
 }
 
-#div2 {
+#section2 {
 	display: grid;
 	grid-template-columns: 1fr 400px;
 	gap: 5px;
@@ -83,4 +107,16 @@ footer {
 	background-color: var(--color-secondary);
 	border-top: 2px solid var(--color-terciary);
 	text-align: center;
+	box-shadow: 0px -1px 2px 1px rgba(60, 62, 65, 0.3);
+}
+
+@media (max-width: 500px) {
+	#section1, #section2 {
+		grid-template-columns: 1fr;
+	}
+
+
+	Footer {
+		position: fixed;
+	}
 }
