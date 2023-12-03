@@ -98,7 +98,7 @@ namespace AvaliacaoDotNet
                     Console.Write("\n\tDigite o CPF do cliente: ");
                     cpfCliente = Console.ReadLine()!;
 
-                    cliente = clientesCadastrados.FirstOrDefault(c => c.Cpf == cpfCliente);
+                    cliente = clientesCadastrados.FirstOrDefault(c => c.Cpf == cpfCliente)!;
 
                     if (!Cliente.IsValidCPF(cpfCliente) || cliente == null)
                     {
@@ -134,7 +134,7 @@ namespace AvaliacaoDotNet
                         break;
                     }
 
-                    advogado = advogadosCadastrados.FirstOrDefault(a => a.Cna == cnaAdvogado);
+                    advogado = advogadosCadastrados.FirstOrDefault(a => a.Cna == cnaAdvogado)!;
 
                     if (advogado == null)
                     {
