@@ -21,7 +21,7 @@ namespace AvaliacaoDotNet
 
         public void Cadastrar()
         {
-            Console.Write("\n\tDigite o nome do clientes: ");
+            Console.Write("\n\tDigite o nome do cliente: ");
             string nome = Console.ReadLine()!;
             nome = Cliente.ConvertePrimeiraLetraParaMaiuscula(nome);
 

@@ -39,7 +39,7 @@ namespace AvaliacaoDotNet
                     }
                 }
 
-                App.LimparTela();
+                //App.LimparTela();
                 Console.Write("\n\tDados dos advogados carregados com sucesso.");
             }
             catch (Exception ex)
