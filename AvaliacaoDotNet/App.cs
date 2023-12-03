@@ -177,11 +177,13 @@ namespace AvaliacaoDotNet
                             case 3:
                                 LimparTela();
                                 clientes.Editar();
+                                persistencia.SalvarArquivosCliente(clientes);
                                 break;
 
                             case 4:
                                 LimparTela();
                                 clientes.Excluir();
+                                persistencia.SalvarArquivosCliente(clientes);
                                 break;
 
                             case 5:
@@ -237,13 +239,15 @@ namespace AvaliacaoDotNet
 
                                 case 3:
                                     LimparTela();
-                                    // advogados.Editar();
+                                    advogados.Editar();
+                                    persistencia.SalvarArquivosAdvogado(advogados);
                                     Pause();
                                     break;
 
                                 case 4:
                                     LimparTela();
                                     advogados.Excluir();
+                                    persistencia.SalvarArquivosAdvogado(advogados);
                                     break;
 
                                 case 5:
