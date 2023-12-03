@@ -1,0 +1,14 @@
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\bin\Debug\net7.0\AvaliacaoDotNet.exe
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\bin\Debug\net7.0\AvaliacaoDotNet.deps.json
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\bin\Debug\net7.0\AvaliacaoDotNet.runtimeconfig.json
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\bin\Debug\net7.0\AvaliacaoDotNet.dll
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\bin\Debug\net7.0\AvaliacaoDotNet.pdb
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\obj\Debug\net7.0\AvaliacaoDotNet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\obj\Debug\net7.0\AvaliacaoDotNet.AssemblyInfoInputs.cache
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\obj\Debug\net7.0\AvaliacaoDotNet.AssemblyInfo.cs
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\obj\Debug\net7.0\AvaliacaoDotNet.csproj.CoreCompileInputs.cache
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\obj\Debug\net7.0\AvaliacaoDotNet.dll
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\obj\Debug\net7.0\refint\AvaliacaoDotNet.dll
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\obj\Debug\net7.0\AvaliacaoDotNet.pdb
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\obj\Debug\net7.0\AvaliacaoDotNet.genruntimeconfig.cache
+C:\Users\alber\OneDrive\Documentos\ProjetosResidencia\equipe5-dotnet\AvaliacaoDotNet\obj\Debug\net7.0\ref\AvaliacaoDotNet.dll
