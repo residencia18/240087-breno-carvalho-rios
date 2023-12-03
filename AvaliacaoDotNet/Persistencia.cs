@@ -10,7 +10,7 @@ namespace AvaliacaoDotNet
         public void CarregarArquivosAdvogado(ListaAdvogado listaAdvogados)
         {
             listaAdvogados.advogados.Clear();
-            string caminhoArquivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "C:/Users/alber/OneDrive/Documentos/ProjetosResidencia/residenciaDotNet/AvaliacaoDotNet/BancoDeDados/dadosadvogados.txt");
+            string caminhoArquivo = Path.Combine("../AvaliacaoDotNet/BancoDeDados/dadosadvogados.txt");
 
             try
             {
@@ -53,7 +53,7 @@ namespace AvaliacaoDotNet
         public void CarregarArquivosCliente(ListaCliente listaClientes)
         {
             listaClientes.clientes.Clear();
-            string caminhoArquivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "C:/Users/alber/OneDrive/Documentos/ProjetosResidencia/residenciaDotNet/AvaliacaoDotNet/BancoDeDados/dadosclientes.txt");
+            string caminhoArquivo = Path.Combine("../AvaliacaoDotNet/BancoDeDados/dadosclientes.txt");
 
             try
             {
@@ -101,7 +101,7 @@ namespace AvaliacaoDotNet
 
         public void SalvarArquivosCliente(ListaCliente listaClientes)
         {
-            string caminhoArquivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "C:/Users/alber/OneDrive/Documentos/ProjetosResidencia/residenciaDotNet/AvaliacaoDotNet/BancoDeDados/dadosclientes.txt");
+            string caminhoArquivo = Path.Combine("../AvaliacaoDotNet/BancoDeDados/dadosclientes.txt");
 
             try
             {
@@ -126,7 +126,7 @@ namespace AvaliacaoDotNet
 
         public void SalvarArquivosAdvogado(ListaAdvogado ListaAdvogados)
         {
-            string caminhoArquivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "C:/Users/alber/OneDrive/Documentos/ProjetosResidencia/residenciaDotNet/AvaliacaoDotNet/BancoDeDados/dadosadvogados.txt");
+            string caminhoArquivo = Path.Combine("../AvaliacaoDotNet/BancoDeDados/dadosadvogados.txt");
 
             try
             {

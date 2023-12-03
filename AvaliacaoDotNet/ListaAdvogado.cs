@@ -104,8 +104,7 @@ namespace AvaliacaoDotNet
             Console.Write("\n\tDigite o CPF do advogado que deseja editar: ");
             string cpf = Console.ReadLine()!;
 
-            Advogado advogado = advogados.Find(advogado => advogado.Cpf == cpf);
-
+            Advogado advogado = advogados?.Find(a => a.Cpf == cpf)!;
             if (advogado != null)
             {
                 ExibirDadosAdvogado(cpf);
@@ -121,13 +120,14 @@ namespace AvaliacaoDotNet
                     Console.Write("\n\tDigite o novo CPF do advogado: ");
                     cpfNovo = Console.ReadLine()!;
 
-                    if (!Pessoa.IsValidCPF(cpfNovo) || !Advogado.IsCpfUnico(cpfNovo, advogados))
+                    if (!(Pessoa.IsValidCPF(cpfNovo) && (advogados == null || !Advogado.IsCpfUnico(cpfNovo, advogados))))
                     {
                         Console.WriteLine("\n\tOps, CPF inválido ou já existe no cadastro. Por favor, digite um CPF válido.");
                         App.Pause();
                     }
 
-                } while (!Pessoa.IsValidCPF(cpfNovo) || !Advogado.IsCpfUnico(cpfNovo, advogados));
+
+                } while (!Pessoa.IsValidCPF(cpfNovo) || !Advogado.IsCpfUnico(cpfNovo, advogados!));
 
                 DateTime dataNascimento = Advogado.ObterDataDeNascimento();
 
@@ -162,7 +162,7 @@ namespace AvaliacaoDotNet
             Console.Write("\n\tDigite o CPF do advogado que deseja excluir: ");
             string cpf = Console.ReadLine()!;
 
-            Advogado advogado = advogados.Find(advogado => advogado.Cpf == cpf);
+            Advogado advogado = advogados.Find(advogado => advogado.Cpf == cpf)!;
 
             if (advogado != null)
             {
@@ -195,9 +195,9 @@ namespace AvaliacaoDotNet
         {
             Console.WriteLine("\n\t=== Pesquisar Advogado ===");
             Console.Write("\n\tDigite o CPF do advogado que deseja pesquisar: ");
-            string cpf = Console.ReadLine()!;
+            string cpf = Console.ReadLine()??"";
 
-            Advogado advogado = advogados.Find(advogado => advogado.Cpf == cpf);
+            Advogado advogado = advogados.Find(advogado => advogado.Cpf == cpf)!;
 
             if (advogado != null)
             {

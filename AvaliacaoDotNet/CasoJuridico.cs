@@ -157,7 +157,7 @@ namespace AvaliacaoDotNet
                     List<(float, string)> custos = SolicitarInformacoesCustos();
 
                     // Cadastrando o caso com as informações fornecidas pelo usuário
-                    CadastrarCaso(cliente, probabilidadeSucesso, advogados, documentos, custos);
+                    CadastrarCaso(cliente!, probabilidadeSucesso, advogados, documentos, custos);
 
                     // Adicionando o caso à lista de casos
                     AdicionarCaso(this);  // "this" refere-se à instância atual da classe CasoJuridico
@@ -202,10 +202,10 @@ namespace AvaliacaoDotNet
 
             App.LimparTela();
             Console.Write("\n\tDigite o tipo do documento: ");
-            string tipoDocumento = Console.ReadLine();
+            string tipoDocumento = Console.ReadLine()??"";
 
             Console.Write("\n\tDigite a descrição do documento: ");
-            string descricaoDocumento = Console.ReadLine();
+            string descricaoDocumento = Console.ReadLine()??"";
 
             Documento documento = new Documento
             {
@@ -236,7 +236,7 @@ namespace AvaliacaoDotNet
             }
 
             Console.Write("\n\tDigite a descrição do custo: ");
-            string descricaoCusto = Console.ReadLine();
+            string descricaoCusto = Console.ReadLine()??"";
 
             custos.Add((valorCusto, descricaoCusto));
 
