@@ -22,7 +22,7 @@ namespace AvaliacaoDotNet
         public void Cadastrar()
         {
             Console.Write("\n\tDigite o nome do cliente: ");
-            string nome = Console.ReadLine()!;
+            string nome = Console.ReadLine()??"";
             nome = Cliente.ConvertePrimeiraLetraParaMaiuscula(nome);
 
             string cpf;
