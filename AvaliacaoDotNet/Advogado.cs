@@ -1,17 +1,20 @@
-using System.Globalization;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AvaliacaoDotNet
 {
     public class Advogado : Pessoa
     {
         public int Cna { get; set; }
-        public string Especialidade { get; set; }
+        public string? Especialidade { get; set; }
+
 
         public Advogado()
         {
-            // Inicialize Especialidade com um valor não-nulo
-            Especialidade = "Alguma Especialidade";
+            Especialidade = "Sem Especialidade";
         }
+
 
         public Advogado(string nome, int cna)
         {
@@ -20,7 +23,7 @@ namespace AvaliacaoDotNet
         }
 
         public Advogado(string nome, DateTime dataNascimento, string cpf, int cna, string especialidade)
-        : base(nome, dataNascimento, cpf, idade: 0)
+            : base(nome, dataNascimento, cpf, idade: 0)
         {
             Cna = cna;
             Especialidade = especialidade;
@@ -36,7 +39,7 @@ namespace AvaliacaoDotNet
                 throw new ArgumentException("\n\tOps, CPF inválido!...");
             }
 
-            // Verifica se o CPF já existe na lista de pacientes
+            // Verifica se o CPF já existe na lista de advogados
             return !advogados.Any(advogado => advogado.Cpf == cpf);
         }
 
@@ -46,7 +49,7 @@ namespace AvaliacaoDotNet
 
             do
             {
-                App.LimparTela();
+                LimparTela();
                 Console.WriteLine("\n\t========== GESTÃO DE ADVOCACIA ========== ");
                 Console.Write($"\t{mensagem}: ");
 
@@ -73,15 +76,15 @@ namespace AvaliacaoDotNet
                 }
                 catch (FormatException)
                 {
-                    App.LimparTela();
+                    LimparTela();
                     Console.WriteLine($"\n\tOps, entrada inválida. Por favor, insira um CNA válido (6 dígitos).");
-                    App.Pause();
+                    Pause();
                 }
                 catch (OverflowException ex)
                 {
-                    App.LimparTela();
+                    LimparTela();
                     Console.WriteLine(ex.Message);
-                    App.Pause();
+                    Pause();
                 }
 
             } while (true);
@@ -93,5 +96,14 @@ namespace AvaliacaoDotNet
             return !advogados.Any(advogado => advogado.Cna == cna);
         }
 
+        private static void LimparTela()
+        {
+            // Implemente a lógica para limpar a tela conforme necessário
+        }
+
+        private static void Pause()
+        {
+            // Implemente a lógica para pausar a execução conforme necessário
+        }
     }
 }

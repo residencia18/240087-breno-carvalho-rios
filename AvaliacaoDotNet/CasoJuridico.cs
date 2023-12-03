@@ -30,6 +30,7 @@ namespace AvaliacaoDotNet
         }
 
 
+
         public void AdicionarCaso(CasoJuridico caso)
         {
             casos.Add(caso);
