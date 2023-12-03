@@ -26,7 +26,9 @@ namespace AvaliacaoDotNet
             Advogados = new List<Advogado>();
             casos = new List<CasoJuridico>();
             Status = "Em aberto";
+            Cliente = new Cliente(); // Substitua Cliente() pelo tipo e valor desejados.
         }
+
 
         public void AdicionarCaso(CasoJuridico caso)
         {

@@ -11,7 +11,10 @@ namespace AvaliacaoDotNet
 
         public Pessoa()
         {
-
+            Nome = string.Empty;
+            Cpf = string.Empty;
+            DataNascimento = DateTime.MinValue;
+            Idade = 0;
         }
         public Pessoa(string nome, string cpf)
         {

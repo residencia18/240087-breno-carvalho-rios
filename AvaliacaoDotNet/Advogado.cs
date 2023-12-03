@@ -7,7 +7,12 @@ namespace AvaliacaoDotNet
         public int Cna { get; set; }
         public string Especialidade { get; set; }
 
-        public Advogado(){}
+        public Advogado()
+        {
+            // Inicialize Especialidade com um valor não-nulo
+            Especialidade = "Alguma Especialidade";
+        }
+
         public Advogado(string nome, int cna)
         {
             this.Nome = nome;

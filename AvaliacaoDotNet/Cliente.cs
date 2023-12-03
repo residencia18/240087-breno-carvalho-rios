@@ -11,9 +11,12 @@ namespace AvaliacaoDotNet
         public string EstadoCivil { get; set; }
         public string Profissao { get; set; }
         
-        public Cliente(){
-        
+        public Cliente()
+        {
+            EstadoCivil = "Não informado";
+            Profissao = "Não informado";
         }
+
         public Cliente(string nome, string cpf, DateTime dataNascimento, string estadoCivil = "Não informado", string profissao = "Não informado")
         : base(nome, dataNascimento, cpf, idade: 0)
         {
