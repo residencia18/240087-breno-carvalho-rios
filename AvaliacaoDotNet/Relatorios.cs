@@ -19,8 +19,8 @@ namespace AvaliacaoDotNet
                 App.LimparTela();
                 Console.WriteLine("\n\t========== RELATÓRIOS ==========");
                 Console.WriteLine("\t[1] - ADVOGADOS COM IDADE ENTRE DOIS VALORES");
-                Console.WriteLine("\t[2] - CLIENTE COM IDADE ENTRE DOIS VALORES");
-                Console.WriteLine("\t[3] - CLIENTES COM ESTADO CIVIL INFORMADO PELO CLIENTE");
+                Console.WriteLine("\t[2] - CLIENTES COM IDADE ENTRE DOIS VALORES");
+                Console.WriteLine("\t[3] - CLIENTES COM ESTADO CIVIL INFORMADO PELO USUÁRIO");
                 Console.WriteLine("\t[4] - CLIENTES EM ORDEM ALFABÉTICA");
                 Console.WriteLine("\t[5] - CLIENTES CUJA  PROFISSÃO CONTENHA TEXTO INFORMADO PELO USUÁRIO");
                 Console.WriteLine("\t[6] - ADVOGADOS E CLIENTES ANIVERSARIANTES DO MÊS INFORMADO");
@@ -40,7 +40,7 @@ namespace AvaliacaoDotNet
                             break;
 
                         case 3:
-                            RelatorioEstadoCivilInformadoPeloCliente();
+                            RelatorioEstadoCivilInformadoPeloUsuario();
                             break;
 
                         case 4:
@@ -92,13 +92,8 @@ namespace AvaliacaoDotNet
                 foreach (var cliente in clientesFiltrados)
                 {
                     App.LimparTela();
-                    Console.WriteLine("\n\t=========== CLIENTES ===========");
-                    Console.WriteLine($"\tNome: {cliente.Nome}");
-                    Console.WriteLine($"\tIdade: {cliente.Idade}");
-                    Console.WriteLine($"\tCPF: {cliente.Cpf}");
-                    Console.WriteLine($"\tData de Nascimento: {cliente.DataNascimento.ToString("dd/MM/yyyy")}");
-                    Console.WriteLine($"\tEstado Civil: {cliente.EstadoCivil}");
-                    Console.WriteLine($"\tProfissão: {cliente.Profissao}");
+                    Console.WriteLine("\n\t=========== CLIENTE ===========");
+                    Console.WriteLine(cliente.ToString());
                     Console.Write($"\t==========================");
                 }
             }
@@ -124,19 +119,14 @@ namespace AvaliacaoDotNet
             App.LimparTela();
             foreach (Advogado advogado in advogadosFiltrados)
             {
-                Console.WriteLine("\n\t=========== ADVOGADOS ===========");
-                Console.WriteLine("\tNome: " + advogado.Nome);
-                Console.WriteLine("\tCPF: " + advogado.Cpf);
-                Console.WriteLine("\tData de Nascimento: " + advogado.DataNascimento.ToString("dd/MM/yyyy"));
-                Console.WriteLine("\tIdade: " + advogado.Idade);
-                Console.WriteLine("\tCNA: " + advogado.Cna);
-                Console.WriteLine("\tEspecialidade: " + advogado.Especialidade);
+                Console.WriteLine("\n\t=========== ADVOGADO ===========");
+                Console.WriteLine(advogado.ToString());                
                 Console.Write("\t==========================");
             }
             App.Pause();
         }
 
-        public void RelatorioEstadoCivilInformadoPeloCliente()
+        public void RelatorioEstadoCivilInformadoPeloUsuario()
         {
             if (clientes.GetClientes() == null)
             {
@@ -159,12 +149,8 @@ namespace AvaliacaoDotNet
                 Console.WriteLine("\n\tCLIENTES ENCONTRADOS:");
                 foreach (var cliente in clientesFiltrados)
                 {
-                    Console.WriteLine("\n\t=========== CLIENTES ===========");
-                    Console.WriteLine($"\tNome: {cliente.Nome}");
-                    Console.WriteLine($"\tIdade: {cliente.Idade}");
-                    Console.WriteLine($"\tCPF: {cliente.Cpf}");
-                    Console.WriteLine($"\tEstado Civil: {cliente.EstadoCivil}");
-                    Console.WriteLine($"\tProfissão: {cliente.Profissao}");
+                    Console.WriteLine("\n\t=========== CLIENTE ===========");
+                    Console.WriteLine(cliente.ToString());                    
                     Console.Write($"\t==========================");
                 }
             }
@@ -189,12 +175,8 @@ namespace AvaliacaoDotNet
                 Console.WriteLine("\n\tCLIENTES ENCONTRADOS:");
                 foreach (var cliente in clientesOrdenados)
                 {
-                    Console.WriteLine("\n\t=========== CLIENTES ===========");
-                    Console.WriteLine($"\tNome: {cliente.Nome}");
-                    Console.WriteLine($"\tIdade: {cliente.Idade}");
-                    Console.WriteLine($"\tCPF: {cliente.Cpf}");
-                    Console.WriteLine($"\tEstado Civil: {cliente.EstadoCivil}");
-                    Console.WriteLine($"\tProfissão: {cliente.Profissao}");
+                    Console.WriteLine("\n\t=========== CLIENTE ===========");
+                    Console.WriteLine(cliente.ToString());                    
                     Console.Write($"\t==========================");
                 }
             }
@@ -215,13 +197,8 @@ namespace AvaliacaoDotNet
 
             foreach (Advogado advogado in advogadosOrdenados)
             {
-                Console.WriteLine("\n\t=========== ADVOGADOS ===========");
-                Console.WriteLine("\tNome: " + advogado.Nome);
-                Console.WriteLine("\tCPF: " + advogado.Cpf);
-                Console.WriteLine("\tData de Nascimento: " + advogado.DataNascimento.ToString("dd/MM/yyyy"));
-                Console.WriteLine("\tIdade: " + advogado.Idade);
-                Console.WriteLine("\tCNA: " + advogado.Cna);
-                Console.WriteLine("\tEspecialidade: " + advogado.Especialidade);
+                Console.WriteLine("\n\t=========== ADVOGADO ===========");
+                Console.WriteLine(advogado.ToString());
                 Console.Write("\t==========================");
             }
 
@@ -236,20 +213,16 @@ namespace AvaliacaoDotNet
             Console.Write("\n\tDigite o texto: ");
             string texto = Console.ReadLine()!;
 
-            var pacientesFiltrados = clientes.GetClientes().Where(cliente => cliente.Profissao.Contains(texto));
+            var clientesFiltrados = clientes.GetClientes().Where(cliente => cliente.Profissao.Contains(texto));
 
-            if (pacientesFiltrados.Count() > 0)
+            if (clientesFiltrados.Count() > 0)
             {
                 App.LimparTela();
                 Console.WriteLine("\n\tCLIENTES ENCONTRADOS:");
-                foreach (var paciente in pacientesFiltrados)
+                foreach (var cliente in clientesFiltrados)
                 {
-                    Console.WriteLine("\n\t=========== CLIENTES ===========");
-                    Console.WriteLine($"\tNome: {paciente.Nome}");
-                    Console.WriteLine($"\tIdade: {paciente.Idade}");
-                    Console.WriteLine($"\tCPF: {paciente.Cpf}");
-                    Console.WriteLine($"\tEstado Civil: {paciente.EstadoCivil}");
-                    Console.WriteLine($"\tProfissão: {paciente.Profissao}");
+                    Console.WriteLine("\n\t=========== CLIENTE ===========");
+                    Console.WriteLine(cliente.ToString());                    
                     Console.Write($"\t==========================");
                 }
             }
@@ -266,20 +239,23 @@ namespace AvaliacaoDotNet
             App.LimparTela();
             Console.WriteLine("\n\t========== ADVOGADOS E CLIENTES ANIVERSARIANTES DO MÊS ==========");
 
-            var advogadosFiltrados = advogados.GetAdvogados().Where(advogado => advogado.DataNascimento.Month == DateTime.Now.Month);
-            var clientesFiltrados = clientes.GetClientes().Where(cliente => cliente.DataNascimento.Month == DateTime.Now.Month);
+            int mes = Cliente.LerNumeroInteiro("\n\tDigite o mês: ");
+
+            if(mes < 1 || mes > 12){
+                Console.WriteLine($"Mês Inválido!");                
+                return;
+            }
+
+            var advogadosFiltrados = advogados.GetAdvogados().Where(advogado => advogado.DataNascimento.Month == mes);
+            var clientesFiltrados = clientes.GetClientes().Where(cliente => cliente.DataNascimento.Month == mes);
 
             if (advogadosFiltrados.Count() > 0)
             {
                 Console.WriteLine("\n\tADVOGADOS ANIVERSARIANTES DO MÊS:");
                 foreach (var advogado in advogadosFiltrados)
                 {
-                    Console.WriteLine("\n\t=========== ADVOGADOS ===========");
-                    Console.WriteLine($"\tNome: {advogado.Nome}");
-                    Console.WriteLine($"\tIdade: {advogado.Idade}");
-                    Console.WriteLine($"\tCPF: {advogado.Cpf}");
-                    Console.WriteLine($"\tCNA: {advogado.Cna}");
-                    Console.WriteLine($"\tEspecialidade: {advogado.Especialidade}");
+                    Console.WriteLine("\n\t=========== ADVOGADO ===========");
+                    Console.WriteLine(advogado.ToString());                    
                     Console.Write($"\t==========================");
                 }
                 App.Pause();
@@ -298,12 +274,8 @@ namespace AvaliacaoDotNet
                 Console.WriteLine("\n\tCLIENTES ANIVERSARIANTES DO MÊS:");
                 foreach (var cliente in clientesFiltrados)
                 {
-                    Console.WriteLine("\n\t=========== CLIENTES ===========");
-                    Console.WriteLine($"\tNome: {cliente.Nome}");
-                    Console.WriteLine($"\tIdade: {cliente.Idade}");
-                    Console.WriteLine($"\tCPF: {cliente.Cpf}");
-                    Console.WriteLine($"\tEstado Civil: {cliente.EstadoCivil}");
-                    Console.WriteLine($"\tProfissão: {cliente.Profissao}");
+                    Console.WriteLine("\n\t=========== CLIENTE ===========");
+                    Console.WriteLine(cliente.ToString());
                     Console.Write($"\t==========================");
                 }
             }
@@ -329,7 +301,7 @@ namespace AvaliacaoDotNet
             App.LimparTela();
             foreach (Advogado advogado in advogadosFiltrados)
             {
-                Console.WriteLine("\n\t=========== ADVOGADOS ===========");
+                Console.WriteLine("\n\t=========== ADVOGADO ===========");
                 Console.WriteLine("\tNome: " + advogado.Nome);
                 Console.WriteLine("\tCPF: " + advogado.Cpf);
                 Console.WriteLine("\tData de Nascimento: " + advogado.DataNascimento.ToString("dd/MM/yyyy"));
@@ -355,7 +327,7 @@ namespace AvaliacaoDotNet
             App.LimparTela();
             foreach (Advogado advogado in advogadosFiltrados)
             {
-                Console.WriteLine("\n\t=========== ADVOGADOS ===========");
+                Console.WriteLine("\n\t=========== ADVOGADO ===========");
                 Console.WriteLine("\tNome: " + advogado.Nome);
                 Console.WriteLine("\tCPF: " + advogado.Cpf);
                 Console.WriteLine("\tData de Nascimento: " + advogado.DataNascimento.ToString("dd/MM/yyyy"));
@@ -381,7 +353,7 @@ namespace AvaliacaoDotNet
             App.LimparTela();
             foreach (Advogado advogado in advogadosFiltrados)
             {
-                Console.WriteLine("\n\t=========== ADVOGADOS ===========");
+                Console.WriteLine("\n\t=========== ADVOGADO ===========");
                 Console.WriteLine("\tNome: " + advogado.Nome);
                 Console.WriteLine("\tCPF: " + advogado.Cpf);
                 Console.WriteLine("\tData de Nascimento: " + advogado.DataNascimento.ToString("dd/MM/yyyy"));
@@ -407,7 +379,7 @@ namespace AvaliacaoDotNet
             App.LimparTela();
             foreach (Advogado advogado in advogadosFiltrados)
             {
-                Console.WriteLine("\n\t=========== ADVOGADOS ===========");
+                Console.WriteLine("\n\t=========== ADVOGADO ===========");
                 Console.WriteLine("\tNome: " + advogado.Nome);
                 Console.WriteLine("\tCPF: " + advogado.Cpf);
                 Console.WriteLine("\tData de Nascimento: " + advogado.DataNascimento.ToString("dd/MM/yyyy"));
@@ -433,7 +405,7 @@ namespace AvaliacaoDotNet
             App.LimparTela();
             foreach (Advogado advogado in advogadosFiltrados)
             {
-                Console.WriteLine("\n\t=========== ADVOGADOS ===========");
+                Console.WriteLine("\n\t=========== ADVOGADO ===========");
                 Console.WriteLine("\tNome: " + advogado.Nome);
                 Console.WriteLine("\tCPF: " + advogado.Cpf);
                 Console.WriteLine("\tData de Nascimento: " + advogado.DataNascimento.ToString("dd/MM/yyyy"));

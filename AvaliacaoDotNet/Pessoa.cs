@@ -129,7 +129,7 @@ namespace AvaliacaoDotNet
 
             do
             {
-                Console.Write("\n\tDigite a data de nascimento do paciente (dd/mm/aaaa): ");
+                Console.Write("\n\tDigite a data de nascimento (dd/mm/aaaa): ");
                 string dataNascimentoString = Console.ReadLine()!;
 
                 // Verificar se a data de nascimento é válida

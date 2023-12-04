@@ -62,12 +62,11 @@ namespace AvaliacaoDotNet
             string especialidades = Console.ReadLine()!;
             especialidades = Cliente.ConvertePrimeiraLetraParaMaiuscula(especialidades);
 
-            // AdicionarAdvogado(new Advogado(nome, dataNascimento, cpf, cna, especialidades));
+            AdicionarAdvogado(new Advogado(nome, dataNascimento, cpf, cna, especialidades));
 
-            // App.Pause();
-            // ExibirDadosAdvogado(cpf);
-            // Console.WriteLine("\n\tAdvogado cadastrado com sucesso!");
-            // App.Pause();
+            ExibirDadosAdvogado(cpf);
+            Console.WriteLine("\n\tAdvogado cadastrado com sucesso!");
+            App.Pause();
 
         }
 
@@ -76,25 +75,16 @@ namespace AvaliacaoDotNet
             Console.WriteLine("\n\t=== Lista de Advogados ===");
             foreach (Advogado advogado in advogados)
             {
-                Console.WriteLine("\tNome: " + advogado.Nome);
-                Console.WriteLine("\tCPF: " + advogado.Cpf);
-                Console.WriteLine("\tData de Nascimento: " + advogado.DataNascimento.ToString("dd/MM/yyyy"));
-                Console.WriteLine("\tIdade: " + advogado.Idade);
-                Console.WriteLine("\tCNA: " + advogado.Cna);
-                Console.WriteLine("\tEspecialidade: " + advogado.Especialidade);
+                Console.WriteLine(advogado.ToString());
                 Console.WriteLine("\t==========================\n");
             }
         }
 
         public void ExibirDadosAdvogado(String cpf)
-        {
+        {   
+            Advogado advogado = advogados[advogados.FindIndex(advogado => advogado.Cpf == cpf)];
             Console.WriteLine("\n\t=== Dados do Advogado ===");
-            Console.WriteLine("\tNome: " + advogados[advogados.FindIndex(cliente => cliente.Cpf == cpf)].Nome);
-            Console.WriteLine("\tCPF: " + advogados[advogados.FindIndex(cliente => cliente.Cpf == cpf)].Cpf);
-            Console.WriteLine("\tData de Nascimento: " + advogados[advogados.FindIndex(cliente => cliente.Cpf == cpf)].DataNascimento.ToString("dd/MM/yyyy"));
-            Console.WriteLine("\tIdade: " + advogados[advogados.FindIndex(cliente => cliente.Cpf == cpf)].Idade);
-            Console.WriteLine("\tEstado Civil: " + advogados[advogados.FindIndex(cliente => cliente.Cpf == cpf)].Cna);
-            Console.WriteLine("\tProfissão: " + advogados[advogados.FindIndex(cliente => cliente.Cpf == cpf)].Especialidade);
+            Console.WriteLine(advogado.ToString());
             Console.Write("\t==========================");
         }
 

@@ -105,5 +105,15 @@ namespace AvaliacaoDotNet
         {
             // Implemente a lógica para pausar a execução conforme necessário
         }
+
+        public override string ToString() {
+            return
+                $"\tNome: {this.Nome}"
+                + $"\n\tCPF: {this.Cpf}"
+                + $"\n\tData de Nascimento: {this.DataNascimento.ToString("dd/MM/yyyy")}"
+                + $"\n\tIdade: {this.Idade}"
+                + $"\n\tCNA: {this.Cna}"
+                + $"\n\tEspecialidade: {this.Especialidade}";
+        }
     }
 }

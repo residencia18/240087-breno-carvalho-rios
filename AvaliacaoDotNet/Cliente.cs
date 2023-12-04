@@ -79,5 +79,15 @@ namespace AvaliacaoDotNet
             }
         }
 
+
+        public override string ToString() {
+            return
+                $"\n\tCPF: {this.Cpf}"
+                + $"\n\tNome: {this.Nome}"
+                + $"\n\tData de Nascimento: {this.DataNascimento.ToString("dd/MM/yyyy")}"
+                + $"\n\tIdade: {this.Idade}"
+                + $"\n\tEstado Civil: {this.EstadoCivil}"
+                + $"\n\tProfissão: {this.Profissao}";
+        }
     }
 }
