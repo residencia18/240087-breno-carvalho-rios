@@ -249,29 +249,101 @@ class ListaSalarios(AnaliseDados):
         Este método solicita a digitação de um
         salario e o adiciona na lista de salarios.
         '''
-        pass
+        
+        salario = input(f"Digite o valor do salario: ")
+        try:
+            salario = int(salario)
+        except:
+            print("Digite um valor válido!")
+            return
+
+        if salario <= 0:
+            print("O salário deve ser positivo!")
+            return
+        
+        self.__lista.append(salario)
+        print("Salário adicionado!")
 
     def mostraMediana(self):
         '''
         Este método ordena a lista e mostra o
         elemento que está na metade da lista
         '''
-        pass
+        if len(self.__lista) <= 0:
+            return
+
+        meio = (((len(self.__lista) + 1) // 2) - 1)
+        self.__lista.sort()
+
+        mediana = self.__lista[meio]
+
+        if len(self.__lista) % 2 == 0:
+            mediana = (self.__lista[meio] + self.__lista[meio + 1]) / 2
+
+        print("A mediana da lista de salários é: ", mediana)
 
     def mostraMenor(self):
         '''
         Este método retorna o menos elemento da lista
         '''
-        pass
+        if len(self.__lista) <= 0:
+            return
+
+        print("O menor salário é: ", min(self.__lista))
 
     def mostraMaior(self):
         '''
         Este método retorna o maior elemento da lista
         '''
-        pass
+        if len(self.__lista) <= 0:
+            return
+
+        print("O maior salário é: ", max(self.__lista))
     
     def __str__(self):
-        pass
+        return '\n'.join(self.__lista)
+
+    def listaDados(self):
+        for index, salario in enumerate(self.__lista):
+            print(f"{index + 1}. {salario}")
+        
+    def folhaReajustada(self):
+        for index, salario in enumerate(self.__lista):
+            print(f"{index + 1}. {salario * 1.1}")
+
+    def menu(self):
+        while(True):
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("========== Menu ==========")
+            print("[1] Incluir um salário")
+            print("[2] Listar salários")
+            print("[3] Folha com reajuste de 10%")
+            print("[0] Voltar")
+            print()
+
+            op = input("Digite uma opção -> ")
+            try:
+                op = int(op)
+            except:
+                print("Digite uma opção válida!")
+                return
+            
+            match op:
+                case 1:
+                    self.entradaDeDados()
+                case 2:
+                    self.listaDados()
+                case 3:
+                    self.folhaReajustada()
+                case 0:
+                    pass
+                case _:
+                    print("Opção Inválida")
+        
+            if(op == 0):
+                return
+
+            input("Pressione uma tecla para continuar...")
 
 class ListaIdades(AnaliseDados):
     
@@ -337,7 +409,7 @@ def main():
             case 2:
                 pass
             case 3:
-                pass
+                salarios.menu()
             case 4:
                 pass
             case 0:
