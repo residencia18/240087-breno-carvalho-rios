@@ -214,29 +214,113 @@ class ListaDatas(AnaliseDados):
         Este método solicita a digitação de uma
         data e o adiciona na lista de datas.
         '''
-        pass
+
+        data = input(f"Digite a data (dd/mm/yyyy): ")
+
+        if len(data.strip()) <= 0:
+            print("A data não pode estar em branco!")
+            return
+        
+        if not re.search("[0-9]{2}/[0-9]{2}/[0-9]{4}", data):
+            print("Formato Inválido!")
+            return
+
+        data = data.split('/')
+
+        try:
+            data = Data(int(data[0]), int(data[1]), int(data[2]))
+        except ValueError as ex:
+            print(ex)
+            return
+        
+        self.__lista.append(data)
+        print("Data adicionada!")
     
     def mostraMediana(self):
         '''
         Este método ordena a lista e mostra o
         elemento que está na metade da lista
         '''
-        pass
+
+        if len(self.__lista) <= 0:
+            return
+
+        meio = (((len(self.__lista) + 1) // 2) - 1)
+        self.__lista.sort()
+
+        print("A mediana da lista de datas é: ", self.__lista[meio])
      
     def mostraMenor(self):
         '''
         Este método retorna o menos elemento da lista
         '''
-        pass
+
+        print("A menor data é: ", min(self.__lista))
     
     def mostraMaior(self):
         '''
         Este método retorna o maior elemento da lista
         '''
-        pass
+
+        print("A maior data é: ", max(self.__lista))
     
     def __str__(self):
-        pass
+        return '\n'.join(self.__lista)
+    
+    def listaDados(self):
+        for index, data in enumerate(self.__lista):
+            print(f"{index + 1}. {data}")
+
+    def alteraDataAntes2019(self):
+        dia = input(f"Digite o novo dia das datas anteriores a 2019: ")
+        try:
+            dia = int(dia)
+        except ValueError as e:
+            print(e)
+            return
+        except:
+            print("Digite um valor válido!")
+            return
+        
+        for data in self.__lista:
+            if(data.ano < 2019):
+                data.dia = dia
+        
+        self.listaDados()
+
+    def menu(self):
+        while(True):
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("========== Menu ==========")
+            print("[1] Incluir uma data")
+            print("[2] Listar datas")
+            print("[3] Modificar o dia das datas anteriores a 2019")
+            print("[0] Voltar")
+            print()
+
+            op = input("Digite uma opção -> ")
+            try:
+                op = int(op)
+            except:
+                print("Digite uma opção válida!")
+                return
+            
+            match op:
+                case 1:
+                    self.entradaDeDados()
+                case 2:
+                    self.listaDados()
+                case 3:
+                    self.alteraDataAntes2019()
+                case 0:
+                    pass
+                case _:
+                    print("Opção Inválida")
+        
+            if(op == 0):
+                    return
+
+            input("Pressione uma tecla para continuar...")
     
 class ListaSalarios(AnaliseDados):
 
@@ -356,29 +440,97 @@ class ListaIdades(AnaliseDados):
         Este método solicita a digitação de uma
         idade e o adiciona na lista de idades.
         '''
-        pass
+
+        idade = input(f"Digite a idade: ")
+        try:
+            idade = int(idade)
+        except:
+            print("Digite um valor válido!")
+            return
+
+        if idade <= 0:
+            print("A idade deve ser maior do que 0!")
+            return
+        
+        self.__lista.append(idade)
+        print("Idade adicionada!")
     
     def mostraMediana(self):
         '''
         Este método ordena a lista e mostra o
         elemento que está na metade da lista
         '''
-        pass
+
+        if len(self.__lista) <= 0:
+            return
+
+        meio = (((len(self.__lista) + 1) // 2) - 1)
+        self.__lista.sort()
+
+        mediana = self.__lista[meio]
+
+        if len(self.__lista) % 2 == 0:
+            mediana = (self.__lista[meio] + self.__lista[meio + 1]) / 2
+
+        print("A mediana da lista de idades é: ", mediana)
     
     def mostraMenor(self):
         '''
         Este método retorna o menos elemento da lista
         '''
-        pass
+
+        if len(self.__lista) <= 0:
+            return
+
+        print("A menor idade é: ", min(self.__lista))
     
     def mostraMaior(self):
         '''
         Este método retorna o maior elemento da lista
         '''
-        pass
+
+        if len(self.__lista) <= 0:
+            return
+
+        print("A maior idade é: ", max(self.__lista))
 
     def __str__(self):
-        pass
+        return '\n'.join(self.__lista)
+    
+    def listaDados(self):
+        for index, idades in enumerate(self.__lista):
+            print(f"{index + 1}. {idades}")
+
+    def menu(self):
+        while(True):
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("========== Menu ==========")
+            print("[1] Incluir uma idade")
+            print("[2] Listar idades")
+            print("[0] Voltar")
+            print()
+
+            op = input("Digite uma opção -> ")
+            try:
+                op = int(op)
+            except:
+                print("Digite uma opção válida!")
+                return
+            
+            match op:
+                case 1:
+                    self.entradaDeDados()
+                case 2:
+                    self.listaDados()
+                case 0:
+                    pass
+                case _:
+                    print("Opção Inválida")
+            
+            if(op == 0):
+                return
+
+            input("Pressione uma tecla para continuar...")
   
 def main():
     nomes = ListaNomes()
@@ -407,11 +559,11 @@ def main():
             case 1:
                 nomes.menu()
             case 2:
-                pass
+                datas.menu()
             case 3:
                 salarios.menu()
             case 4:
-                pass
+                idades.menu()
             case 0:
                 pass
             case _:
