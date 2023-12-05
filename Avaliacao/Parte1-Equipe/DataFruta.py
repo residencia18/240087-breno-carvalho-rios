@@ -342,6 +342,7 @@ class ListaIdades(AnaliseDados):
         elementos vão existir na lista e depois
         solicita a digitação de cada um deles
         '''
+        
         qtdElementos = input("Quantas idades vão existir na lista? ")
         try:
             qtdElementos = int(qtdElementos)
@@ -372,7 +373,19 @@ class ListaIdades(AnaliseDados):
         Este método ordena a lista e mostra o
         elemento que está na metade da lista
         '''
-        pass    
+
+        if len(self.__lista) <= 0:
+            return
+
+        meio = (((len(self.__lista) + 1) // 2) - 1)
+        self.__lista.sort()
+
+        mediana = self.__lista[meio]
+
+        if len(self.__lista) % 2 == 0:
+            mediana = (self.__lista[meio] + self.__lista[meio + 1]) / 2
+
+        print("A mediana da lista de idades é: ", mediana)   
     
     def mostraMenor(self):
         '''
