@@ -189,7 +189,7 @@ class ListaDatas(AnaliseDados):
         elementos vão existir na lista e depois
         solicita a digitação de cada um deles
         '''
-        
+
         qtdElementos = input("Quantas datas vão existir na lista? ")
         try:
             qtdElementos = int(qtdElementos)
@@ -227,7 +227,14 @@ class ListaDatas(AnaliseDados):
         Este método ordena a lista e mostra o
         elemento que está na metade da lista
         '''
-        pass    
+        
+        if len(self.__lista) <= 0:
+            return
+
+        meio = (((len(self.__lista) + 1) // 2) - 1)
+        self.__lista.sort()
+
+        print("A mediana da lista de datas é: ", self.__lista[meio])  
      
     def mostraMenor(self):
         '''
