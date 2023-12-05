@@ -214,29 +214,58 @@ class ListaDatas(AnaliseDados):
         Este método solicita a digitação de uma
         data e o adiciona na lista de datas.
         '''
-        pass
+
+        data = input(f"Digite a data (dd/mm/yyyy): ")
+
+        if len(data.strip()) <= 0:
+            print("A data não pode estar em branco!")
+            return
+        
+        if not re.search("[0-9]{2}/[0-9]{2}/[0-9]{4}", data):
+            print("Formato Inválido!")
+            return
+
+        data = data.split('/')
+
+        try:
+            data = Data(int(data[0]), int(data[1]), int(data[2]))
+        except ValueError as ex:
+            print(ex)
+            return
+        
+        self.__lista.append(data)
+        print("Data adicionada!")
     
     def mostraMediana(self):
         '''
         Este método ordena a lista e mostra o
         elemento que está na metade da lista
         '''
-        pass
+
+        if len(self.__lista) <= 0:
+            return
+
+        meio = (((len(self.__lista) + 1) // 2) - 1)
+        self.__lista.sort()
+
+        print("A mediana da lista de datas é: ", self.__lista[meio])
      
     def mostraMenor(self):
         '''
         Este método retorna o menos elemento da lista
         '''
-        pass
+
+        print("A menor data é: ", min(self.__lista))
     
     def mostraMaior(self):
         '''
         Este método retorna o maior elemento da lista
         '''
-        pass
+
+        print("A maior data é: ", max(self.__lista))
     
     def __str__(self):
-        pass
+        return '\n'.join(self.__lista)
     
 class ListaSalarios(AnaliseDados):
 
