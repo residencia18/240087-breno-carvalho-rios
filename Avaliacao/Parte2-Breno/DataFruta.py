@@ -119,7 +119,11 @@ class ListaNomes(AnaliseDados):
     
     def __init__(self):
         super().__init__(type("String"))
-        self.__lista = []        
+        self.__lista = []
+
+    @property
+    def lista(self):
+        return self.__lista
 
     def entradaDeDados(self):
         '''
@@ -183,7 +187,7 @@ class ListaNomes(AnaliseDados):
         return '\n'.join(self.__lista)
 
     def listarEmOrdem(self):
-        listaOrdenada = self.__lista.sort()
+        listaOrdenada = sorted(self.__lista)
         for item in listaOrdenada:
             print(item)
 	
@@ -191,7 +195,11 @@ class ListaDatas(AnaliseDados):
         
     def __init__(self):
         super().__init__(type(Data))
-        self.__lista = []        
+        self.__lista = []
+
+    @property
+    def lista(self):
+        return self.__lista
     
     def entradaDeDados(self):
         '''
@@ -265,7 +273,7 @@ class ListaDatas(AnaliseDados):
         return '\n'.join(self.__lista)
 
     def listarEmOrdem(self):
-        listaOrdenada = self.__lista.sort()
+        listaOrdenada = sorted(self.__lista)
         for item in listaOrdenada:
             print(item)
 
@@ -274,6 +282,10 @@ class ListaSalarios(AnaliseDados):
     def __init__(self):
         super().__init__(type(float))
         self.__lista = []        
+
+    @property
+    def lista(self):
+        return self.__lista
 
     def entradaDeDados(self):
         '''
@@ -347,7 +359,7 @@ class ListaSalarios(AnaliseDados):
         return '\n'.join(self.__lista)
 
     def listarEmOrdem(self):
-        listaOrdenada = self.__lista.sort()
+        listaOrdenada = sorted(self.__lista)
         for item in listaOrdenada:
             print(item)
 
@@ -355,7 +367,11 @@ class ListaIdades(AnaliseDados):
     
     def __init__(self):
         super().__init__(type(int))
-        self.__lista = []        
+        self.__lista = []
+
+    @property
+    def lista(self):
+        return self.__lista  
     
     def entradaDeDados(self):
         '''
@@ -432,11 +448,25 @@ class ListaIdades(AnaliseDados):
         return '\n'.join(self.__lista)
 
     def listarEmOrdem(self):
-        listaOrdenada = self.__lista.sort()
+        listaOrdenada = sorted(self.__lista)
         for item in listaOrdenada:
             print(item)
 
+def nomeSalario(nomes, salarios):
+    for nome, salario in zip(nomes.lista, salarios.lista):
+        print(f"Nome: {nome}, Salario: R$ {'{:.2f}'.format(salario)}")
 
+def reajustaFolha(salarios):
+    for salario in map(lambda x: x * 1.1, salarios.lista):
+        print(f"R$ {'{:.2f}'.format(salario)}")
+
+def alteraDataAntes2019(datas):
+    def atribuiDia(x):
+        x.dia = 1
+        return x
+    
+    for data in map(atribuiDia, filter(lambda x: x.ano < 2019, datas.lista)):
+        print(data)
 
 def main():
     nomes = ListaNomes()
@@ -453,7 +483,16 @@ def main():
         lista.mostraMaior()
         lista.listarEmOrdem()
         print("___________________")
+    
+    nomeSalario(nomes, salarios)
+    print("___________________")
 
+    reajustaFolha(salarios)
+    print("___________________")
+
+    alteraDataAntes2019(datas)
+    print("___________________")
+    
     print("Fim do teste!!!")
 
 if __name__ == "__main__":
