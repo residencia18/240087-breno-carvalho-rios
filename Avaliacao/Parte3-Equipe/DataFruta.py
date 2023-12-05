@@ -559,11 +559,11 @@ def main():
             case 1:
                 nomes.menu()
             case 2:
-                pass
+                datas.menu()
             case 3:
                 salarios.menu()
             case 4:
-                pass
+                idades.menu()
             case 0:
                 pass
             case _:
