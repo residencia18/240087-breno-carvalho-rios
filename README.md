@@ -10,7 +10,11 @@ Repositório dedicado à disciplina de Python do Programa de Residência em Soft
 | Ian Rodrigues Alexandrino | ianr8649@gmail.com     |
 
 ## Índice
-
+* [Avaliacao](https://github.com/brenoriios/Python-TIC18/tree/main/Avaliacao)
+    * [Parte1-Equipe](https://github.com/brenoriios/Python-TIC18/tree/main/Avaliacao/Parte1-Equipe)
+    * [Parte2-Breno](https://github.com/brenoriios/Python-TIC18/tree/main/Avaliacao/Parte2-Breno)
+    * [Parte2-Ian](https://github.com/brenoriios/Python-TIC18/tree/main/Avaliacao/Parte2-Ian)
+    * [Parte3-Equipe](https://github.com/brenoriios/Python-TIC18/tree/main/Avaliacao/Parte3-Equipe)
 * [Breno-Rios](https://github.com/brenoriios/Python-TIC18/tree/main/Breno-Rios)
     * [Semana1](https://github.com/brenoriios/Python-TIC18/tree/main/Breno-Rios/Semana1)
         * [Pratica001](https://github.com/brenoriios/Python-TIC18/tree/main/Breno-Rios/Semana1/Pratica001)
@@ -20,35 +24,7 @@ Repositório dedicado à disciplina de Python do Programa de Residência em Soft
         * [Pratica003](https://github.com/brenoriios/Python-TIC18/tree/main/Breno-Rios/Semana3/Pratica003)
 * [Ian-Rodrigues](https://github.com/brenoriios/Python-TIC18/tree/main/Ian-Rodrigues)
     * [Semana1](https://github.com/brenoriios/Python-TIC18/tree/main/Ian-Rodrigues/Semana1)
-        * [Pratica001](https://github.com/brenoriios/Python-TIC18/tree/main/Ian-Rodrigues/Semana1/PP-PO01)
-
-## Visão geral da estrutura do repositório:
-
-```
-├── Breno-Rios
-|   ├── Semana1
-|   │   ├── Pratica001
-|   │   │   ├── PP001.ipynb
-|   │   │   └── README.md
-|   |   └── README.md
-|   ├── Semana2
-|   │   ├── Pratica002
-|   │   │   ├── PP002.py
-|   │   │   └── README.md
-|   |   └── README.md
-|   └── Semana3
-|       ├── Pratica003
-|       │   ├── Empregados
-|       │   │   ├── employeeData.txt
-|       │   │   └── main.py
-|       │   ├── Supermercado
-|       │   |   └── main.py
-|       |   └── README.md
-|       └── README.md
-├── Ian-Rodrigues
-|   └── Semana1
-|       └── PP-PO01
-|           └── PP-PO01.ipynb
-├── .gitignore
-└── README.md
-```
+        * [PP-PO01](https://github.com/brenoriios/Python-TIC18/tree/main/Ian-Rodrigues/Semana1/PP-PO01)
+    * [Semana2](https://github.com/brenoriios/Python-TIC18/tree/main/Ian-Rodrigues/Semana2)
+        * [PP-PO02_1](https://github.com/brenoriios/Python-TIC18/tree/main/Ian-Rodrigues/Semana2/PP-PO02_1)
+        * [PP-PO02_2](https://github.com/brenoriios/Python-TIC18/tree/main/Ian-Rodrigues/Semana2/PP-PO02_2)
