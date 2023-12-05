@@ -247,7 +247,7 @@ class ListaDatas(AnaliseDados):
         '''
         Este método retorna o maior elemento da lista
         '''
-        
+
         print("A maior data é: ", max(self.__lista))
     
     def __str__(self):
@@ -342,7 +342,30 @@ class ListaIdades(AnaliseDados):
         elementos vão existir na lista e depois
         solicita a digitação de cada um deles
         '''
-        pass
+        qtdElementos = input("Quantas idades vão existir na lista? ")
+        try:
+            qtdElementos = int(qtdElementos)
+        except:
+            print("Digite uma quantidade válida!")
+            return
+        
+        if qtdElementos <= 0:
+            print("Digite uma quantidade válida!")
+            return
+
+        for i in range(qtdElementos):
+            idade = input(f"Digite a idade {i + 1}: ")
+            try:
+                idade = int(idade)
+            except:
+                print("Digite um valor válido!")
+                return
+
+            if idade <= 0:
+                print("A idade deve ser maior do que 0!")
+                return
+            
+            self.__lista.append(idade)
     
     def mostraMediana(self):
         '''
