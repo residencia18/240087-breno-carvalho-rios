@@ -227,7 +227,7 @@ class ListaDatas(AnaliseDados):
         Este método ordena a lista e mostra o
         elemento que está na metade da lista
         '''
-        
+
         if len(self.__lista) <= 0:
             return
 
@@ -240,8 +240,9 @@ class ListaDatas(AnaliseDados):
         '''
         Este método retorna o menos elemento da lista
         '''
-        pass
-    
+
+        print("A menor data é: ", min(self.__lista))
+        
     def mostraMaior(self):
         '''
         Este método retorna o maior elemento da lista
