@@ -119,7 +119,7 @@ class ListaNomes(AnaliseDados):
     
     def __init__(self):
         super().__init__(type("String"))
-        self.__lista = []        
+        self.__lista = []  
 
     def entradaDeDados(self):
         '''
@@ -271,9 +271,14 @@ class ListaDatas(AnaliseDados):
         print("Lista de datas em ordem crescente: ")
         for data in self.__lista:
             print(data)
+
+    def modificarDatasAnterioresA2019(self):
+        for data in self.__lista:
+            if data.ano < 2019:
+                data.dia = 1
     
     def __str__(self):
-        return '\n'.join(self.__lista)
+        return '\n'.join(map(str, self.__lista))
 
 class ListaSalarios(AnaliseDados):
 
@@ -461,6 +466,18 @@ def main():
         lista.mostraMaior()
         lista.listarEmOrdem()
         print("___________________")
+
+    # Iterador zip
+    for nome, salario in zip(nomes._ListaNomes__lista, salarios._ListaSalarios__lista):
+        print(f"Nome: {nome}, Salário: {salario}")
+
+    # Iterador map
+    salarios_reajustados = list(map(lambda x: x * 1.1, salarios._ListaSalarios__lista))
+    print("Salários com reajuste: ", salarios_reajustados)
+
+    # Iterador filter
+    datas.modificarDatasAnterioresA2019()
+    print("Datas modificadas: ", datas)
 
     print("Fim do teste!!!")
 
