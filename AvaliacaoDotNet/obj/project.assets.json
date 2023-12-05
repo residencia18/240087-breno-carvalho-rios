@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Breno\\.nuget\\packages\\": {}
+    "C:\\Users\\godof\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Breno\\Desktop\\equipe5-dotnet\\AvaliacaoDotNet\\AvaliacaoDotNet.csproj",
+      "projectUniqueName": "E:\\repositorios\\equipe5-dotnet\\AvaliacaoDotNet\\AvaliacaoDotNet.csproj",
       "projectName": "AvaliacaoDotNet",
-      "projectPath": "C:\\Users\\Breno\\Desktop\\equipe5-dotnet\\AvaliacaoDotNet\\AvaliacaoDotNet.csproj",
-      "packagesPath": "C:\\Users\\Breno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Breno\\Desktop\\equipe5-dotnet\\AvaliacaoDotNet\\obj\\",
+      "projectPath": "E:\\repositorios\\equipe5-dotnet\\AvaliacaoDotNet\\AvaliacaoDotNet.csproj",
+      "packagesPath": "C:\\Users\\godof\\.nuget\\packages\\",
+      "outputPath": "E:\\repositorios\\equipe5-dotnet\\AvaliacaoDotNet\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Breno\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\godof\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -54,6 +54,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
