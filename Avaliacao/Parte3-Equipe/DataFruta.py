@@ -267,6 +267,61 @@ class ListaDatas(AnaliseDados):
     def __str__(self):
         return '\n'.join(self.__lista)
     
+    def listaDados(self):
+        for index, data in enumerate(self.__lista):
+            print(f"{index + 1}. {data}")
+
+    def alteraDataAntes2019(self):
+        dia = input(f"Digite o novo dia das datas anteriores a 2019: ")
+        try:
+            dia = int(dia)
+        except ValueError as e:
+            print(e)
+            return
+        except:
+            print("Digite um valor válido!")
+            return
+        
+        for data in self.__lista:
+            if(data.ano < 2019):
+                data.dia = dia
+        
+        self.listaDados()
+
+    def menu(self):
+        while(True):
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("========== Menu ==========")
+            print("[1] Incluir uma data")
+            print("[2] Listar datas")
+            print("[3] Modificar o dia das datas anteriores a 2019")
+            print("[0] Voltar")
+            print()
+
+            op = input("Digite uma opção -> ")
+            try:
+                op = int(op)
+            except:
+                print("Digite uma opção válida!")
+                return
+            
+            match op:
+                case 1:
+                    self.entradaDeDados()
+                case 2:
+                    self.listaDados()
+                case 3:
+                    self.alteraDataAntes2019()
+                case 0:
+                    pass
+                case _:
+                    print("Opção Inválida")
+        
+            if(op == 0):
+                    return
+
+            input("Pressione uma tecla para continuar...")
+    
 class ListaSalarios(AnaliseDados):
 
     def __init__(self):
