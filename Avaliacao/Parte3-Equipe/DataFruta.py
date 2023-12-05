@@ -116,7 +116,11 @@ class ListaNomes(AnaliseDados):
     
     def __init__(self):
         super().__init__(type("String"))
-        self.__lista = []        
+        self.__lista = []
+
+    @property
+    def lista(self):
+        return self.__lista 
 
     def entradaDeDados(self):
         '''
@@ -326,7 +330,11 @@ class ListaSalarios(AnaliseDados):
 
     def __init__(self):
         super().__init__(type(float))
-        self.__lista = []        
+        self.__lista = []
+
+    @property
+    def lista(self):
+        return self.__lista 
 
     def entradaDeDados(self):
         '''
@@ -390,10 +398,6 @@ class ListaSalarios(AnaliseDados):
     def listaDados(self):
         for index, salario in enumerate(self.__lista):
             print(f"{index + 1}. {salario}")
-        
-    def folhaReajustada(self):
-        for index, salario in enumerate(self.__lista):
-            print(f"{index + 1}. {salario * 1.1}")
 
     def menu(self):
         while(True):
@@ -401,7 +405,6 @@ class ListaSalarios(AnaliseDados):
             print("========== Menu ==========")
             print("[1] Incluir um salário")
             print("[2] Listar salários")
-            print("[3] Folha com reajuste de 10%")
             print("[0] Voltar")
             print()
 
@@ -417,8 +420,6 @@ class ListaSalarios(AnaliseDados):
                     self.entradaDeDados()
                 case 2:
                     self.listaDados()
-                case 3:
-                    self.folhaReajustada()
                 case 0:
                     pass
                 case _:
@@ -531,7 +532,19 @@ class ListaIdades(AnaliseDados):
                 return
 
             input("Pressione uma tecla para continuar...")
-  
+
+def nomeSalario(nomes, salarios):
+    for nome, salario in zip(nomes.lista, salarios.lista):
+        print(f"Nome: {nome}, Salario: R$ {'{:.2f}'.format(salario)}")
+    
+    input("Pressione uma tecla para continuar...")
+
+def reajustaFolha(salarios):
+    for salario in map(lambda x: x * 1.1, salarios.lista):
+        print(f"R$ {'{:.2f}'.format(salario)}")
+    
+    input("Pressione uma tecla para continuar...")
+
 def main():
     nomes = ListaNomes()
     datas = ListaDatas()
@@ -541,10 +554,12 @@ def main():
     while(True):
         os.system('cls' if os.name == 'nt' else 'clear')
         print("========== Menu ==========")
-        print("[1] Lista de Nomes")
-        print("[2] Lista de Datas")
-        print("[3] Lista de Salários")
-        print("[4] Lista de Idades")
+        print("[1] Nomes")
+        print("[2] Datas")
+        print("[3] Salários")
+        print("[4] Idades")
+        print("[5] Listar nomes com salarios")
+        print("[6] Mostrar folha com reajuste de 10%")
         print("[0] Sair")
         print()
 
@@ -553,7 +568,7 @@ def main():
             op = int(op)
         except:
             print("Digite uma opção válida!")
-            return
+            continue
         
         match op:
             case 1:
@@ -564,6 +579,10 @@ def main():
                 salarios.menu()
             case 4:
                 idades.menu()
+            case 5:
+                nomeSalario(nomes, salarios)
+            case 6:
+                reajustaFolha(salarios)
             case 0:
                 pass
             case _:
