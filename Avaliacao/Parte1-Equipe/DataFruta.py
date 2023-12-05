@@ -391,7 +391,7 @@ class ListaIdades(AnaliseDados):
         '''
         Este método retorna o menos elemento da lista
         '''
-        
+
         if len(self.__lista) <= 0:
             return
 
@@ -401,7 +401,11 @@ class ListaIdades(AnaliseDados):
         '''
         Este método retorna o maior elemento da lista
         '''
-        pass
+        
+        if len(self.__lista) <= 0:
+            return
+
+        print("A maior idade é: ", max(self.__lista))
 
     def __str__(self):
         pass
