@@ -111,6 +111,10 @@ class AnaliseDados(ABC):
     def mostraMaior(self):
         pass
 
+    @abstractmethod
+    def listarEmOrdem(self):
+        pass
+
 class ListaNomes(AnaliseDados):
     
     def __init__(self):
@@ -174,6 +178,13 @@ class ListaNomes(AnaliseDados):
             return
 
         print("O último nome em ordem alfabética é: ", max(self.__lista))
+
+    def listarEmOrdem(self):
+        if len(self.__lista) <= 0:
+            return
+
+        sorted_list = sorted(self.__lista)
+        print("Lista de nomes em ordem: ", sorted_list)
 
     def __str__(self):
         return '\n'.join(self.__lista)
@@ -250,6 +261,16 @@ class ListaDatas(AnaliseDados):
         '''
 
         print("A maior data é: ", max(self.__lista))
+
+    def listarEmOrdem(self):
+        if len(self.__lista) <= 0:
+            return
+
+        self.__lista.sort()
+
+        print("Lista de datas em ordem crescente: ")
+        for data in self.__lista:
+            print(data)
     
     def __str__(self):
         return '\n'.join(self.__lista)
@@ -327,6 +348,13 @@ class ListaSalarios(AnaliseDados):
             return
 
         print("O maior salário é: ", max(self.__lista))
+    
+    def listarEmOrdem(self):
+        if len(self.__lista) <= 0:
+            return
+
+        sorted_list = sorted(self.__lista)
+        print("Lista de salários em ordem: ", sorted_list)
     
     def __str__(self):
         return '\n'.join(self.__lista)
@@ -408,6 +436,13 @@ class ListaIdades(AnaliseDados):
 
         print("A maior idade é: ", max(self.__lista))
 
+    def listarEmOrdem(self):
+        if len(self.__lista) <= 0:
+            return
+
+        sorted_list = sorted(self.__lista)
+        print("Lista de idades em ordem: ", sorted_list)
+
     def __str__(self):
         return '\n'.join(self.__lista)
 
@@ -424,6 +459,7 @@ def main():
         lista.mostraMediana()
         lista.mostraMenor()
         lista.mostraMaior()
+        lista.listarEmOrdem()
         print("___________________")
 
     print("Fim do teste!!!")
