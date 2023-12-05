@@ -342,7 +342,7 @@ class ListaIdades(AnaliseDados):
         elementos vão existir na lista e depois
         solicita a digitação de cada um deles
         '''
-        
+
         qtdElementos = input("Quantas idades vão existir na lista? ")
         try:
             qtdElementos = int(qtdElementos)
@@ -391,7 +391,11 @@ class ListaIdades(AnaliseDados):
         '''
         Este método retorna o menos elemento da lista
         '''
-        pass
+        
+        if len(self.__lista) <= 0:
+            return
+
+        print("A menor idade é: ", min(self.__lista))
     
     def mostraMaior(self):
         '''
