@@ -189,7 +189,38 @@ class ListaDatas(AnaliseDados):
         elementos vão existir na lista e depois
         solicita a digitação de cada um deles
         '''
-        pass
+        
+        qtdElementos = input("Quantas datas vão existir na lista? ")
+        try:
+            qtdElementos = int(qtdElementos)
+        except:
+            print("Digite uma quantidade válida!")
+            return
+        
+        if qtdElementos <= 0:
+            print("Digite uma quantidade válida!")
+            return
+
+        for i in range(qtdElementos):
+            data = input(f"Digite a data {i + 1} (dd/mm/yyyy): ")
+
+            if len(data.strip()) <= 0:
+                print("A data não pode estar em branco!")
+                return
+            
+            if not re.search("[0-9]{2}/[0-9]{2}/[0-9]{4}", data):
+                print("Formato Inválido!")
+                return
+
+            data = data.split('/')
+
+            try:
+                data = Data(int(data[0]), int(data[1]), int(data[2]))
+            except ValueError as ex:
+                print(ex)
+                return
+            
+            self.__lista.append(data)
     
     def mostraMediana(self):
         '''
