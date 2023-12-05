@@ -242,12 +242,13 @@ class ListaDatas(AnaliseDados):
         '''
 
         print("A menor data é: ", min(self.__lista))
-        
+
     def mostraMaior(self):
         '''
         Este método retorna o maior elemento da lista
         '''
-        pass
+        
+        print("A maior data é: ", max(self.__lista))
     
     def __str__(self):
         pass
