@@ -251,7 +251,7 @@ class ListaDatas(AnaliseDados):
         print("A maior data é: ", max(self.__lista))
     
     def __str__(self):
-        pass
+        return '\n'.join(self.__lista)
 
 class ListaSalarios(AnaliseDados):
 
@@ -401,14 +401,14 @@ class ListaIdades(AnaliseDados):
         '''
         Este método retorna o maior elemento da lista
         '''
-        
+
         if len(self.__lista) <= 0:
             return
 
         print("A maior idade é: ", max(self.__lista))
 
     def __str__(self):
-        pass
+        return '\n'.join(self.__lista)
 
 def main():
     nomes = ListaNomes()
