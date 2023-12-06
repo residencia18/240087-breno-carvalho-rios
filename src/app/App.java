@@ -10,6 +10,9 @@ public class App {
     ControlePagamentos controlePagamentos;
     ControleFalhas controleFalhas;
 
+    public App() {
+        controleClientes = new ControleClientes();
+    }
     public void run() {
         int opcao = -1;
         do{
@@ -72,19 +75,19 @@ public class App {
 
             switch (opcao){
                 case 1:
-                    // controleClientes.algumaCoisa();
+                    controleClientes.insereCliente();
                     break;
                 case 2:
-                    // controleClientes.algumaCoisa();
+                    controleClientes.consultaCliente();
                     break;
                 case 3:
-                    // controleClientes.algumaCoisa();
+                    controleClientes.listaClientes();
                     break;
                 case 4:
-                    // controleClientes.algumaCoisa();
+                    controleClientes.editaCliente();
                     break;
                 case 5:
-                    // controleClientes.algumaCoisa();
+                    controleClientes.excluiCliente();
                     break;
                 case 0:
                     break;
