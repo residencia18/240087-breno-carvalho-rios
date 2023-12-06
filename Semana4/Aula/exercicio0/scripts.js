@@ -15,6 +15,7 @@ document.getElementById('btn-add-tarefa').addEventListener('click', () => {
     let tarefa = new Tarefa(document.getElementById('tarefa').value);
     adicionaTarefaDOM(tarefa);
     adicionaTarefaNoStorage(tarefa);
+    document.getElementById('form-adicionar-tarefa').reset();
 });
 
 function adicionaTarefaDOM(tarefa) {
@@ -23,7 +24,6 @@ function adicionaTarefaDOM(tarefa) {
     let deletar = document.createElement('button');
     let text = document.createElement('p');
     text.innerHTML = tarefa.nome;
-    // tarefaLi.innerHTML = tarefa.nome;
     deletar.innerHTML = "X";
     deletar.addEventListener('click', () => {
         document.getElementById("listaTarefas").removeChild(tarefaLi);
