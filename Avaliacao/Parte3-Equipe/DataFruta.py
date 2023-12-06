@@ -275,30 +275,12 @@ class ListaDatas(AnaliseDados):
         for index, data in enumerate(self.__lista):
             print(f"{index + 1}. {data}")
 
-    def alteraDataAntes2019(self):
-        dia = input(f"Digite o novo dia das datas anteriores a 2019: ")
-        try:
-            dia = int(dia)
-        except ValueError as e:
-            print(e)
-            return
-        except:
-            print("Digite um valor válido!")
-            return
-        
-        for data in self.__lista:
-            if(data.ano < 2019):
-                data.dia = dia
-        
-        self.listaDados()
-
     def menu(self):
         while(True):
             os.system('cls' if os.name == 'nt' else 'clear')
             print("========== Menu ==========")
             print("[1] Incluir uma data")
             print("[2] Listar datas")
-            print("[3] Modificar o dia das datas anteriores a 2019")
             print("[0] Voltar")
             print()
 
@@ -314,8 +296,6 @@ class ListaDatas(AnaliseDados):
                     self.entradaDeDados()
                 case 2:
                     self.listaDados()
-                case 3:
-                    self.alteraDataAntes2019()
                 case 0:
                     pass
                 case _:
@@ -545,6 +525,14 @@ def reajustaFolha(salarios):
     
     input("Pressione uma tecla para continuar...")
 
+def alteraDataAntes2019(datas):
+    def atribuiDia(x):
+        x.dia = 1
+        return x
+    
+    for data in map(atribuiDia, filter(lambda x: x.ano < 2019, datas.lista)):
+        print(data)
+
 def main():
     nomes = ListaNomes()
     datas = ListaDatas()
@@ -560,6 +548,7 @@ def main():
         print("[4] Idades")
         print("[5] Listar nomes com salarios")
         print("[6] Mostrar folha com reajuste de 10%")
+        print("[7] Modificar o dia das datas anteriores a 2019")
         print("[0] Sair")
         print()
 
@@ -583,6 +572,8 @@ def main():
                 nomeSalario(nomes, salarios)
             case 6:
                 reajustaFolha(salarios)
+            case 7:
+                alteraDataAntes2019(datas)
             case 0:
                 pass
             case _:
