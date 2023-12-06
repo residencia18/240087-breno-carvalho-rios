@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 20px;
+}
+
+form {
+    margin-bottom: 10px;
+}
+
+#adicionar-tarefa > input, #adicionar-tarefa > button{
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#adicionar-tarefa > input {
+    border: 1px solid lightgray;
+}
+
+#adicionar-tarefa > button {
+    background-color: darkgreen;
+    border: none;
+    color: white;
+}
+
+#adicionar-tarefa > button:hover {
+    background-color: green;
+}
+
+#listaTarefas {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    gap: 5px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+li > button {
+    background-color: darkred;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    margin-left: 5px;
+    border: none;
+    padding: 0 15px;
+}
+
+li > button:hover {
+    background-color: red;
+}
+
+li > p {
+    padding: 10px;
+}
+
+button {
+    font-weight: bold;
+    cursor: pointer;
+}
