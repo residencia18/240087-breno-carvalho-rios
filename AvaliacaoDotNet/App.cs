@@ -63,8 +63,14 @@ public class App
             opcao = DispMenuClientes();
             switch (opcao){
                 case 1:
-                    RegistroGeral.NovoCliente();
-                    Persistencia.SalvarArquivosCliente(RegistroGeral.Clientes);
+                    try {
+                        RegistroGeral.NovoCliente();
+                        Persistencia.SalvarArquivosCliente(RegistroGeral.Clientes);
+                    } catch (ArgumentException e) {
+                        Console.WriteLine(e.Message);                        
+                    } catch (Exception e) {
+                        Console.WriteLine($"Ocorreu um erro inesperado: {e.Message}");                        
+                    }
                     break;
                 case 2:
                     RegistroGeral.ExibirClientes();
@@ -89,8 +95,14 @@ public class App
             opcao = DispMenuAdvogados();
             switch (opcao){
                 case 1:
-                    RegistroGeral.NovoAdvogado();
-                    Persistencia.SalvarArquivosAdvogado(RegistroGeral.Advogados);
+                    try {
+                        RegistroGeral.NovoAdvogado();
+                        Persistencia.SalvarArquivosAdvogado(RegistroGeral.Advogados);
+                    } catch (ArgumentException e) {
+                        Console.WriteLine(e.Message);                        
+                    } catch (Exception e) {
+                        Console.WriteLine($"Ocorreu um erro inesperado: {e.Message}");                        
+                    }
                     break;
                 case 2:
                     RegistroGeral.ExibirAdvogados();

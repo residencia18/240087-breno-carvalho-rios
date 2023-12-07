@@ -479,13 +479,21 @@ public static class RegistroGeral{
 
             switch (escolha){
                 case "1":
-                    caso.AddDocumento(ColetarDocumento());
+                    try {
+                        caso.AddDocumento(ColetarDocumento());
+                    } catch(InvalidOperationException e) {
+                        Console.WriteLine(e.Message);
+                    } catch (Exception e) {
+                        Console.WriteLine($"Ocorreu um erro inesperado: {e.Message}");                        
+                    }
                     break;
                 case "2":
                     try{
                         caso.RemoveDocumento(App.LerNumeroInteiro("Informe o código do documento:"));
                     } catch (InvalidOperationException e){
                         App.Cx_Msg(e.Message);
+                    } catch (Exception e) {
+                        Console.WriteLine($"Ocorreu um erro inesperado: {e.Message}");                        
                     }
                     break;
                 case "3":
