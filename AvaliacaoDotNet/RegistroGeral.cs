@@ -347,7 +347,7 @@ public static class RegistroGeral{
         }
 
 
-        CasoJuridico novoCaso = new(data, cliente, probabilidade);
+        CasoJuridico novoCaso = new(data, cliente, advogadosNoCaso, probabilidade);
         custosDoCaso.ForEach(c => novoCaso.AdicionarCusto(c.Item1, c.Item2));
         documentosDoCaso.ForEach(novoCaso.AddDocumento);
 

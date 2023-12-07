@@ -145,20 +145,16 @@ public class App
                     Relatorios.RelatorioAdvogadosEClientesAniversariantesDoMes(RegistroGeral.Advogados, RegistroGeral.Clientes);
                     break;
                 case 7:
-                    // ToDo
-                    // Casos com o status “Em aberto”, em ordem crescente pela data de início
+                    Relatorios.RelatorioCasosEmAbertoOrdemCrescente(RegistroGeral.Casos);
                     break;
                 case 8:
-                    // ToDo
-                    // Advogados em ordem decrescente pela quantidade de casos com status “Concluído”
+                    Relatorios.AdvogadosOrdemDecrescenteCasosConcluidos(RegistroGeral.Casos);
                     break;
                 case 9:
-                    // ToDo
-                    // Casos que possuam custo com uma determinada palavra na descrição
+                    Relatorios.RelatorioCasosCujaDescricaoCustoContenhaTexto(RegistroGeral.Casos);
                     break;
                 case 10:
-                    // ToDo
-                    // Top 10 tipos de documentos mais inseridos nos casos
+                    Relatorios.RelatorioTop10DocumentosMaisInseridos(RegistroGeral.Casos);
                     break;
                 case 0:
                     break;

@@ -135,7 +135,7 @@ namespace AvaliacaoDotNet
         public static void RelatorioClientesCujaProfissaoContenhaTexto(List<Cliente> clientes)
         {
             App.LimparTela();
-            Console.WriteLine("\n\t========== RELATÓRIO DE CLIENTES CUJO A PROFISSÃO CONTENHA TEXTO ==========");
+            Console.WriteLine("\n\t========== RELATÓRIO DE CLIENTES CUJA A PROFISSÃO CONTENHA TEXTO ==========");
 
             Console.Write("\n\tDigite o texto: ");
             string texto = Console.ReadLine()!;
@@ -340,6 +340,115 @@ namespace AvaliacaoDotNet
                 Console.WriteLine("\tCNA: " + advogado.Cna);
                 Console.WriteLine("\tEspecialidade: " + advogado.Especialidade);
                 Console.WriteLine("\t==========================\n");
+            }
+
+            App.Pause();
+        }
+        public static void RelatorioCasosEmAbertoOrdemCrescente(List<CasoJuridico> casosJuridicos)
+        {
+            App.LimparTela();
+            Console.WriteLine("\n\t=== Lista de Casos com o status “Em aberto”, em ordem crescente pela data de início ===");
+
+            var casosJuridicosFiltrados = casosJuridicos.OrderBy(caso => caso.DataInicio);
+
+            App.LimparTela();
+            foreach (CasoJuridico casoJuridico in casosJuridicosFiltrados)
+            {
+                Console.WriteLine("\n\t=========== CASO JURÍDICO ===========");
+                Console.WriteLine(casoJuridico.ToString());
+                Console.WriteLine("\t==========================\n");
+            }
+
+            App.Pause();
+        }
+        public static void AdvogadosOrdemDecrescenteCasosConcluidos(List<CasoJuridico> casosJuridicos) {
+            App.LimparTela();
+            Console.WriteLine("\n\t========== Lista de Advogados em ordem decrescente de casos concluídos ==========");
+
+            var listaAdvogados = casosJuridicos
+                .Where(caso => caso.Status.ToLower() == "concluido")
+                .SelectMany(caso => caso.Advogados)
+                .GroupBy(advogado => advogado.Nome)
+                .Select(grupo => new { NomeAdvogado = grupo.Key, QuantidadeCasosConcluidos = grupo.Count() })
+                .OrderByDescending(resultado => resultado.QuantidadeCasosConcluidos)
+                .ToList();
+            
+            if (listaAdvogados.Count() > 0)
+            {
+                App.LimparTela();
+                Console.WriteLine("\n\tLISTA DE ADVOGADOS EM ORDEM DECRESCENTE DE CASOS CONCLUÍDOS:");
+                foreach (var advogado in listaAdvogados)
+                {
+                    Console.WriteLine("\n\t=========== ADVOGADO ===========");
+                    Console.WriteLine(advogado.ToString());                    
+                    Console.Write($"\t==========================");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\n\tNenhum advogado encontrado.");
+            }
+
+            App.Pause();
+        }
+        public static void RelatorioCasosCujaDescricaoCustoContenhaTexto(List<CasoJuridico> casosJuridicos)
+        {
+            App.LimparTela();
+            Console.WriteLine("\n\t========== Lista de Casos que possuam custo com uma determinada palavra na descrição ==========");
+
+            Console.Write("\n\tDigite o texto: ");
+            string texto = Console.ReadLine()!;
+            
+            var casosJuridicosFiltrados = casosJuridicos.Where(
+                caso => caso.Custos.Any(
+                    custo => custo.Item2.ToLower().Contains(texto.ToLower())
+                )
+            ).ToList();
+
+            if (casosJuridicosFiltrados.Count() > 0)
+            {
+                App.LimparTela();
+                Console.WriteLine("\n\tCASOS JURÍDICOS ENCONTRADOS:");
+                foreach (var caso in casosJuridicosFiltrados)
+                {
+                    Console.WriteLine("\n\t=========== CASO JURÍDICO ===========");
+                    Console.WriteLine(caso.ToString());                    
+                    Console.Write($"\t==========================");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\n\tNenhum caso jurídico encontrado.");
+            }
+
+            App.Pause();
+        }
+        public static void RelatorioTop10DocumentosMaisInseridos(List<CasoJuridico> casosJuridicos)
+        {
+            App.LimparTela();
+            Console.WriteLine("\n\t========== Top 10 tipos de documentos mais inseridos nos casos ==========");;
+            
+            var topDezTipos = casosJuridicos.SelectMany(caso => caso.Documentos)
+                .GroupBy(documento => documento.Tipo)
+                .Select(grupo => new { TipoDocumento = grupo.Key, Contagem = grupo.Count() })
+                .OrderByDescending(resultado => resultado.Contagem)
+                .Take(10)
+                .ToList();
+
+            if (topDezTipos.Count() > 0)
+            {
+                App.LimparTela();
+                Console.WriteLine("\n\tTOP 10 TIPOS:");
+                foreach (var documento in topDezTipos)
+                {
+                    Console.WriteLine("\n\t=========== TIPO ===========");
+                    Console.WriteLine($"Tipo: {documento.TipoDocumento} - Quantidade: {documento.Contagem}");
+                    Console.Write($"\t==========================");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\n\tNenhum documento encontrado.");
             }
 
             App.Pause();
