@@ -1,38 +1,39 @@
 package falhas;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-class Reparo {
+public class Reparo {
     private String descricao;
-    private String previsao;
-    private String dataInicio;
-    private String dataFim;
+    private LocalDate previsao;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
     private boolean resolvido;
 
-    public Reparo(String descricao, String previsao) {
+    public Reparo(String descricao, LocalDate previsao) {
         this.descricao = descricao;
         this.previsao = previsao;
-        this.dataInicio = "";
-        this.dataFim = "";
         this.resolvido = false;
     }
+
 
     public String getDescricao() {
         return descricao;
     }
 
-    public String getPrevisao() {
+    public LocalDate getPrevisao() {
         return previsao;
     }
 
-    public String getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
 
-    public String getDataFim() {
+    public LocalDate getDataFim() {
         return dataFim;
     }
 
@@ -40,74 +41,17 @@ class Reparo {
         return resolvido;
     }
 
-    public void listarReparos(ArrayList<Reparo> reparos) {
-        if (reparos.isEmpty()) {
-            System.out.println("Nenhum reparo cadastrado.");
-            return;
-        }
-
-        System.out.println("Lista de Todos os Reparos:");
-        for (Reparo reparo : reparos) {
-            imprimirDetalhesReparo(reparo);
-        }
-    }
-
-    public void listarReparosEmAberto(ArrayList<Reparo> reparos) {
-        if (reparos.isEmpty()) {
-            System.out.println("Nenhum reparo cadastrado.");
-            return;
-        }
-
-        System.out.println("Lista de Reparos em Aberto:");
-        for (Reparo reparo : reparos) {
-            if (!reparo.isResolvido()) {
-                imprimirDetalhesReparo(reparo);
-            }
-        }
-    }
-
-    public void encerrarReparo(ArrayList<Reparo> reparos, String descricaoFalhaNaoResolvida) {
-        if (reparos.isEmpty()) {
-            System.out.println("Nenhum reparo em aberto encontrado para encerrar.");
-            return;
-        }
-
-        for (Reparo reparo : reparos) {
-            if (!reparo.isResolvido()) {
-                reparo.setDataFim(getCurrentDate());
-                reparo.setResolvido(true);
-
-                // Verifica se a falha foi resolvida
-                if (!descricaoFalhaNaoResolvida.isEmpty()) {
-                    // Cria um novo reparo para a mesma falha
-                    Reparo novoReparo = new Reparo(descricaoFalhaNaoResolvida, getPrevisao());
-                    reparos.add(novoReparo);
-                    System.out.println("Novo reparo criado para a falha não resolvida: " + descricaoFalhaNaoResolvida);
-                }
-
-                System.out.println("Reparo encerrado com sucesso.");
-                return;
-            }
-        }
-        System.out.println("Nenhum reparo em aberto encontrado para encerrar.");
-    }
-
-    private void imprimirDetalhesReparo(Reparo reparo) {
-        System.out.println("Descrição: " + reparo.getDescricao());
-        System.out.println("Previsão: " + reparo.getPrevisao());
-        System.out.println("Data Início: " + reparo.getDataInicio());
-        System.out.println("Data Fim: " + reparo.getDataFim());
-        System.out.println("Resolvido: " + (reparo.isResolvido() ? "Sim" : "Não"));
+    public void imprimirDetalhesReparo() {
+        System.out.println("Descrição: " + this.getDescricao());
+        System.out.println("Previsão: " + this.getPrevisao());
+        System.out.println("Data Início: " + this.getDataInicio());
+        System.out.println("Data Fim: " + this.getDataFim());
+        System.out.println("Resolvido: " + (this.isResolvido() ? "Sim" : "Não"));
         System.out.println("----------------------");
     }
 
-    private String getCurrentDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        return sdf.format(new Date());
-    }
-
     public void iniciarReparo() {
-        if (dataInicio.isEmpty()) {
+        if (dataInicio == null) {
             setDataInicio();
             System.out.println("Reparo iniciado com sucesso.");
         } else {
@@ -116,14 +60,14 @@ class Reparo {
     }
 
     private void setDataInicio() {
-        this.dataInicio = getCurrentDate();
+        this.dataInicio = LocalDate.now();
     }
 
-    private void setDataFim(String dataFim) {
+    public void setDataFim(LocalDate dataFim) {
         this.dataFim = dataFim;
     }
 
-    private void setResolvido(boolean resolvido) {
+    public void setResolvido(boolean resolvido) {
         this.resolvido = resolvido;
     }
 }

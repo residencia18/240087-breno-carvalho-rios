@@ -9,14 +9,6 @@ public class ControleClientes {
     private static Scanner scan = new Scanner(System.in);
     private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
-    public ControleClientes() {
-        try{
-            clientes.add(new Cliente("08867581570", "Breno"));
-        } catch (Exception e) {
-            return;
-        }
-    }
-
     public static void insereCliente() {
         System.out.println("Digite o cpf do cliente (apenas numeros): ");
         String cpf = scan.nextLine();
