@@ -10,16 +10,6 @@ import java.util.Scanner;
 public class ControleFaturas {
     private static Scanner scan = new Scanner(System.in);
     private static ArrayList<Fatura> faturas = new ArrayList<>();
-
-    public ControleFaturas () {
-        faturas.add(new Fatura(
-                LocalDateTime.now(),
-                ControleImoveis.buscaImovel("123465").getUltimaLeitura(),
-                ControleImoveis.buscaImovel("123465").getPenultimaLeitura(),
-                ControleImoveis.buscaImovel("123465").getUltimaLeitura() * 10,
-                ControleImoveis.buscaImovel("123465")
-        ));
-    }
     public static void insereFatura(){
         Imovel imovel = ControleImoveis.buscaImovel();
         if(imovel == null) {
