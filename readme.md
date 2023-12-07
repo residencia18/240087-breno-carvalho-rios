@@ -3,8 +3,7 @@
 ## Avaliação .Net ##
 
 ### Autores ### 
-
--[Albert Silva](
+- [Albert](
 - [Breno](  
 - [Manoel](
 - [Laio](
