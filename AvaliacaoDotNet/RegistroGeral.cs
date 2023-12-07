@@ -575,7 +575,7 @@ public static class RegistroGeral
 
             for (int i = 0; i < caso.Custos.Count; i++)
                 Console.WriteLine($"\t{i + 1}. Valor: {caso.Custos[i].Item1:C2}\n\tDescrição: {caso.Custos[i].Item2}");
-                Console.WriteLine("\t=================================");
+            Console.WriteLine("\t=================================");
             Console.WriteLine("\n\tDeseja inserir ou remover um custo?");
             Console.WriteLine("\t1. Inserir Custo");
             Console.WriteLine("\t2. Remover Custo");

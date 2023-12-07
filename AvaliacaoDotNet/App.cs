@@ -3,15 +3,18 @@ using System.Globalization;
 namespace AvaliacaoDotNet;
 public class App
 {
-    public static void MainTechAdvocacia(){
-        
+    public static void MainTechAdvocacia()
+    {
+
         Persistencia.CarregarArquivosAdvogado(RegistroGeral.Advogados);
         Persistencia.CarregarArquivosCliente(RegistroGeral.Clientes);
-        
+
         int opcao;
-        do{
+        do
+        {
             opcao = DispMain();
-            switch (opcao){
+            switch (opcao)
+            {
                 case 1:
                     MenuCasoJuridico();
                     break;
@@ -22,6 +25,9 @@ public class App
                     MenuAdvogados();
                     break;
                 case 4:
+                    MenuPlano();
+                    break;
+                case 5:
                     MenuRelatorios();
                     break;
                 case 0:
@@ -34,12 +40,15 @@ public class App
 
         } while (opcao != 0);
     }
-    
-    public static void MenuCasoJuridico(){
+
+    public static void MenuCasoJuridico()
+    {
         int opcao;
-        do{
+        do
+        {
             opcao = DispMenuCasoJuridico();
-            switch (opcao){
+            switch (opcao)
+            {
                 case 1:
                     RegistroGeral.NovoCaso();
                     break;
@@ -56,19 +65,27 @@ public class App
         } while (opcao != 0);
     }
 
-    public static void MenuClientes(){
+    public static void MenuClientes()
+    {
         int opcao;
-        do{
+        do
+        {
             opcao = DispMenuClientes();
-            switch (opcao){
+            switch (opcao)
+            {
                 case 1:
-                    try {
+                    try
+                    {
                         RegistroGeral.NovoCliente();
                         Persistencia.SalvarArquivosCliente(RegistroGeral.Clientes);
-                    } catch (ArgumentException e) {
-                        Console.WriteLine(e.Message);                        
-                    } catch (Exception e) {
-                        Console.WriteLine($"Ocorreu um erro inesperado: {e.Message}");                        
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Ocorreu um erro inesperado: {e.Message}");
                     }
                     break;
                 case 2:
@@ -88,19 +105,69 @@ public class App
         } while (opcao != 0);
     }
 
-    public static void MenuAdvogados(){
+    public static void MenuPlano()
+    {
+
         int opcao;
-        do{
-            opcao = DispMenuAdvogados();
-            switch (opcao){
+        do
+        {
+            opcao = DispMenuPlano();
+            switch (opcao)
+            {
                 case 1:
-                    try {
+                    try
+                    {
+                        // RegistroGeral.NovoPlano();
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Ocorreu um erro inesperado: {e.Message}");
+                    }
+                    break;
+                case 2:
+                    // RegistroGeral.ExibirPlanos();
+                    break;
+                case 3:
+                    // RegistroGeral.RemoverPlano();
+                    break;
+                case 4:
+                    // RegistroGeral.BuscarPlano();
+                    break;
+                case 0:
+                    break;
+                default:
+                    Cx_Msg("Selecione uma opção válida");
+                    break;
+            }
+
+        } while (opcao != 0);
+    }
+
+    public static void MenuAdvogados()
+    {
+        int opcao;
+        do
+        {
+            opcao = DispMenuAdvogados();
+            switch (opcao)
+            {
+                case 1:
+                    try
+                    {
                         RegistroGeral.NovoAdvogado();
                         Persistencia.SalvarArquivosAdvogado(RegistroGeral.Advogados);
-                    } catch (ArgumentException e) {
-                        Console.WriteLine(e.Message);                        
-                    } catch (Exception e) {
-                        Console.WriteLine($"Ocorreu um erro inesperado: {e.Message}");                        
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Ocorreu um erro inesperado: {e.Message}");
                     }
                     break;
                 case 2:
@@ -120,11 +187,14 @@ public class App
         } while (opcao != 0);
     }
 
-    public static void MenuRelatorios(){
+    public static void MenuRelatorios()
+    {
         int opcao;
-        do{
+        do
+        {
             opcao = DispMenuRelatorios();
-            switch (opcao){
+            switch (opcao)
+            {
                 case 1:
                     Relatorios.RelatorioAdvogadosIdadeEntreDoisValores(RegistroGeral.Advogados);
                     break;
@@ -165,31 +235,37 @@ public class App
         } while (opcao != 0);
     }
 
-    private static int DispMain(){
+    private static int DispMain()
+    {
         int opcao = -1;
-        do{
+        do
+        {
             LimparTela();
             DataHoraAtual();
             Console.WriteLine("\t===== TECH ADVOCACIA =====");
             Console.WriteLine("\t[1] - Gestão de Casos Jurídicos");
             Console.WriteLine("\t[2] - Gestão de Clientes");
             Console.WriteLine("\t[3] - Gestão de Advogados");
-            Console.WriteLine("\t[4] - Relatórios");
+            Console.WriteLine("\t[4] - Gestão de Planos");
+            Console.WriteLine("\t[5] - Relatórios");
             Console.WriteLine("\t[0] - Sair");
             Console.Write("\t-> ");
             string userInput = Console.ReadLine()!;
 
-            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao)){
+            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao))
+            {
                 Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
                 Pause();
             }
-        } while (opcao > 4 || opcao < 0);
+        } while (opcao > 5 || opcao < 0);
         return opcao;
     }
 
-    private static int DispMenuClientes(){
+    private static int DispMenuClientes()
+    {
         int opcao = -1;
-        do{
+        do
+        {
             LimparTela();
             DataHoraAtual();
             Console.WriteLine("\t===== TECH ADVOCACIA =====");
@@ -200,7 +276,8 @@ public class App
             Console.Write("\t-> ");
             string userInput = Console.ReadLine()!;
 
-            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao)){
+            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao))
+            {
                 Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
                 Pause();
             }
@@ -208,9 +285,11 @@ public class App
         return opcao;
     }
 
-    private static int DispMenuAdvogados(){
+    private static int DispMenuAdvogados()
+    {
         int opcao = -1;
-        do{
+        do
+        {
             LimparTela();
             DataHoraAtual();
             Console.WriteLine("\t===== TECH ADVOCACIA =====");
@@ -221,7 +300,8 @@ public class App
             Console.Write("\t-> ");
             string userInput = Console.ReadLine()!;
 
-            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao)){
+            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao))
+            {
                 Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
                 Pause();
             }
@@ -229,9 +309,37 @@ public class App
         return opcao;
     }
 
-    private static int DispMenuRelatorios(){
+    private static int DispMenuPlano()
+    {
         int opcao = -1;
-        do{
+        do
+        {
+            LimparTela();
+            DataHoraAtual();
+            Console.WriteLine("\t===== TECH ADVOCACIA =====");
+            Console.WriteLine("\t[1] - Cadastrar Novo Plano");
+            Console.WriteLine("\t[2] - Listar Todos os Planos");
+            Console.WriteLine("\t[3] - Remover um Plano");
+            Console.WriteLine("\t[4] - Buscar um Plano");
+            Console.WriteLine("\t[0] - Retornar ao Menu Anterior");
+            Console.Write("\t-> ");
+            string userInput = Console.ReadLine()!;
+
+            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao))
+            {
+                Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
+                Pause();
+            }
+        } while (opcao > 4 || opcao < 0);
+
+        return opcao;
+    }
+
+    private static int DispMenuRelatorios()
+    {
+        int opcao = -1;
+        do
+        {
             LimparTela();
             DataHoraAtual();
             Console.WriteLine("\t================================ R E L A T Ó R I O S ================================");
@@ -249,7 +357,8 @@ public class App
             Console.Write("\t-> ");
             string userInput = Console.ReadLine()!;
 
-            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao)){
+            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao))
+            {
                 Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
                 Pause();
             }
@@ -257,9 +366,11 @@ public class App
         return opcao;
     }
 
-    private static int DispMenuCasoJuridico(){
+    private static int DispMenuCasoJuridico()
+    {
         int opcao = -1;
-        do{
+        do
+        {
             LimparTela();
             DataHoraAtual();
             Console.WriteLine("\t===== TECH ADVOCACIA =====");
@@ -269,7 +380,8 @@ public class App
             Console.Write("\t-> ");
             string userInput = Console.ReadLine()!;
 
-            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao)){
+            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao))
+            {
                 Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
                 Pause();
             }
@@ -277,36 +389,44 @@ public class App
         return opcao;
     }
 
-    public static DateTime LerData(){
+    public static DateTime LerData()
+    {
         string? input;
-        do{
+        do
+        {
             input = Console.ReadLine()?.Trim();
         } while (string.IsNullOrEmpty(input));
 
         string formato = "dd/MM/yyyy";
 
-        if (!DateTime.TryParseExact(input, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime resultado)){
+        if (!DateTime.TryParseExact(input, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime resultado))
+        {
             Console.WriteLine("Formato de data inválido!");
-            return LerData(); 
+            return LerData();
         }
-            
+
         return resultado;
     }
-    public static string LerString(){
+    public static string LerString()
+    {
         string? input;
-        do{
+        do
+        {
             input = Console.ReadLine()?.Trim();
         } while (string.IsNullOrEmpty(input));
 
         return input;
     }
-    public static int LerNumeroInteiro(string mensagem){
-        while (true){
+    public static int LerNumeroInteiro(string mensagem)
+    {
+        while (true)
+        {
             Console.Write(mensagem);
 
             string input = Console.ReadLine()!;
 
-            if (string.IsNullOrEmpty(input)){
+            if (string.IsNullOrEmpty(input))
+            {
                 LimparTela();
                 Console.WriteLine("\n\tEntrada inválida. Por favor, insira um valor numérico.");
                 continue;
@@ -314,30 +434,35 @@ public class App
 
             if (int.TryParse(input, out int valor))
                 return valor;
-            else{
+            else
+            {
                 LimparTela();
                 Console.WriteLine("\n\tEntrada inválida. Por favor, insira um valor numérico válido.");
             }
             Pause();
         }
     }
-    public static void Cx_Msg(string texto){
+    public static void Cx_Msg(string texto)
+    {
         LimparTela();
         Console.WriteLine(texto);
         Pause();
     }
-    public static void DataHoraAtual(){
+    public static void DataHoraAtual()
+    {
         var data = DateTime.Now;
         var formatada = string.Format("\n\t{0:f}", data);
         Console.WriteLine(formatada);
         Console.WriteLine("\tFalta " + (365 - data.DayOfYear) + " dias para o fim do ano.\n");
     }
-    public static void LimparTela(){
+    public static void LimparTela()
+    {
         Console.Clear(); // Windows
         if (Environment.OSVersion.Platform != PlatformID.Win32NT)
             Console.Write("\u001b[2J\u001b[1;1H"); // Linux
     }
-    public static void Pause(){
+    public static void Pause()
+    {
         Console.Write("\n\tPressione Enter para continuar...");
         Console.ReadLine();
     }
