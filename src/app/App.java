@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class App {
     Scanner scan = new Scanner(System.in);
-    ControleClientes controleClientes = new ControleClientes();
-    ControleImoveis controleImoveis = new ControleImoveis();
-    ControleFaturas controleFaturas = new ControleFaturas();
+    ControleClientes controleClientes;
+    ControleImoveis controleImoveis;
+    ControleFaturas controleFaturas;
     ControlePagamentos controlePagamentos;
     ControleFalhas controleFalhas;
 
@@ -232,7 +232,7 @@ public class App {
                     ControleFalhas.reportaFalha();
                     break;
                 case 2:
-                    ControleFalhas.listarReparos();
+                    ControleFalhas.listarReparos(false);
                     break;
                 case 3:
                     ControleFalhas.encerrarReparo();
