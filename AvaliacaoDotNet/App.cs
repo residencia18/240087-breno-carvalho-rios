@@ -4,6 +4,7 @@ namespace AvaliacaoDotNet;
 public class App
 {
     public static void MainTechAdvocacia(){
+        
         Persistencia.CarregarArquivosAdvogado(RegistroGeral.Advogados);
         Persistencia.CarregarArquivosCliente(RegistroGeral.Clientes);
         
@@ -34,7 +35,6 @@ public class App
         } while (opcao != 0);
     }
     
-
     public static void MenuCasoJuridico(){
         int opcao;
         do{
@@ -55,7 +55,6 @@ public class App
 
         } while (opcao != 0);
     }
-
 
     public static void MenuClientes(){
         int opcao;
@@ -165,7 +164,6 @@ public class App
 
         } while (opcao != 0);
     }
-
 
     private static int DispMain(){
         int opcao = -1;
