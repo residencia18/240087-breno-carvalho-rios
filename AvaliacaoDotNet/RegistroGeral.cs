@@ -244,7 +244,7 @@ public static class RegistroGeral
                     NovoPagamento(encontrado);
                     break;
                 case 6:
-                    ExibirPagamentos(encontrado);
+                    encontrado.ExibirPagamentos();
                     break;
                 case 0:
                     break;
@@ -1075,9 +1075,6 @@ public static class RegistroGeral
                 break;
         }
 
-        Pagamento novo = new(descricao, valorBruto, desconto);
-        plano.AdicionarPagamento(novo);
-
         App.Cx_Msg("\n\tPagamento adicionado com sucesso!");
     }
 
@@ -1108,16 +1105,5 @@ public static class RegistroGeral
         return opcao;
     }
 
-    public static void ExibirPagamentos(Cliente cliente)
-    {
-        App.LimparTela();
-        Console.Write("\n\t========= Lista de Pagamentos =========");
-        foreach (Pagamento pagamento in cliente.Pagamentos)
-        {
-            Console.WriteLine(pagamento.ToString());
-            Console.WriteLine("\t=====================================");
-        }
-        App.Pause();
-    }
 
 }

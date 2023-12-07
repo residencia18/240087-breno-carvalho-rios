@@ -10,11 +10,10 @@ public class CartaoCredito : IPagamento
    public DateTime Data { get; set; } =  DateTime.Now;
 
 
-   public CartaoCredito(string descricao,double valorBruto,double desconto,DateTime data){
+   public CartaoCredito(string descricao,double valorBruto,double desconto){
       this.Descricao = descricao;
       this.ValorBruto = valorBruto;
       this.Desconto = desconto;
-      this.Data = data;
    }
    public void RealizarPagamento(double valor)
    {
@@ -35,11 +34,10 @@ public class PagamentoEmDinheiro : IPagamento
    public double Desconto { get; set; } = 0.00;
    public DateTime Data { get; set; } =  DateTime.Now;
 
-   public PagamentoEmDinheiro(string descricao,double valorBruto,double desconto,DateTime data){
+   public PagamentoEmDinheiro(string descricao,double valorBruto,double desconto){
       this.Descricao = descricao;
       this.ValorBruto = valorBruto;
       this.Desconto = desconto;
-      this.Data = data;
    }
    public void RealizarPagamento(double valor)
    {
@@ -54,11 +52,10 @@ public class PagamentoEmPix : IPagamento
    public double Desconto { get; set; } = 0.00;
    public DateTime Data { get; set; } =  DateTime.Now;
 
-   public PagamentoEmPix(string descricao,double valorBruto,double desconto,DateTime data){
+   public PagamentoEmPix(string descricao,double valorBruto,double desconto){
       this.Descricao = descricao;
       this.ValorBruto = valorBruto;
       this.Desconto = desconto;
-      this.Data = data;
    }
 
    public void RealizarPagamento(double valor)
