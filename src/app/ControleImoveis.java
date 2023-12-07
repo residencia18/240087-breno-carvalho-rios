@@ -13,6 +13,18 @@ public class ControleImoveis {
     private static List<Imovel> imoveis  = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
 
+    public ControleImoveis() {
+        try{
+            imoveis.add(new Imovel(
+                    "123465",
+                    "Rua A",
+                    ControleClientes.buscaCliente("08867581570")
+            ));
+        } catch (Exception e) {
+            return;
+        }
+    }
+
     public static void IncluirImovel() {
         System.out.println("Informe a matricula do imovel: ");
         String matricula = scanner.nextLine();

@@ -6,13 +6,13 @@ import java.time.LocalDateTime;
 
 public class Fatura {
     private LocalDateTime data;
-    private LocalDateTime ultimaLeitura;
-    private LocalDateTime penultimaLeitura;
+    private double ultimaLeitura;
+    private double penultimaLeitura;
     private double valor;
     private boolean quitado;
     private Imovel imovel;
 
-    public Fatura(LocalDateTime data, LocalDateTime ultimaLeitura, LocalDateTime penultimaLeitura, double valor, Imovel imovel) {
+    public Fatura(LocalDateTime data, double ultimaLeitura, double penultimaLeitura, double valor, Imovel imovel) {
         this.data = data;
         this.ultimaLeitura = ultimaLeitura;
         this.penultimaLeitura = penultimaLeitura;
@@ -30,19 +30,19 @@ public class Fatura {
         this.data = data;
     }
 
-    public LocalDateTime getUltimaLeitura() {
+    public double getUltimaLeitura() {
         return ultimaLeitura;
     }
 
-    public void setUltimaLeitura(LocalDateTime ultimaLeitura) {
+    public void setUltimaLeitura(double ultimaLeitura) {
         this.ultimaLeitura = ultimaLeitura;
     }
 
-    public LocalDateTime getPenultimaLeitura() {
+    public double getPenultimaLeitura() {
         return penultimaLeitura;
     }
 
-    public void setPenultimaLeitura(LocalDateTime penultimaLeitura) {
+    public void setPenultimaLeitura(double penultimaLeitura) {
         this.penultimaLeitura = penultimaLeitura;
     }
 
@@ -74,7 +74,11 @@ public class Fatura {
 
     @Override
     public String toString() {
-        return "Fatura [data=" + data + ", ultimaLeitura=" + ultimaLeitura + ", penultimaLeitura=" + penultimaLeitura
-                + ", valor=" + valor + ", quitado=" + quitado + ", imovel=" + imovel + "]";
+        return "Imovel: " + imovel.getMatricula() + "\n"
+                + "Data: " + data.toLocalDate() + "\n"
+                + "Valor: R$ " + valor + "\n"
+                + "UltimaLeitura: " + ultimaLeitura + " KW\n"
+                + "PenultimaLeitura: " + penultimaLeitura + " KW\n"
+                + "Quitada: " + quitado + "\n";
     }
 }

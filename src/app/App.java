@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class App {
     Scanner scan = new Scanner(System.in);
-    ControleClientes controleClientes;
-    ControleImoveis controleImoveis;
-    ControleFaturas controleFaturas;
+    ControleClientes controleClientes = new ControleClientes();
+    ControleImoveis controleImoveis = new ControleImoveis();
+    ControleFaturas controleFaturas = new ControleFaturas();
     ControlePagamentos controlePagamentos;
     ControleFalhas controleFalhas;
 
@@ -158,16 +158,16 @@ public class App {
 
             switch (opcao){
                 case 1:
-                    // controleFaturas.algumaCoisa();
+                    ControleFaturas.insereFatura();
                     break;
                 case 2:
-                    // controleFaturas.algumaCoisa();
+                    ControleFaturas.listaFaturas(false);
                     break;
                 case 3:
-                    // controleFaturas.algumaCoisa();
+                    ControleFaturas.listaFaturas(true);
                     break;
                 case 4:
-                    // controleFaturas.algumaCoisa();
+                    ControleFaturas.listaFaturas();
                     break;
                 case 0:
                     break;

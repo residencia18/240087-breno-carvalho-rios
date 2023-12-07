@@ -28,7 +28,7 @@ public class ControlePagamentos {
         String matriculaImovel = scanner.nextLine();
 
 
-        Fatura fatura = controleFaturas.buscarFaturaPorMatricula(matriculaImovel);
+        Fatura fatura = ControleFaturas.buscaFatura(matriculaImovel);
 
         if (fatura == null) {
             System.out.println("Nenhuma fatura encontrada para a matrícula do imóvel fornecida.");

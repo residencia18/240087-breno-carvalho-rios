@@ -4,14 +4,16 @@ import java.time.LocalDateTime;
 
 public class Imovel {
     String matricula, endereco;
-    LocalDateTime ultimaLeitura;
-    LocalDateTime penultimaLeitura;
+    double ultimaLeitura;
+    double penultimaLeitura;
     Cliente proprietario;
 
     public Imovel(String matricula, String endereco, Cliente proprietario) {
         this.matricula = matricula;
         this.endereco = endereco;
         this.proprietario = proprietario;
+        this.penultimaLeitura = 0;
+        this.ultimaLeitura = 0;
     }
 
     public String getMatricula() {
@@ -36,25 +38,25 @@ public class Imovel {
         this.endereco = endereco;
     }
 
-    public LocalDateTime getUltimaLeitura() {
+    public double getUltimaLeitura() {
         return ultimaLeitura;
     }
 
-    public void setUltimaLeitura(LocalDateTime ultimaLeitura) throws Exception {
-        if(ultimaLeitura == null) {
-            throw new Exception("A ultima leitura não pode estar vazia");
+    public void setUltimaLeitura(double ultimaLeitura) throws Exception {
+        if(ultimaLeitura == 0) {
+            throw new Exception("A ultima leitura não pode ser 0!");
         }
         this.ultimaLeitura = ultimaLeitura;
     }
 
 
-    public LocalDateTime getPenultimaLeitura() {
+    public double getPenultimaLeitura() {
         return penultimaLeitura;
     }
 
-    public void setPenultimaLeitura(LocalDateTime penultimaLeitura) throws Exception {
-        if(penultimaLeitura == null) {
-            throw new Exception("A penultima leitura não pode estar vazia");
+    public void setPenultimaLeitura(double penultimaLeitura) throws Exception {
+        if(penultimaLeitura == 0) {
+            throw new Exception("A penultima leitura não pode ser 0!");
         }
         this.penultimaLeitura = penultimaLeitura;
     }
@@ -73,7 +75,7 @@ public class Imovel {
     
     public String toString() {
         return String.format(
-                "Matricula: %s \nEndereco: %s \nUltima Leitura: %s \nPenultima Leitura: %s \nProprietario: %s",
+                "Matricula: %s \nEndereco: %s \nUltima Leitura: %s KW\nPenultima Leitura: %s KW\nProprietario: %s",
                 this.matricula, this.endereco, this.ultimaLeitura, this.penultimaLeitura, this.proprietario.getNome()
         );
     }
