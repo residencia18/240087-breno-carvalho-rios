@@ -240,6 +240,12 @@ public static class RegistroGeral
                 case 4:
                     AlterarProfissao(encontrado);
                     break;
+                case 5:
+                    NovoPagamento(encontrado);
+                    break;
+                case 6:
+                    ExibirPagamentos(encontrado);
+                    break;
                 case 0:
                     break;
                 default:
@@ -264,6 +270,8 @@ public static class RegistroGeral
             Console.WriteLine("\t[2] - Alterar Data de Nascimento");
             Console.WriteLine("\t[3] - Novo Estado Civil");
             Console.WriteLine("\t[4] - Alterar Profissão");
+            Console.WriteLine("\t[5] - Novo Pagamento");
+            Console.WriteLine("\t[6] - Exibir Pagamentos");
             Console.WriteLine("\t[0] - Retornar ao menu anterior!");
             Console.Write("\t-> ");
             string userInput = Console.ReadLine()!;
@@ -273,7 +281,7 @@ public static class RegistroGeral
                 Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
                 App.Pause();
             }
-        } while (opcao > 4 || opcao < 0);
+        } while (opcao > 6 || opcao < 0);
         return opcao;
     }
 
@@ -1022,6 +1030,94 @@ public static class RegistroGeral
         plano.RetirarBeneficio(nome);
 
         App.Cx_Msg("\n\tBeneficio removido com sucesso!");
+    }
+
+    // função para criar novo pagamento obtendo descrição, valor bruto e perguntar ao usuário se houver um desconto
+    public static void NovoPagamento(Cliente cliente)
+    {
+
+        App.LimparTela();
+        Console.WriteLine("\n\tDigite a descrição do pagamento:");
+        string descricao = App.LerString();
+
+        double valorBruto = App.LerDouble("\n\tDigite o valor bruto do pagamento:");
+
+        Console.WriteLine("\n\tDeseja aplicar um desconto? [S] / [N]: ");
+        string resposta = App.LerString().ToUpper();
+
+        double desconto = 0;
+
+        if (resposta == "S")
+            desconto = App.LerDouble("\n\tDigite o valor do desconto:");
+
+        // perguntar se o pagamento é credito, pix ou dinheiro
+
+        int opcao = DispPagamento();
+
+        switch (opcao)
+        {
+            case 1:
+                CartaoCredito novoCredito = new(descricao, valorBruto, desconto);
+                cliente.NovoPagamento(novoCredito);
+                break;
+
+            case 2:
+                PagamentoEmPix novoPix = new(descricao, valorBruto, desconto);
+                cliente.NovoPagamento(novoPix);
+                break;
+
+            case 3:
+                PagamentoEmDinheiro novoDinheiro = new(descricao, valorBruto, desconto);
+                cliente.NovoPagamento(novoDinheiro);
+                break;
+            default:
+                Console.WriteLine("\n\tOpção Inválida!");
+                break;
+        }
+
+        Pagamento novo = new(descricao, valorBruto, desconto);
+        plano.AdicionarPagamento(novo);
+
+        App.Cx_Msg("\n\tPagamento adicionado com sucesso!");
+    }
+
+    public static int DispPagamento()
+    {
+
+        int opcao = -1;
+        do
+        {
+            App.LimparTela();
+            Console.WriteLine("\t====== Forma de Pagamento ======");
+            Console.WriteLine("");
+            Console.WriteLine("\t======== TECH ADVOCACIA ========");
+            Console.WriteLine("\t[1] - Crédito");
+            Console.WriteLine("\t[2] - Pix");
+            Console.WriteLine("\t[3] - Dinheiro");
+            Console.WriteLine("\t[0] - Retornar ao menu anterior!");
+            Console.Write("\t-> ");
+            string userInput = Console.ReadLine()!;
+
+            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao))
+            {
+                Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
+                App.Pause();
+            }
+        } while (opcao > 3 || opcao < 0);
+
+        return opcao;
+    }
+
+    public static void ExibirPagamentos(Cliente cliente)
+    {
+        App.LimparTela();
+        Console.Write("\n\t========= Lista de Pagamentos =========");
+        foreach (Pagamento pagamento in cliente.Pagamentos)
+        {
+            Console.WriteLine(pagamento.ToString());
+            Console.WriteLine("\t=====================================");
+        }
+        App.Pause();
     }
 
 }
