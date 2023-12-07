@@ -1,6 +1,6 @@
-Aaa,78969972587,11/11/1111,Solteiro,Gggg
-Aaxx,609.715.370-89,11/12/2000,Casado,Kkknn
-Albert,241.982.180-72,17/12/1979,Casado,A
-Kayque Almeida Piton,05554694500,28/12/1996,Solteiro,Programador
+Aaa,24198218072,11/11/1111,Solteiro,Gggg
+Aaxx,60971537089,11/12/2000,Casado,Kkknn
+Albert,78969972587,17/12/1979,Casado,A
+Kayque Almeida Piton,77777777777,28/12/1996,Solteiro,Programador
 Teste Estado Civil,22222222222,03/11/1995,Casado,Engenheiro Eletrico
-Breno Rios Cliente,08867581570,17/07/2001,Solteiro,Dev
+Breno Rios Cliente,55555555555,17/07/2001,Solteiro,Dev
