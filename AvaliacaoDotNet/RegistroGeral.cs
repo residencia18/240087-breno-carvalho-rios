@@ -1,4 +1,6 @@
-﻿namespace AvaliacaoDotNet;
+﻿using System.Security.Cryptography;
+
+namespace AvaliacaoDotNet;
 
 public static class RegistroGeral
 {
@@ -6,6 +8,8 @@ public static class RegistroGeral
     public static List<Cliente> Clientes = new();
     public static List<CasoJuridico> Casos = new();
     public static List<RelacaoCasoAdvogado> RelacoesCasoAdvogado = new();
+
+    public static List<PlanoConsultoria> Planos = new();
 
     public static void NovoAdvogado()
     {
@@ -869,4 +873,155 @@ public static class RegistroGeral
         }
         return custos;
     }
+
+    public static void NovoPlano()
+    {
+
+        //Criando novo plano com os atributos titulo e valor
+        App.LimparTela();
+        Console.WriteLine("\n\tDigite o titulo do plano:");
+        string titulo = App.LerString();
+
+        double valor = App.LerDouble("\n\tDigite o valor do plano:");
+
+        PlanoConsultoria novo = new(titulo, valor);
+
+        string resposta;
+        do
+        {
+
+            Console.WriteLine("\n\tDeseja cadastrar um novo beneficio? [S] / [N]: ");
+            resposta = App.LerString().ToUpper();
+
+            if (resposta == "N")
+                break;
+
+            Console.WriteLine("\n\tDigite o beneficio:");
+            string nome = App.LerString();
+
+            novo.NovoBeneficio(nome);
+
+            App.Cx_Msg("\n\tBeneficio adicionado com sucesso!");
+
+        } while (resposta != "N");
+
+        Planos.Add(novo);
+
+        App.Cx_Msg("\n\tPlano adicionado com sucesso!");
+
+    }
+
+    public static void ExibirPlanos()
+    {
+        App.LimparTela();
+        Console.Write("\n\t========= Lista de Planos =========");
+        foreach (PlanoConsultoria plano in Planos)
+        {
+            Console.WriteLine(plano.ToString());
+            Console.WriteLine("\t=====================================");
+        }
+        App.Pause();
+    }
+
+    public static void RemoverPlano()
+    {
+
+        App.LimparTela();
+        Console.WriteLine("\n\tDigite o titulo do plano:");
+        string titulo = App.LerString();
+
+        PlanoConsultoria? encontrado = Planos.FirstOrDefault(p => p.Titulo == titulo);
+        if (encontrado == default)
+        {
+            App.Cx_Msg("\n\tO titulo informado não corresponde a nenhum plano cadastrado!");
+            return;
+        }
+
+        Planos.Remove(encontrado);
+        App.Cx_Msg("\n\tPlano removido com sucesso!");
+    }
+
+    public static void BuscarPlano()
+    {
+
+        App.LimparTela();
+        Console.WriteLine("\n\tDigite o titulo do plano:");
+        string titulo = App.LerString();
+
+        PlanoConsultoria? encontrado = Planos.FirstOrDefault(p => p.Titulo == titulo);
+        if (encontrado == default)
+        {
+            App.Cx_Msg("\n\tO titulo informado não corresponde a nenhum plano cadastrado!");
+            return;
+        }
+
+        int opcao;
+        do
+        {
+            opcao = DispBuscarPlano(encontrado);
+            switch (opcao)
+            {
+                case 1:
+                    AdcionarBeneficio(encontrado);
+                    break;
+                case 2:
+                    RemoverBeneficio(encontrado);
+                    break;
+                case 0:
+                    break;
+                default:
+                    App.Cx_Msg("\n\tOpção Inválida!");
+                    break;
+            }
+        } while (opcao != 0);
+    }
+
+    public static int DispBuscarPlano(PlanoConsultoria plano)
+    {
+        int opcao = -1;
+        do
+        {
+            App.LimparTela();
+            Console.WriteLine("\t====== Plano Encontrado ======");
+            Console.WriteLine(plano.ToString());
+            Console.WriteLine("");
+            Console.WriteLine("\t======== TECH ADVOCACIA ========");
+            Console.WriteLine("\t[1] - Inserir Beneficio");
+            Console.WriteLine("\t[2] - Remover Beneficio");
+            Console.WriteLine("\t[0] - Retornar ao menu anterior!");
+            Console.Write("\t-> ");
+            string userInput = Console.ReadLine()!;
+
+            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao))
+            {
+                Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
+                App.Pause();
+            }
+        } while (opcao > 2 || opcao < 0);
+
+        return opcao;
+    }
+
+    public static void AdcionarBeneficio(PlanoConsultoria plano)
+    {
+        App.LimparTela();
+        Console.WriteLine("\n\tDigite o beneficio:");
+        string nome = App.LerString();
+
+        plano.NovoBeneficio(nome);
+
+        App.Cx_Msg("\n\tBeneficio adicionado com sucesso!");
+    }
+
+    public static void RemoverBeneficio(PlanoConsultoria plano)
+    {
+        App.LimparTela();
+        Console.WriteLine("\n\tDigite o beneficio:");
+        string nome = App.LerString();
+
+        plano.RetirarBeneficio(nome);
+
+        App.Cx_Msg("\n\tBeneficio removido com sucesso!");
+    }
+
 }

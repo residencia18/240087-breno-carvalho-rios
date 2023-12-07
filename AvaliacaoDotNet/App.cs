@@ -455,12 +455,40 @@ public class App
         Console.WriteLine(formatada);
         Console.WriteLine("\tFalta " + (365 - data.DayOfYear) + " dias para o fim do ano.\n");
     }
+
+    public static double LerDouble(string mensagem)
+    {
+        while (true)
+        {
+            Console.Write(mensagem);
+
+            string input = Console.ReadLine()!;
+
+            if (string.IsNullOrEmpty(input))
+            {
+                LimparTela();
+                Console.WriteLine("\n\tEntrada inválida. Por favor, insira um valor numérico.");
+                continue;
+            }
+
+            if (double.TryParse(input, out double valor))
+                return valor;
+            else
+            {
+                LimparTela();
+                Console.WriteLine("\n\tEntrada inválida. Por favor, insira um valor numérico válido.");
+            }
+            Pause();
+        }
+    }
+
     public static void LimparTela()
     {
         Console.Clear(); // Windows
         if (Environment.OSVersion.Platform != PlatformID.Win32NT)
             Console.Write("\u001b[2J\u001b[1;1H"); // Linux
     }
+    
     public static void Pause()
     {
         Console.Write("\n\tPressione Enter para continuar...");

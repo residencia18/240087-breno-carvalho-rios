@@ -20,6 +20,10 @@ public class CartaoCredito : IPagamento
    {
       Console.WriteLine($"Pagamento de {valor} realizado com cartão de crédito");
    }
+
+   public override string ToString(){
+      return $"Pagamento no valor de R${ValorBruto - Desconto:C2} na data: {Data.ToShortDateString()}! Descrição: {Descricao}";
+   }
 }
 
 // exemples double in c# ?
