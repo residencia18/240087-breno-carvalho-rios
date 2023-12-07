@@ -344,23 +344,35 @@ namespace AvaliacaoDotNet
 
             App.Pause();
         }
+
         public static void RelatorioCasosEmAbertoOrdemCrescente(List<CasoJuridico> casosJuridicos)
         {
             App.LimparTela();
             Console.WriteLine("\n\t=== Lista de Casos com o status “Em aberto”, em ordem crescente pela data de início ===");
 
-            var casosJuridicosFiltrados = casosJuridicos.OrderBy(caso => caso.DataInicio);
+            var casosJuridicosFiltrados = casosJuridicos.Where(caso => caso.Status.ToLower() == "em aberto")
+                .OrderBy(caso => caso.DataInicio);
 
-            App.LimparTela();
-            foreach (CasoJuridico casoJuridico in casosJuridicosFiltrados)
+            App.LimparTela();   
+
+            if (casosJuridicosFiltrados.Count() > 0)
             {
-                Console.WriteLine("\n\t=========== CASO JURÍDICO ===========");
-                Console.WriteLine(casoJuridico.ToString());
-                Console.WriteLine("\t==========================\n");
+                Console.WriteLine("\n\tCASOS JURÍDICOS ENCONTRADOS:");
+                foreach (var caso in casosJuridicosFiltrados)
+                {
+                    Console.WriteLine("\n\t=========== CASO JURÍDICO ===========");
+                    Console.WriteLine(caso.ToString());                    
+                    Console.Write($"\t==========================");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\n\tNenhum caso jurídico encontrado.");
             }
 
             App.Pause();
         }
+
         public static void AdvogadosOrdemDecrescenteCasosConcluidos(List<RelacaoCasoAdvogado> relacaoCasoAdvogado) {
             App.LimparTela();
             Console.WriteLine("\n\t========== Lista de Advogados em ordem decrescente de casos concluídos ==========");
@@ -390,6 +402,7 @@ namespace AvaliacaoDotNet
 
             App.Pause();
         }
+
         public static void RelatorioCasosCujaDescricaoCustoContenhaTexto(List<CasoJuridico> casosJuridicos)
         {
             App.LimparTela();
@@ -422,6 +435,7 @@ namespace AvaliacaoDotNet
 
             App.Pause();
         }
+
         public static void RelatorioTop10DocumentosMaisInseridos(List<CasoJuridico> casosJuridicos)
         {
             App.LimparTela();

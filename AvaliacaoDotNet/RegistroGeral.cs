@@ -326,22 +326,22 @@ public static class RegistroGeral
     {
         App.LimparTela();
 
-        Console.WriteLine("\n\tDigite a data de abertura do caso (formato: dd/mm/yyyy):");
+        Console.Write("\n\tDigite a data de abertura do caso (formato: dd/mm/yyyy): ");
         DateTime data = App.LerData();
 
         App.LimparTela();
-        Console.WriteLine("\n\tDigite o CPF do cliente do caso:");
+        Console.Write("\n\tDigite o CPF do cliente do caso: ");
         string cpf = App.LerString();
 
         while (!HasCliente(cpf))
         {
             Console.WriteLine("\n\tCliente não encontrado!");
-            Console.WriteLine("\n\tDeseja tentar novamente? [S] / [N]");
+            Console.Write("\n\tDeseja tentar novamente? [S] / [N]: ");
             cpf = App.LerString();
             if (cpf.ToUpper() == "N")
                 return;
             App.LimparTela();
-            Console.WriteLine("\n\tDigite o CPF do cliente do caso:");
+            Console.Write("\n\tDigite o CPF do cliente do caso: ");
             cpf = App.LerString();
         }
 
@@ -362,7 +362,7 @@ public static class RegistroGeral
 
         while (true)
         {
-            Console.WriteLine("\n\tDeseja adicionar mais documentos ao caso? [S] / [N]");
+            Console.Write("\n\tDeseja adicionar mais documentos ao caso? [S] / [N]: ");
             string resposta = App.LerString().ToUpper();
 
             if (resposta == "N")
@@ -373,7 +373,7 @@ public static class RegistroGeral
 
         List<(float, string)> custosDoCaso = ColetarCustos();
 
-        Console.WriteLine("\n\tQual a probabilidade de sucesso? (0.00 a 100.00)");
+        Console.Write("\n\tQual a probabilidade de sucesso? (0.00 a 100.00): ");
         float probabilidade;
         while (!float.TryParse(App.LerString(), out probabilidade) || probabilidade < 0 || probabilidade > 100)
         {
@@ -397,7 +397,7 @@ public static class RegistroGeral
     public static void BuscarCaso()
     {
         App.LimparTela();
-        Console.WriteLine("\n\tDigite o CPF do cliente do caso:");
+        Console.Write("\n\tDigite o CPF do cliente do caso: ");
         string cpf = App.LerString();
 
         CasoJuridico? encontrado = Casos.FirstOrDefault(c => c.Cliente.Cpf == cpf);
@@ -575,12 +575,10 @@ public static class RegistroGeral
 
             for (int i = 0; i < caso.Custos.Count; i++)
                 Console.WriteLine($"{i + 1}. Valor: {caso.Custos[i].Item1:C2}, Descrição: {caso.Custos[i].Item2}");
-
             Console.WriteLine("\n\tOpções:");
             Console.WriteLine("\n\t1. Inserir Custo");
             Console.WriteLine("\n\t2. Remover Custo");
             Console.WriteLine("\n\t3. Sair");
-
             Console.Write("\n\tEscolha a opção: ");
             string escolha = App.LerString();
 
@@ -658,7 +656,7 @@ public static class RegistroGeral
 
     public static void RemoverAssociacaoAdvogadoCaso(CasoJuridico caso)
     {
-        Console.WriteLine("\n\tInforme o cna do advogado que deseja remover:");
+        Console.Write("\n\tInforme o cna do advogado que deseja remover:");
         string cna = App.LerString();
 
         RelacaoCasoAdvogado? associacaoParaRemover = RelacaoCasoAdvogado.listaCasoAdvogados.FirstOrDefault(a =>
@@ -685,8 +683,7 @@ public static class RegistroGeral
             Console.WriteLine("\t1. Concluído");
             Console.WriteLine("\t2. Arquivado");
             Console.WriteLine("\t0. Retornar ao menu anterior");
-
-            Console.Write("-> ");
+            Console.Write("\t-> ");
             string escolha = App.LerString();
             DateTime data;
 
@@ -695,7 +692,7 @@ public static class RegistroGeral
                 case "1":
                     do
                     {
-                        Console.WriteLine("\n\tInforme a data de encerramento!");
+                        Console.Write("\n\tInforme a data de encerramento: ");
                         data = App.LerData();
                         if (caso.DataInicio < data)
                         {
@@ -710,7 +707,7 @@ public static class RegistroGeral
                 case "2":
                     do
                     {
-                        Console.WriteLine("\n\tInforme a data de encerramento!");
+                        Console.Write("\n\tInforme a data de encerramento: ");
                         data = App.LerData();
                         if (caso.DataInicio > data)
                             break;
@@ -782,7 +779,7 @@ public static class RegistroGeral
     private static List<Advogado>? ColetarAdvogados()
     {
         App.LimparTela();
-        Console.WriteLine("\n\tDigite o cna do advogado resposável pelo caso:");
+        Console.Write("\n\tDigite o cna do advogado resposável pelo caso: ");
         string cna = App.LerString();
         Advogado? advogado = Advogados.FirstOrDefault(a => a.Cna == cna);
         List<Advogado> advogadosNoCaso = new();
@@ -790,12 +787,12 @@ public static class RegistroGeral
         while (advogado == default)
         {
             Console.WriteLine("\n\tAdvogado não encontrado!");
-            Console.WriteLine("\n\tDeseja tentar novamente? [S] / [N]");
+            Console.Write("\n\tDeseja tentar novamente? [S] / [N]: ");
             cna = App.LerString();
             if (cna.ToUpper() == "N")
                 return default;
             App.LimparTela();
-            Console.WriteLine("\n\tDigite o cna do advogado resposável pelo caso:");
+            Console.Write("\n\tDigite o cna do advogado resposável pelo caso: ");
             cna = App.LerString();
             advogado = Advogados.FirstOrDefault(a => a.Cna == cna);
         }
@@ -805,13 +802,13 @@ public static class RegistroGeral
         while (true)
         {
             App.LimparTela();
-            Console.WriteLine("\n\tDeseja adicionar mais advogados ao caso? [S] / [N]");
+            Console.Write("\n\tDeseja adicionar mais advogados ao caso? [S] / [N]: ");
             string resposta = App.LerString().ToUpper();
 
             if (resposta == "N")
                 break;
 
-            Console.WriteLine("\n\tDigite o cna do próximo advogado:");
+            Console.Write("\n\tDigite o cna do próximo advogado: ");
             cna = App.LerString();
             advogado = Advogados.FirstOrDefault(a => a.Cna == cna);
 
@@ -828,15 +825,15 @@ public static class RegistroGeral
 
     private static Documento ColetarDocumento()
     {
-        Console.WriteLine("\n\tInforme o tipo do documento do caso:");
+        Console.Write("\n\tInforme o tipo do documento do caso: ");
         string tipo = App.LerString();
 
-        int codigo = App.LerNumeroInteiro("\n\tInforme o código do documento:");
+        int codigo = App.LerNumeroInteiro("\n\tInforme o código do documento: ");
 
-        Console.WriteLine("\n\tInforme a data de modificação do documento:");
+        Console.Write("\n\tInforme a data de modificação do documento: ");
         DateTime data = App.LerData();
 
-        Console.WriteLine("\n\tInforme a descrição do documento:");
+        Console.Write("\n\tInforme a descrição do documento: ");
         string descricao = App.LerString();
 
         Documento documento = new(data, codigo, tipo, descricao);
@@ -849,22 +846,21 @@ public static class RegistroGeral
 
         while (true)
         {
-            Console.WriteLine("\n\tInforme o valor do custo:");
+            Console.Write("\n\tInforme o valor do custo: ");
             float valor;
             while (!float.TryParse(App.LerString(), out valor))
                 Console.WriteLine("\n\tValor inválido. Tente novamente.");
 
-            Console.WriteLine("\n\tInforme a descrição do custo:");
+            Console.Write("\n\tInforme a descrição do custo: ");
             string descricao = App.LerString();
 
             custos.Add((valor, descricao));
 
-            Console.WriteLine("\n\tDeseja adicionar mais custos? [S] / [N]");
+            Console.Write("\n\tDeseja adicionar mais custos? [S] / [N]: ");
             string resposta = App.LerString().ToUpper();
             if (resposta != "S")
                 break;
         }
         return custos;
     }
-
 }
