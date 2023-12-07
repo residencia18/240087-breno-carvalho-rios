@@ -922,7 +922,7 @@ public static class RegistroGeral
     public static void ExibirPlanos()
     {
         App.LimparTela();
-        Console.Write("\n\t========= Lista de Planos =========");
+        Console.WriteLine("\n\t========= Lista de Planos =========\n");
         foreach (PlanoConsultoria plano in Planos)
         {
             Console.WriteLine(plano.ToString());

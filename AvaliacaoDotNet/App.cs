@@ -412,6 +412,7 @@ public class App
         string? input;
         do
         {
+            Console.Write("\t");
             input = Console.ReadLine()?.Trim();
         } while (string.IsNullOrEmpty(input));
 
