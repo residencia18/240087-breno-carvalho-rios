@@ -4,6 +4,7 @@ public static class RegistroGeral{
     public static List<Advogado> Advogados = new();
     public static List<Cliente> Clientes = new();
     public static List<CasoJuridico> Casos = new();
+    public static List<RelacaoCasoAdvogado> RelacoesCasoAdvogado = new();
 
 
     public static void NovoAdvogado(){
@@ -566,6 +567,7 @@ public static class RegistroGeral{
                         continue;
                     foreach (Advogado advogado in novosAdvogados){
                         RelacaoCasoAdvogado relacao = new(caso, advogado);
+                        RelacoesCasoAdvogado.Add(relacao);
                     }
                     break;
                 case "2":

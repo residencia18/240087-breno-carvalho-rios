@@ -148,7 +148,7 @@ public class App
                     Relatorios.RelatorioCasosEmAbertoOrdemCrescente(RegistroGeral.Casos);
                     break;
                 case 8:
-                    Relatorios.AdvogadosOrdemDecrescenteCasosConcluidos(RegistroGeral.Casos);
+                    Relatorios.AdvogadosOrdemDecrescenteCasosConcluidos(RegistroGeral.RelacoesCasoAdvogado);
                     break;
                 case 9:
                     Relatorios.RelatorioCasosCujaDescricaoCustoContenhaTexto(RegistroGeral.Casos);

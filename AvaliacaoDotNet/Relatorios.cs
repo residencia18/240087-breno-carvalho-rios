@@ -361,14 +361,13 @@ namespace AvaliacaoDotNet
 
             App.Pause();
         }
-        public static void AdvogadosOrdemDecrescenteCasosConcluidos(List<CasoJuridico> casosJuridicos) {
+        public static void AdvogadosOrdemDecrescenteCasosConcluidos(List<RelacaoCasoAdvogado> relacaoCasoAdvogado) {
             App.LimparTela();
             Console.WriteLine("\n\t========== Lista de Advogados em ordem decrescente de casos concluídos ==========");
 
-            var listaAdvogados = casosJuridicos
-                .Where(caso => caso.Status.ToLower() == "concluido")
-                .SelectMany(caso => caso.Advogados)
-                .GroupBy(advogado => advogado.Nome)
+            var listaAdvogados = relacaoCasoAdvogado
+                .Where(relacao => relacao.Caso.Status.ToLower() == "concluido")
+                .GroupBy(relacao => relacao.Advogado.Nome)
                 .Select(grupo => new { NomeAdvogado = grupo.Key, QuantidadeCasosConcluidos = grupo.Count() })
                 .OrderByDescending(resultado => resultado.QuantidadeCasosConcluidos)
                 .ToList();
