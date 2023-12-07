@@ -488,7 +488,7 @@ public class App
         if (Environment.OSVersion.Platform != PlatformID.Win32NT)
             Console.Write("\u001b[2J\u001b[1;1H"); // Linux
     }
-    
+
     public static void Pause()
     {
         Console.Write("\n\tPressione Enter para continuar...");
