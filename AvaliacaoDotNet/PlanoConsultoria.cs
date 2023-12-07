@@ -37,4 +37,8 @@ public class PlanoConsultoria{
         App.Cx_Msg("O benefício não é fornecido neste plano!");
         return;
     }
+
+    public override string ToString(){
+        return $"Plano: {Titulo}, valor R${Valor:C2}";
+    }
 }

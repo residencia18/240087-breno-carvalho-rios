@@ -117,7 +117,7 @@ public class App
                 case 1:
                     try
                     {
-                        // RegistroGeral.NovoPlano();
+                        RegistroGeral.NovoPlano();
                     }
                     catch (ArgumentException e)
                     {
@@ -129,13 +129,13 @@ public class App
                     }
                     break;
                 case 2:
-                    // RegistroGeral.ExibirPlanos();
+                    RegistroGeral.ExibirPlanos();
                     break;
                 case 3:
-                    // RegistroGeral.RemoverPlano();
+                    RegistroGeral.RemoverPlano();
                     break;
                 case 4:
-                    // RegistroGeral.BuscarPlano();
+                    RegistroGeral.BuscarPlano();
                     break;
                 case 0:
                     break;

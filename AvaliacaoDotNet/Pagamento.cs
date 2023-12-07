@@ -43,6 +43,9 @@ public class PagamentoEmDinheiro : IPagamento
    {
       Console.WriteLine($"Pagamento de {valor} realizado em dinheiro");
    }
+   public override string ToString(){
+      return $"Pagamento no valor de R${ValorBruto - Desconto:C2} na data: {Data.ToShortDateString()}! Descrição: {Descricao}";
+   }
 }
 public class PagamentoEmPix : IPagamento
 {
@@ -61,5 +64,8 @@ public class PagamentoEmPix : IPagamento
    public void RealizarPagamento(double valor)
    {
       Console.WriteLine($"Pagamento de {valor} realizado com Pix");
+   }
+   public override string ToString(){
+      return $"Pagamento no valor de R${ValorBruto - Desconto:C2} na data: {Data.ToShortDateString()}! Descrição: {Descricao}";
    }
 }

@@ -1,4 +1,4 @@
-namespace AvaliacaoDotNet
+namespace AvaliacaoDotNet;
 
 public class PlanoDeConsultorio
 {
