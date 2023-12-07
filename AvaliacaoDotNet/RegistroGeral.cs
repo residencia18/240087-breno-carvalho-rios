@@ -7,6 +7,8 @@ public static class RegistroGeral
     public static List<CasoJuridico> Casos = new();
     public static List<RelacaoCasoAdvogado> RelacoesCasoAdvogado = new();
 
+    public static List<PlanoConsultoria> Planos = new();
+
     public static void NovoAdvogado()
     {
         App.LimparTela();
@@ -869,4 +871,13 @@ public static class RegistroGeral
         }
         return custos;
     }
+
+    public static void NovoPlano();
+
+    public static void ExibirPlanos();
+
+    public static void RemoverPlano();
+
+    public static void BuscarPlano();
+    
 }
