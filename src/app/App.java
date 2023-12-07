@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class App {
     Scanner scan = new Scanner(System.in);
-    ControleClientes controleClientes;
-    ControleImoveis controleImoveis;
-    ControleFaturas controleFaturas;
+    ControleClientes controleClientes = new ControleClientes();
+    ControleImoveis controleImoveis = new ControleImoveis();
+    ControleFaturas controleFaturas = new ControleFaturas();
     ControlePagamentos controlePagamentos;
     ControleFalhas controleFalhas;
 
     public App() {
-        controleClientes = new ControleClientes();
+
     }
     public void run() {
         int opcao = -1;
@@ -75,19 +75,19 @@ public class App {
 
             switch (opcao){
                 case 1:
-                    controleClientes.insereCliente();
+                    ControleClientes.insereCliente();
                     break;
                 case 2:
-                    controleClientes.consultaCliente();
+                    ControleClientes.consultaCliente();
                     break;
                 case 3:
-                    controleClientes.listaClientes();
+                    ControleClientes.listaClientes();
                     break;
                 case 4:
-                    controleClientes.editaCliente();
+                    ControleClientes.editaCliente();
                     break;
                 case 5:
-                    controleClientes.excluiCliente();
+                    ControleClientes.excluiCliente();
                     break;
                 case 0:
                     break;
@@ -117,19 +117,19 @@ public class App {
 
             switch (opcao){
                 case 1:
-                    // controleImoveis.algumaCoisa();
+                    ControleImoveis.IncluirImovel();
                     break;
                 case 2:
-                    // controleImoveis.algumaCoisa();
+                    ControleImoveis.ConsultarImovel();
                     break;
                 case 3:
-                    // controleImoveis.algumaCoisa();
+                    ControleImoveis.ListarImoveis();
                     break;
                 case 4:
-                    // controleImoveis.algumaCoisa();
+                    ControleImoveis.AlterarImovel();
                     break;
                 case 5:
-                    // controleImoveis.algumaCoisa();
+                    ControleImoveis.ExcluirImovel();
                     break;
                 case 0:
                     break;
@@ -158,16 +158,16 @@ public class App {
 
             switch (opcao){
                 case 1:
-                    // controleFaturas.algumaCoisa();
+                    ControleFaturas.insereFatura();
                     break;
                 case 2:
-                    // controleFaturas.algumaCoisa();
+                    ControleFaturas.listaFaturas(false);
                     break;
                 case 3:
-                    // controleFaturas.algumaCoisa();
+                    ControleFaturas.listaFaturas(true);
                     break;
                 case 4:
-                    // controleFaturas.algumaCoisa();
+                    ControleFaturas.listaFaturas();
                     break;
                 case 0:
                     break;
