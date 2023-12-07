@@ -127,34 +127,38 @@ public class App
             opcao = DispMenuRelatorios();
             switch (opcao){
                 case 1:
-                    // relatorio 1
+                    Relatorios.RelatorioAdvogadosIdadeEntreDoisValores(RegistroGeral.Advogados);
                     break;
                 case 2:
-                    // relatorio 2
+                    Relatorios.RelatorioClientesIdadeEntreDoisValores(RegistroGeral.Clientes);
                     break;
                 case 3:
-                    // relatorio 3
+                    Relatorios.RelatorioEstadoCivilInformadoPeloUsuario(RegistroGeral.Clientes);
                     break;
                 case 4:
-                    // relatorio 4
+                    Relatorios.RelatorioClienteEmOrdemAlfabetica(RegistroGeral.Clientes);
                     break;
                 case 5:
-                    // relatorio 5
+                    Relatorios.RelatorioClientesCujaProfissaoContenhaTexto(RegistroGeral.Clientes);
                     break;
                 case 6:
-                    // relatorio 6
+                    Relatorios.RelatorioAdvogadosEClientesAniversariantesDoMes(RegistroGeral.Advogados, RegistroGeral.Clientes);
                     break;
                 case 7:
-                    // relatorio 7
+                    // ToDo
+                    // Casos com o status “Em aberto”, em ordem crescente pela data de início
                     break;
                 case 8:
-                    // relatorio 8
+                    // ToDo
+                    // Advogados em ordem decrescente pela quantidade de casos com status “Concluído”
                     break;
                 case 9:
-                    // relatorio 9
+                    // ToDo
+                    // Casos que possuam custo com uma determinada palavra na descrição
                     break;
                 case 10:
-                    // relatorio 10
+                    // ToDo
+                    // Top 10 tipos de documentos mais inseridos nos casos
                     break;
                 case 0:
                     break;
