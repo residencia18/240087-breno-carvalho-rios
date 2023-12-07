@@ -1,5 +1,4 @@
 namespace AvaliacaoDotNet
-using System.Collections.Generic;
 
 public class PlanoDeConsultorio
 {
