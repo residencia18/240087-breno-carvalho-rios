@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cBlQbK5fwkqt0ZncI1dJLI/ElDUeOg9eSN5+1MmoJY39hhlk+i6in5OzCLrGyJOSn15ZKkn+g87ZLXjBPDCveg==",
+  "dgSpecHash": "qC2GEds36A3PW8+mqWNjtECrL0Y0NtdEAV2+dUb3r/tmmSZcSiP30MYb6Zx8F8CmS4KyDhy5EaEobU4hx1kaSA==",
   "success": true,
-  "projectFilePath": "E:\\repositorios\\equipe5-dotnet\\AvaliacaoDotNet\\AvaliacaoDotNet.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\godof\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\godof\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\godof\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\godof\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\alber\\OneDrive\\Documentos\\ProjetosResidencia\\equipe5-dotnet\\AvaliacaoDotNet\\AvaliacaoDotNet.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
