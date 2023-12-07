@@ -23,36 +23,36 @@ public class CasoJuridico{
 
     public void AddDocumento(Documento documento){
         if(Documentos.Contains(documento))
-            throw new InvalidOperationException("Já existe um documento neste caso com o código informado!");
+            throw new InvalidOperationException("\n\tJá existe um documento neste caso com o código informado!");
         Documentos.Add(documento);
-        App.Cx_Msg("Documento adicionado com sucesso!");
+        App.Cx_Msg("\n\tDocumento adicionado com sucesso!");
     }
 
     public void RemoveDocumento(int _codigo){
         if(Documentos.Count == 1)
-            throw new InvalidOperationException("Ao menos um documento precisa ser anexado ao caso!");
+            throw new InvalidOperationException("\n\tAo menos um documento precisa ser anexado ao caso!");
         Documento? documento = Documentos.FirstOrDefault(d => d.Codigo == _codigo);
         if(documento == default)
-            throw new InvalidOperationException("Não foi encontrado um documento com o código informado!");
+            throw new InvalidOperationException("\n\tNão foi encontrado um documento com o código informado!");
         Documentos.Remove(documento);
-        App.Cx_Msg("Documento removido com sucesso!");
+        App.Cx_Msg("\n\tDocumento removido com sucesso!");
     }
 
     public void AdicionarCusto(float valor, string descricao){
         Custos.Add((valor, descricao));
-        App.Cx_Msg("Novo custo adicionado com sucesso!");
+        App.Cx_Msg("\tNovo custo adicionado com sucesso!");
     }
 
     public void RemoverCusto(float valor, string descricao){
         if(Custos.Count == 1)
-            throw new InvalidOperationException("Ao menos um custo deve ser informado!");
+            throw new InvalidOperationException("\tAo menos um custo deve ser informado!");
         var Remover = Custos.FirstOrDefault(c => c.Item1 == valor && c.Item2 == descricao);
 
         if (Remover == default)
-            throw new InvalidOperationException("Não foi encontrado um custo com os mesmos valores na lista!");
+            throw new InvalidOperationException("\tNão foi encontrado um custo com os mesmos valores na lista!");
 
         Custos.Remove(Remover);
-        App.Cx_Msg("Custo removido com sucesso!");
+        App.Cx_Msg("\tCusto removido com sucesso!");
     }
 
     public float CalcularCustoTotal(){
@@ -62,13 +62,13 @@ public class CasoJuridico{
     public new string ToString(){
         string texto;
         if(Status == "Em aberto"){
-            texto = $"Abertura do caso: {DataInicio.ToShortDateString()} \n" +
-                    $"Probabilidade de sucesso: {ProbabilidadeSucesso:F2} \n";
+            texto = $"\tAbertura do caso: {DataInicio.ToShortDateString()} \n" +
+                    $"\tProbabilidade de sucesso: {ProbabilidadeSucesso:F2} \n";
         }else
-            texto = $"Encerramento do caso: {DataEncerramento.ToString} \n";
-        texto += $"Custo total: {CalcularCustoTotal():F2} \n" +
-                 $"Nº de documentos: {Documentos.Count} \n" +
-                 $"Status: {Status}\n";
+            texto = $"\tEncerramento do caso: {DataEncerramento.ToString} \n";
+        texto += $"\tCusto total: {CalcularCustoTotal():F2} \n" +
+                 $"\tNº de documentos: {Documentos.Count} \n" +
+                 $"\tStatus: {Status}\n";
         return texto;
     }
 }
