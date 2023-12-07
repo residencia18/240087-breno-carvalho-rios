@@ -8,11 +8,9 @@ public class Imovel {
     LocalDateTime penultimaLeitura;
     Cliente proprietario;
 
-    public Imovel(String matricula, String endereco, LocalDateTime ultimaLeitura, LocalDateTime penultimaLeitura, Cliente proprietario) {
+    public Imovel(String matricula, String endereco, Cliente proprietario) {
         this.matricula = matricula;
         this.endereco = endereco;
-        this.ultimaLeitura = ultimaLeitura;
-        this.penultimaLeitura = penultimaLeitura;
         this.proprietario = proprietario;
     }
 
@@ -74,7 +72,10 @@ public class Imovel {
     }
     
     public String toString() {
-        return String.format("Matricula: %s \nEndereco: %s \nUltima Leitura: %s \nPenultima Leitura: %s \nProprietario: %s", this.matricula, this.endereco, this.ultimaLeitura, this.penultimaLeitura, this.proprietario);
+        return String.format(
+                "Matricula: %s \nEndereco: %s \nUltima Leitura: %s \nPenultima Leitura: %s \nProprietario: %s",
+                this.matricula, this.endereco, this.ultimaLeitura, this.penultimaLeitura, this.proprietario.getNome()
+        );
     }
 
 }

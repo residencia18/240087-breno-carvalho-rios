@@ -10,82 +10,115 @@ import java.util.Scanner;
 
 public class ControleImoveis {
 
-    private List<Imovel> imoveis;
-    private Scanner scanner;
+    private static List<Imovel> imoveis  = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
 
-    public ControleImoveis() {
-        this.imoveis = new ArrayList<>();
-        this.scanner = new Scanner(System.in);
-    }
+    public static void IncluirImovel() {
+        System.out.println("Informe a matricula do imovel: ");
+        String matricula = scanner.nextLine();
 
-    public void IncluirImovel() throws Exception {
-        System.out.println("Informe o nome do imovel: ");
-        String nome = scanner.nextLine();
+        if(buscaImovel(matricula) != null){
+            System.out.println("A matricula deve ser única!");
+            return;
+        }
+
         System.out.println("Informe o endereco do imovel: ");
         String endereco = scanner.nextLine();
-        System.out.println("Informe penultima leitura: ");
-        LocalDateTime penultimaDataCadastro = LocalDateTime.parse(scanner.nextLine());
-        System.out.println("Informe ultima leitura: ");
-        LocalDateTime ultimaDataCadastro = LocalDateTime.parse(scanner.nextLine());
-        
-        System.out.println("Informe o nome do cliente: ");
-        String nomeCliente = scanner.nextLine();
-        System.out.println("Informe o cpf do cliente: ");
-        String cpf = scanner.nextLine();
 
-        Cliente cliente = new Cliente(nomeCliente, cpf);
-        Imovel imovel = new Imovel(nome, endereco, ultimaDataCadastro, penultimaDataCadastro, cliente);
-        imoveis.add(imovel);
+        Cliente cliente = ControleClientes.buscaCliente();
+        if (cliente == null) {
+            System.out.println("Cliente não econtrado!");
+            return;
+        }
+
+        try {
+            Imovel imovel = new Imovel(matricula, endereco, cliente);
+            imoveis.add(imovel);
+            System.out.println("Imóvel cadastrado com sucesso!");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return;
+        }
     }
 
-    public void ListarImoveis(){
+    public static void ListarImoveis(){
         for (Imovel imovel : imoveis) {
             System.out.println(imovel);
         }
     }
 
-    public void ConsultarImovel(){
-        System.out.println("Informe o nome do imovel: ");
-        String nome = scanner.nextLine();
-        for (Imovel imovel : imoveis) {
-            if(imovel.getMatricula().equals(nome)){
-                System.out.println(imovel);
-            }
+    public static void ConsultarImovel(){
+        Imovel imovel = buscaImovel();
+        if(imovel == null) {
+            System.out.println("Imóvel não encontrado!");
+            return;
         }
+        System.out.println(imovel.toString());
     }
 
-    public void AlterarImovel() throws Exception {
-        System.out.println("Informe o nome do imovel: ");
-        String nome = scanner.nextLine();
-        for (Imovel imovel : imoveis) {
-            if(imovel.getMatricula().equals(nome)){
-                System.out.println("Informe o novo nome do imovel: ");
-                String novoNome = scanner.nextLine();
-                System.out.println("Informe o novo endereco do imovel: ");
-                String novoEndereco = scanner.nextLine();
-                System.out.println("Informe a nova penultima leitura: ");
-                LocalDateTime novaPenultimaDataCadastro = LocalDateTime.parse(scanner.nextLine());
-                System.out.println("Informe a nova ultima leitura: ");
-                LocalDateTime novaUltimaDataCadastro = LocalDateTime.parse(scanner.nextLine());
-                imovel.setMatricula(novoNome);
-                imovel.setEndereco(novoEndereco);
-                imovel.setPenultimaLeitura(novaPenultimaDataCadastro);
-                imovel.setUltimaLeitura(novaUltimaDataCadastro);
-            }
-            else{
-                System.out.println("Imovel nao encontrado");
-            }
+    public static void AlterarImovel() {
+        Imovel imovel = buscaImovel();
+
+        if(imovel == null) {
+            System.out.println("Imóvel não encontrado!");
+            return;
+        }
+
+        System.out.println("Informe a nova matrícula do imovel: ");
+        String novaMatricula = scanner.nextLine();
+
+        if(buscaImovel(novaMatricula) != null && !novaMatricula.equals(imovel.getMatricula())) {
+            System.out.println("A matrícula deve ser única!");
+            return;
+        }
+
+        try {
+            imovel.setMatricula(novaMatricula);
+            System.out.println("Matrícula alterada comsucesso!");
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("Informe o novo endereco do imovel: ");
+        String novoEndereco = scanner.nextLine();
+        try {
+            imovel.setEndereco(novoEndereco);
+            System.out.println("Endereço alterado com sucesso!");
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
         }
     }
-    public void ExcluirImovel(){
-        System.out.println("Informe o nome do imovel: ");
+    public static void ExcluirImovel() {
+        Imovel imovel = buscaImovel();
+
+        if(imovel == null) {
+            System.out.println("Imóvel não encontrado!");
+            return;
+        }
+
+        imoveis.remove(imovel);
+        System.out.println("Imóvel excluído com sucesso!");
+    }
+
+    public static Imovel buscaImovel(String matricula){
+        for (Imovel imovel: imoveis) {
+            if(imovel.getMatricula().equals(matricula)) {
+                return imovel;
+            }
+        }
+
+        return null;
+    }
+    public static Imovel buscaImovel(){
+        System.out.println("Digite a matricula do imovel: ");
         String matricula = scanner.nextLine();
-        for (Imovel imovel : imoveis) {
-            if(imovel.getMatricula().equals(matricula)){
-                imoveis.remove(imovel);
+
+        for (Imovel imovel: imoveis) {
+            if(imovel.getMatricula().equals(matricula)) {
+                return imovel;
             }
         }
+
+        return null;
     }
-
-
 }

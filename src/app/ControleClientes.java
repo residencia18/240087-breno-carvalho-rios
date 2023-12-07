@@ -6,18 +6,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ControleClientes {
-    Scanner scan = new Scanner(System.in);
-    ArrayList<Cliente> clientes;
+    private static Scanner scan = new Scanner(System.in);
+    private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
-    public ControleClientes() {
-        clientes = new ArrayList<Cliente>();
-    }
-
-    public void insereCliente() {
+    public static void insereCliente() {
         System.out.println("Digite o cpf do cliente (apenas numeros): ");
         String cpf = scan.nextLine();
 
-        if(this.buscaCliente(cpf) != null){
+        if(buscaCliente(cpf) != null){
             System.out.println("O CPF deve ser único!");
             return;
         }
@@ -27,13 +23,13 @@ public class ControleClientes {
 
         try {
             Cliente cliente = new Cliente(cpf, nome);
-            this.clientes.add(cliente);
+            clientes.add(cliente);
             System.out.println("Cliente adicionado com sucesso!");
         } catch(Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    public void consultaCliente(){
+    public static void consultaCliente(){
         Cliente cliente = buscaCliente();
 
         if(cliente == null) {
@@ -42,13 +38,13 @@ public class ControleClientes {
         }
         System.out.println(cliente.toString());
     }
-    public void listaClientes() {
-        for (Cliente cliente: this.clientes) {
+    public static void listaClientes() {
+        for (Cliente cliente: clientes) {
             System.out.println(cliente.toString());
             System.out.println();
         }
     }
-    public void editaCliente(){
+    public static void editaCliente(){
         Cliente cliente = buscaCliente();
         if(cliente == null) {
             System.out.println("Cliente não encontrado!");
@@ -56,7 +52,12 @@ public class ControleClientes {
         }
 
         System.out.println("Digite o novo cpf do cliente (apenas numeros): ");
-        String cpf = this.scan.nextLine();
+        String cpf = scan.nextLine();
+        if(buscaCliente(cpf) != null && !cpf.equals(cliente.getCpf())) {
+            System.out.println("O CPF deve ser único!");
+            return;
+        }
+
         try {
             cliente.setCpf(cpf);
             System.out.println("CPF alterado com sucesso!");
@@ -65,7 +66,7 @@ public class ControleClientes {
         }
 
         System.out.println("Digite o novo nome do cliente: ");
-        String nome = this.scan.nextLine();
+        String nome = scan.nextLine();
         try {
             cliente.setNome(nome);
             System.out.println("Nome alterado com sucesso!");
@@ -74,17 +75,17 @@ public class ControleClientes {
         }
     }
 
-    public void excluiCliente() {
+    public static void excluiCliente() {
         Cliente cliente = buscaCliente();
         if(cliente == null) {
             System.out.println("Cliente não encontrado!");
             return;
         }
-        this.clientes.remove(cliente);
+        clientes.remove(cliente);
         System.out.println("Cliente excluído com sucesso!");
     }
-    public Cliente buscaCliente(String cpf){
-        for (Cliente cliente: this.clientes) {
+    public static Cliente buscaCliente(String cpf){
+        for (Cliente cliente: clientes) {
             if(cliente.getCpf().equals(cpf)) {
                 return cliente;
             }
@@ -92,11 +93,11 @@ public class ControleClientes {
 
         return null;
     }
-    public Cliente buscaCliente(){
+    public static Cliente buscaCliente(){
         System.out.println("Digite o cpf do cliente (apenas numeros): ");
-        String cpf = this.scan.nextLine();
+        String cpf = scan.nextLine();
 
-        for (Cliente cliente: this.clientes) {
+        for (Cliente cliente: clientes) {
             if(cliente.getCpf().equals(cpf)) {
                 return cliente;
             }
