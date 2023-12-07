@@ -92,6 +92,9 @@ public class ControleFalhas {
 
     public static void listarReparos(boolean resolvido) {
         for (FalhaDistribuicao falha : falhasDistribuicao) {
+            if(falha.getReparos().isEmpty()) {
+                continue;
+            }
             System.out.println("===== " + falha.getDescricao() + " =====");
 
             for (Reparo reparo : falha.getReparos()) {
@@ -107,10 +110,14 @@ public class ControleFalhas {
 
     public static void listarReparos() {
         for (FalhaDistribuicao falha : falhasDistribuicao) {
+            if(falha.getReparos().isEmpty()) {
+                continue;
+            }
             System.out.println("===== " + falha.getDescricao() + " =====");
 
             for (Reparo reparo : falha.getReparos()) {
-                System.out.println(reparo.getDescricao());
+                System.out.println("Reparo: " + reparo.getDescricao());
+                System.out.println("Status: " + reparo.isResolvido());
             }
 
             System.out.println("-----");
@@ -123,7 +130,7 @@ public class ControleFalhas {
         FalhaDistribuicao falhaDistribuicao = null;
 
         for (FalhaDistribuicao falha: falhasDistribuicao) {
-            if (falha.getDescricao().equals(descricao)) {
+            if (falha.getDescricao().equalsIgnoreCase(descricao)) {
                 falhaDistribuicao = falha;
                 break;
             }
