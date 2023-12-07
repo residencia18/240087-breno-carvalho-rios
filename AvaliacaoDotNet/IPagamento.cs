@@ -1,9 +1,10 @@
 namespace AvaliacaoDotNet;
 
-public interface IPagamento {
-    string Descricao { get; set; }
-    double ValorBruto { get; set; }
-    double Desconto { get; set; }
-    DateTime Data  { get; set; }
-    public void realizaPagamento(double valor);
+public interface IPagamento
+{
+    public string Descricao { get; set; }
+    public double ValorBruto { get; set; }
+    public double Desconto { get; set; }
+    public DateTime Data { get; set; }
+    public void RealizarPagamento(double valor);
 }
