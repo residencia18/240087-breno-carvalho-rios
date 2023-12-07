@@ -567,7 +567,7 @@ public static class RegistroGeral{
                         continue;
                     foreach (Advogado advogado in novosAdvogados){
                         RelacaoCasoAdvogado relacao = new(caso, advogado);
-                        RelacoesCasoAdvogado.Add(relacao);
+                        RelacaoCasoAdvogado.listaCasoAdvogados.Add(relacao);
                     }
                     break;
                 case "2":
