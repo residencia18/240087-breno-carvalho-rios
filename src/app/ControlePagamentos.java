@@ -23,45 +23,45 @@ public class ControlePagamentos {
     }
 
     public void incluirPagamento() {
-    System.out.println("\n### Incluir Pagamento ###");
-    System.out.print("Digite a matrícula do imóvel: ");
-    String matriculaImovel = scanner.nextLine();
+        System.out.println("\n### Incluir Pagamento ###");
+        System.out.print("Digite a matrícula do imóvel: ");
+        String matriculaImovel = scanner.nextLine();
 
-  
-    Fatura fatura = controleFaturas.buscarFaturaPorMatricula(matriculaImovel);
 
-    if (fatura == null) {
-        System.out.println("Nenhuma fatura encontrada para a matrícula do imóvel fornecida.");
-        return;
-    }
+        Fatura fatura = controleFaturas.buscarFaturaPorMatricula(matriculaImovel);
 
-    // Solicite o valor do pagamento
-    System.out.print("Digite o valor do pagamento: ");
-    double valorPagamento = scanner.nextDouble();
-    scanner.nextLine(); // Limpar o buffer do scanner
-
-    // Solicite a data do pagamento (assumindo que o formato é String para simplificar)
-    System.out.print("Digite a data do pagamento (formato YYYY-MM-DD HH:mm:ss): ");
-    String dataPagamentoStr = scanner.nextLine();
-    LocalDateTime dataPagamento = LocalDateTime.parse(dataPagamentoStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-
-    // Crie uma instância de Pagamento usando a fatura, valor e data fornecidos
-    Pagamento pagamento = new Pagamento(fatura, valorPagamento, dataPagamento);
-
-    // Adicione o pagamento à lista de pagamentos
-    adicionarPagamento(pagamento);
-
-    // Verifique se o pagamento gera reembolso
-    List<Reembolso> reembolsos = pagamento.listarReembolsos();
-    if (!reembolsos.isEmpty()) {
-        System.out.println("Reembolsos gerados:");
-        for (Reembolso reembolso : reembolsos) {
-            System.out.println(reembolso);
+        if (fatura == null) {
+            System.out.println("Nenhuma fatura encontrada para a matrícula do imóvel fornecida.");
+            return;
         }
-    }
 
-    System.out.println("Pagamento registrado com sucesso!");
-}
+        // Solicite o valor do pagamento
+        System.out.print("Digite o valor do pagamento: ");
+        double valorPagamento = scanner.nextDouble();
+        scanner.nextLine(); // Limpar o buffer do scanner
+
+        // Solicite a data do pagamento (assumindo que o formato é String para simplificar)
+        System.out.print("Digite a data do pagamento (formato YYYY-MM-DD HH:mm:ss): ");
+        String dataPagamentoStr = scanner.nextLine();
+        LocalDateTime dataPagamento = LocalDateTime.parse(dataPagamentoStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        // Crie uma instância de Pagamento usando a fatura, valor e data fornecidos
+        Pagamento pagamento = new Pagamento(fatura, valorPagamento, dataPagamento);
+
+        // Adicione o pagamento à lista de pagamentos
+        adicionarPagamento(pagamento);
+
+        // Verifique se o pagamento gera reembolso
+        List<Reembolso> reembolsos = pagamento.listarReembolsos();
+        if (!reembolsos.isEmpty()) {
+            System.out.println("Reembolsos gerados:");
+            for (Reembolso reembolso : reembolsos) {
+                System.out.println(reembolso);
+            }
+        }
+
+        System.out.println("Pagamento registrado com sucesso!");
+    }
 
     private void adicionarPagamento(Pagamento pagamento) {
         pagamentos.add(pagamento);
