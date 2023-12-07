@@ -75,7 +75,7 @@ public class CasoJuridico
                     $"\tProbabilidade de sucesso: {ProbabilidadeSucesso:F2} \n";
         }
         else
-            texto = $"\tEncerramento do caso: {DataEncerramento.ToString} \n";
+            texto = $"\tEncerramento do caso: {DataEncerramento} \n";
         texto += $"\tCusto total: {CalcularCustoTotal():F2} \n" +
                  $"\tNº de documentos: {Documentos.Count} \n" +
                  $"\tStatus: {Status}";

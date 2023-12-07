@@ -483,7 +483,7 @@ public static class RegistroGeral
             App.LimparTela();
             Console.WriteLine("\t====== Caso Encontrado ======");
             Console.WriteLine(caso.ToString());
-            Console.WriteLine("");
+            Console.WriteLine("\n\t======== TECH ADVOCACIA ========");
             Console.WriteLine("\t[0] - Retornar ao menu anterior!");
             Console.Write("\t-> ");
             string userInput = Console.ReadLine()!;
@@ -514,17 +514,17 @@ public static class RegistroGeral
         while (true)
         {
             App.LimparTela();
-            Console.WriteLine("\n\tDocumentações do Caso Jurídico:");
+            Console.WriteLine("\n\t==== Documentos do Caso Jurídico ====");
 
             for (int i = 0; i < caso.Documentos.Count; i++)
-                Console.WriteLine($"{i + 1}. Código: {caso.Documentos[i].Codigo}, Tipo: {caso.Documentos[i].Tipo}, Descrição: {caso.Documentos[i].Descricao}");
+                Console.WriteLine($"at{i + 1}. Código: {caso.Documentos[i].Codigo}\n\t Tipo: {caso.Documentos[i].Tipo}\n\t Descrição: {caso.Documentos[i].Descricao}");
 
-            Console.WriteLine("\nDeseja inserir ou remover um documento?");
+            Console.WriteLine("\n\tDeseja inserir ou remover um documento?");
             Console.WriteLine("\t1. Inserir Documento");
             Console.WriteLine("\t2. Remover Documento");
             Console.WriteLine("\t3. Retornar ao menu anterior");
 
-            Console.Write("-> ");
+            Console.Write("\t-> ");
             string escolha = App.LerString();
 
             switch (escolha)
@@ -571,15 +571,16 @@ public static class RegistroGeral
         while (true)
         {
             App.LimparTela();
-            Console.WriteLine("\n\tCustos do Caso Jurídico:");
+            Console.WriteLine("\n\t==== Custos do Caso Jurídico ====");
 
             for (int i = 0; i < caso.Custos.Count; i++)
-                Console.WriteLine($"{i + 1}. Valor: {caso.Custos[i].Item1:C2}, Descrição: {caso.Custos[i].Item2}");
-            Console.WriteLine("\n\tOpções:");
-            Console.WriteLine("\n\t1. Inserir Custo");
-            Console.WriteLine("\n\t2. Remover Custo");
-            Console.WriteLine("\n\t3. Sair");
-            Console.Write("\n\tEscolha a opção: ");
+                Console.WriteLine($"\t{i + 1}. Valor: {caso.Custos[i].Item1:C2}\n\tDescrição: {caso.Custos[i].Item2}");
+                Console.WriteLine("\t=================================");
+            Console.WriteLine("\n\tDeseja inserir ou remover um custo?");
+            Console.WriteLine("\t1. Inserir Custo");
+            Console.WriteLine("\t2. Remover Custo");
+            Console.WriteLine("\t3. Sair");
+            Console.Write("\tEscolha a opção: ");
             string escolha = App.LerString();
 
             switch (escolha)
@@ -610,11 +611,12 @@ public static class RegistroGeral
         while (true)
         {
             App.LimparTela();
-            Console.WriteLine("\n\tAdvogados do Caso Jurídico:");
+            Console.WriteLine("\n\t==== Advogados do Caso Jurídico ====");
 
             foreach (var advogado in advogadosNoCaso)
             {
-                Console.WriteLine($"Nome: {advogado.Nome}, CNA: {advogado.Cna}, Especialidade: {advogado.Especialidade}");
+                Console.WriteLine($"\tNome: {advogado.Nome}\n\tCNA: {advogado.Cna}\n\tEspecialidade: {advogado.Especialidade}");
+                Console.WriteLine("\t====================================");
             }
 
             Console.WriteLine("\n\tDeseja inserir ou remover um Advogado?");
@@ -622,7 +624,7 @@ public static class RegistroGeral
             Console.WriteLine("\t2. Remover Advogado");
             Console.WriteLine("\t3. Retornar ao menu anterior");
 
-            Console.Write("-> ");
+            Console.Write("\t-> ");
             string escolha = App.LerString();
 
             switch (escolha)
@@ -678,8 +680,12 @@ public static class RegistroGeral
         while (true)
         {
             App.LimparTela();
-            Console.WriteLine($"\n\tData de abertura: {caso.DataInicio.ToShortDateString}");
-            Console.WriteLine("\tSelecione o novo status:");
+            Console.WriteLine("\n\t==== Status do Caso Jurídico ====");
+            Console.WriteLine($"\n\tData de abertura: {caso.DataInicio.ToShortDateString()}");
+            Console.WriteLine($"\n\tStatus atual: {caso.Status}");
+            Console.WriteLine("\t=================================");
+
+            Console.WriteLine("\n\tDeseja alterar o status do caso?");
             Console.WriteLine("\t1. Concluído");
             Console.WriteLine("\t2. Arquivado");
             Console.WriteLine("\t0. Retornar ao menu anterior");
