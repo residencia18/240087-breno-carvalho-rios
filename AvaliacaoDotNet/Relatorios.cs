@@ -2,11 +2,11 @@ namespace AvaliacaoDotNet
 {
     public class Relatorios
     {
-        ListaCliente clientes;
+        List<Cliente> clientes;
 
-        ListaAdvogado advogados;
+        List<Advogado> advogados;
 
-        public Relatorios(ListaCliente clientes, ListaAdvogado advogados)
+        public Relatorios(List<Cliente> clientes, List<Advogado> advogados)
         {
             this.clientes = clientes;
             this.advogados = advogados;

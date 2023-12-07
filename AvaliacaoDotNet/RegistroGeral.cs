@@ -46,6 +46,7 @@ public static class RegistroGeral{
             Console.WriteLine(advogado.ToString());
             Console.WriteLine("=====================================");
         }
+        App.Pause();
     }
 
     public static void BuscarAdvogado(){
@@ -181,6 +182,7 @@ public static class RegistroGeral{
             Console.WriteLine(cliente.ToString());
             Console.WriteLine("=====================================");
         }
+        App.Pause();
     }
 
     public static void BuscarCliente(){

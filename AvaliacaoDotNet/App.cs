@@ -4,6 +4,9 @@ namespace AvaliacaoDotNet;
 public class App
 {
     public static void MainTechAdvocacia(){
+        Persistencia.CarregarArquivosAdvogado(RegistroGeral.Advogados);
+        Persistencia.CarregarArquivosCliente(RegistroGeral.Clientes);
+        
         int opcao;
         do{
             opcao = DispMain();
@@ -61,12 +64,14 @@ public class App
             switch (opcao){
                 case 1:
                     RegistroGeral.NovoCliente();
+                    Persistencia.SalvarArquivosCliente(RegistroGeral.Clientes);
                     break;
                 case 2:
                     RegistroGeral.ExibirClientes();
                     break;
                 case 3:
                     RegistroGeral.BuscarCliente();
+                    Persistencia.SalvarArquivosCliente(RegistroGeral.Clientes);
                     break;
                 case 0:
                     break;
@@ -85,12 +90,14 @@ public class App
             switch (opcao){
                 case 1:
                     RegistroGeral.NovoAdvogado();
+                    Persistencia.SalvarArquivosAdvogado(RegistroGeral.Advogados);
                     break;
                 case 2:
                     RegistroGeral.ExibirAdvogados();
                     break;
                 case 3:
                     RegistroGeral.BuscarAdvogado();
+                    Persistencia.SalvarArquivosAdvogado(RegistroGeral.Advogados);
                     break;
                 case 0:
                     break;
