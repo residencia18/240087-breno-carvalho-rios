@@ -3,10 +3,10 @@ namespace AvaliacaoDotNet
     public class Persistencia
     {
 
-        public void CarregarArquivosAdvogado(ListaAdvogado listaAdvogados)
+        public static void CarregarArquivosAdvogado(List<Advogado> listaAdvogados)
         {
-            listaAdvogados.advogados.Clear();
-            string caminhoArquivo = Path.Combine("../AvaliacaoDotNet/BancoDeDados/dadosadvogados.txt");
+            listaAdvogados.Clear();
+            string caminhoArquivo = Path.Combine("C:/Users/alber/OneDrive/Documentos/ProjetosResidencia/equipe5-dotnet/AvaliacaoDotNet/BancoDeDados/dadosadvogados.txt");
 
             try
             {
@@ -23,9 +23,9 @@ namespace AvaliacaoDotNet
                             string nome = dados[0];
                             DateTime dataNascimento = DateTime.Parse(dados[1]);
                             string cpf = dados[2];
-                            int cna = int.Parse(dados[3]);
+                            string cna = dados[3];
                             string especialidade = dados[4];
-                            listaAdvogados.AdicionarAdvogado(new Advogado(nome, dataNascimento, cpf, cna, especialidade));
+                            listaAdvogados.Add(new Advogado(nome, dataNascimento, cpf, cna, especialidade));
                         }
                         else
                         {
@@ -35,7 +35,7 @@ namespace AvaliacaoDotNet
                     }
                 }
 
-                //App.LimparTela();
+                App.LimparTela();
                 Console.Write("\n\tDados dos advogados carregados com sucesso.");
             }
             catch (Exception ex)
@@ -46,10 +46,10 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
         
-        public void CarregarArquivosCliente(ListaCliente listaClientes)
+        public static void CarregarArquivosCliente(List<Cliente> listaClientes)
         {
-            listaClientes.clientes.Clear();
-            string caminhoArquivo = Path.Combine("../AvaliacaoDotNet/BancoDeDados/dadosclientes.txt");
+            listaClientes.Clear();
+            string caminhoArquivo = Path.Combine("C:/Users/alber/OneDrive/Documentos/ProjetosResidencia/equipe5-dotnet/AvaliacaoDotNet/BancoDeDados/dadosclientes.txt");
 
             try
             {
@@ -72,7 +72,7 @@ namespace AvaliacaoDotNet
                                 DateTime dataNascimento = DateTime.Parse(dados[2]);
                                 string estadoCivil = dados[3];
                                 string profissao = dados[4];
-                                listaClientes.AdicionarCliente(new Cliente(nome, cpf, dataNascimento, estadoCivil, profissao));
+                                listaClientes.Add(new Cliente(nome, cpf, dataNascimento, estadoCivil, profissao));
                             }
                             else
                             {
@@ -95,15 +95,15 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void SalvarArquivosCliente(ListaCliente listaClientes)
+        public static void SalvarArquivosCliente(List<Cliente> listaClientes)
         {
-            string caminhoArquivo = Path.Combine("../AvaliacaoDotNet/BancoDeDados/dadosclientes.txt");
+            string caminhoArquivo = Path.Combine("C:/Users/alber/OneDrive/Documentos/ProjetosResidencia/equipe5-dotnet/AvaliacaoDotNet/BancoDeDados/dadosclientes.txt");
 
             try
             {
                 using (StreamWriter arquivo = new StreamWriter(caminhoArquivo))
                 {
-                    foreach (Cliente cliente in listaClientes.clientes)
+                    foreach (Cliente cliente in listaClientes)
                     {
                         // Formatando os dados para gravar no arquivo
                         string linha = $"{cliente.Nome},{cliente.Cpf},{cliente.DataNascimento.ToShortDateString()},{cliente.EstadoCivil},{cliente.Profissao}";
@@ -120,15 +120,15 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void SalvarArquivosAdvogado(ListaAdvogado ListaAdvogados)
+        public static void SalvarArquivosAdvogado(List<Advogado> listaAdvogados)
         {
-            string caminhoArquivo = Path.Combine("../AvaliacaoDotNet/BancoDeDados/dadosadvogados.txt");
+            string caminhoArquivo = Path.Combine("C:/Users/alber/OneDrive/Documentos/ProjetosResidencia/equipe5-dotnet/AvaliacaoDotNet/BancoDeDados/dadosadvogados.txt");
 
             try
             {
                 using (StreamWriter arquivo = File.CreateText(caminhoArquivo))
                 {
-                    foreach (Advogado advogado in ListaAdvogados.advogados)
+                    foreach (Advogado advogado in listaAdvogados)
                     {
                         arquivo.WriteLine($"{advogado.Nome},{advogado.DataNascimento.ToShortDateString()},{advogado.Cpf},{advogado.Cna},{advogado.Especialidade}");
                     }

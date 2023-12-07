@@ -4,6 +4,10 @@ namespace AvaliacaoDotNet;
 public class App
 {
     public static void MainTechAdvocacia(){
+        
+        Persistencia.CarregarArquivosAdvogado(RegistroGeral.Advogados);
+        Persistencia.CarregarArquivosCliente(RegistroGeral.Clientes);
+        
         int opcao;
         do{
             opcao = DispMain();
@@ -31,7 +35,6 @@ public class App
         } while (opcao != 0);
     }
     
-
     public static void MenuCasoJuridico(){
         int opcao;
         do{
@@ -53,20 +56,27 @@ public class App
         } while (opcao != 0);
     }
 
-
     public static void MenuClientes(){
         int opcao;
         do{
             opcao = DispMenuClientes();
             switch (opcao){
                 case 1:
-                    RegistroGeral.NovoCliente();
+                    try {
+                        RegistroGeral.NovoCliente();
+                        Persistencia.SalvarArquivosCliente(RegistroGeral.Clientes);
+                    } catch (ArgumentException e) {
+                        Console.WriteLine(e.Message);                        
+                    } catch (Exception e) {
+                        Console.WriteLine($"Ocorreu um erro inesperado: {e.Message}");                        
+                    }
                     break;
                 case 2:
                     RegistroGeral.ExibirClientes();
                     break;
                 case 3:
                     RegistroGeral.BuscarCliente();
+                    Persistencia.SalvarArquivosCliente(RegistroGeral.Clientes);
                     break;
                 case 0:
                     break;
@@ -84,13 +94,21 @@ public class App
             opcao = DispMenuAdvogados();
             switch (opcao){
                 case 1:
-                    RegistroGeral.NovoAdvogado();
+                    try {
+                        RegistroGeral.NovoAdvogado();
+                        Persistencia.SalvarArquivosAdvogado(RegistroGeral.Advogados);
+                    } catch (ArgumentException e) {
+                        Console.WriteLine(e.Message);                        
+                    } catch (Exception e) {
+                        Console.WriteLine($"Ocorreu um erro inesperado: {e.Message}");                        
+                    }
                     break;
                 case 2:
                     RegistroGeral.ExibirAdvogados();
                     break;
                 case 3:
                     RegistroGeral.BuscarAdvogado();
+                    Persistencia.SalvarArquivosAdvogado(RegistroGeral.Advogados);
                     break;
                 case 0:
                     break;
@@ -108,34 +126,34 @@ public class App
             opcao = DispMenuRelatorios();
             switch (opcao){
                 case 1:
-                    // relatorio 1
+                    Relatorios.RelatorioAdvogadosIdadeEntreDoisValores(RegistroGeral.Advogados);
                     break;
                 case 2:
-                    // relatorio 2
+                    Relatorios.RelatorioClientesIdadeEntreDoisValores(RegistroGeral.Clientes);
                     break;
                 case 3:
-                    // relatorio 3
+                    Relatorios.RelatorioEstadoCivilInformadoPeloUsuario(RegistroGeral.Clientes);
                     break;
                 case 4:
-                    // relatorio 4
+                    Relatorios.RelatorioClienteEmOrdemAlfabetica(RegistroGeral.Clientes);
                     break;
                 case 5:
-                    // relatorio 5
+                    Relatorios.RelatorioClientesCujaProfissaoContenhaTexto(RegistroGeral.Clientes);
                     break;
                 case 6:
-                    // relatorio 6
+                    Relatorios.RelatorioAdvogadosEClientesAniversariantesDoMes(RegistroGeral.Advogados, RegistroGeral.Clientes);
                     break;
                 case 7:
-                    // relatorio 7
+                    Relatorios.RelatorioCasosEmAbertoOrdemCrescente(RegistroGeral.Casos);
                     break;
                 case 8:
-                    // relatorio 8
+                    Relatorios.AdvogadosOrdemDecrescenteCasosConcluidos(RelacaoCasoAdvogado.listaCasoAdvogados);
                     break;
                 case 9:
-                    // relatorio 9
+                    Relatorios.RelatorioCasosCujaDescricaoCustoContenhaTexto(RegistroGeral.Casos);
                     break;
                 case 10:
-                    // relatorio 10
+                    Relatorios.RelatorioTop10DocumentosMaisInseridos(RegistroGeral.Casos);
                     break;
                 case 0:
                     break;
@@ -146,7 +164,6 @@ public class App
 
         } while (opcao != 0);
     }
-
 
     private static int DispMain(){
         int opcao = -1;

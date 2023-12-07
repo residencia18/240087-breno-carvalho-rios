@@ -6,14 +6,16 @@ public class CasoJuridico{
     public string Status { get; set; }
     public List<(float, string)> Custos { get; set; }
     public DateTime? DataEncerramento { get; set; }
+    public List<Advogado> Advogados { get; set; }
     public Cliente Cliente { get; set; }
     public List<Documento> Documentos { get; set; }
 
-    public CasoJuridico(DateTime dt_abertura, Cliente cliente, float probabilidadeSucesso){
+    public CasoJuridico(DateTime dt_abertura, Cliente cliente, List<Advogado> advogados, float probabilidadeSucesso){
         Documentos = new List<Documento>();
         Custos = new List<(float, string)>();
         Status = "Em aberto";
         Cliente = cliente;
+        Advogados = advogados;
         DataInicio = dt_abertura;
         DataEncerramento = default;
         ProbabilidadeSucesso = probabilidadeSucesso;
@@ -60,11 +62,11 @@ public class CasoJuridico{
     public new string ToString(){
         string texto;
         if(Status == "Em aberto"){
-            texto = $"Abertura do caso: {DataInicio.ToShortDateString} \n" +
+            texto = $"Abertura do caso: {DataInicio.ToShortDateString()} \n" +
                     $"Probabilidade de sucesso: {ProbabilidadeSucesso:F2} \n";
         }else
             texto = $"Encerramento do caso: {DataEncerramento.ToString} \n";
-        texto += $"Custo total: {CalcularCustoTotal:F2} \n" +
+        texto += $"Custo total: {CalcularCustoTotal():F2} \n" +
                  $"Nº de documentos: {Documentos.Count} \n" +
                  $"Status: {Status}\n";
         return texto;

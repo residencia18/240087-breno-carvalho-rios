@@ -1,92 +1,105 @@
 ﻿namespace AvaliacaoDotNet;
 
-public static class RegistroGeral{
+public static class RegistroGeral
+{
     public static List<Advogado> Advogados = new();
     public static List<Cliente> Clientes = new();
     public static List<CasoJuridico> Casos = new();
+    public static List<RelacaoCasoAdvogado> RelacoesCasoAdvogado = new();
 
-
-    public static void NovoAdvogado(){
+    public static void NovoAdvogado()
+    {
         App.LimparTela();
 
-        Console.WriteLine("Digite o nome do Advogado:");
+        Console.WriteLine("\n\tDigite o nome do Advogado:");
         string nome = App.LerString();
 
-        Console.WriteLine("Digite a data de nascimento (formato: dd/mm/aaaa):");
+        Console.WriteLine("\n\tDigite a data de nascimento (formato: dd/mm/aaaa):");
         DateTime dtNasc = App.LerData();
 
-        Console.WriteLine("Digite o CPF:");
+        Console.WriteLine("\n\tDigite o CPF:");
         string cpf = App.LerString();
 
-        Console.WriteLine("Digite o CNA:");
+        Console.WriteLine("\n\tDigite o CNA:");
         string cna = App.LerString();
 
-        Console.WriteLine("Digite a especialidade:");
+        Console.WriteLine("\n\tDigite a especialidade:");
         string especialidade = App.LerString();
-        
-        
-        if (!Pessoa.IsValidCPF(cpf)){
+
+
+        if (!Pessoa.IsValidCPF(cpf))
+        {
             throw new ArgumentException("\n\tOps, CPF inválido!...");
         }
-        
-        if(HasAdvogado(cpf, cna)){
-            App.Cx_Msg("Advogado já cadastrado!");
+
+        if (HasAdvogado(cpf, cna))
+        {
+            App.Cx_Msg("\n\tAdvogado já cadastrado!");
             return;
         }
 
         Advogado novo = new(nome, dtNasc, cpf, cna, especialidade);
         Advogados.Add(novo);
-        App.Cx_Msg("Advogado adicionado com sucesso!");
+        App.Cx_Msg("\n\tAdvogado adicionado com sucesso!");
     }
 
-    public static void ExibirAdvogados(){
+    public static void ExibirAdvogados()
+    {
         App.LimparTela();
-        Console.WriteLine("========= Lista de Advogados =========");
-        foreach (Advogado advogado in Advogados){
+        Console.Write("\n\t========= Lista de Advogados =========\n");
+        foreach (Advogado advogado in Advogados)
+        {
             Console.WriteLine(advogado.ToString());
-            Console.WriteLine("=====================================");
+            Console.WriteLine("\t=====================================");
         }
+        App.Pause();
     }
 
-    public static void BuscarAdvogado(){
+    public static void BuscarAdvogado()
+    {
         App.LimparTela();
-        Console.WriteLine("Digite o cna do advogado:");
+        Console.WriteLine("\n\tDigite o cna do advogado:");
         string cna = App.LerString();
 
         Advogado? encontrado = Advogados.FirstOrDefault(a => a.Cna == cna);
-        if(encontrado == default){
-            App.Cx_Msg("O CPF informado não corresponde a nenhum advogado cadastrado!");
+        if (encontrado == default)
+        {
+            App.Cx_Msg("\n\tO CPF informado não corresponde a nenhum advogado cadastrado!");
             return;
         }
 
         int opcao;
-        do{
+        do
+        {
             opcao = DispBuscarAdvogado(encontrado);
-            switch (opcao){
+            switch (opcao)
+            {
                 case 1:
-                    AlterarNomeAdvogado(encontrado); 
+                    AlterarNomeAdvogado(encontrado);
                     break;
                 case 2:
-                    AlterarDataAdvogado(encontrado); 
+                    AlterarDataAdvogado(encontrado);
                     break;
                 case 3:
-                    AlterarEspecialidade(encontrado); 
+                    AlterarEspecialidade(encontrado);
                     break;
                 case 0:
                     break;
                 default:
-                    App.Cx_Msg("Opção Inválida!");
+                    App.Cx_Msg("\n\tOpção Inválida!");
                     break;
             }
         } while (opcao != 0);
     }
 
-    private static int DispBuscarAdvogado(Advogado advogado){
-        
+    private static int DispBuscarAdvogado(Advogado advogado)
+    {
+
         int opcao = -1;
-        do{
+        do
+        {
             App.LimparTela();
-            Console.WriteLine("====== Advogado Encontrado ======");
+            Console.WriteLine("\t====== Advogado Encontrado ======");
             Console.WriteLine(advogado.ToString());
             Console.WriteLine("");
             Console.WriteLine("\t======== TECH ADVOCACIA ========");
@@ -97,7 +110,8 @@ public static class RegistroGeral{
             Console.Write("\t-> ");
             string userInput = Console.ReadLine()!;
 
-            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao)){
+            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao))
+            {
                 Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
                 App.Pause();
             }
@@ -105,110 +119,122 @@ public static class RegistroGeral{
         return opcao;
     }
 
-    private static void AlterarNomeAdvogado(Advogado advogado){
+    private static void AlterarNomeAdvogado(Advogado advogado)
+    {
         App.LimparTela();
-        Console.WriteLine("Digite o novo nome do advogado:");
+        Console.WriteLine("\n\tDigite o novo nome do advogado:");
         string nome = App.LerString();
         Advogados.Remove(advogado);
         advogado.Nome = nome;
         Advogados.Add(advogado);
-        App.Cx_Msg("Nome Alterado com Sucesso!");
+        App.Cx_Msg("\n\tNome Alterado com Sucesso!");
     }
-    
-    private static void AlterarDataAdvogado(Advogado advogado){
+
+    private static void AlterarDataAdvogado(Advogado advogado)
+    {
         App.LimparTela();
-        Console.WriteLine("Digite a nova Data de Nascimento (dd/mm/yyyy):");
+        Console.WriteLine("\n\tDigite a nova Data de Nascimento (dd/mm/yyyy):");
         DateTime data = App.LerData();
         Advogados.Remove(advogado);
         advogado.DataNascimento = data;
         Advogados.Add(advogado);
-        App.Cx_Msg("Data de Nascimento Alterado com Sucesso!");
+        App.Cx_Msg("\n\tData de Nascimento Alterado com Sucesso!");
     }
 
-    private static void AlterarEspecialidade(Advogado advogado){
+    private static void AlterarEspecialidade(Advogado advogado)
+    {
         App.LimparTela();
-        Console.WriteLine("Digite a nova especialidade do advogado:");
+        Console.WriteLine("\n\tDigite a nova especialidade do advogado:");
         string especialidade = App.LerString();
         Advogados.Remove(advogado);
         advogado.Especialidade = especialidade;
         Advogados.Add(advogado);
-        App.Cx_Msg("Especialidade Alterada com Sucesso!");
+        App.Cx_Msg("\n\tEspecialidade Alterada com Sucesso!");
     }
 
-    public static bool HasAdvogado(string cpf, string cna){
+    public static bool HasAdvogado(string cpf, string cna)
+    {
         return Advogados.Any(x => x.Cpf == cpf || x.Cna == cna);
     }
 
-
-
-    public static void NovoCliente(){
+    public static void NovoCliente()
+    {
         App.LimparTela();
 
-        Console.WriteLine("Digite o nome do cliente:");
+        Console.WriteLine("\n\tDigite o nome do cliente:");
         string nome = App.LerString();
 
-        Console.WriteLine("Digite a data de nascimento (formato: dd/mm/aaaa):");
+        Console.WriteLine("\n\tDigite a data de nascimento (formato: dd/mm/aaaa):");
         DateTime dtNasc = App.LerData();
 
-        Console.WriteLine("Digite o CPF do cliente:");
+        Console.WriteLine("\n\tDigite o CPF do cliente:");
         string cpf = App.LerString();
 
-        Console.WriteLine("Digite o estado civil:");
+        Console.WriteLine("\n\tDigite o estado civil:");
         string estadoCivil = App.LerString();
 
-        Console.WriteLine("Digite a profissão:");
+        Console.WriteLine("\n\tDigite a profissão:");
         string profissao = App.LerString();
-        
-        
-        if (!Pessoa.IsValidCPF(cpf)){
+
+
+        if (!Pessoa.IsValidCPF(cpf))
+        {
             throw new ArgumentException("\n\tOps, CPF inválido!...");
         }
-        
-        if(HasCliente(cpf)){
-            App.Cx_Msg("Cliente já cadastrado!");
+
+        if (HasCliente(cpf))
+        {
+            App.Cx_Msg("\n\tCliente já cadastrado!");
             return;
         }
 
         Cliente novo = new(nome, cpf, dtNasc, estadoCivil, profissao);
         Clientes.Add(novo);
-        App.Cx_Msg("Cliente adicionado com sucesso!");
+        App.Cx_Msg("\n\tCliente adicionado com sucesso!");
     }
 
-    public static void ExibirClientes(){
+    public static void ExibirClientes()
+    {
         App.LimparTela();
-        Console.WriteLine("========= Lista de Clientes =========");
-        foreach (Cliente cliente in Clientes){
+        Console.Write("\n\t========= Lista de Clientes =========");
+        foreach (Cliente cliente in Clientes)
+        {
             Console.WriteLine(cliente.ToString());
-            Console.WriteLine("=====================================");
+            Console.WriteLine("\t=====================================");
         }
+        App.Pause();
     }
 
-    public static void BuscarCliente(){
+    public static void BuscarCliente()
+    {
         App.LimparTela();
-        Console.WriteLine("Digite o CPF do cliente:");
+        Console.WriteLine("\n\tDigite o CPF do cliente:");
         string cpf = App.LerString();
 
         Cliente? encontrado = Clientes.FirstOrDefault(c => c.Cpf == cpf);
-        if(encontrado == default){
-            App.Cx_Msg("O CPF informado não corresponde a nenhum cliente cadastrado!");
+        if (encontrado == default)
+        {
+            App.Cx_Msg("\n\tO CPF informado não corresponde a nenhum cliente cadastrado!");
             return;
         }
 
         int opcao;
-        do{
+        do
+        {
             opcao = DispBuscarCliente(encontrado);
-            switch (opcao){
+            switch (opcao)
+            {
                 case 1:
-                    AlterarNomeCliente(encontrado); 
+                    AlterarNomeCliente(encontrado);
                     break;
                 case 2:
-                    AlterarDataCliente(encontrado); 
+                    AlterarDataCliente(encontrado);
                     break;
                 case 3:
-                    AlterarEstadoCivil(encontrado); 
+                    AlterarEstadoCivil(encontrado);
                     break;
                 case 4:
-                    AlterarProfissao(encontrado); 
+                    AlterarProfissao(encontrado);
                     break;
                 case 0:
                     break;
@@ -219,12 +245,14 @@ public static class RegistroGeral{
         } while (opcao != 0);
     }
 
-    private static int DispBuscarCliente(Cliente cliente){
-        
+    private static int DispBuscarCliente(Cliente cliente)
+    {
+
         int opcao = -1;
-        do{
+        do
+        {
             App.LimparTela();
-            Console.WriteLine("====== Cliente Encontrado ======");
+            Console.WriteLine("\t====== Cliente Encontrado ======");
             Console.WriteLine(cliente.ToString());
             Console.WriteLine("");
             Console.WriteLine("\t======== TECH ADVOCACIA ========");
@@ -236,7 +264,8 @@ public static class RegistroGeral{
             Console.Write("\t-> ");
             string userInput = Console.ReadLine()!;
 
-            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao)){
+            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao))
+            {
                 Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
                 App.Pause();
             }
@@ -244,90 +273,96 @@ public static class RegistroGeral{
         return opcao;
     }
 
-    private static void AlterarNomeCliente(Cliente cliente){
+    private static void AlterarNomeCliente(Cliente cliente)
+    {
         App.LimparTela();
-        Console.WriteLine("Digite o novo nome do cliente:");
+        Console.WriteLine("\n\tDigite o novo nome do cliente:");
         string nome = App.LerString();
         Clientes.Remove(cliente);
         cliente.Nome = nome;
         Clientes.Add(cliente);
-        App.Cx_Msg("Nome Alterado com Sucesso!");
+        App.Cx_Msg("\n\tNome Alterado com Sucesso!");
     }
-    
-    private static void AlterarDataCliente(Cliente cliente){
+
+    private static void AlterarDataCliente(Cliente cliente)
+    {
         App.LimparTela();
-        Console.WriteLine("Digite a nova Data de Nascimento (dd/mm/yyyy):");
+        Console.WriteLine("\n\tDigite a nova Data de Nascimento (dd/mm/yyyy):");
         DateTime data = App.LerData();
         Clientes.Remove(cliente);
         cliente.DataNascimento = data;
         Clientes.Add(cliente);
-        App.Cx_Msg("Data de Nascimento Alterado com Sucesso!");
+        App.Cx_Msg("\n\tData de Nascimento Alterado com Sucesso!");
     }
 
-    private static void AlterarEstadoCivil(Cliente cliente){
+    private static void AlterarEstadoCivil(Cliente cliente)
+    {
         App.LimparTela();
-        Console.WriteLine("Digite o novo estado civil do cliente:");
+        Console.WriteLine("\n\tDigite o novo estado civil do cliente:");
         string estado = App.LerString();
         Clientes.Remove(cliente);
         cliente.EstadoCivil = estado;
         Clientes.Add(cliente);
-        App.Cx_Msg("Estado Civil Alterado com Sucesso!");
+        App.Cx_Msg("\n\tEstado Civil Alterado com Sucesso!");
     }
 
-    private static void AlterarProfissao(Cliente cliente){
+    private static void AlterarProfissao(Cliente cliente)
+    {
         App.LimparTela();
-        Console.WriteLine("Digite a nova profissão do cliente:");
+        Console.WriteLine("\n\tDigite a nova profissão do cliente:");
         string profissao = App.LerString();
         Clientes.Remove(cliente);
         cliente.Profissao = profissao;
         Clientes.Add(cliente);
-        App.Cx_Msg("Profissão Alterada com Sucesso!");
+        App.Cx_Msg("\n\tProfissão Alterada com Sucesso!");
     }
 
-    public static bool HasCliente(string cpf){
+    public static bool HasCliente(string cpf)
+    {
         return Clientes.Any(paciente => paciente.Cpf == cpf);
     }
 
-
-
-    public static void NovoCaso(){
+    public static void NovoCaso()
+    {
         App.LimparTela();
 
-        Console.WriteLine("Digite a data de abertura do caso (formato: dd/mm/yyyy):");
+        Console.WriteLine("\n\tDigite a data de abertura do caso (formato: dd/mm/yyyy):");
         DateTime data = App.LerData();
 
         App.LimparTela();
-        Console.WriteLine("Digite o CPF do cliente do caso:");
+        Console.WriteLine("\n\tDigite o CPF do cliente do caso:");
         string cpf = App.LerString();
 
-        while(!HasCliente(cpf)){
-            Console.WriteLine("Cliente não encontrado!");
-            Console.WriteLine("Deseja tentar novamente? [S] / [N]");
+        while (!HasCliente(cpf))
+        {
+            Console.WriteLine("\n\tCliente não encontrado!");
+            Console.WriteLine("\n\tDeseja tentar novamente? [S] / [N]");
             cpf = App.LerString();
-            if(cpf.ToUpper() == "N")
+            if (cpf.ToUpper() == "N")
                 return;
             App.LimparTela();
-            Console.WriteLine("Digite o CPF do cliente do caso:");
+            Console.WriteLine("\n\tDigite o CPF do cliente do caso:");
             cpf = App.LerString();
         }
 
         Cliente? cliente = Clientes.FirstOrDefault(c => c.Cpf == cpf);
-        
+
         if (cliente == default)
             return;
 
         List<Advogado>? advogadosNoCaso = ColetarAdvogados();
 
-        if(advogadosNoCaso == default)
+        if (advogadosNoCaso == default)
             return;
 
         App.LimparTela();
-        Console.WriteLine("Anexar pelo menos um documento ao processo!");
+        Console.WriteLine("\n\tAnexar pelo menos um documento ao processo!");
         Documento novo = ColetarDocumento();
-        List<Documento> documentosDoCaso = new List<Documento> {novo};
+        List<Documento> documentosDoCaso = new List<Documento> { novo };
 
-        while (true){
-            Console.WriteLine("Deseja adicionar mais documentos ao caso? [S] / [N]");
+        while (true)
+        {
+            Console.WriteLine("\n\tDeseja adicionar mais documentos ao caso? [S] / [N]");
             string resposta = App.LerString().ToUpper();
 
             if (resposta == "N")
@@ -338,47 +373,55 @@ public static class RegistroGeral{
 
         List<(float, string)> custosDoCaso = ColetarCustos();
 
-        Console.WriteLine("Qual a probabilidade de sucesso? (0.00 a 100.00)");
+        Console.WriteLine("\n\tQual a probabilidade de sucesso? (0.00 a 100.00)");
         float probabilidade;
-        while(!float.TryParse(App.LerString(), out probabilidade) || probabilidade < 0 || probabilidade > 100){
-            Console.WriteLine("Valor inválido, tente novamente");
+        while (!float.TryParse(App.LerString(), out probabilidade) || probabilidade < 0 || probabilidade > 100)
+        {
+            Console.WriteLine("\n\tValor inválido, tente novamente");
         }
 
 
-        CasoJuridico novoCaso = new(data, cliente, probabilidade);
+        CasoJuridico novoCaso = new(data, cliente, advogadosNoCaso, probabilidade);
         custosDoCaso.ForEach(c => novoCaso.AdicionarCusto(c.Item1, c.Item2));
         documentosDoCaso.ForEach(novoCaso.AddDocumento);
 
-        foreach (Advogado advogado in advogadosNoCaso){
+        foreach (Advogado advogado in advogadosNoCaso)
+        {
             RelacaoCasoAdvogado relacao = new(novoCaso, advogado);
         }
-    
+
         Casos.Add(novoCaso);
-        Console.WriteLine("Caso adicionado com sucesso!");
+        Console.WriteLine("\n\tCaso adicionado com sucesso!");
     }
 
-    public static void BuscarCaso(){
+    public static void BuscarCaso()
+    {
         App.LimparTela();
-        Console.WriteLine("Digite o CPF do cliente do caso:");
+        Console.WriteLine("\n\tDigite o CPF do cliente do caso:");
         string cpf = App.LerString();
 
         CasoJuridico? encontrado = Casos.FirstOrDefault(c => c.Cliente.Cpf == cpf);
-        if(encontrado == default){
-            App.Cx_Msg("O CPF informado não corresponde a nenhum cliente com caso cadastrado!");
+        if (encontrado == default)
+        {
+            App.Cx_Msg("\n\tO CPF informado não corresponde a nenhum cliente com caso cadastrado!");
             return;
         }
-        
+
         int opcao;
 
-        if(encontrado.Status != "Em aberto"){
-            do{
+        if (encontrado.Status != "Em aberto")
+        {
+            do
+            {
                 opcao = DispBuscaCasoEncerrado(encontrado);
             } while (opcao != 0);
         }
 
-        do{
+        do
+        {
             opcao = DispBuscaCaso(encontrado);
-            switch (opcao){
+            switch (opcao)
+            {
                 case 1:
                     NovoSucesso(encontrado);
                     break;
@@ -397,18 +440,20 @@ public static class RegistroGeral{
                 case 0:
                     break;
                 default:
-                    App.Cx_Msg("Selecione uma opção válida");
+                    App.Cx_Msg("\n\tSelecione uma opção válida");
                     break;
             }
 
         } while (opcao != 0);
     }
 
-    private static int DispBuscaCaso(CasoJuridico caso){
+    private static int DispBuscaCaso(CasoJuridico caso)
+    {
         int opcao = -1;
-        do{
+        do
+        {
             App.LimparTela();
-            Console.WriteLine("====== Caso Encontrado ======");
+            Console.WriteLine("\t====== Caso Encontrado ======");
             Console.WriteLine(caso.ToString());
             Console.WriteLine("");
             Console.WriteLine("\t======== TECH ADVOCACIA ========");
@@ -421,7 +466,8 @@ public static class RegistroGeral{
             Console.Write("\t-> ");
             string userInput = Console.ReadLine()!;
 
-            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao)){
+            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao))
+            {
                 Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
                 App.Pause();
             }
@@ -429,18 +475,21 @@ public static class RegistroGeral{
         return opcao;
     }
 
-    private static int DispBuscaCasoEncerrado(CasoJuridico caso){
+    private static int DispBuscaCasoEncerrado(CasoJuridico caso)
+    {
         int opcao = -1;
-        do{
+        do
+        {
             App.LimparTela();
-            Console.WriteLine("====== Caso Encontrado ======");
+            Console.WriteLine("\t====== Caso Encontrado ======");
             Console.WriteLine(caso.ToString());
             Console.WriteLine("");
             Console.WriteLine("\t[0] - Retornar ao menu anterior!");
             Console.Write("\t-> ");
             string userInput = Console.ReadLine()!;
 
-            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao)){
+            if (string.IsNullOrEmpty(userInput) || !Int32.TryParse(userInput, out opcao))
+            {
                 Console.WriteLine("\n\tEntrada inválida. Por favor, insira um número válido.");
                 App.Pause();
             }
@@ -448,70 +497,95 @@ public static class RegistroGeral{
         return opcao;
     }
 
-    private static void NovoSucesso(CasoJuridico caso){
+    private static void NovoSucesso(CasoJuridico caso)
+    {
         App.LimparTela();
-        Console.WriteLine("Informe a nova probabilidade de sucesso do caso:");
+        Console.WriteLine("\n\tInforme a nova probabilidade de sucesso do caso:");
         string input = App.LerString();
         float probabilidade;
-        while(!float.TryParse(input, out probabilidade) || probabilidade < 0 || probabilidade > 100)
-            Console.WriteLine("Valor inválido, tente novamente"); 
+        while (!float.TryParse(input, out probabilidade) || probabilidade < 0 || probabilidade > 100)
+            Console.WriteLine("\n\tValor inválido, tente novamente");
         caso.ProbabilidadeSucesso = probabilidade;
-        App.Cx_Msg("Probabilidade de Sucesso Alterada!");
+        App.Cx_Msg("\n\tProbabilidade de Sucesso Alterada!");
     }
 
-    private static void VerDocumentacao(CasoJuridico caso){
-        while (true){
+    private static void VerDocumentacao(CasoJuridico caso)
+    {
+        while (true)
+        {
             App.LimparTela();
-            Console.WriteLine("Documentações do Caso Jurídico:");
+            Console.WriteLine("\n\tDocumentações do Caso Jurídico:");
 
             for (int i = 0; i < caso.Documentos.Count; i++)
                 Console.WriteLine($"{i + 1}. Código: {caso.Documentos[i].Codigo}, Tipo: {caso.Documentos[i].Tipo}, Descrição: {caso.Documentos[i].Descricao}");
 
             Console.WriteLine("\nDeseja inserir ou remover um documento?");
-            Console.WriteLine("1. Inserir Documento");
-            Console.WriteLine("2. Remover Documento");
-            Console.WriteLine("3. Retornar ao menu anterior");
+            Console.WriteLine("\t1. Inserir Documento");
+            Console.WriteLine("\t2. Remover Documento");
+            Console.WriteLine("\t3. Retornar ao menu anterior");
 
             Console.Write("-> ");
             string escolha = App.LerString();
 
-            switch (escolha){
+            switch (escolha)
+            {
                 case "1":
-                    caso.AddDocumento(ColetarDocumento());
+                    try
+                    {
+                        caso.AddDocumento(ColetarDocumento());
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"\tOcorreu um erro inesperado: {e.Message}");
+                    }
                     break;
                 case "2":
-                    try{
-                        caso.RemoveDocumento(App.LerNumeroInteiro("Informe o código do documento:"));
-                    } catch (InvalidOperationException e){
+                    try
+                    {
+                        caso.RemoveDocumento(App.LerNumeroInteiro("\tInforme o código do documento:"));
+                    }
+                    catch (InvalidOperationException e)
+                    {
                         App.Cx_Msg(e.Message);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"\tOcorreu um erro inesperado: {e.Message}");
                     }
                     break;
                 case "3":
                     return;
                 default:
-                    Console.WriteLine("Opção inválida. Tente novamente.");
+                    Console.WriteLine("\tOpção inválida. Tente novamente.");
                     break;
             }
         }
     }
 
-    private static void VerCustos(CasoJuridico caso){
-        while (true){
+    private static void VerCustos(CasoJuridico caso)
+    {
+        while (true)
+        {
             App.LimparTela();
-            Console.WriteLine("Custos do Caso Jurídico:");
-            
+            Console.WriteLine("\n\tCustos do Caso Jurídico:");
+
             for (int i = 0; i < caso.Custos.Count; i++)
                 Console.WriteLine($"{i + 1}. Valor: {caso.Custos[i].Item1:C2}, Descrição: {caso.Custos[i].Item2}");
 
-            Console.WriteLine("\nOpções:");
-            Console.WriteLine("1. Inserir Custo");
-            Console.WriteLine("2. Remover Custo");
-            Console.WriteLine("3. Sair");
+            Console.WriteLine("\n\tOpções:");
+            Console.WriteLine("\n\t1. Inserir Custo");
+            Console.WriteLine("\n\t2. Remover Custo");
+            Console.WriteLine("\n\t3. Sair");
 
-            Console.Write("Escolha a opção: ");
+            Console.Write("\n\tEscolha a opção: ");
             string escolha = App.LerString();
 
-            switch (escolha){
+            switch (escolha)
+            {
                 case "1":
                     InserirCusto(caso);
                     break;
@@ -521,46 +595,54 @@ public static class RegistroGeral{
                 case "3":
                     return;
                 default:
-                    Console.WriteLine("Opção inválida. Tente novamente.");
+                    Console.WriteLine("\n\tOpção inválida. Tente novamente.");
                     break;
             }
         }
     }
 
-    private static void VerAdvogados(CasoJuridico caso){
+    private static void VerAdvogados(CasoJuridico caso)
+    {
         List<Advogado> advogadosNoCaso = new();
-        foreach (var relacao in RelacaoCasoAdvogado.listaCasoAdvogados){
-            if(relacao.Caso.Equals(caso))
+        foreach (var relacao in RelacaoCasoAdvogado.listaCasoAdvogados)
+        {
+            if (relacao.Caso.Equals(caso))
                 advogadosNoCaso.Add(relacao.Advogado);
         }
-        while (true){
+        while (true)
+        {
             App.LimparTela();
-            Console.WriteLine("Advogados do Caso Jurídico:");
+            Console.WriteLine("\n\tAdvogados do Caso Jurídico:");
 
-            foreach (var advogado in advogadosNoCaso){
+            foreach (var advogado in advogadosNoCaso)
+            {
                 Console.WriteLine($"Nome: {advogado.Nome}, CNA: {advogado.Cna}, Especialidade: {advogado.Especialidade}");
             }
 
-            Console.WriteLine("\nDeseja inserir ou remover um Advogado?");
-            Console.WriteLine("1. Inserir Advogado");
-            Console.WriteLine("2. Remover Advogado");
-            Console.WriteLine("3. Retornar ao menu anterior");
+            Console.WriteLine("\n\tDeseja inserir ou remover um Advogado?");
+            Console.WriteLine("\t1. Inserir Advogado");
+            Console.WriteLine("\t2. Remover Advogado");
+            Console.WriteLine("\t3. Retornar ao menu anterior");
 
             Console.Write("-> ");
             string escolha = App.LerString();
 
-            switch (escolha){
+            switch (escolha)
+            {
                 case "1":
                     List<Advogado>? novosAdvogados = ColetarAdvogados();
-                    if(novosAdvogados == default)
+                    if (novosAdvogados == default)
                         continue;
-                    foreach (Advogado advogado in novosAdvogados){
+                    foreach (Advogado advogado in novosAdvogados)
+                    {
                         RelacaoCasoAdvogado relacao = new(caso, advogado);
+                        RelacaoCasoAdvogado.listaCasoAdvogados.Add(relacao);
                     }
                     break;
                 case "2":
-                    if(advogadosNoCaso.Count == 1){
-                        App.Cx_Msg("Pelo menos um advogado precisa ser designado ao caso");
+                    if (advogadosNoCaso.Count == 1)
+                    {
+                        App.Cx_Msg("\n\tPelo menos um advogado precisa ser designado ao caso");
                         continue;
                     }
                     RemoverAssociacaoAdvogadoCaso(caso);
@@ -568,72 +650,80 @@ public static class RegistroGeral{
                 case "3":
                     return;
                 default:
-                    Console.WriteLine("Opção inválida. Tente novamente.");
+                    Console.WriteLine("\n\tOpção inválida. Tente novamente.");
                     break;
             }
         }
     }
 
-    public static void RemoverAssociacaoAdvogadoCaso(CasoJuridico caso){
-        Console.WriteLine("Informe o cna do advogado que deseja remover:");
+    public static void RemoverAssociacaoAdvogadoCaso(CasoJuridico caso)
+    {
+        Console.WriteLine("\n\tInforme o cna do advogado que deseja remover:");
         string cna = App.LerString();
 
         RelacaoCasoAdvogado? associacaoParaRemover = RelacaoCasoAdvogado.listaCasoAdvogados.FirstOrDefault(a =>
             a.Advogado.Cna.Equals(cna) && a.Caso.Equals(caso));
 
-        if (associacaoParaRemover != null){
+        if (associacaoParaRemover != null)
+        {
             RelacaoCasoAdvogado.listaCasoAdvogados.Remove(associacaoParaRemover);
-            Console.WriteLine("Advogado removido com sucesso.");
+            Console.WriteLine("\n\tAdvogado removido com sucesso.");
         }
         else
-            Console.WriteLine("Associação não encontrada.");
+            Console.WriteLine("\n\tAssociação não encontrada.");
 
         Console.ReadLine();
     }
 
-
-    public static void AlterarStatus(CasoJuridico caso){
-        while (true){
+    public static void AlterarStatus(CasoJuridico caso)
+    {
+        while (true)
+        {
             App.LimparTela();
-            Console.WriteLine($"Data de abertura: {caso.DataInicio.ToShortDateString}");
-            Console.WriteLine("\nSelecione o novo status:");
-            Console.WriteLine("1. Concluído");
-            Console.WriteLine("2. Arquivado");
-            Console.WriteLine("0. Retornar ao menu anterior");
+            Console.WriteLine($"\n\tData de abertura: {caso.DataInicio.ToShortDateString}");
+            Console.WriteLine("\tSelecione o novo status:");
+            Console.WriteLine("\t1. Concluído");
+            Console.WriteLine("\t2. Arquivado");
+            Console.WriteLine("\t0. Retornar ao menu anterior");
 
             Console.Write("-> ");
             string escolha = App.LerString();
             DateTime data;
 
-            switch (escolha){
+            switch (escolha)
+            {
                 case "1":
-                    do{
-                        Console.WriteLine("Informe a data de encerramento!");
+                    do
+                    {
+                        Console.WriteLine("\n\tInforme a data de encerramento!");
                         data = App.LerData();
-                        if(caso.DataInicio > data)
+                        if (caso.DataInicio < data)
+                        {
                             break;
-                        Console.WriteLine("A data de encerramento deve ser posterior a de abertura!");
+                        }
+                        Console.WriteLine("\n\tA data de encerramento deve ser posterior a de abertura!");
                     } while (true);
                     caso.DataEncerramento = data;
                     caso.Status = "Concluído";
-                    Console.WriteLine("Status alterado para Concluído.");
+                    Console.WriteLine("\n\tStatus alterado para Concluído.");
                     break;
                 case "2":
-                    do{
-                        Console.WriteLine("Informe a data de encerramento!");
+                    do
+                    {
+                        Console.WriteLine("\n\tInforme a data de encerramento!");
                         data = App.LerData();
-                        if(caso.DataInicio > data)
+                        if (caso.DataInicio > data)
                             break;
-                        Console.WriteLine("A data de encerramento deve ser posterior a de abertura!");
+                        Console.WriteLine("\n\tA data de encerramento deve ser posterior a de abertura!");
                     } while (true);
                     caso.DataEncerramento = data;
                     caso.Status = "Arquivado";
-                    Console.WriteLine("Status alterado para Arquivado.");
+                    Console.WriteLine("\n\tStatus alterado para Arquivado.");
                     break;
                 case "0":
                     return;
                 default:
-                    Console.WriteLine("Opção inválida. Tente novamente.");
+                    Console.WriteLine("\n\tOpção inválida. Tente novamente.");
                     break;
             }
 
@@ -641,78 +731,93 @@ public static class RegistroGeral{
         }
     }
 
-    private static void InserirCusto(CasoJuridico caso){
+    private static void InserirCusto(CasoJuridico caso)
+    {
         App.LimparTela();
-        Console.Write("Informe o valor do custo: ");
-        if (float.TryParse(Console.ReadLine(), out float valor)){
-            Console.Write("Informe a descrição do custo: ");
+        Console.Write("\n\tInforme o valor do custo: ");
+        if (float.TryParse(Console.ReadLine(), out float valor))
+        {
+            Console.Write("\n\tInforme a descrição do custo: ");
             string descricao = App.LerString();
 
-            try{
+            try
+            {
                 caso.AdicionarCusto(valor, descricao);
-            }catch(InvalidOperationException e){
+            }
+            catch (InvalidOperationException e)
+            {
                 App.Cx_Msg(e.Message);
             }
-        }else
-            Console.WriteLine("Valor de custo inválido.");
+        }
+        else
+            Console.WriteLine("\n\tValor de custo inválido.");
 
         App.Pause();
     }
 
-    private static void RemoverCusto(CasoJuridico caso){
+    private static void RemoverCusto(CasoJuridico caso)
+    {
         App.LimparTela();
-        Console.Write("Informe o valor do custo: ");
-        if (float.TryParse(Console.ReadLine(), out float valor)){
-            Console.Write("Informe a descrição do custo: ");
+        Console.Write("\n\tInforme o valor do custo: ");
+        if (float.TryParse(Console.ReadLine(), out float valor))
+        {
+            Console.Write("\n\tInforme a descrição do custo: ");
             string descricao = App.LerString();
 
-            try{
+            try
+            {
                 caso.RemoverCusto(valor, descricao);
-            }catch(InvalidOperationException e){
+            }
+            catch (InvalidOperationException e)
+            {
                 App.Cx_Msg(e.Message);
             }
-        }else
-            Console.WriteLine("Valor de custo inválido.");
+        }
+        else
+            Console.WriteLine("\n\tValor de custo inválido.");
 
         App.Pause();
     }
 
-
-    private static List<Advogado>? ColetarAdvogados(){
+    private static List<Advogado>? ColetarAdvogados()
+    {
         App.LimparTela();
-        Console.WriteLine("Digite o cna do advogado resposável pelo caso:");
+        Console.WriteLine("\n\tDigite o cna do advogado resposável pelo caso:");
         string cna = App.LerString();
         Advogado? advogado = Advogados.FirstOrDefault(a => a.Cna == cna);
         List<Advogado> advogadosNoCaso = new();
 
-        while(advogado == default){
-            Console.WriteLine("Advogado não encontrado!");
-            Console.WriteLine("Deseja tentar novamente? [S] / [N]");
+        while (advogado == default)
+        {
+            Console.WriteLine("\n\tAdvogado não encontrado!");
+            Console.WriteLine("\n\tDeseja tentar novamente? [S] / [N]");
             cna = App.LerString();
-            if(cna.ToUpper() == "N")
+            if (cna.ToUpper() == "N")
                 return default;
             App.LimparTela();
-            Console.WriteLine("Digite o cna do advogado resposável pelo caso:");
+            Console.WriteLine("\n\tDigite o cna do advogado resposável pelo caso:");
             cna = App.LerString();
             advogado = Advogados.FirstOrDefault(a => a.Cna == cna);
         }
 
         advogadosNoCaso.Add(advogado);
 
-        while (true){
+        while (true)
+        {
             App.LimparTela();
-            Console.WriteLine("Deseja adicionar mais advogados ao caso? [S] / [N]");
+            Console.WriteLine("\n\tDeseja adicionar mais advogados ao caso? [S] / [N]");
             string resposta = App.LerString().ToUpper();
 
             if (resposta == "N")
                 break;
 
-            Console.WriteLine("Digite o cna do próximo advogado:");
+            Console.WriteLine("\n\tDigite o cna do próximo advogado:");
             cna = App.LerString();
             advogado = Advogados.FirstOrDefault(a => a.Cna == cna);
 
-            if (advogado == default){
-                App.Cx_Msg("Advogado não encontrado!");
+            if (advogado == default)
+            {
+                App.Cx_Msg("\n\tAdvogado não encontrado!");
                 continue;
             }
 
@@ -721,37 +826,40 @@ public static class RegistroGeral{
         return advogadosNoCaso;
     }
 
-    private static Documento ColetarDocumento(){
-        Console.WriteLine("Informe o tipo do documento do caso:");
+    private static Documento ColetarDocumento()
+    {
+        Console.WriteLine("\n\tInforme o tipo do documento do caso:");
         string tipo = App.LerString();
-        
-        int codigo = App.LerNumeroInteiro("Informe o código do documento:");
 
-        Console.WriteLine("Informe a data de modificação do documento:");
+        int codigo = App.LerNumeroInteiro("\n\tInforme o código do documento:");
+
+        Console.WriteLine("\n\tInforme a data de modificação do documento:");
         DateTime data = App.LerData();
 
-        Console.WriteLine("Informe a descrição do documento:");
+        Console.WriteLine("\n\tInforme a descrição do documento:");
         string descricao = App.LerString();
 
         Documento documento = new(data, codigo, tipo, descricao);
         return documento;
     }
 
-    private static List<(float, string)> ColetarCustos(){
+    private static List<(float, string)> ColetarCustos()
+    {
         List<(float, string)> custos = new List<(float, string)>();
 
-        while (true){
-            Console.WriteLine("Informe o valor do custo:");
+        while (true)
+        {
+            Console.WriteLine("\n\tInforme o valor do custo:");
             float valor;
             while (!float.TryParse(App.LerString(), out valor))
-                Console.WriteLine("Valor inválido. Tente novamente.");
+                Console.WriteLine("\n\tValor inválido. Tente novamente.");
 
-            Console.WriteLine("Informe a descrição do custo:");
+            Console.WriteLine("\n\tInforme a descrição do custo:");
             string descricao = App.LerString();
 
             custos.Add((valor, descricao));
 
-            Console.WriteLine("Deseja adicionar mais custos? [S] / [N]");
+            Console.WriteLine("\n\tDeseja adicionar mais custos? [S] / [N]");
             string resposta = App.LerString().ToUpper();
             if (resposta != "S")
                 break;

@@ -2,96 +2,23 @@ namespace AvaliacaoDotNet
 {
     public class Relatorios
     {
-        ListaCliente clientes;
-
-        ListaAdvogado advogados;
-
-        public Relatorios(ListaCliente clientes, ListaAdvogado advogados)
-        {
-            this.clientes = clientes;
-            this.advogados = advogados;
-        }
-        public void MenuRelatorios()
-        {
-
-            do
-            {
-                App.LimparTela();
-                Console.WriteLine("\n\t========== RELATÓRIOS ==========");
-                Console.WriteLine("\t[1] - ADVOGADOS COM IDADE ENTRE DOIS VALORES");
-                Console.WriteLine("\t[2] - CLIENTES COM IDADE ENTRE DOIS VALORES");
-                Console.WriteLine("\t[3] - CLIENTES COM ESTADO CIVIL INFORMADO PELO USUÁRIO");
-                Console.WriteLine("\t[4] - CLIENTES EM ORDEM ALFABÉTICA");
-                Console.WriteLine("\t[5] - CLIENTES CUJA  PROFISSÃO CONTENHA TEXTO INFORMADO PELO USUÁRIO");
-                Console.WriteLine("\t[6] - ADVOGADOS E CLIENTES ANIVERSARIANTES DO MÊS INFORMADO");
-                Console.WriteLine("\t[0] - MENU PRINCIPAL");
-                Console.Write("\tENTRADA -> ");
-
-                if (int.TryParse(Console.ReadLine(), out int opcao))
-                {
-                    switch (opcao)
-                    {
-                        case 1:
-                            RelatorioAdvogadosIdadeEntreDoisValores();
-                            break;
-
-                        case 2:
-                            RelatorioClientesIdadeEntreDoisValores();
-                            break;
-
-                        case 3:
-                            RelatorioEstadoCivilInformadoPeloUsuario();
-                            break;
-
-                        case 4:
-                            RelatorioClienteEmOrdemAlfabetica();
-                            break;
-
-                        case 5:
-                            RelatorioClientesCujaProfissaoContenhaTexto();
-                            break;
-
-                        case 6:
-                            RelatorioAdvogadosEClientesAniversariantesDoMes();
-                            break;
-
-                        case 0:
-                            Console.WriteLine("\n\tOps, retornando ao menu prncipal!...");
-                            App.Pause();
-                            return;
-
-                        default:
-                            Console.WriteLine("\n\tOpção inválida. Por favor, escolha uma opção válida.");
-                            App.Pause();
-                            break;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("\n\tPor favor, insira um valor numérico válido.");
-                    App.Pause();
-                }
-
-            } while (true);
-        }
-
-        public void RelatorioClientesIdadeEntreDoisValores()
+        public static void RelatorioClientesIdadeEntreDoisValores(List<Cliente> clientes)
         {
             App.LimparTela();
             Console.WriteLine("\n\t========== RELATÓRIO DE CLIENTES COM IDADE ENTRE DOIS VALORES ==========");
 
-            int valorMinimo = Cliente.LerNumeroInteiro("\n\tDigite o valor mínimo: ");
+            int valorMinimo = App.LerNumeroInteiro("\n\tDigite o valor mínimo: ");
 
-            int valorMaximo = Cliente.LerNumeroInteiro("\n\tDigite o valor máximo: ");
+            int valorMaximo = App.LerNumeroInteiro("\n\tDigite o valor máximo: ");
 
-            var clientesFiltrados = clientes.GetClientes().Where(cliente => cliente.Idade >= valorMinimo && cliente.Idade <= valorMaximo);
+            var clientesFiltrados = clientes.Where(cliente => cliente.Idade >= valorMinimo && cliente.Idade <= valorMaximo);
 
             if (clientesFiltrados.Any())
             {
                 Console.WriteLine("\n\tCLIENTE ENCONTRADOS:");
+                App.LimparTela();
                 foreach (var cliente in clientesFiltrados)
                 {
-                    App.LimparTela();
                     Console.WriteLine("\n\t=========== CLIENTE ===========");
                     Console.WriteLine(cliente.ToString());
                     Console.Write($"\t==========================");
@@ -105,16 +32,16 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void RelatorioAdvogadosIdadeEntreDoisValores()
+        public static void RelatorioAdvogadosIdadeEntreDoisValores(List<Advogado> advogados)
         {
             App.LimparTela();
             Console.WriteLine("\n\t=== LISTA DE ADVOGADOS COM IDADE ENTRE DOIS VALORES ===");
 
-            int valorMinimo = Cliente.LerNumeroInteiro("\n\tDigite o valor mínimo: ");
+            int valorMinimo = App.LerNumeroInteiro("\n\tDigite o valor mínimo: ");
 
-            int valorMaximo = Cliente.LerNumeroInteiro("\n\tDigite o valor máximo: ");
+            int valorMaximo = App.LerNumeroInteiro("\n\tDigite o valor máximo: ");
 
-            var advogadosFiltrados = advogados.GetAdvogados().Where(advogado => advogado.Idade >= valorMinimo && advogado.Idade <= valorMaximo);
+            var advogadosFiltrados = advogados.Where(advogado => advogado.Idade >= valorMinimo && advogado.Idade <= valorMaximo);
 
             App.LimparTela();
             foreach (Advogado advogado in advogadosFiltrados)
@@ -126,9 +53,9 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void RelatorioEstadoCivilInformadoPeloUsuario()
+        public static void RelatorioEstadoCivilInformadoPeloUsuario(List<Cliente> clientes)
         {
-            if (clientes.GetClientes() == null)
+            if (clientes == null)
             {
                 Console.WriteLine("\n\tLista de clientes não fornecida. Retornando ao menu.");
                 App.Pause();
@@ -141,7 +68,7 @@ namespace AvaliacaoDotNet
             Console.Write("\n\tDigite o estado civil: ");
             string estadoCivil = Console.ReadLine()!;
 
-            var clientesFiltrados = clientes.GetClientes().Where(cliente => cliente.EstadoCivil == estadoCivil);
+            var clientesFiltrados = clientes.Where(cliente => cliente.EstadoCivil.ToLower() == estadoCivil.ToLower());
 
             if (clientesFiltrados.Any())
             {
@@ -162,12 +89,12 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void RelatorioClienteEmOrdemAlfabetica()
+        public static void RelatorioClienteEmOrdemAlfabetica(List<Cliente> clientes)
         {
             App.LimparTela();
             Console.WriteLine("\n\t========== RELATÓRIO DE CLIENTES EM ORDEM ALFABÉTICA ==========");
 
-            var clientesOrdenados = clientes.GetClientes().OrderBy(cliente => cliente.Nome);
+            var clientesOrdenados = clientes.OrderBy(cliente => cliente.Nome);
 
             if (clientesOrdenados.Count() > 0)
             {
@@ -188,12 +115,12 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void RelatorioAdvogadoEmOrdemAlfabetica()
+        public static void RelatorioAdvogadoEmOrdemAlfabetica(List<Advogado> advogados)
         {
             App.LimparTela();
             Console.WriteLine("\n\t=== LISTA DE ADVOGADOS EM ORDEM ALFABÉTICA ===");
 
-            var advogadosOrdenados = advogados.GetAdvogados().OrderBy(advogado => advogado.Nome);
+            var advogadosOrdenados = advogados.OrderBy(advogado => advogado.Nome);
 
             foreach (Advogado advogado in advogadosOrdenados)
             {
@@ -205,15 +132,15 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void RelatorioClientesCujaProfissaoContenhaTexto()
+        public static void RelatorioClientesCujaProfissaoContenhaTexto(List<Cliente> clientes)
         {
             App.LimparTela();
-            Console.WriteLine("\n\t========== RELATÓRIO DE CLIENTES CUJO A PROFISSÃO CONTENHA TEXTO ==========");
+            Console.WriteLine("\n\t========== RELATÓRIO DE CLIENTES CUJA A PROFISSÃO CONTENHA TEXTO ==========");
 
             Console.Write("\n\tDigite o texto: ");
             string texto = Console.ReadLine()!;
 
-            var clientesFiltrados = clientes.GetClientes().Where(cliente => cliente.Profissao.Contains(texto));
+            var clientesFiltrados = clientes.Where(cliente => cliente.Profissao.ToLower().Contains(texto.ToLower()));
 
             if (clientesFiltrados.Count() > 0)
             {
@@ -234,20 +161,20 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void RelatorioAdvogadosEClientesAniversariantesDoMes()
+        public static void RelatorioAdvogadosEClientesAniversariantesDoMes(List<Advogado> advogados, List<Cliente> clientes)
         {
             App.LimparTela();
             Console.WriteLine("\n\t========== ADVOGADOS E CLIENTES ANIVERSARIANTES DO MÊS ==========");
 
-            int mes = Cliente.LerNumeroInteiro("\n\tDigite o mês: ");
+            int mes = App.LerNumeroInteiro("\n\tDigite o mês: ");
 
             if(mes < 1 || mes > 12){
                 Console.WriteLine($"Mês Inválido!");                
                 return;
             }
 
-            var advogadosFiltrados = advogados.GetAdvogados().Where(advogado => advogado.DataNascimento.Month == mes);
-            var clientesFiltrados = clientes.GetClientes().Where(cliente => cliente.DataNascimento.Month == mes);
+            var advogadosFiltrados = advogados.Where(advogado => advogado.DataNascimento.Month == mes);
+            var clientesFiltrados = clientes.Where(cliente => cliente.DataNascimento.Month == mes);
 
             if (advogadosFiltrados.Count() > 0)
             {
@@ -288,7 +215,7 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void RelatorioAdvogadoComIdadeMaiorQue()
+        public static void RelatorioAdvogadoComIdadeMaiorQue(List<Advogado> advogados)
         {
             App.LimparTela();
             Console.WriteLine("\n\t=== Lista de Advogados com Idade Maior que ===");
@@ -296,7 +223,7 @@ namespace AvaliacaoDotNet
             Console.Write("\n\tDigite a idade: ");
             int idade = int.Parse(Console.ReadLine()!);
 
-            var advogadosFiltrados = advogados.GetAdvogados().Where(advogado => advogado.Idade > idade);
+            var advogadosFiltrados = advogados.Where(advogado => advogado.Idade > idade);
 
             App.LimparTela();
             foreach (Advogado advogado in advogadosFiltrados)
@@ -314,7 +241,7 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void RelatorioAdvogadoComIdadeMenorQue()
+        public static void RelatorioAdvogadoComIdadeMenorQue(List<Advogado> advogados)
         {
             App.LimparTela();
             Console.WriteLine("\n\t=== Lista de Advogados com Idade Menor que ===");
@@ -322,7 +249,7 @@ namespace AvaliacaoDotNet
             Console.Write("\n\tDigite a idade: ");
             int idade = int.Parse(Console.ReadLine()!);
 
-            var advogadosFiltrados = advogados.GetAdvogados().Where(advogado => advogado.Idade < idade);
+            var advogadosFiltrados = advogados.Where(advogado => advogado.Idade < idade);
 
             App.LimparTela();
             foreach (Advogado advogado in advogadosFiltrados)
@@ -340,7 +267,7 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void RelatorioAdvogadoComIdadeIgualA()
+        public static void RelatorioAdvogadoComIdadeIgualA(List<Advogado> advogados)
         {
             App.LimparTela();
             Console.WriteLine("\n\t=== Lista de Advogados com Idade Igual a ===");
@@ -348,7 +275,7 @@ namespace AvaliacaoDotNet
             Console.Write("\n\tDigite a idade: ");
             int idade = int.Parse(Console.ReadLine()!);
 
-            var advogadosFiltrados = advogados.GetAdvogados().Where(advogado => advogado.Idade == idade);
+            var advogadosFiltrados = advogados.Where(advogado => advogado.Idade == idade);
 
             App.LimparTela();
             foreach (Advogado advogado in advogadosFiltrados)
@@ -366,7 +293,7 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void RelatorioAdvogadoComIdadeDiferenteDe()
+        public static void RelatorioAdvogadoComIdadeDiferenteDe(List<Advogado> advogados)
         {
             App.LimparTela();
             Console.WriteLine("\n\t=== Lista de Advogados com Idade Diferente de ===");
@@ -374,7 +301,7 @@ namespace AvaliacaoDotNet
             Console.Write("\n\tDigite a idade: ");
             int idade = int.Parse(Console.ReadLine()!);
 
-            var advogadosFiltrados = advogados.GetAdvogados().Where(advogado => advogado.Idade != idade);
+            var advogadosFiltrados = advogados.Where(advogado => advogado.Idade != idade);
 
             App.LimparTela();
             foreach (Advogado advogado in advogadosFiltrados)
@@ -392,7 +319,7 @@ namespace AvaliacaoDotNet
             App.Pause();
         }
 
-        public void RelatorioAdvogadoComIdadeMaiorOuIgualA()
+        public static void RelatorioAdvogadoComIdadeMaiorOuIgualA(List<Advogado> advogados)
         {
             App.LimparTela();
             Console.WriteLine("\n\t=== Lista de Advogados com Idade Maior ou Igual a ===");
@@ -400,7 +327,7 @@ namespace AvaliacaoDotNet
             Console.Write("\n\tDigite a idade: ");
             int idade = int.Parse(Console.ReadLine()!);
 
-            var advogadosFiltrados = advogados.GetAdvogados().Where(advogado => advogado.Idade >= idade);
+            var advogadosFiltrados = advogados.Where(advogado => advogado.Idade >= idade);
 
             App.LimparTela();
             foreach (Advogado advogado in advogadosFiltrados)
@@ -413,6 +340,114 @@ namespace AvaliacaoDotNet
                 Console.WriteLine("\tCNA: " + advogado.Cna);
                 Console.WriteLine("\tEspecialidade: " + advogado.Especialidade);
                 Console.WriteLine("\t==========================\n");
+            }
+
+            App.Pause();
+        }
+        public static void RelatorioCasosEmAbertoOrdemCrescente(List<CasoJuridico> casosJuridicos)
+        {
+            App.LimparTela();
+            Console.WriteLine("\n\t=== Lista de Casos com o status “Em aberto”, em ordem crescente pela data de início ===");
+
+            var casosJuridicosFiltrados = casosJuridicos.OrderBy(caso => caso.DataInicio);
+
+            App.LimparTela();
+            foreach (CasoJuridico casoJuridico in casosJuridicosFiltrados)
+            {
+                Console.WriteLine("\n\t=========== CASO JURÍDICO ===========");
+                Console.WriteLine(casoJuridico.ToString());
+                Console.WriteLine("\t==========================\n");
+            }
+
+            App.Pause();
+        }
+        public static void AdvogadosOrdemDecrescenteCasosConcluidos(List<RelacaoCasoAdvogado> relacaoCasoAdvogado) {
+            App.LimparTela();
+            Console.WriteLine("\n\t========== Lista de Advogados em ordem decrescente de casos concluídos ==========");
+
+            var listaAdvogados = relacaoCasoAdvogado
+                .Where(relacao => relacao.Caso.Status.ToLower() == "concluido")
+                .GroupBy(relacao => relacao.Advogado.Nome)
+                .Select(grupo => new { NomeAdvogado = grupo.Key, QuantidadeCasosConcluidos = grupo.Count() })
+                .OrderByDescending(resultado => resultado.QuantidadeCasosConcluidos)
+                .ToList();
+            
+            if (listaAdvogados.Count() > 0)
+            {
+                App.LimparTela();
+                Console.WriteLine("\n\tLISTA DE ADVOGADOS EM ORDEM DECRESCENTE DE CASOS CONCLUÍDOS:");
+                foreach (var advogado in listaAdvogados)
+                {
+                    Console.WriteLine("\n\t=========== ADVOGADO ===========");
+                    Console.WriteLine(advogado.ToString());                    
+                    Console.Write($"\t==========================");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\n\tNenhum advogado encontrado.");
+            }
+
+            App.Pause();
+        }
+        public static void RelatorioCasosCujaDescricaoCustoContenhaTexto(List<CasoJuridico> casosJuridicos)
+        {
+            App.LimparTela();
+            Console.WriteLine("\n\t========== Lista de Casos que possuam custo com uma determinada palavra na descrição ==========");
+
+            Console.Write("\n\tDigite o texto: ");
+            string texto = Console.ReadLine()!;
+            
+            var casosJuridicosFiltrados = casosJuridicos.Where(
+                caso => caso.Custos.Any(
+                    custo => custo.Item2.ToLower().Contains(texto.ToLower())
+                )
+            ).ToList();
+
+            if (casosJuridicosFiltrados.Count() > 0)
+            {
+                App.LimparTela();
+                Console.WriteLine("\n\tCASOS JURÍDICOS ENCONTRADOS:");
+                foreach (var caso in casosJuridicosFiltrados)
+                {
+                    Console.WriteLine("\n\t=========== CASO JURÍDICO ===========");
+                    Console.WriteLine(caso.ToString());                    
+                    Console.Write($"\t==========================");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\n\tNenhum caso jurídico encontrado.");
+            }
+
+            App.Pause();
+        }
+        public static void RelatorioTop10DocumentosMaisInseridos(List<CasoJuridico> casosJuridicos)
+        {
+            App.LimparTela();
+            Console.WriteLine("\n\t========== Top 10 tipos de documentos mais inseridos nos casos ==========");;
+            
+            var topDezTipos = casosJuridicos.SelectMany(caso => caso.Documentos)
+                .GroupBy(documento => documento.Tipo)
+                .Select(grupo => new { TipoDocumento = grupo.Key, Contagem = grupo.Count() })
+                .OrderByDescending(resultado => resultado.Contagem)
+                .Take(10)
+                .ToList();
+
+            if (topDezTipos.Count() > 0)
+            {
+                App.LimparTela();
+                Console.WriteLine("\n\tTOP 10 TIPOS:");
+                foreach (var documento in topDezTipos)
+                {
+                    Console.WriteLine("\n\t=========== TIPO ===========");
+                    Console.WriteLine($"Tipo: {documento.TipoDocumento} - Quantidade: {documento.Contagem}");
+                    Console.Write($"\t==========================");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\n\tNenhum documento encontrado.");
             }
 
             App.Pause();
