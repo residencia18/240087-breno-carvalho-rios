@@ -7,7 +7,7 @@ public class App {
     ControleClientes controleClientes = new ControleClientes();
     ControleImoveis controleImoveis = new ControleImoveis();
     ControleFaturas controleFaturas = new ControleFaturas();
-    ControlePagamentos controlePagamentos;
+    ControlePagamentos controlePagamentos = new ControlePagamentos();
     ControleFalhas controleFalhas;
 
     public App() {
@@ -195,13 +195,13 @@ public class App {
 
             switch (opcao){
                 case 1:
-                    // controlePagamentos.algumaCoisa();
+                    ControlePagamentos.incluirPagamento();
                     break;
                 case 2:
-                    // controlePagamentos.algumaCoisa();
+                    ControlePagamentos.mostrarPagamentosPorFatura();
                     break;
                 case 3:
-                    // controlePagamentos.algumaCoisa();
+                    ControlePagamentos.mostrarTodosReembolsos();
                     break;
                 case 0:
                     break;

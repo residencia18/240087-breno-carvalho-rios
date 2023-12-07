@@ -8,26 +8,19 @@ public class Pagamento {
     private Fatura fatura;
     private double valor;
     private LocalDateTime data;
-    private List<Reembolso> reembolsos;
+    private Reembolso reembolso = null;
 
     public Pagamento(Fatura fatura, double valor, LocalDateTime data) {
         this.fatura = fatura;
         this.valor = valor;
         this.data = data;
-        this.reembolsos = new ArrayList<>();
-        verificarQuitacaoFatura();
     }
 
-    public void incluirReembolso(double valor) {
-        if (valor > this.valor) {
-            Reembolso reembolso = new Reembolso(this, valor, LocalDateTime.now());
-            this.reembolsos.add(reembolso);
-            System.out.println("Reembolso gerado: " + reembolso);
-        }
+    public void setReembolso(Reembolso reembolso) {
+        this.reembolso = reembolso;
     }
-
-    public List<Reembolso> listarReembolsos() {
-        return this.reembolsos;
+    public Reembolso getReembolso() {
+        return this.reembolso;
     }
 
     public double getValor() {
@@ -42,13 +35,10 @@ public class Pagamento {
         return data;
     }
 
-   
-
-    private void verificarQuitacaoFatura() {
-        double somaPagamentos = this.reembolsos.stream().mapToDouble(Reembolso::getValor).sum() + this.valor;
-        if (somaPagamentos >= this.fatura.getValor()) {
-            this.fatura.setQuitado(true);
-        }
+    @Override
+    public String toString() {
+        return "Data da Fatura: " + fatura.getData().toLocalDate() + "\n"
+                + "Valor: R$ " + valor + "\n"
+                + "Data: " + data.toLocalDate();
     }
-
 }

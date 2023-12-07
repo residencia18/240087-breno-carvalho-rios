@@ -42,6 +42,7 @@ public class Reembolso {
 
     @Override
     public String toString() {
-        return "Reembolso [pagamento=" + pagamento + ", valor=" + valor + ", data=" + data + "]";
+        return "Valor: R$ " + valor + "\n"
+                + "Data: " + data.toLocalDate();
     }
 }
