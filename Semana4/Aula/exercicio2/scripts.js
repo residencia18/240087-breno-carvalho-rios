@@ -32,11 +32,14 @@ function criaLista(map, monitor) {
 
 function ligaPc() {
     let monitor = document.getElementById("monitor-frame");
-    monitor.style.color = "black";
     monitor.style.backgroundColor = "white";
+    monitor.style.color = "black";
+    monitor.innerText = "";
+    setTimeout(() => {
+        let map = getMap(pc);
+        criaLista(map, monitor);
+    }, 1000);
     pc.liga();
-    let map = getMap(pc);
-    criaLista(map, monitor);
     
     let button = document.getElementById("btn-pc");
     button.innerText = "Desligar";
@@ -47,10 +50,13 @@ function ligaPc() {
 
 function desligaPc() {
     let monitor = document.getElementById("monitor-frame");
-    monitor.style.color = "white";
     monitor.style.backgroundColor = "black";
+    monitor.style.color = "white";
+    monitor.innerText = "";
+    setTimeout(() => {
+        monitor.innerText = "Pressione Ligar";
+    }, 1000);
     pc.desliga();
-    monitor.innerText = "Pressione Ligar";
 
     let button = document.getElementById("btn-pc");
     button.innerText = "LIGAR";
@@ -71,7 +77,6 @@ document.getElementById("select-1").addEventListener('click', (event) => {
         desligaPc();
     }
     pc = pc1;
-    document.getElementById("monitor-frame").innerText = "Pressione Ligar";
 
     event.target.style.backgroundColor = "black";
     document.getElementById("select-1").style.backgroundColor = "black";
@@ -84,7 +89,6 @@ document.getElementById("select-2").addEventListener('click', (event) => {
         desligaPc();
     }
     pc = pc2;
-    document.getElementById("monitor-frame").innerText = "Pressione Ligar";
 
     event.target.style.backgroundColor = "black";
     document.getElementById("select-1").style.backgroundColor = "darkcyan";
@@ -96,7 +100,6 @@ document.getElementById("select-3").addEventListener('click', (event) => {
         desligaPc();
     }
     pc = pc3;
-    document.getElementById("monitor-frame").innerText = "Pressione Ligar";
 
     event.target.style.backgroundColor = "black";
     document.getElementById("select-1").style.backgroundColor = "darkcyan";
