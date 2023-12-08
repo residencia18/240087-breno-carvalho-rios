@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins&display=swap');
+
+* {
+    margin: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #006989;
+    max-width: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    color: #d9caff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.card img {
+    width: 200px;
+    height: 120px;
+    border-radius: 10px;
+}
+
+.place-title {
+    font-weight: bold;
+    text-align: center;
+    color: #EAEBED;
+    font-size: 2.5em;
+    font-family: 'Caveat', cursive;
+}
+
+.benefits {
+    display: inline-block;
+    align-self: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.benefits > li::before {
+    content: "➤";
+    margin-right: 5px;
+}
+
+.payment-info {
+    text-align: center;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 1.7em;
+    color: #EAEBED;
+    margin-bottom: 5px;
+    text-decoration: underline;
+}
+
+.aditionals {
+    font-size: 0.9em;
+}
+
+.card-div {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    align-self: center;
+    transition: transform 1s, border 0.5s;
+    border-radius: 5px;
+}
+
+.card button {
+    align-self: center;
+    border: none;
+    padding: 10px 20px;
+    background-color: #BA1200;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background-color: #9b0000;
+}
+
+@media (max-width: 1200px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+}
