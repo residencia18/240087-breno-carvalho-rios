@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+    height: 100vh;
+}
+
+#monitor-frame {
+    background: url(img/monitor-frame.png);
+    background-color: black;
+    border-radius: 15px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 382px;
+    height: 255px;
+    color: white;
+    font-size: 1.5em;
+}
+
+#monitor-feet {
+    background: url(img/monitor-feet.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 382px;
+    height: 68px;
+}
+
+#ligar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#btn-pc {
+    border: 1px lightgray solid;
+    background-color: green;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-size: 1.0em;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+#error-box {
+    width: 100px;
+    height: 100px;
+    color: white;
+}
+
+#selector {
+    display: flex;
+    gap: 20px;
+}
+
+#selector button{
+    border: 1px lightgray solid;
+    background-color: darkcyan;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
