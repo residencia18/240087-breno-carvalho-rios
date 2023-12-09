@@ -4,6 +4,31 @@
     margin: 0;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #006989;
+    color: white;
+    font-family: 'Caveat', cursive
+}
+
+header a {
+    font-family: 'poppins', sans-serif;
+    color: white;
+    text-decoration: none;
+    background-color: darkgreen;
+    border: 1px solid white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    font-size: 1.1em;
+}
+
+header a:hover {
+    background-color: green;
+}
+
 main {
     display: flex;
     justify-content: center;
@@ -15,6 +40,9 @@ main {
 .card {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+    overflow-x: hidden;
     gap: 10px;
     background-color: #006989;
     max-width: 200px;
@@ -22,6 +50,11 @@ main {
     border-radius: 10px;
     color: #d9caff;
     font-family: 'Poppins', sans-serif;
+    min-height: 441px;
+}
+
+.card::-webkit-scrollbar { 
+    display: none;
 }
 
 .card img {
@@ -30,7 +63,7 @@ main {
     border-radius: 10px;
 }
 
-.place-title {
+.title {
     font-weight: bold;
     text-align: center;
     color: #EAEBED;
@@ -62,7 +95,7 @@ main {
     text-decoration: underline;
 }
 
-.aditionals {
+.price-details {
     font-size: 0.9em;
 }
 
@@ -88,6 +121,56 @@ main {
 
 .card button:hover {
     background-color: #9b0000;
+}
+
+#add-destino {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: fit-content;
+}
+
+form > div {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    padding: 15px 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+form hr {
+    margin: 10px 0;
+}
+
+form input, form button {
+    border: 1px solid lightgray;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: darkgreen;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: green;
+}
+
+#destinos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
 }
 
 @media (max-width: 1200px) {

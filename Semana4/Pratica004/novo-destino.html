@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/estilo.css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <form id="add-destino">
+            <div>
+                <label for="destino">Nome do Destino:</label>
+                <input type="text" name="destino" id="destino" size="50" maxlength="50">
+            </div>
+            <div id="beneficios">
+                <label for="novo-beneficio">Beneficios:</label>
+                <hr>
+                <ul id="lista-beneficios"></ul>
+                <hr>
+                <div>
+                    <label for="novo-beneficio">Novo: </label>
+                    <input type="text" name="novo-beneficio" id="novo-beneficio" size="50" maxlength="50">
+                    <button id="add-beneficio" type="submit">Adicionar</button>
+                </div>
+            </div>
+            <div>
+                <label for="preco">Preço:</label>
+                <input type="text" name="preco" id="preco" size="50" maxlength="50">
+            </div>
+            <div id="detalhes-pagamento">
+                <label for="novo-detalhe-pagamento">Detalhes Pagamento:</label>
+                <hr>
+                <ul id="lista-detalhes-pagamento"></ul>
+                <hr>
+                <div>
+                    <label for="novo-detalhe-pagamento">Novo: </label>
+                    <input type="text" name="novo-detalhe-pagamento" id="novo-detalhe-pagamento" size="50" maxlength="50">
+                    <button id="add-detalhe-pagamento" type="submit">Adicionar</button>
+                </div>
+            </div>
+            <div>
+                <label for="imagem">URL da Imagem:</label>
+                <input type="text" name="imagem" id="imagem" size="50" maxlength="300">
+            </div>
+            <button id="add" type="submit">Adicionar</button>
+        </form>
+    </main>
+    <hr>
+    <div id="destinos">
+
+    </div>
+    <script src="./assets/scripts/main.js"></script>
+    <script src="./assets/scripts/add-destinos.js"></script>
+</body>
+</html>
