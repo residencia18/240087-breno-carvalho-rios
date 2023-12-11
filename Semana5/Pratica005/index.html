@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Programa de Residencia em Tecnologia  - TIC18</title>
+	<link rel="stylesheet" href="./estilos.css" type="text/css">
+</head>
+<body>
+	<header>
+		Programa de Residencia em Tecnologia  - TIC18
+	</header>
+	<main>
+		<div id="section1">
+			<div id="menu" class="card">
+				<div class="card-header">Menu</div>
+				<div class="card-body">
+					<div><a href="https://newsapi.org/" target="_blank">API Notícias</a></div>
+					<div><a href="https://www.weatherapi.com/" target="_blank">API Clima</a></div>
+					<div><a href="https://freecurrencyapi.com" target="_blank">API Moedas</a></div>
+					<div><a href="https://api.nasa.gov/" target="_blank">API NASA</a></div>
+					<div><a href="https://restcountries.com/" target="_blank">API Países</a></div>
+				</div>
+			</div>
+			<div id="noticias" class="card">
+				<div class="card-header">Notícias</div>
+				<div class="card-body"></div>
+			</div>
+			<div class="card">
+				<div class="card-header">Destaques (NASA)</div>
+				<div id="destaques" class="card-body"></div>
+			</div>
+		</div>
+		<div id="section2">
+			<div id="servicos" class="card">
+				<div class="card-header">Serviços</div>
+				<div class="card-body">
+					<div id="weather-info" class="service-info">
+						<div class="service-title">
+							<h2>Ilhéus</h2>
+						</div>
+						<div class="service-content">
+							<div id="weather">
+								<div id="temperature">--°C</div>
+								<div id="weather-description">-----</div>
+							</div>
+							<hr>
+							<div id="date">--/--/----</div>
+						</div>
+					</div>
+					<div id="uesc-weather-info" class="service-info">
+						<div class="service-title">
+							<h2>-----</h2>
+						</div>
+						<div class="service-content">
+							<div id="weather">
+								<div id="temperature">--°C</div>
+								<div id="weather-description">-----</div>
+							</div>
+							<hr>
+							<div id="date">--/--/----</div>
+						</div>
+					</div>
+					<div id="currency-info" class="service-info">
+						<div class="service-title">
+							<h2>Cotações</h2>
+						</div>
+						<div class="service-content">
+							<div class="currency-conversion">
+								<div id="base-currency">1 USD</div>
+								<div> &rAarr; </div>
+								<div id="usd-brl-currency">--- BRL</div>
+							</div>
+							<hr>
+							<div class="currency-conversion">
+								<div id="base-currency">1 EUR</div>
+								<div> &rAarr; </div>
+								<div id="eur-brl-currency">--- BRL</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="resultados" class="card">
+				<div class="card-header">Resultados</div>
+				<div class="card-body">
+					<h2>
+						Paises que falam: <select name="linguagem" id="linguagem">
+							<option value="portuguese">Português</option>
+							<option value="english">Inglês</option>
+							<option value="spanish">Espanhol</option>
+						</select>
+					</h2>
+					<div id="paises"></div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer>
+		Breno Carvalho Rios - TIC18
+	</footer>
+    <script src="script.js"></script>
+</body>
+</html>

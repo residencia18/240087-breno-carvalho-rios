@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Nova+Square&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins&display=swap');
+
+:root {
+	--color-primary: #D5DFE5;
+	--color-secondary: #C9B1BD;
+	--color-terciary: #B49594;
+
+	--font-common: "poppins", sans-serif;
+	--font-cursive: "Dancing Script", cursive;
+	--font-display: "caveat", cursive;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	flex-wrap: wrap;
+	font-family: var(--font-common);
+}
+
+body {
+	background-color: var(--color-primary);
+}
+
+header {
+	text-align: center;
+	font-size: 2rem;
+	padding: 20px;
+	margin-bottom: 1rem;
+	background-color: var(--color-secondary);
+	border-bottom: 2px solid var(--color-terciary);
+	font-family: var(--font-common);
+	box-shadow: 0px 2px 2px 1px rgba(60, 62, 65, 0.3);
+}
+
+main {
+	padding: 0 0.5rem;
+	margin-bottom: 4rem;
+}
+
+#section1 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 20%;
+	gap: 5px;
+	margin-bottom: 5px;
+}
+
+#section2 {
+	display: grid;
+	grid-template-columns: 1fr 400px;
+	gap: 5px;
+	margin-bottom: 10px;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--color-secondary);
+	border-radius: 5px 5px 0 0;
+	box-shadow: 1px 2px 2px 1px rgba(60, 62, 65, 0.5);
+}
+
+.card-header {
+	display: flex;
+	background-color: var(--color-terciary);
+	border-radius: 5px 5px 0 0;
+	padding: 10px;
+	font-size: 1.8em;
+	font-family: var(--font-display);
+}
+
+.card-body {
+	padding: 10px;
+	gap: 10px;
+}
+
+.card-body > div {
+	margin: 7px 0;
+}
+
+.card-body a {
+	color: darkblue;
+	text-decoration: underline;
+}
+
+.card-body .news-link::before {
+	content: "\21b3";
+	margin-right: 5px;
+	margin-left: 10px;
+}
+
+#menu a{
+	text-decoration: none;
+	font-size: 1.2rem;
+}
+
+#menu a:hover {
+	text-decoration: underline;
+}
+
+#noticias h3 {
+	font-size: 1rem;
+}
+
+#noticias .card-body {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+#destaques {
+	text-align: center;
+}
+
+#destaques h3 {
+	margin-bottom: 5px;
+}
+
+#destaques img {
+	width: 100%;
+}
+
+#servicos .card-body {
+    display: flex;
+    flex-grow: 1;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+#servicos .service-title{
+	background-color: white;
+	text-align: center;
+	border-radius: 10px 10px 0 0;
+}
+
+#servicos .service-info {
+	border: 2px solid white;
+	background-color: rgba(255, 255, 255, 0.3);
+	font-size: 1.1rem;
+	font-weight: bold;
+	flex-grow: 1;
+	min-width: fit-content;
+	height: 160px;
+	border-radius: 15px 15px 0 0;
+}
+
+#servicos .service-content {
+	padding: 10px;
+}
+
+#servicos #weather {
+	display: flex;
+	gap: 50px;
+	justify-content: space-between;
+}
+
+#servicos hr {
+	border: 1.5px solid darkgray;
+}
+
+#servicos #temperature {
+	font-size: 2rem;
+}
+
+#servicos #weather-description {
+	display: flex;
+	align-items: end;
+}
+
+#servicos #date {
+	display: flex;
+	justify-content: center;
+	padding-top: 1rem;
+	font-size: 1.5rem;
+}
+
+#servicos #astronomy {
+	background-color: rgba(255, 255, 255, 0.3);
+	text-align: center;
+	font-weight: bold;
+	border-radius: 10px 10px 0 0;
+}
+
+#servicos #astronomy img {
+	display: flex;
+	flex-direction: column;
+	height: 300px;
+}
+
+#servicos .currency-conversion {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	padding: 5px;
+	font-size: 1.5rem;
+}
+
+#resultados .card-body {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+#resultados .card-body h2{
+	font-size: 1.3rem;
+	margin-bottom: 5px;
+}
+
+#resultados select {
+	background-color: transparent;
+	border: none;
+	font-size: 1.3rem;
+	font-weight: bold;
+	padding: 10px;
+	text-decoration: underline;
+}
+
+#resultados #paises {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+#resultados #paises > div::before{
+	content: "➤";
+	margin-right: 0.5rem;
+}
+
+footer {
+	position: fixed;
+	width: 100%;
+	padding: 10px;
+	bottom: 0;
+	left: 0;
+	background-color: var(--color-secondary);
+	border-top: 2px solid var(--color-terciary);
+	text-align: center;
+	box-shadow: 0px -1px 2px 1px rgba(60, 62, 65, 0.3);
+}
+
+@media (max-width: 500px) {
+	#section1, #section2 {
+		grid-template-columns: 1fr;
+	}
+}
