@@ -55,7 +55,8 @@ async function getCurrency() {
 
 async function getNews() {
     return new Promise((resolve, reject) => {
-        fetch(`https://api.currentsapi.services/v1/search?apiKey=${NEWS_API_KEY}&category=academia`)
+        fetch(`https://api.currentsapi.services/v1/latest-news?apiKey=${NEWS_API_KEY}&category=academia`)
+            .then(response => response.json())
             .then(json => {
                 resolve(json);
             })
