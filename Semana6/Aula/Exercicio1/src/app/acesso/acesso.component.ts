@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AcessoComponent {
   usuario : string = '';
+  nome : string = '';
   permissao : string = '';
   permitido : boolean = false;
   logado: boolean = false;
@@ -20,6 +21,7 @@ export class AcessoComponent {
   public login() {
     if(this.permitido) {
       this.logado = true;
+      this.usuario = this.nome;
     }
   }
 }

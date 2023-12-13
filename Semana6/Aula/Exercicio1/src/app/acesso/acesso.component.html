@@ -1,9 +1,9 @@
 <div>
     <label for="nome">Nome: </label>
-    <input type="text" id="nome" [(ngModel)]="usuario">
+    <input type="text" id="nome" [(ngModel)]="nome">
     <label for="role">Role: </label>
     <input type="text" (input)="onLogando()" [(ngModel)]="permissao" id="role">
     <button [disabled]="!permitido" (click)="login()">Adicionar</button>
 </div>
 
-<p *ngIf="logado;">Bem vindo {{usuario}}</p>
+<p *ngIf="logado;">Bem vindo {{usuario}}! Você está logado.</p>
