@@ -1,7 +1,7 @@
 const WEATHER_API_KEY = "7d3187cad8f844b0ba805450231012";
 const CURRENCY_API_KEY = "fca_live_mfcnOEpOKcv0bCuc6HpoHishYO7b7ntjUWI7ZhLH";
 const NASA_API_KEY = "BRlZpq9k7zNO4SiegO3rhHudfmMJhMiTcXaKgxcQ";
-const NEWS_API_KEY = "d4c54ce839ba46818eb934e4d5a615fc";
+const NEWS_API_KEY = "iaXOUw6l6solSkhKgY9ygTf3vZyT6cRvcbiG5RTa_MMmBF4A";
 
 function getGeolocation() {
     return new Promise((resolve, reject) => {
@@ -55,8 +55,7 @@ async function getCurrency() {
 
 async function getNews() {
     return new Promise((resolve, reject) => {
-        fetch(`https://newsapi.org/v2/top-headlines?apiKey=${NEWS_API_KEY}&country=br&category=science`)
-            .then(response => response.json())
+        fetch(`https://api.currentsapi.services/v1/search?apiKey=${NEWS_API_KEY}&category=academia`)
             .then(json => {
                 resolve(json);
             })
@@ -164,7 +163,8 @@ function renderNews() {
     getNews().then((json) => {
         let news = document.getElementById('noticias').querySelector(".card-body");
         for (let i = 0; i < 5; i++){
-            let notice = json.articles[i];
+            console.log(json)
+            let notice = json.news[i];
             let div = document.createElement('div');
             let title = document.createElement('h3');
             let linkSpan = document.createElement('span');
@@ -174,7 +174,7 @@ function renderNews() {
             linkA.target = "_blank";
 
             linkA.href = notice.url;
-            linkA.innerText = `Veja mais: ${notice.author}`;
+            linkA.innerText = `Veja mais`;
             title.innerText = notice.title;
 
             linkSpan.appendChild(linkA);
