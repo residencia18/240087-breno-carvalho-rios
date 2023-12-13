@@ -164,7 +164,6 @@ function renderNews() {
     getNews().then((json) => {
         let news = document.getElementById('noticias').querySelector(".card-body");
         for (let i = 0; i < 5; i++){
-            console.log(json)
             let notice = json.news[i];
             let div = document.createElement('div');
             let title = document.createElement('h3');
