@@ -12,6 +12,7 @@ public static class Breno{
             ("Habilidades de Desenvolvimento Gerais", new List<(string, int)>{    
                 ("Controle de Versão com o Git", 4),
                 ("GitHub", 4),
+                ("GitLab", 1),
                 ("Protocolos HTTP / HTTPS", 5),
             }),
             ("Fundamentos de Banco de Dados", new List<(string, int)>{
@@ -23,35 +24,45 @@ public static class Breno{
             }),
             ("ASPNET Core", new List<(string, int)>{    
                 ("Básico ASPNET Core", 4),
-                ("MVC", 4),
-                ("REST", 4),
+                ("MVC", 3),
+                ("REST", 3),
+            }),
+            ("ORM", new List<(string, int)>{        
+                ("Entity Framework Core", 1)
             }),
             ("Bancos de Dados Relacionais", new List<(string, int)>{        
                 ("PostgreeSQL", 4),
                 ("MariaDB", 4),
                 ("MySQL", 4),
+                ("SQL Server", 1)
+            }),
+            ("Bancos de Dados NoSQL", new List<(string, int)>{        
+                ("MongoDB", 2),
+                ("Cassandra", 1)
             }),
             ("Comunicação API e Clientes", new List<(string, int)>{        
-                ("REST", 5)
+                ("REST", 5),
+                ("GraphQL", 1)
             }),
          };
       public static string View(){
             var sb = new StringBuilder();
             sb.AppendLine($"Nome: {Name}");
             sb.AppendLine();
+            sb.AppendLine($"Total de estrelas: {getSum()}");
+            sb.AppendLine();
             sb.AppendLine("Habilidades:");
             sb.AppendLine();
             foreach(var topic in Skills){
-                sb.AppendLine($"\t{topic.Item1} - Total: {topic.Item2.Sum(x => x.Item2)} estrelas");
+                int topicTotal = topic.Item2.Sum(x => x.Item2);
+                sb.AppendLine($"\t{topic.Item1} - Total: {topicTotal} {(topicTotal > 1 ? "estrelas" : "estrela")}");
                 sb.AppendLine();
                 foreach (var skill in topic.Item2) {
-                  sb.AppendLine($"\t\t{skill.Item1} - {skill.Item2} estrelas");
+                    sb.AppendLine($"\t\t{skill.Item1} - {skill.Item2} {(skill.Item2 > 1 ? "estrelas" : "estrela")}");
                 }
                 sb.AppendLine();
             }
-            var sum = getSum();
-            sb.AppendLine();
-            sb.AppendLine($"Total de estrelas: {sum}");
+            
             return sb.ToString();
       }
 
