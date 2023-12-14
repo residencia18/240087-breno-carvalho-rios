@@ -5,5 +5,6 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 app.MapGet("/breno", () => Breno.View());
+app.MapGet("/alancarlos", () => AlanCarlos.View());
 
 app.Run();
