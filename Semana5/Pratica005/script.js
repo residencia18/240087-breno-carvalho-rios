@@ -146,9 +146,10 @@ function renderImageOfDay() {
             let h3 = document.createElement("h3");
             let img = document.createElement("img");
 
-            img.src = json[i].url;
             if(json[i].media_type === "video") {
                 img.src = json[i].thumbnail_url;
+            } else {
+                img.src = json[i].url;
             }
             h3.innerText = json[i].title;
             img.alt = json[i].title;
