@@ -1,0 +1,6 @@
+#section1 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 20%;
+	gap: 5px;
+	margin-bottom: 5px;
+}

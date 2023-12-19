@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Nova+Square&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins&display=swap');
+
+:root {
+	--color-primary: #D5DFE5;
+	--color-secondary: #C9B1BD;
+	--color-terciary: #B49594;
+
+	--font-common: "poppins", sans-serif;
+	--font-cursive: "Dancing Script", cursive;
+	--font-display: "caveat", cursive;
+}
+
+a:visited {
+	color: initial;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	flex-wrap: wrap;
+	font-family: var(--font-common);
+}
+
+body {
+	background-color: var(--color-primary);
+}
