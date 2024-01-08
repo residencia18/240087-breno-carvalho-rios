@@ -19,3 +19,4 @@ public static class ServiceExtensions
         services.AddScoped<IUserRepository, UserRepository>();
     }
 }
+ 
