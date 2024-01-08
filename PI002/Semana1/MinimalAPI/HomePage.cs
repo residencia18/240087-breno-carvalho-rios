@@ -24,7 +24,7 @@ public static class HomePage
         sb.AppendLine($"Marcelo: {Marcelo.Name}");
         sb.AppendLine($"Total de estrelas: {Marcelo.Skills.Sum(x => x.Item2)}");
         sb.AppendLine();
-        sb.AppendLine($"Total de estrelas da equipe: {Breno.getSum() + Ezequiel.getSum() + Franklin.Skills.Sum(x => x.Item2) + AlanCarlos.Skills.Sum(x => x.Item2) + Marcelo.Skills.Sum(x => x.Item2)}");
+        sb.AppendLine($"Total de estrelas da equipe: {Breno.getSum() + Ezequiel.getSum() + Franklin.Skills.Sum(x => x.Item2) + AlanCarlos.Skills.Sum(x => x.Item2) + Daniel.getSum()+ Marcelo.Skills.Sum(x => x.Item2)}");
 
         return sb.ToString();
     }
