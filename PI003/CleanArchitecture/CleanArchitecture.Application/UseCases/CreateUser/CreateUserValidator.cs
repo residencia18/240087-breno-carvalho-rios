@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace ResTIConnect.Application.UseCases.CreateUser;
+namespace CleanArchitecture.Application.UseCases.CreateUser;
 
 public sealed class CreateUserValidator : AbstractValidator<CreateUserRequest>
 {

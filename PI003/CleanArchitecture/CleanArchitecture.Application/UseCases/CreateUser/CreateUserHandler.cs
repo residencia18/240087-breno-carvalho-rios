@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using ResTIConnect.Domain.Entities;
-using ResTIConnect.Domain.Interfaces;
+using CleanArchitecture.Domain.Entities;
+using CleanArchitecture.Domain.Interfaces;
 
-namespace ResTIConnect.Application.UseCases.CreateUser
+namespace CleanArchitecture.Application.UseCases.CreateUser
 {
     public class CreateUserHandler :
         IRequestHandler<CreateUserRequest, CreateUserResponse>
