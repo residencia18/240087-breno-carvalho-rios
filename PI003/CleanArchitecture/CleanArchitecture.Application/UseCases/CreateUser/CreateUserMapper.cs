@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using ResTIConnect.Domain.Entities;
+using CleanArchitecture.Domain.Entities;
 
-namespace ResTIConnect.Application.UseCases.CreateUser
+namespace CleanArchitecture.Application.UseCases.CreateUser
 {
     public sealed class CreateUserMapper : Profile
     {
