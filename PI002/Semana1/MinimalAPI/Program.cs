@@ -9,5 +9,6 @@ app.MapGet("/franklin", () => Franklin.View());
 app.MapGet("/breno", () => Breno.View());
 app.MapGet("/alancarlos", () => AlanCarlos.View());
 app.MapGet("/daniel", () => Daniel.View());
+app.MapGet("/Marcelo", () => Marcelo.View());
 
 app.Run();
