@@ -6,11 +6,11 @@ namespace CleanArchitecture.Application.UseCases.UpdateUser;
 
 public class UpdateUserHandler : IRequestHandler<UpdateUserRequest, UpdateUserResponse>
 {
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IUnitofWork _unitOfWork;
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
 
-    public UpdateUserHandler(IUnitOfWork unitOfWork,
+    public UpdateUserHandler(IUnitofWork unitOfWork,
                              IUserRepository userRepository, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
