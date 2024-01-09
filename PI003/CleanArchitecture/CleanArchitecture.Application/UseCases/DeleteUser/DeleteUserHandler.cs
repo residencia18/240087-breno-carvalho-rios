@@ -7,11 +7,11 @@ namespace CleanArchitecture.Application.UseCases.DeleteUser;
 public sealed class DeleteUserHandler :
                     IRequestHandler<DeleteUserRequest, DeleteUserResponse>
 {
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IUnitofWork _unitOfWork;
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
 
-    public DeleteUserHandler(IUnitOfWork unitOfWork,
+    public DeleteUserHandler(IUnitofWork unitOfWork,
                              IUserRepository userRepository, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
