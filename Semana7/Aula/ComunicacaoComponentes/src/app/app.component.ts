@@ -15,6 +15,7 @@ export class AppComponent {
   }
 
   removerTarefa(numero: number){
-    this.tarefasApp.splice(numero - 1, 1);
+    const indice = numero - 1;
+    this.tarefasApp.splice(indice, 1);
   }
 }

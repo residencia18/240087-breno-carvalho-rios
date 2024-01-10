@@ -7,10 +7,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ItemTarefasComponent {
   @Input() itemTarefa: string = '';
-  @Input() itemIndice: number = 0;
+  @Input() itemNumero: number = 0;
   @Output() tarefaRemovida = new EventEmitter<number>();
 
-  removerTarefa(indice: number) {
-    this.tarefaRemovida.emit(indice);
+  removerTarefa(numero: number) {
+    this.tarefaRemovida.emit(numero);
   }
 }

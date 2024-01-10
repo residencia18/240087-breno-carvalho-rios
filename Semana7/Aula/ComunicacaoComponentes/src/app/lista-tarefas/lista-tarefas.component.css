@@ -8,6 +8,11 @@
     gap: 5px;
 }
 
-#nome-tarefa {
+#add-tarefa input {
     flex-grow: 1;
+    padding: 8px 0;
+}
+
+#add-tarefa button {
+    padding: 5px 10px;
 }

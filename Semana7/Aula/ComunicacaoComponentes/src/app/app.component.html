@@ -1,3 +1,5 @@
-<div id="lista-tarefas">
-  <app-lista-tarefas [listaTarefas]="tarefasApp" (tarefaAdicionada)="inserirTarefa($event)" (tarefaRemovida)="removerTarefa($event)"></app-lista-tarefas>
+<div id="container">
+  <div id="lista-tarefas">
+    <app-lista-tarefas [listaTarefas]="tarefasApp" (tarefaAdicionada)="inserirTarefa($event)" (tarefaRemovida)="removerTarefa($event)"></app-lista-tarefas>
+  </div>
 </div>
