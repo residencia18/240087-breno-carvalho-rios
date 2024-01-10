@@ -1,5 +1,3 @@
-<app-lista-tarefas [listaTarefas]="tarefasApp"></app-lista-tarefas>
-<div>
-  <input [(ngModel)] = "nomeTarefa" type="text">
-  <button (click)="inserirTarefa()">Adicionar</button>
+<div id="lista-tarefas">
+  <app-lista-tarefas [listaTarefas]="tarefasApp" (tarefaAdicionada)="inserirTarefa($event)" (tarefaRemovida)="removerTarefa($event)"></app-lista-tarefas>
 </div>

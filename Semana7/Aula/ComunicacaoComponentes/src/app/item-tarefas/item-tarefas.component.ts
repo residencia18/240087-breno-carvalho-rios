@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-item-tarefas',
@@ -7,4 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class ItemTarefasComponent {
   @Input() itemTarefa: string = '';
+  @Input() itemIndice: number = 0;
+  @Output() tarefaRemovida = new EventEmitter<number>();
+
+  removerTarefa(indice: number) {
+    this.tarefaRemovida.emit(indice);
+  }
 }

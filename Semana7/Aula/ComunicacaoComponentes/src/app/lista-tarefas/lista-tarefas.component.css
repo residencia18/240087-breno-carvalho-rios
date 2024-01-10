@@ -1,0 +1,13 @@
+#tarefas {
+    margin: 10px 0;
+}
+
+#add-tarefa {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+#nome-tarefa {
+    flex-grow: 1;
+}

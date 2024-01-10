@@ -10,8 +10,11 @@ export class AppComponent {
 
   tarefasApp: string[] = ['Tarefa 1', 'Tarefa 2', 'Tarefa 3', 'Tarefa 4'];
   
-  nomeTarefa: string = '';
-  inserirTarefa(){
-    this.tarefasApp.push(this.nomeTarefa);
+  inserirTarefa(tarefa: string){
+    this.tarefasApp.push(tarefa);
+  }
+
+  removerTarefa(numero: number){
+    this.tarefasApp.splice(numero - 1, 1);
   }
 }

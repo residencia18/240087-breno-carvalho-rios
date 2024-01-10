@@ -1,3 +1,9 @@
-<div *ngFor="let tarefa of listaTarefas">
-    <app-item-tarefas [itemTarefa]="tarefa"></app-item-tarefas>
+<div id="container">
+    <div id="tarefas" *ngFor="let tarefa of listaTarefas; index as i">
+        <app-item-tarefas [itemTarefa]="tarefa" [itemIndice]="i + 1"></app-item-tarefas>
+    </div>
+    <div id="add-tarefa">
+        <input id="nome-tarefa" #tarefa type="text">
+        <button (click)="inserirTarefa(tarefa.value)">Adicionar</button>
+    </div>
 </div>
