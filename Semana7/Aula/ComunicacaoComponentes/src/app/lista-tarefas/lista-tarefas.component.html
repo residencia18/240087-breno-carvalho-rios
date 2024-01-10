@@ -1,9 +1,10 @@
-<div id="container">
-    <div id="tarefas" *ngFor="let tarefa of listaTarefas; index as i">
-        <app-item-tarefas [itemTarefa]="tarefa" [itemNumero]="i + 1" (tarefaRemovida)="removerTarefa($event)"></app-item-tarefas>
-    </div>
-    <div id="add-tarefa">
-        <input #tarefa type="text">
-        <button (click)="inserirTarefa(tarefa.value)">Adicionar</button>
-    </div>
+<h1>Lista de Tarefas</h1>
+<hr>
+<div id="tarefas" *ngFor="let tarefa of listaTarefas; index as i">
+    <app-item-tarefas [itemTarefa]="tarefa" [itemNumero]="i + 1"
+        (tarefaRemovida)="removerTarefa($event)"></app-item-tarefas>
+</div>
+<div id="add-tarefa">
+    <input #tarefa type="text">
+    <button (click)="inserirTarefa(tarefa.value)">Adicionar</button>
 </div>

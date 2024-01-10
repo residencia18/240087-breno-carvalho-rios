@@ -2,6 +2,10 @@
     margin: 10px 0;
 }
 
+hr {
+    margin: 10px 0;
+}
+
 #add-tarefa {
     display: flex;
     justify-content: space-between;
