@@ -10,7 +10,7 @@ Este repositório é dedicado à trilha básica da Residência de Software, abri
 2. Marcelo Cruz - Repositório no GitHub [Marckcruz](https://github.com/Marckcruz)
 3. Daniel Coutinho - Repositório no GitHub [danielcoutinhoneto](https://github.com/danielcoutinhoneto)
 4. Franklin - Repositório no GitHub [FranklinPereira2309](https://github.com/FranklinPereira2309)
-5. Breno Rios - Repositório no GitHub [Repositório no GitHub](#)
+5. Breno Rios - Repositório no GitHub [brenoriios](https://github.com/brenoriios)
 6. Ezequiel Lobo - Repositório no GitHub [EzekLobo](https://github.com/EzekLobo)
 
 ### Objetivo
