@@ -6,12 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.14" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CleanArchitecture.Application\CleanArchitecture.Application.csproj" />
-  </ItemGroup>
-
 </Project>
