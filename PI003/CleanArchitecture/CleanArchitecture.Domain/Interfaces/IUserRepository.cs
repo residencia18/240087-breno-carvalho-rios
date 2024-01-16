@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Domain.Entities;
+using CleanArchitecture.Persistence.Repositories;
 
 namespace CleanArchitecture.Domain.Interfaces
 {
