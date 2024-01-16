@@ -1,0 +1,8 @@
+<div id="vehicle-information">
+    <div id="information">
+        <ul>
+            <app-property-value class="item" *ngFor="let property of properties" [currentProperty]="currentProperty" [label]="property" [value]="vehicle[property]"></app-property-value>
+        </ul>
+        <img [src]="vehicle.Image || 'https://placehold.co/300x200'" alt="Placeholder">
+    </div>
+</div>

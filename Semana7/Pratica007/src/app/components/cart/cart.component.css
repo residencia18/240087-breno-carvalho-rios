@@ -1,0 +1,20 @@
+#cart {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#cart .item {
+    border: 1px solid lightgray;
+    padding: 10px
+}
+
+#empty-cart {
+    padding: 20px 0;
+}
+
+@media (max-width: 600px) {
+    #cart {
+        flex-direction: column;
+    }
+}

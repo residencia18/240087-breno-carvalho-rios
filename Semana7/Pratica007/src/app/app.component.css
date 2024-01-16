@@ -1,0 +1,39 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    height: 100lvh;
+    gap: 20px;
+    padding: 10px;
+}
+
+#vehicle-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#selectors {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+#selectors .selector-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#selectors .selector-container .select {
+    min-width: 15rem;
+}
+
+@media (max-width: 600px) {
+    #vehicle-selection {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
