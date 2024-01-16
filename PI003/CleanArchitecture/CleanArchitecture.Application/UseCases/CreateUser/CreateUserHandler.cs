@@ -5,7 +5,8 @@ using MediatR;
 
 namespace CleanArchitecture.Application.UseCases.CreateUser
 {
-    public class CreateUserHandler : IRequestHandler<CreateUserRequest, CreateUserResponse>
+    public class CreateUserHandler : 
+        IRequestHandler<CreateUserRequest, CreateUserResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;

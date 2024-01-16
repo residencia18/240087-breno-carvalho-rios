@@ -1,7 +1,7 @@
 ﻿
-namespace CleanArchitecture.Application.UseCases.CreateUser
+namespace CleanArchitecture.Application.UseCases.UpdateUser
 {
-    public sealed record CreateUserResponse
+    public sealed record UpdateUserResponse
     {
         public Guid Id { get; set; }
         public string? Email { get; set; }
