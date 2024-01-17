@@ -22,7 +22,7 @@
             </div>
             <p-button id="add-button" [style]="{'width': '100%'}" label="Adicionar" icon="pi pi-plus" iconPos="right" (click)="addToCart()"></p-button>
         </div>
-        <app-vehicle-display [vehicle]="vehicle" [properties]="properties" [currentProperty]="currentProperty"></app-vehicle-display>
+        <app-vehicle-display id="app-vehicle-display" [vehicle]="vehicle" [properties]="properties" [currentProperty]="currentProperty"></app-vehicle-display>
     </div>
     <hr>
     <app-cart [items]="cartItems"></app-cart>

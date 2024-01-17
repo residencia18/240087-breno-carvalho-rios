@@ -1,34 +1,6 @@
 import { Component } from '@angular/core';
 import * as data from '../assets/data/vehicles.json';
 
-type plane = {
-    Name: string,
-    Model: string,
-    Engine: string,
-    NumberOfPassengers: number,
-    Autonomia: string,
-    Alcance: string,
-    Teto: string
-}
-
-type car = {
-    Name: string,
-    Model: string,
-    Engine: string,
-    NumberOfPassengers: number,
-    Autonomia: string,
-    Alcance: string
-}
-
-type boat = {
-    Name: string,
-    Model: string,
-    Engine: string,
-    NumberOfPassengers: number,
-    Autonomia: string,
-    Alcance: string
-}
-
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',

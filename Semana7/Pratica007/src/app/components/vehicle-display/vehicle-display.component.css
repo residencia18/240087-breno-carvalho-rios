@@ -15,7 +15,7 @@
     width: auto;
 }
 
-#vehicle-information ul {
+#vehicle-information #information ul {
     height: 100%;
     list-style: none;
     padding: 0;
@@ -31,5 +31,9 @@
         flex-direction: column;
         width: 100%;
         align-items: center;
+    }
+
+    #vehicle-information #information ul{
+        width: 100%;
     }
 }
