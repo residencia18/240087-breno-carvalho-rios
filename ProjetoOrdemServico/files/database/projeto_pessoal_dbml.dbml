@@ -1,0 +1,77 @@
+Table cliente {
+    cliente_id int [primary key]
+    nome string
+    email string
+    endereco_id int
+    telefone string
+}
+Ref: cliente.endereco_id > endereco.endereco_id
+
+Table endereco {
+    endereco_id int [primary key]
+    rua string
+    bairro string
+    cidade string
+    estado string
+    pais string
+    numero int
+}
+
+Table prestador_de_servico
+{
+    prestador_de_servico_id int [primary key]
+    nome string
+    especialidade string
+    telefone string
+    endereco_id int
+}
+Ref: prestador_de_servico.endereco_id > endereco.endereco_id
+
+Table ordem_de_servico
+{
+    ordem_de_servico_id int [primary key]
+    numero int
+    data_emissao DateTime
+    descricao string
+    status string
+
+    // Chaves Estrangeiras
+    cliente_id int 
+    prestador_de_servico_id int
+}
+Ref: ordem_de_servico.cliente_id < cliente.cliente_id
+Ref: ordem_de_servico.prestador_de_servico_id < prestador_de_servico.prestador_de_servico_id
+
+Table servico
+{
+    servico_id int [primary key]
+    nome string
+    descricao string
+    preco decimal
+    tipo_servico string
+}
+
+Table pagamento
+{
+    pagamento_id int [primary key]
+    metodo_pagamento string
+    valor decimal
+    data_pagamento DateTime
+
+    // Chave Estrangeira
+    ordem_de_servico_id int
+}
+Ref: pagamento.ordem_de_servico_id < ordem_de_servico.ordem_de_servico_id
+
+Table servico_ordem_de_servico
+{
+    servico_ordem_de_servico_id int [primary key]
+
+    // Chave Estrangeira
+    ordem_de_servico_id int
+    servico_id int
+    endereco_id int
+}
+Ref: servico_ordem_de_servico.ordem_de_servico_id < ordem_de_servico.ordem_de_servico_id
+Ref: servico_ordem_de_servico.servico_id < servico.servico_id
+Ref: servico_ordem_de_servico.endereco_id < endereco.endereco_id
