@@ -1,11 +1,11 @@
 Table cliente {
     cliente_id int [primary key]
     nome string
+    email string
     endereco_id int
-    telefone_id int
+    telefone string
 }
 Ref: cliente.endereco_id > endereco.endereco_id
-Ref: cliente.telefone_id > telefone.telefone_id
 
 Table endereco {
     endereco_id int [primary key]
@@ -22,17 +22,10 @@ Table prestador_de_servico
     prestador_de_servico_id int [primary key]
     nome string
     especialidade string
-    telefone_id int
+    telefone string
     endereco_id int
 }
-Ref: prestador_de_servico.telefone_id > telefone.telefone_id
 Ref: prestador_de_servico.endereco_id > endereco.endereco_id
-
-Table telefone {
-  telefone_id int
-  ddd string
-  numero string
-}
 
 Table ordem_de_servico
 {
@@ -40,8 +33,9 @@ Table ordem_de_servico
     numero int
     data_emissao DateTime
     descricao string
-    status_id int
+    status string
 
+    // Chaves Estrangeiras
     cliente_id int 
     prestador_de_servico_id int
 }
@@ -54,56 +48,26 @@ Table servico
     nome string
     descricao string
     preco decimal
+    tipo_servico string
 }
 
 Table pagamento
 {
     pagamento_id int [primary key]
+    metodo_pagamento string
     valor decimal
     data_pagamento DateTime
 
+    // Chave Estrangeira
     ordem_de_servico_id int
-    metodo_pagamento_id int
 }
 Ref: pagamento.ordem_de_servico_id < ordem_de_servico.ordem_de_servico_id
-Ref: pagamento.metodo_pagamento_id > metodo_pagamento.metodo_pagamento_id
-
-Table metodo_pagamento {
-    metodo_pagamento_id int
-    nome string
-    descricao string
-    taxa decimal
-}
-
-Table avaliacao
-{
-    avaliacao_id int [primary key]
-    comentario string
-    nota int
-
-    ordem_de_servico_id int 
-}
-Ref: avaliacao.ordem_de_servico_id < ordem_de_servico.ordem_de_servico_id
-
-Table categoria_servico
-{
-    categoria_servico_id int [primary key]
-    nome string
-}
-
-Table servico_categoria_servico
-{
-    servico_categoria_servico int [primary key]
-    servico_id int
-    categoria_servico_id int
-}
-Ref: servico_categoria_servico.servico_id < servico.servico_id
-Ref: servico_categoria_servico.categoria_servico_id < categoria_servico.categoria_servico_id
 
 Table servico_ordem_de_servico
 {
     servico_ordem_de_servico_id int [primary key]
 
+    // Chave Estrangeira
     ordem_de_servico_id int
     servico_id int
     endereco_id int
