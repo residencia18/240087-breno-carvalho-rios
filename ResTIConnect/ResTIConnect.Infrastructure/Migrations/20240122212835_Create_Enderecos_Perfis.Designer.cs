@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ResTIConnect.Infrastructure;
 
@@ -10,9 +11,11 @@ using ResTIConnect.Infrastructure;
 namespace ResTIConnect.Infrastructure.Migrations
 {
     [DbContext(typeof(ResTIConnectContext))]
-    partial class ResTIConnectContextModelSnapshot : ModelSnapshot
+    [Migration("20240122212835_Create_Enderecos_Perfis")]
+    partial class Create_Enderecos_Perfis
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
