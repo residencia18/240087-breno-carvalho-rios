@@ -27,6 +27,9 @@ public class OrdemDeServicoContext : DbContext
 
         modelBuilder.Entity<Prestador_De_Servico>().ToTable("Prestador_De_Servicos").HasKey(l => l.Prestador_De_ServicoId);
         modelBuilder.Entity<Endereco>().ToTable("Enderecos").HasKey(l => l.EnderecoId);
+        modelBuilder.Entity<Ordem_De_Servico>().ToTable("Ordem_De_Servicos").HasKey(l => l.Ordem_De_ServicoId);
+        modelBuilder.Entity<Servico_Ordem_De_Servico>().ToTable("Servico_Ordem_De_Servicos").HasKey(l => l.Servico_Ordem_De_ServicoId);
+        
 
         modelBuilder.Entity<Ordem_De_Servico>()
                 .HasOne(o => o.Endereco)
