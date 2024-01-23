@@ -22,3 +22,7 @@ Repositório dedicado à disciplina de Front End do Programa de Residência em S
     * [Github Pages](https://brenoriios.github.io/FrontEnd-TIC18/Semana5/Pratica005)
 * Prática 006
     * [Repositório](https://github.com/brenoriios/FrontEnd-TIC18/tree/main/Semana6/Pratica006)
+* Prática 007
+    * [Repositório](https://github.com/brenoriios/FrontEnd-TIC18/tree/main/Semana7/Pratica007)
+* Prática 008
+    * [Repositório](https://github.com/brenoriios/FrontEnd-TIC18/tree/main/Semana8/Pratica008)
