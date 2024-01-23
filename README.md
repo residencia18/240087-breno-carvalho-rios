@@ -13,6 +13,7 @@ Este repositório é dedicado à trilha básica da Residência de Software, abri
 5. Breno Rios - Repositório no GitHub [brenoriios](https://github.com/brenoriios)
 6. Ezequiel Lobo - Repositório no GitHub [EzekLobo](https://github.com/EzekLobo)
 
+
 ### Objetivo
 
 Nesta branch, o foco é a criação das Entidades e os Relacionamentos iniciais do projeto pessoal do grupo, referente a Ordem de Serviço.
@@ -49,6 +50,61 @@ O repositório está organizado da seguinte forma:
 2. O desenvolvedor responsável pela tarefa irá fazer todos os commits referentes (e exclusivamente) a essa tarefa nesse Branch.
 3. Após finalizar a implementação, o desenvolvedor irá fazer um novo Merge de `Database` (Origin) em seu Branch (Target) e realizar testes a fim de garantir que tudo ainda esteja funcionando.
 4. Em seguida, o desenvolvedor deve criar um Pull Request para o Branch `Database`, que deverá ser aprovado por alguém da equipe.
+
+=======
+## Objetivo
+
+**Objetivo Geral:**
+Introduzir os conceitos do Entity Framework Core. Além disso, praticar a modelagem dos dados, relacionamentos entre as entidades e as consultas através do Entity Framework Core. Estimular o trabalho em equipe através do Git Flow recomendado.
+
+### Atividade em Grupo
+
+**Descrição:**
+Atividade em Grupo
+Sobre o versionamento desta atividade:
+- Esta atividade deve ser feita no Repositório/Branch referente ao projeto pessoal da equipe.
+- Na branch “EntityFramework” utilizada na atividade anterior (PI-0004).
+- Sigam o Git Flow discutido em sala:
+  1. Protejam a Branch no GitHub;
+  2. Para cada tarefa a ser realizada, criem um Branch com a seguinte assinatura: `DOTNET-P005/idtarefa-descricao_breve_da_tarefa`.
+  3. O desenvolvedor responsável pela tarefa irá fazer todos os commits referentes (e exclusivamente) a essa tarefa nesse Branch.
+  4. Após finalizar a implementação, o desenvolvedor irá fazer um novo Merge de `EntityFramework` (Origin) em seu Branch (Target) e realizar testes a fim de garantir que tudo ainda esteja funcionando.
+  5. Em seguida, o desenvolvedor deve criar um Pull Request para o Branch `EntityFramework`, que deverá ser aprovado por alguém da equipe.
+
+#### Orientações:
+
+Nessa tarefa nossa equipe deve analisar as entidades modeladas na atividade anterior e identificar os relacionamentos. Nosso projeto deve possuir, ao menos, um relacionamento de cada tipo visto nas aulas: (1) um para um, (2) um para muitos (3) muitos para muitos. Caso a modelagem anterior não possua os relacionamentos, devemos repensar o modelo e fazer as mudanças necessárias. 
+
+##### Tarefas:
+
+- **Id_01:**
+  - Criar um projeto do tipo “Class Library” para a prática. Esse projeto representará a camada de Entidades na Arquitetura do projeto.
+
+- **Id_02:**
+  - No projeto criado anteriormente, modelar as entidades com relacionamento um para um e fazer o Migration inicial.
+
+- **Id_03:**
+  - Modelar as entidades com relacionamento um para muitos e fazer um novo Migration.
+
+- **Id_04:**
+  - Modelar as entidades com relacionamento muitos para muitos e fazer um novo Migration.
+
+- **Id_05:**
+  - Fazer um projeto do tipo Console, colocando o projeto anterior como dependência. Fazer CRUDs de cada entidade para testar as implementações anteriores.
+
+#### Diagrama de Classes:
+
+[Inserir aqui a imagem do Diagrama de Classes]
+![Diagrama_De_Classes](./DiagramaDeClasses/Diagrama%20de%20Classes.png)
+
+## Estrutura do Repositório
+
+O repositório está organizado da seguinte forma:
+
+1. Cada tarefa realizada deve ter um Branch com a assinatura: `DOTNET-P005/idtarefa-descricao_breve_da_tarefa`.
+2. O desenvolvedor responsável pela tarefa irá fazer todos os commits referentes (e exclusivamente) a essa tarefa nesse Branch.
+3. Após finalizar a implementação, o desenvolvedor irá fazer um novo Merge de `EntityFramework` (Origin) em seu Branch (Target) e realizar testes a fim de garantir que tudo ainda esteja funcionando.
+4. Em seguida, o desenvolvedor deve criar um Pull Request para o Branch `EntityFramework`, que deverá ser aprovado por alguém da equipe.
 
 
 **Trilha Básica .NET!**
