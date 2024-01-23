@@ -8,4 +8,5 @@ public class Servico_Ordem_De_Servico : BaseEntity
         public int ServicoId { get; set; }
 
         public int EnderecoId { get; set; }
+        public Endereco? Endereco { get; set; }
     }

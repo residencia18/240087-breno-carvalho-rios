@@ -2,7 +2,7 @@ namespace OrdemDeServico.Domain.Entities;
  public class Ordem_De_Servico : BaseEntity
     {
         
-        public int OrdemDeServicoId { get; set; }
+        public int Ordem_De_ServicoId { get; set; }
 
         public int Numero { get; set; }
 
@@ -12,5 +12,5 @@ namespace OrdemDeServico.Domain.Entities;
 
         public string? Status { get; set; }
 
-        
+        public Endereco Endereco { get; set; }
     }
