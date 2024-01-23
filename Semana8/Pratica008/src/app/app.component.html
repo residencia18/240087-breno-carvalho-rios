@@ -1,0 +1,4 @@
+<app-search (onLoadArticles)="getArticles($event)"></app-search>
+<div id="articles-list">
+  <app-articles-list [articles]="articles" [loading]="loading" [message]="message"></app-articles-list>
+</div>
