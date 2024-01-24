@@ -28,3 +28,7 @@
     background-color: slategray;
     padding: 10px 5px;
 }
+
+p-paginator {
+    border-radius: 0;
+}
