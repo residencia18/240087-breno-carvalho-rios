@@ -7,6 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class ArticlesListComponent {
   @Input() articles: any[] = [];
-  @Input() loading: boolean = false;
-  @Input() message: string = "Faça uma busca";
+  @Input() rows: number = 0;
 }

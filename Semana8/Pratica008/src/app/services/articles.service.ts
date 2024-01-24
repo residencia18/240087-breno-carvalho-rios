@@ -6,12 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ArticlesService {
+  private limit = 100;
   public articles: any[] = [];
 
   constructor(private http: HttpClient) { }
 
-  getArticles(search: string, limit: number): Observable<any> {
-    const apiUrl = `/api.php?action=query&format=json&list=search&utf8=1&formatversion=2&srsearch=${search}&srlimit=${limit}`;
+  getArticles(search: string): Observable<any> {
+    const apiUrl = `/api.php?action=query&format=json&list=search&utf8=1&formatversion=2&srsearch=${search}&srlimit=${this.limit}`;
     return this.http.get(apiUrl);
   }
 }

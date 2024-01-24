@@ -12,16 +12,18 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DataViewModule } from 'primeng/dataview';
 
-import { HtmlToPlaintextPipe } from './pipes/html-to-plaintext.pipe';
 import { SearchComponent } from './components/search/search.component';
 import { ArticlesListComponent } from './components/articles-list/articles-list.component';
+import { WikipediaSpanToStrongPipe } from './pipes/wikipedia-span-to-strong.pipe';
+import { CeilPipe } from './pipes/ceil.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HtmlToPlaintextPipe,
     SearchComponent,
-    ArticlesListComponent
+    ArticlesListComponent,
+    CeilPipe,
+    WikipediaSpanToStrongPipe
   ],
   imports: [
     BrowserModule,

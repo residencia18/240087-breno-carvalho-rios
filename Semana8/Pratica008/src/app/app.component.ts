@@ -8,35 +8,15 @@ import { ArticlesService } from './services/articles.service';
 })
 export class AppComponent {
   title = 'Pratica008';
-  limit: number = 10;
-  loading: boolean = true;
-  message: string = "Faça uma busca";
   value: string = '';
   query: string = '';
   articles: any[] = [];
+  rows: number = 0;
 
   constructor(private articlesService: ArticlesService) { }
 
-  ngOnInit() {
-    // this.getArticles('Universidade Estadual de Santa Cruz', 10);
+  getArticles(data: any) {
+    this.articles = data.articles;
+    this.rows = data.rows;
   }
-
-  getArticles(articles: any[]) {
-    this.message = "Carregando..."
-    this.loading = true;
-    this.articles = articles;
-  }
-
-  // getArticles(search: string, limit: number) {
-  //   this.message = "Carregando..."
-  //   this.loading = true;
-  //   this.query = search;
-  //   this.articlesService.getArticles(search, limit).subscribe((articles) => {
-  //     console.log(articles);
-  //     this.loading = false;
-  //     this.articles = articles.query.search.map((article: any) => {
-  //       return { title: article.title, content: article.snippet, url: `https://en.wikipedia.org/wiki/${article.title}` };
-  //     });
-  //   });
-  // }
 }

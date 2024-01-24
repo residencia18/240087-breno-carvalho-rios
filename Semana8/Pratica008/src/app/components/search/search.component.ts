@@ -7,19 +7,25 @@ import { ArticlesService } from '../../services/articles.service';
   styleUrl: './search.component.css'
 })
 export class SearchComponent {
-  limit = 10;
   query = '';
   value = '';
+  rows = 10;
   articles: any[] = [];
-  @Output() onLoadArticles: EventEmitter<any[]> = new EventEmitter();
+  @Output() onLoadArticles: EventEmitter<{ rows: number, articles: any[] }> = new EventEmitter();
   constructor(private articlesService: ArticlesService) { }
-  getArticles(search: string, limit: number) {
+  getArticles(search: string) {
     this.query = search;
-    this.articlesService.getArticles(search, limit).subscribe((articles) => {
+    if (search === '') {
+      this.articles = [];
+      this.onLoadArticles.emit({ rows: this.rows, articles: this.articles });
+      return;
+    }
+
+    this.articlesService.getArticles(search).subscribe((articles) => {
       this.articles = articles.query.search.map((article: any) => {
         return { title: article.title, content: article.snippet, url: `https://en.wikipedia.org/wiki/${article.title}` };
       });
-      this.onLoadArticles.emit(this.articles);
+      this.onLoadArticles.emit({ rows: this.rows, articles: this.articles });
     });
   }
 }
