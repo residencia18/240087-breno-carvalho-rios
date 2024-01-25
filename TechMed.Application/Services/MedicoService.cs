@@ -3,6 +3,7 @@ using TechMed.Application.InputModels;
 using TechMed.Application.ViewModels;
 using TechMed.Infrastructure.Persistence.Interfaces;
 using TechMed.Core.Entities;
+using TechMed.Core.Exceptions;
 
 namespace TechMed.Application.Services;
 public class MedicoService : IMedicoService
@@ -67,14 +68,20 @@ public class MedicoService : IMedicoService
 
   public int CreateAtendimento(int id, NewAtendimentoInputModel atendimento)
   {
-    var paciente = _context.PacientesCollection.GetById(atendimento.pacienteId);
     var medico = _context.MedicosCollection.GetById(id);
-
-    if (paciente is null || medico is null) {
-      return -1;
+    if (medico is null)
+    {
+      throw new MedicoNotFoundException();
     }
 
-    return _context.AtendimentosCollection.Create(new Atendimento{
+    var paciente = _context.PacientesCollection.GetById(atendimento.pacienteId);
+    if (paciente is null)
+    {
+      throw new PacientNotFoundException();
+    }
+
+    return _context.AtendimentosCollection.Create(new Atendimento
+    {
       DataHora = atendimento.DataHora,
       Paciente = paciente,
       Medico = medico
