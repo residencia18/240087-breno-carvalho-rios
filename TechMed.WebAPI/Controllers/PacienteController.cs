@@ -9,9 +9,9 @@ namespace TechMed.WebAPI.Controllers;
 [Route("/api/v0.1/")]
 public class PacienteController : ControllerBase
 {
-   private readonly IPacienteService _service;
-   public List<PacienteViewModel> Pacientes => _service.GetAll().ToList();
-   public PacienteController(IPacienteService service) => _service = service;
+   private readonly IPacienteService _pacienteService;
+   public List<PacienteViewModel> Pacientes => _pacienteService.GetAll().ToList();
+   public PacienteController(IPacienteService service) => _pacienteService = service;
 
    [HttpGet("pacientes")]
    public IActionResult Get()
@@ -22,32 +22,32 @@ public class PacienteController : ControllerBase
    [HttpGet("paciente/{id}")]
    public IActionResult GetById(int id)
    {
-      var paciente = _service.GetById(id);
+      var paciente = _pacienteService.GetById(id);
       return Ok(paciente);
    }
 
    [HttpPost("paciente")]
    public IActionResult Post([FromBody] NewPacienteInputModel paciente)
    {
-      _service.Create(paciente);
+      _pacienteService.Create(paciente);
       return CreatedAtAction(nameof(Get), paciente);
    }
 
    [HttpPut("paciente/{id}")]
    public IActionResult Put(int id, [FromBody] NewPacienteInputModel paciente)
    {
-      if (_service.GetById(id) == null)
+      if (_pacienteService.GetById(id) == null)
          return NoContent();
-      _service.Update(id, paciente);
-      return Ok(_service.GetById(id));
+      _pacienteService.Update(id, paciente);
+      return Ok(_pacienteService.GetById(id));
    }
 
    [HttpDelete("paciente/{id}")]
    public IActionResult Delete(int id)
    {
-      if (_service.GetById(id) == null)
+      if (_pacienteService.GetById(id) == null)
          return NoContent();
-      _service.Delete(id);
+      _pacienteService.Delete(id);
       return Ok();
    }
 

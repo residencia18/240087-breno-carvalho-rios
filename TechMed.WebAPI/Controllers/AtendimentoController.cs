@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using TechMed.Infrastructure.Persistence.Interfaces;
 using TechMed.Core.Entities;
+using TechMed.Application.Services.Interfaces;
+using TechMed.Application.ViewModels;
 
 namespace TechMed.WebAPI.Controllers;
 
@@ -8,16 +10,12 @@ namespace TechMed.WebAPI.Controllers;
 [Route("/api/v0.1/")]
 public class AtendimentoController : ControllerBase
 {
-   private readonly IAtendimentoCollection _atendimentos;
-   public List<Atendimento> Atendimentos => _atendimentos.GetAll().ToList();
-   public AtendimentoController(ITechMedContext context) => _atendimentos = context.AtendimentosCollection;
+   private readonly IAtendimentoService _atendimentoService;
+   public List<AtendimentoViewModel> Atendimentos => _atendimentoService.GetAll().ToList();
+   public AtendimentoController(IAtendimentoService service) => _atendimentoService = service;
    [HttpGet("atendimentos")]
-   public IActionResult Get()
+   public IActionResult GetAll()
    {
       return Ok(Atendimentos);
-
    }
-
-
-
 }

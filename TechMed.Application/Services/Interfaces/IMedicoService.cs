@@ -1,6 +1,8 @@
 namespace TechMed.Application.Services.Interfaces;
 using TechMed.Application.InputModels;
 using TechMed.Application.ViewModels;
+using TechMed.Core.Entities;
+
 public interface IMedicoService
 {
       public List<MedicoViewModel> GetAll();
@@ -9,4 +11,6 @@ public interface IMedicoService
       public int Create(NewMedicoInputModel medico);
       public void Update(int id, NewMedicoInputModel medico);
       public void Delete(int id);
+
+      public int CreateAtendimento(int id, NewAtendimentoInputModel atendimento);
 }
