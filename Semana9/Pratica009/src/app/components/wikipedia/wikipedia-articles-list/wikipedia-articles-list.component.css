@@ -1,0 +1,34 @@
+#results {
+    height: 100%;
+    width: 100%;
+}
+
+#results #loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+#results-title {
+    text-decoration: underline;
+}
+
+#result-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#articles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: slategray;
+    padding: 10px 5px;
+}
+
+p-paginator {
+    border-radius: 0;
+}

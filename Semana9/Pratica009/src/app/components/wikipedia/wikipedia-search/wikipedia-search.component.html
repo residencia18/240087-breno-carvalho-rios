@@ -1,0 +1,8 @@
+<div id="search">
+    <h2>Faça sua busca: </h2>
+    <form (submit)="getArticles(search.value)">
+        <input #search type="text" pInputText placeholder="Digite sua busca" />
+        <p-button icon="pi pi-search" type="submit"></p-button>
+    </form>
+    <h2 id="results-title" *ngIf="query">Exibindo {{articles.length}} resultados em {{articles.length / rows | ceil}} páginas para "{{query}}":</h2>
+</div>

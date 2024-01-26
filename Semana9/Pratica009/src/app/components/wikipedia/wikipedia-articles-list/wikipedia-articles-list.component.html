@@ -1,0 +1,15 @@
+<div id="results">
+    <div id="result-list">
+        <p-dataView #dv [value]="articles" [rows]="rows" [paginator]="true" emptyMessage="Sem resultados" [alwaysShowPaginator]="false" paginatorPosition="both">
+            <ng-template pTemplate="list" let-articles>
+                <div id="articles" [ngStyle]="{'padding': (articles.length > 0) ? '10px 5px' : '0 5px' }">
+                    <p-card class="article" [header]="article.title" *ngFor="let article of articles; let first = first">
+                        <p [innerHTML]="article.content + '...' | wikipediaSpanToStrong">...</p>
+                        <br>
+                        <a [href]="article.url" target="_blank">Leia Mais</a>
+                    </p-card>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+</div>
