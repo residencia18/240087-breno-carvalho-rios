@@ -1,0 +1,16 @@
+<div class="card">
+    <img [src]="destination.image.url" [alt]="destination.image.alt">
+    <h2 class="place-title">{{destination.name}}</h2>
+    <ul class="benefits">
+        <li *ngFor="let detail of destination.details">{{detail}}</li>
+    </ul>
+
+    <div class="payment-info">
+        <p class="price">{{destination.price.value | currency:'BRL'}}</p>
+        <div class="aditionals">
+            <p *ngFor="let priceDetail of destination.price.details">{{priceDetail}}</p>
+        </div>
+    </div>
+
+    <button>Comprar</button>
+</div>
