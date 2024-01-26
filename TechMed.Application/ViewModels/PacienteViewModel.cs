@@ -1,8 +1,9 @@
-namespace TechMed.Application.ViewModels;
-public class PacienteViewModel
+namespace TechMed.Application.ViewModels
 {
-    public int PacienteId { get; set; }
-    public string Nome { get; set; }
-    public string Endereco { get; set; }
-    public string Telefone { get; set; }
+    public class PacienteViewModel
+    {
+        public int PacienteId { get; set; }
+        public string Nome { get; set; } = null!;
+
+    }
 }

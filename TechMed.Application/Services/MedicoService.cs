@@ -20,6 +20,25 @@ public class MedicoService : IMedicoService
     {
       Nome = medico.Nome
     });
+
+  }
+
+  public int CreateAtendimento(int medicoId, NewAtendimentoInputModel atendimento)
+  {
+    var medico = _context.MedicosCollection.GetById(medicoId);
+    if (medico is null)
+      throw new MedicoNotFoundException();
+
+    var paciente = _context.PacientesCollection.GetById(atendimento.PacienteId);
+    if (paciente is null)
+      throw new PacienteNotFoundException();
+
+    return _context.AtendimentosCollection.Create(new Atendimento
+    {
+      DataHora = atendimento.DataHora,
+      Medico = medico,
+      Paciente = paciente
+    });
   }
 
   public void Delete(int id)
@@ -36,6 +55,7 @@ public class MedicoService : IMedicoService
     }).ToList();
 
     return medicos;
+
   }
 
   public MedicoViewModel? GetByCrm(string crm)
@@ -63,28 +83,6 @@ public class MedicoService : IMedicoService
     _context.MedicosCollection.Update(id, new Medico
     {
       Nome = medico.Nome
-    });
-  }
-
-  public int CreateAtendimento(int id, NewAtendimentoInputModel atendimento)
-  {
-    var medico = _context.MedicosCollection.GetById(id);
-    if (medico is null)
-    {
-      throw new MedicoNotFoundException();
-    }
-
-    var paciente = _context.PacientesCollection.GetById(atendimento.pacienteId);
-    if (paciente is null)
-    {
-      throw new PacientNotFoundException();
-    }
-
-    return _context.AtendimentosCollection.Create(new Atendimento
-    {
-      DataHora = atendimento.DataHora,
-      Paciente = paciente,
-      Medico = medico
     });
   }
 }

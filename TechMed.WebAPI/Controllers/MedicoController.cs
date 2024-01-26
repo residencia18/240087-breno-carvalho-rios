@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using TechMed.Application.ViewModels;
 using TechMed.Application.InputModels;
 using TechMed.Application.Services.Interfaces;
-using TechMed.Core.Entities;
 
 namespace TechMed.WebAPI.Controllers;
 
@@ -37,6 +36,14 @@ public class MedicoController : ControllerBase
  
    }
 
+   [HttpPost("medico/{id}/atendimento")]
+   public IActionResult Post(int id, [FromBody] NewAtendimentoInputModel atendimento)
+   {
+      _medicoService.CreateAtendimento(id,atendimento);
+      return CreatedAtAction(nameof(Get), atendimento);
+ 
+   }
+
    [HttpPut("medico/{id}")]
    public IActionResult Put(int id, [FromBody] NewMedicoInputModel medico)
    {
@@ -53,12 +60,5 @@ public class MedicoController : ControllerBase
          return NoContent();
       _medicoService.Delete(id);
       return Ok();
-   }
-
-   [HttpPost("medico/{id}/atendimento")]
-   public IActionResult PostAtendimento(int id, [FromBody] NewAtendimentoInputModel atendimento){
-      _medicoService.CreateAtendimento(id, atendimento);
-
-      return CreatedAtAction(nameof(Get), atendimento);
    }
 }

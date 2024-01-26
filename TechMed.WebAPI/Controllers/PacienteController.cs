@@ -10,7 +10,7 @@ namespace TechMed.WebAPI.Controllers;
 public class PacienteController : ControllerBase
 {
    private readonly IPacienteService _pacienteService;
-   public List<PacienteViewModel> Pacientes => _pacienteService.GetAll().ToList();
+   public List<PacienteViewModel> Pacientes => _pacienteService.GetAll();
    public PacienteController(IPacienteService service) => _pacienteService = service;
 
    [HttpGet("pacientes")]
@@ -30,7 +30,10 @@ public class PacienteController : ControllerBase
    public IActionResult Post([FromBody] NewPacienteInputModel paciente)
    {
       _pacienteService.Create(paciente);
+
+      //service.Create(paciente);
       return CreatedAtAction(nameof(Get), paciente);
+ 
    }
 
    [HttpPut("paciente/{id}")]
@@ -50,22 +53,4 @@ public class PacienteController : ControllerBase
       _pacienteService.Delete(id);
       return Ok();
    }
-
-   // [HttpGet("medico/{id}/atendimentos")]
-   // public IActionResult GetAtendimentos(int id)
-   // {
-   //    var atendimento = Enumerable.Range(1, 5).Select(index => new Atendimento
-   //      {
-   //          AtendimentoId = index,
-   //          DataHora = DateTime.Now,
-   //          MedicoId = id,
-   //          Medico = new Medico
-   //          {
-   //              MedicoId = id,
-   //              Nome = $"Medico {id}"
-   //          }
-   //      })
-   //      .ToArray();
-   //    return Ok(atendimento);
-   // }
 }
