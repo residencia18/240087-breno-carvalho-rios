@@ -20,6 +20,7 @@ import { WikipediaArticlesListComponent } from './components/wikipedia/wikipedia
 import { WikipediaSearchComponent } from './components/wikipedia/wikipedia-search/wikipedia-search.component';
 import { WikipediaSpanToStrongPipe } from './pipes/wikipedia/wikipedia-span-to-strong.pipe';
 import { CeilPipe } from './pipes/common/ceil.pipe';
+import { UescMainComponent } from './components/uesc/uesc-main/uesc-main.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CeilPipe } from './pipes/common/ceil.pipe';
     WikipediaSearchComponent,
     WikipediaSpanToStrongPipe,
     CeilPipe,
+    UescMainComponent,
   ],
   imports: [
     BrowserModule,

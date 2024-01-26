@@ -1,9 +1,13 @@
+p,
+h2 {
+    margin: 5px 0;
+}
+
 .card {
     display: flex;
     flex-direction: column;
     gap: 10px;
     background-color: #006989;
-    /* max-width: 200px; */
     padding: 15px;
     border-radius: 10px;
     color: #d9caff;
@@ -20,7 +24,7 @@
     font-weight: bold;
     text-align: center;
     color: #EAEBED;
-    font-size: 2.5em;
+    font-size: 2.5rem;
     font-family: 'Caveat', cursive;
 }
 
@@ -42,7 +46,7 @@
 
 .price {
     font-weight: bold;
-    font-size: 1.7em;
+    font-size: 1.7rem;
     color: #EAEBED;
     margin-bottom: 5px;
     text-decoration: underline;
