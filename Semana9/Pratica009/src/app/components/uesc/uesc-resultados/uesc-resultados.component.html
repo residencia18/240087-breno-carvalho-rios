@@ -1,0 +1,14 @@
+<app-uesc-card id="resultados" title="Resultados">
+    <h2>
+        Paises que falam: <select name="linguagem" id="linguagem" [(ngModel)]="lang" (change)='getResults()'>
+            <option value="portuguese">Português</option>
+            <option value="english">Inglês</option>
+            <option value="spanish">Espanhol</option>
+        </select>
+    </h2>
+    <div id="paises">
+        <div *ngFor="let country of results">
+            {{country.translations.por.official}}
+        </div>
+    </div>
+</app-uesc-card>

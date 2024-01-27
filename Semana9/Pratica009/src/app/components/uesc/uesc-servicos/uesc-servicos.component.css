@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+}
+
+#servicos .card-body {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    height: 100%;
+}
+
+#servicos #div-services {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    height: 100%;
+}
+
+#servicos .service-title {
+    background-color: white;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+}
+
+#servicos .service-info {
+    border: 2px solid white;
+    background-color: rgba(255, 255, 255, 0.3);
+    font-size: 1.1rem;
+    font-weight: bold;
+    flex-grow: 1;
+    min-width: fit-content;
+    height: 160px;
+    border-radius: 15px 15px 0 0;
+}
+
+#servicos .service-content {
+    padding: 10px;
+}
+
+#servicos #weather {
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+}
+
+#servicos hr {
+    border: 1.5px solid darkgray;
+}
+
+#servicos #temperature {
+    font-size: 2rem;
+}
+
+#servicos #weather-description {
+    display: flex;
+    align-items: end;
+}
+
+#servicos #date {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    font-size: 1rem;
+}
+
+#servicos .currency-conversion {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 5px;
+    font-size: 1.5rem;
+}

@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+}
+
+#noticias h3 {
+    font-size: 1rem;
+}
+
+#noticias a {
+    font-size: 0.9rem;
+}
+
+#noticias .noticia {
+    width: 100%;
+}
+
+#noticias .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#noticias .news-link::before {
+    content: "\21b3";
+    margin-right: 5px;
+    margin-left: 10px;
+}

@@ -1,0 +1,35 @@
+<app-uesc-card title="Servicos" id="servicos">
+    <div id="div-services">
+        <div id="uesc-weather-info" class="service-info">
+            <div class="service-title">
+                <h2>UESC</h2>
+            </div>
+            <div class="service-content">
+                <div id="weather">
+                    <div id="temperature">{{uescWeather.current.temp_c}}°C</div>
+                    <div id="weather-description">{{uescWeather.current.condition.text}}</div>
+                </div>
+                <hr>
+                <div id="date">Atualizado em: {{uescWeather.current.last_updated}}</div>
+            </div>
+        </div>
+        <div id="currency-info" class="service-info">
+            <div class="service-title">
+                <h2>Cotações</h2>
+            </div>
+            <div class="service-content">
+                <div class="currency-conversion">
+                    <div id="base-currency">1 USD</div>
+                    <div> &rAarr; </div>
+                    <div id="usd-brl-currency">{{currencies.data['USD']}} BRL</div>
+                </div>
+                <hr>
+                <div class="currency-conversion">
+                    <div id="base-currency">1 EUR</div>
+                    <div> &rAarr; </div>
+                    <div id="eur-brl-currency">{{currencies.data['EUR']}} BRL</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-uesc-card>

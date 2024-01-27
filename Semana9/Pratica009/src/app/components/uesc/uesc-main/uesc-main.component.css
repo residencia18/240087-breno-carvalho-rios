@@ -1,0 +1,14 @@
+a:visited {
+    color: initial;
+}
+
+:host {
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    font-family: "poppins", sans-serif;
+}
+
+#body {
+    background-color: #D5DFE5;
+}

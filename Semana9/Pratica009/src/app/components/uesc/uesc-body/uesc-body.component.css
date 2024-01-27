@@ -1,0 +1,18 @@
+main {
+    padding: 0 0.5rem;
+    margin-bottom: 4rem;
+}
+
+#section1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 20%;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+#section2 {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 5px;
+    margin-bottom: 10px;
+}

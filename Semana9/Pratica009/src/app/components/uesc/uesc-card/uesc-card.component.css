@@ -1,0 +1,41 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: #D5DFE5;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 1px 2px 2px 1px rgba(60, 62, 65, 0.5);
+    height: 100%;
+}
+
+.card-header {
+    display: flex;
+    background-color: #B49594;
+    border-radius: 5px 5px 0 0;
+    padding: 10px;
+    font-size: 1.8em;
+    font-family: "caveat", cursive;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    background-color: #C9B1BD;
+    flex-grow: 1;
+    padding: 10px;
+    gap: 20px;
+}
+
+.card-body>div {
+    margin: 7px 0;
+}
+
+.card-body a {
+    color: darkblue;
+    text-decoration: underline;
+}
+
+.card-body .news-link::before {
+    content: "\21b3";
+    margin-right: 5px;
+    margin-left: 10px;
+}

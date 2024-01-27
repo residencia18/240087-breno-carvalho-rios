@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+}
+
+#paises {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#resultados .card-body h2 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+#resultados select {
+    background-color: transparent;
+    border: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 10px;
+    text-decoration: underline;
+}
+
+#resultados #paises {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#resultados #paises>div::before {
+    content: "➤";
+    margin-right: 0.5rem;
+}

@@ -1,0 +1,16 @@
+#destaques {
+    text-align: center;
+}
+
+#destaques h3 {
+    margin-bottom: 5px;
+}
+
+#destaques p {
+    font-size: 0.9rem;
+    text-align: justify;
+}
+
+#destaques img {
+    width: 100%;
+}

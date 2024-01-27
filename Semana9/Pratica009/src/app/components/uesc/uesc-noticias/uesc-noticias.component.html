@@ -1,0 +1,6 @@
+<app-uesc-card title="Notícias" id="noticias">
+    <div *ngFor="let noticia of noticias | slice:0:10;" class="noticia">
+        <h3>{{noticia.title}}</h3>
+        <span class="news-link"><a href="{{noticia.url}}" target="_blank">Veja Mais</a></span>
+    </div>
+</app-uesc-card>

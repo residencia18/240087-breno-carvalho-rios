@@ -21,6 +21,15 @@ import { WikipediaSearchComponent } from './components/wikipedia/wikipedia-searc
 import { WikipediaSpanToStrongPipe } from './pipes/wikipedia/wikipedia-span-to-strong.pipe';
 import { CeilPipe } from './pipes/common/ceil.pipe';
 import { UescMainComponent } from './components/uesc/uesc-main/uesc-main.component';
+import { UescHeaderComponent } from './components/uesc/uesc-header/uesc-header.component';
+import { UescBodyComponent } from './components/uesc/uesc-body/uesc-body.component';
+import { UescFooterComponent } from './components/uesc/uesc-footer/uesc-footer.component';
+import { UescMenuComponent } from './components/uesc/uesc-menu/uesc-menu.component';
+import { UescNoticiasComponent } from './components/uesc/uesc-noticias/uesc-noticias.component';
+import { UescDestaquesComponent } from './components/uesc/uesc-destaques/uesc-destaques.component';
+import { UescCardComponent } from './components/uesc/uesc-card/uesc-card.component';
+import { UescServicosComponent } from './components/uesc/uesc-servicos/uesc-servicos.component';
+import { UescResultadosComponent } from './components/uesc/uesc-resultados/uesc-resultados.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +42,15 @@ import { UescMainComponent } from './components/uesc/uesc-main/uesc-main.compone
     WikipediaSpanToStrongPipe,
     CeilPipe,
     UescMainComponent,
+    UescHeaderComponent,
+    UescBodyComponent,
+    UescFooterComponent,
+    UescMenuComponent,
+    UescNoticiasComponent,
+    UescDestaquesComponent,
+    UescCardComponent,
+    UescServicosComponent,
+    UescResultadosComponent,
   ],
   imports: [
     BrowserModule,
