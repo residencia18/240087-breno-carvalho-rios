@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OrdemDeServico.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class InicialMigration : Migration
+    public partial class initial_create : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,31 +16,69 @@ namespace OrdemDeServico.Infra.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Ordem_De_Servicos",
+                name: "Endereco",
                 columns: table => new
                 {
-                    Ordem_De_ServicoId = table.Column<int>(type: "int", nullable: false)
+                    EnderecoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Numero = table.Column<int>(type: "int", nullable: false),
-                    Descricao = table.Column<string>(type: "longtext", nullable: true)
+                    Logradouro = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DataEmissao = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Status = table.Column<string>(type: "longtext", nullable: true)
+                    Numero = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Cidade = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Complemento = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Bairro = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Estado = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Cep = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Pais = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CretedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ordem_De_Servicos", x => x.Ordem_De_ServicoId);
+                    table.PrimaryKey("PK_Endereco", x => x.EnderecoId);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Prestador_De_Servicos",
+                name: "Cliente",
                 columns: table => new
                 {
-                    Prestador_De_ServicoId = table.Column<int>(type: "int", nullable: false)
+                    ClienteId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Email = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Telefone = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    EnderecoId = table.Column<int>(type: "int", nullable: false),
+                    CretedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cliente", x => x.ClienteId);
+                    table.ForeignKey(
+                        name: "FK_Cliente_Endereco_EnderecoId",
+                        column: x => x.EnderecoId,
+                        principalTable: "Endereco",
+                        principalColumn: "EnderecoId",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PrestadorDeServico",
+                columns: table => new
+                {
+                    PrestadorDeServicoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -54,94 +92,53 @@ namespace OrdemDeServico.Infra.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Prestador_De_Servicos", x => x.Prestador_De_ServicoId);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Enderecos",
-                columns: table => new
-                {
-                    EnderecoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Logradouro = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Numero = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Cidade = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Complemento = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Bairro = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Estado = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Cep = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Pais = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Ordem_De_ServicoId = table.Column<int>(type: "int", nullable: false),
-                    Prestador_De_ServicoId = table.Column<int>(type: "int", nullable: false),
-                    CretedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Enderecos", x => x.EnderecoId);
+                    table.PrimaryKey("PK_PrestadorDeServico", x => x.PrestadorDeServicoId);
                     table.ForeignKey(
-                        name: "FK_Enderecos_Ordem_De_Servicos_Ordem_De_ServicoId",
-                        column: x => x.Ordem_De_ServicoId,
-                        principalTable: "Ordem_De_Servicos",
-                        principalColumn: "Ordem_De_ServicoId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Enderecos_Prestador_De_Servicos_Prestador_De_ServicoId",
-                        column: x => x.Prestador_De_ServicoId,
-                        principalTable: "Prestador_De_Servicos",
-                        principalColumn: "Prestador_De_ServicoId",
+                        name: "FK_PrestadorDeServico_Endereco_EnderecoId",
+                        column: x => x.EnderecoId,
+                        principalTable: "Endereco",
+                        principalColumn: "EnderecoId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Servico_Ordem_De_Servicos",
+                name: "ServicoOrdemDeServico",
                 columns: table => new
                 {
-                    Servico_Ordem_De_ServicoId = table.Column<int>(type: "int", nullable: false)
+                    ServicoOrdemDeServicoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Ordem_De_ServicoId = table.Column<int>(type: "int", nullable: false),
-                    ServicoId = table.Column<int>(type: "int", nullable: false),
                     EnderecoId = table.Column<int>(type: "int", nullable: false),
                     CretedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Servico_Ordem_De_Servicos", x => x.Servico_Ordem_De_ServicoId);
+                    table.PrimaryKey("PK_ServicoOrdemDeServico", x => x.ServicoOrdemDeServicoId);
                     table.ForeignKey(
-                        name: "FK_Servico_Ordem_De_Servicos_Enderecos_EnderecoId",
+                        name: "FK_ServicoOrdemDeServico_Endereco_EnderecoId",
                         column: x => x.EnderecoId,
-                        principalTable: "Enderecos",
+                        principalTable: "Endereco",
                         principalColumn: "EnderecoId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enderecos_Ordem_De_ServicoId",
-                table: "Enderecos",
-                column: "Ordem_De_ServicoId",
+                name: "IX_Cliente_EnderecoId",
+                table: "Cliente",
+                column: "EnderecoId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enderecos_Prestador_De_ServicoId",
-                table: "Enderecos",
-                column: "Prestador_De_ServicoId",
+                name: "IX_PrestadorDeServico_EnderecoId",
+                table: "PrestadorDeServico",
+                column: "EnderecoId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Servico_Ordem_De_Servicos_EnderecoId",
-                table: "Servico_Ordem_De_Servicos",
+                name: "IX_ServicoOrdemDeServico_EnderecoId",
+                table: "ServicoOrdemDeServico",
                 column: "EnderecoId",
                 unique: true);
         }
@@ -150,16 +147,16 @@ namespace OrdemDeServico.Infra.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Servico_Ordem_De_Servicos");
+                name: "Cliente");
 
             migrationBuilder.DropTable(
-                name: "Enderecos");
+                name: "PrestadorDeServico");
 
             migrationBuilder.DropTable(
-                name: "Ordem_De_Servicos");
+                name: "ServicoOrdemDeServico");
 
             migrationBuilder.DropTable(
-                name: "Prestador_De_Servicos");
+                name: "Endereco");
         }
     }
 }
