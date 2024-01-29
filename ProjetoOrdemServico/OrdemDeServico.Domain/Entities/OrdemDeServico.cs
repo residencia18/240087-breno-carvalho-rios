@@ -14,5 +14,6 @@ public class OrdemServico : BaseEntity
     public Cliente? Cliente {get; set;}
     public PrestadorDeServico? PrestadorDeServico {get; set;}
     public ICollection<Pagamento>? Pagamentos {get; set;}
+    public ICollection<ServicoOrdemDeServico>? ServicoOrdemDeServico { get; set; }
 
 }

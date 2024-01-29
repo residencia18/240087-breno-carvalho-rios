@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using OrdemDeServico.Domain;
 using OrdemDeServico.Domain.Entities;
 
 namespace ResTIConnect.Infrastructure;
@@ -13,6 +12,7 @@ public class OrdemDeServicoContext : DbContext
     public DbSet<PrestadorDeServico> PrestadorDeServico { get; set;} 
     public DbSet<Pagamento> Pagamento { get; set;} 
     public DbSet<OrdemServico> OrdemServico { get; set;} 
+    public DbSet<Servico> Servico { get; set;} 
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -34,6 +34,7 @@ public class OrdemDeServicoContext : DbContext
         modelBuilder.Entity<ServicoOrdemDeServico>().ToTable("ServicoOrdemDeServico").HasKey(s => s.ServicoOrdemDeServicoId);
         modelBuilder.Entity<Pagamento>().ToTable("Pagamento").HasKey(pa => pa.PagamentoId);
         modelBuilder.Entity<OrdemServico>().ToTable("OrdemDeServico").HasKey(od => od.OrdemServicoId);
+        modelBuilder.Entity<Servico>().ToTable("Servico").HasKey(s => s.ServicoId);
         
 
         modelBuilder.Entity<Cliente>()
@@ -61,9 +62,19 @@ public class OrdemDeServicoContext : DbContext
             .WithMany(cli => cli.OrdemServico)
             .HasForeignKey(od => od.ClienteId);
 
-         modelBuilder.Entity<OrdemServico>()
+        modelBuilder.Entity<OrdemServico>()
             .HasOne(od => od.PrestadorDeServico)
             .WithMany(ps => ps.OrdemServico)
             .HasForeignKey(od => od.PrestadorId);
+        
+        modelBuilder.Entity<ServicoOrdemDeServico>()
+            .HasOne(so => so.Servico)
+            .WithMany(s => s.ServicoOrdemDeServico)
+            .HasForeignKey(s => s.ServicoId);
+        
+        modelBuilder.Entity<ServicoOrdemDeServico>()
+            .HasOne(so => so.OrdemServico)
+            .WithMany(s => s.ServicoOrdemDeServico)
+            .HasForeignKey(os => os.OrdemDeServicoId);
     }
 }
