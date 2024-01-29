@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using OrdemDeServico.Domain;
 using OrdemDeServico.Domain.Entities;
 
 namespace ResTIConnect.Infrastructure;
@@ -10,6 +11,8 @@ public class OrdemDeServicoContext : DbContext
     public DbSet<Cliente> Cliente { get; set; }
     public DbSet<ServicoOrdemDeServico> ServicoOrdemDeServico { get; set; }
     public DbSet<PrestadorDeServico> PrestadorDeServico { get; set;} 
+    public DbSet<Pagamento> Pagamento { get; set;} 
+    public DbSet<OrdemServico> OrdemServico { get; set;} 
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -29,6 +32,8 @@ public class OrdemDeServicoContext : DbContext
         modelBuilder.Entity<Endereco>().ToTable("Endereco").HasKey(e => e.EnderecoId);
         modelBuilder.Entity<Cliente>().ToTable("Cliente").HasKey(c => c.ClienteId);
         modelBuilder.Entity<ServicoOrdemDeServico>().ToTable("ServicoOrdemDeServico").HasKey(s => s.ServicoOrdemDeServicoId);
+        modelBuilder.Entity<Pagamento>().ToTable("Pagamento").HasKey(pa => pa.PagamentoId);
+        modelBuilder.Entity<OrdemServico>().ToTable("OrdemDeServico").HasKey(od => od.OrdemServicoId);
         
 
         modelBuilder.Entity<Cliente>()
@@ -45,5 +50,20 @@ public class OrdemDeServicoContext : DbContext
             .HasOne(so => so.Endereco)
             .WithOne(e => e.ServicoOrdemDeServico)
             .HasForeignKey<ServicoOrdemDeServico>(so => so.EnderecoId);
+        
+        modelBuilder.Entity<Pagamento>()
+            .HasOne(pa => pa.OrdemServico)
+            .WithMany(e => e.Pagamentos)
+            .HasForeignKey(pa => pa.OrdemServicoId);
+
+        modelBuilder.Entity<OrdemServico>()
+            .HasOne(od => od.Cliente)
+            .WithMany(cli => cli.OrdemServico)
+            .HasForeignKey(od => od.ClienteId);
+
+         modelBuilder.Entity<OrdemServico>()
+            .HasOne(od => od.PrestadorDeServico)
+            .WithMany(ps => ps.OrdemServico)
+            .HasForeignKey(od => od.PrestadorId);
     }
 }

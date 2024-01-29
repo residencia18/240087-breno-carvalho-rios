@@ -6,5 +6,6 @@ namespace OrdemDeServico.Domain.Entities;
         public required string Especialidade { get; set; }
         public required string Telefone { get; set; }
         public required Endereco Endereco { get; set; }
-        public int EnderecoId { get; set; }        
+        public int EnderecoId { get; set; }  
+        public ICollection<OrdemServico>? OrdemServico {get; set;}    
     }
