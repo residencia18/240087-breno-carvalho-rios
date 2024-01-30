@@ -11,18 +11,15 @@ public class CasoJuridicoService : ICasoJuridicoService
     private readonly TechAdvocaciaDbContext _context;
     private readonly IAdvogadoService _advogadoService;
     private readonly IClienteService _clienteService;
-    private readonly IDocumentoService _documentoService;
     public CasoJuridicoService(
         TechAdvocaciaDbContext context,
         IAdvogadoService advogadoService,
-        IClienteService clienteService,
-        IDocumentoService documentoService
+        IClienteService clienteService
     )
     {
         _context = context;
         _advogadoService = advogadoService;
         _clienteService = clienteService;
-        _documentoService = documentoService;
     }
 
     public int Create(NewCasoJuridicoInputModel casoJuridico)
@@ -68,9 +65,10 @@ public class CasoJuridicoService : ICasoJuridicoService
             Status = cj.Status,
             Advogado = _advogadoService.GetById(cj.AdvogadoId),
             Cliente = _clienteService.GetById(cj.ClienteId),
-            Documentos = cj.Documentos.Select(
-                documento => _documentoService.GetById(documento.DocumentoId)
-            ).ToList()
+            Documentos = new List<DocumentoViewModel>()
+            // Documentos = cj.Documentos.Select(
+            //     documento => _documentoService.GetById(documento.DocumentoId)
+            // ).ToList()
         });
 
         return _casosJuridicos.ToList();
@@ -80,9 +78,9 @@ public class CasoJuridicoService : ICasoJuridicoService
     {
         var _casoJuridico = GetDbCasoJuridico(id);
 
-        var _documentos = _casoJuridico.Documentos.Select(
-            documento => _documentoService.GetById(documento.DocumentoId)
-        ).ToList();
+        // var _documentos = _casoJuridico.Documentos.Select(
+        //     documento => _documentoService.GetById(documento.DocumentoId)
+        // ).ToList();
 
         return new CasoJuridicoViewModel
         {
@@ -90,7 +88,7 @@ public class CasoJuridicoService : ICasoJuridicoService
             Status = _casoJuridico.Status,
             Advogado = _advogadoService.GetById(_casoJuridico.AdvogadoId),
             Cliente = _clienteService.GetById(_casoJuridico.ClienteId),
-            Documentos = _documentos
+            Documentos = new List<DocumentoViewModel>()
         };
     }
 
