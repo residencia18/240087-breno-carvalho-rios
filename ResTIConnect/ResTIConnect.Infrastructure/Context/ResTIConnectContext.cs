@@ -34,5 +34,8 @@ public class ResTIConnectContext : DbContext
         modelBuilder.Entity<Sistemas>().ToTable("Sistemas").HasKey(m => m.SistemaId);
 
         modelBuilder.Entity<Usuario>().HasMany(u => u.Perfil).WithOne(p => p.Usuario);
+        modelBuilder.Entity<Usuario>().HasMany(u => u.Sistemas).WithMany(s => s.Usuarios);
+        modelBuilder.Entity<Endereco>().HasOne(e => e.Usuario).WithOne(u => u.Endereco).HasForeignKey<Endereco>(e => e.UsuarioId);
+        modelBuilder.Entity<Sistemas>().HasMany(s => s.Eventos).WithMany(ev => ev.Sistemas);
     }
 }

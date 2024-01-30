@@ -7,6 +7,7 @@ public class Usuario : BaseEntity
     public string? Apelido { get; set; }
     public required string Senha { get; set; }
     public required string Telefone { get; set; }
-    public required Endereco Endereco { get; set; }
+    public Endereco? Endereco { get; set; }
     public required ICollection<Perfil> Perfil { get; set; }
+    public required ICollection<Sistemas> Sistemas { get; set; }
 }

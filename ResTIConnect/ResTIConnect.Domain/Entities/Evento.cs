@@ -7,4 +7,5 @@ public class Evento : BaseEntity
     public string? Codigo { get; set; }
     public string? Conteudo { get; set; }
     public DateTimeOffset DataHoraOcorrencia { get; set; }
+    public ICollection<Sistemas> Sistemas { get; set; }
 }

@@ -9,5 +9,6 @@ public class Sistemas : BaseEntity
     public string Protocolo { get; set; }
     public DateTimeOffset DataHoraInicioIntegracao { get; set; }
     public string Status { get; set; }
-
+    public ICollection<Usuario> Usuarios { get; set; }
+    public ICollection<Evento> Eventos { get; set; }
 }
