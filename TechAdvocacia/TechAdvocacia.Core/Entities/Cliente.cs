@@ -5,5 +5,5 @@ public class Cliente : BaseEntity
 {
     public int ClienteId { get; set; }
     public required string Nome { get; set; }
-    public ICollection<CasoJuridico>? CasoJuridicos { get; set; }
+    public ICollection<CasoJuridico>? CasosJuridicos { get; set; }
 }
