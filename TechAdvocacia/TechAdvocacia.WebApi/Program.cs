@@ -1,6 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using TechAdvocacia.Infrastructure.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddDbContext<TechAdvocaciaDbContext>(options => {
+    var connectionString = builder.Configuration.GetConnectionString("TechAdvocaciaDb");
+    var serverVersion = ServerVersion.AutoDetect(connectionString);
+    options.UseMySql(connectionString, serverVersion);
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
