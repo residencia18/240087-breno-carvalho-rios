@@ -1,7 +1,14 @@
 using Microsoft.EntityFrameworkCore;
+using TechAdvocacia.Application.Services;
+using TechAdvocacia.Application.Services.Interfaces;
 using TechAdvocacia.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IAdvogadoService, AdvogadoService>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.Services.AddScoped<IDocumentoService, DocumentoService>();
+builder.Services.AddScoped<ICasoJuridicoService, CasoJuridicoService>();
 
 builder.Services.AddDbContext<TechAdvocaciaDbContext>(options => {
     var connectionString = builder.Configuration.GetConnectionString("TechAdvocaciaDb");

@@ -17,10 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TechAdvocacia.Infrastructure\TechAdvocacia.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers/" />
+    <ProjectReference Include="..\TechAdvocacia.Application\TechAdvocacia.Application.csproj" />
   </ItemGroup>
 
 </Project>

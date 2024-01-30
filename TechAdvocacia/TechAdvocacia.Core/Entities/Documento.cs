@@ -5,6 +5,6 @@ public class Documento : BaseEntity
 {
     public int DocumentoId { get; set; }
     public required string Descricao { get; set; }
-    public required int CasoJuridicoId { get; set; }
+    public int CasoJuridicoId { get; set; }
     public required CasoJuridico CasoJuridico { get; set; }
 }
