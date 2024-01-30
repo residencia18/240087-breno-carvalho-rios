@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ResTIConnect.Infrastructure;
 
@@ -10,9 +11,11 @@ using ResTIConnect.Infrastructure;
 namespace ResTIConnect.Infrastructure.Migrations
 {
     [DbContext(typeof(ResTIConnectContext))]
-    partial class ResTIConnectContextModelSnapshot : ModelSnapshot
+    [Migration("20240130123023_criacao_entidade_usuario")]
+    partial class criacao_entidade_usuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +40,7 @@ namespace ResTIConnect.Infrastructure.Migrations
                     b.Property<string>("Complemento")
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CretedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Estado")
@@ -60,45 +63,13 @@ namespace ResTIConnect.Infrastructure.Migrations
                     b.ToTable("enderecos", (string)null);
                 });
 
-            modelBuilder.Entity("ResTIConnect.Domain.Entities.Evento", b =>
-                {
-                    b.Property<int>("EventoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Codigo")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Conteudo")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTimeOffset>("DataHoraOcorrencia")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Descricao")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Tipo")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("EventoId");
-
-                    b.ToTable("eventos", (string)null);
-                });
-
             modelBuilder.Entity("ResTIConnect.Domain.Entities.Log", b =>
                 {
                     b.Property<int>("LogId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CretedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("DataHoraEvento")
@@ -130,7 +101,7 @@ namespace ResTIConnect.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CretedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Descricao")
@@ -162,7 +133,7 @@ namespace ResTIConnect.Infrastructure.Migrations
                     b.Property<string>("Apelido")
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CretedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<int>("EnderecoId")
