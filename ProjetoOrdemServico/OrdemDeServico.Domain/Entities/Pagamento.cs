@@ -10,5 +10,4 @@ public class Pagamento : BaseEntity
     public required string MetodoPagamento { get; set; }
     public OrdemServico? OrdemServico { get; set; }
     public int OrdemServicoId { get; set; }
-    public Cliente? Cliente { get; set; }
 }
