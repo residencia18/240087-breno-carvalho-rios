@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ResTIConnect.Infrastructure;
 
@@ -10,9 +11,11 @@ using ResTIConnect.Infrastructure;
 namespace ResTIConnect.Infrastructure.Migrations
 {
     [DbContext(typeof(ResTIConnectContext))]
-    partial class ResTIConnectContextModelSnapshot : ModelSnapshot
+    [Migration("20240130123128_criacao_entidade_evento")]
+    partial class criacao_entidade_evento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,50 +154,6 @@ namespace ResTIConnect.Infrastructure.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("perfis", (string)null);
-                });
-
-            modelBuilder.Entity("ResTIConnect.Domain.Entities.Sistemas", b =>
-                {
-                    b.Property<int>("SistemaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTimeOffset>("DataHoraInicioIntegracao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("EnderecoEntrada")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("EnderecoSaida")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Protocolo")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("SistemaId");
-
-                    b.ToTable("Sistemas", (string)null);
                 });
 
             modelBuilder.Entity("ResTIConnect.Domain.Entities.Usuario", b =>
