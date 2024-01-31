@@ -70,8 +70,7 @@
               "buildTarget": "Pratica008:build:production"
             },
             "development": {
-              "buildTarget": "Pratica008:build:development",
-              "proxyConfig": "proxy.conf.js"
+              "buildTarget": "Pratica008:build:development"
             }
           },
           "defaultConfiguration": "development"

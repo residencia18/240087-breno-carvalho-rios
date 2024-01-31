@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -12,7 +12,16 @@ export class ArticlesService {
   constructor(private http: HttpClient) { }
 
   getArticles(search: string): Observable<any> {
-    const apiUrl = `/api.php?action=query&format=json&list=search&utf8=1&formatversion=2&srsearch=${search}&srlimit=${this.limit}`;
-    return this.http.get(apiUrl);
+    const apiUrl = `https://en.wikipedia.org/w/api.php`;
+    const params = new HttpParams()
+      .set('action', 'query')
+      .set('format', 'json')
+      .set('list', 'search')
+      .set('formatversion', '2')
+      .set('srlimit', this.limit.toString())
+      .set('srsearch', search)
+      .set('origin', '*');
+
+    return this.http.get(apiUrl, { params });
   }
 }
