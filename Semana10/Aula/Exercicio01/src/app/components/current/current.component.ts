@@ -7,11 +7,15 @@ import { CounterService } from '../../services/counter.service';
   styleUrl: './current.component.css'
 })
 export class CurrentComponent {
-  currentNumber: Number = 1;
+  currentNumber: number = 1;
 
-  constructor(private counterService: CounterService){}
+  constructor(private counterService: CounterService) { }
 
-  ngOnInit(){
+  ngOnInit() {
+    this.countNumbers();
+  }
+
+  countNumbers() {
     this.counterService.getNumbers().subscribe((number) => {
       this.currentNumber = number;
     });
