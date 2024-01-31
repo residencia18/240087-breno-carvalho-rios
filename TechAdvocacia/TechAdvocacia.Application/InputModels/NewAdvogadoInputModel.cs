@@ -1,3 +1,5 @@
+using TechAdvocacia.Core.Entities;
+
 namespace TechAdvocacia.Application.InputModels;
 public class NewAdvogadoInputModel
 {

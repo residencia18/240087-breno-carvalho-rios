@@ -35,7 +35,7 @@ public class AdvogadoService : IAdvogadoService
         _context.SaveChanges();
     }
 
-    public ICollection<AdvogadoViewModel> GetAll()
+    public List<AdvogadoViewModel> GetAll()
     {
         var advogados = _context.Advogados.Select(advogado => new AdvogadoViewModel()
         {
@@ -61,8 +61,8 @@ public class AdvogadoService : IAdvogadoService
     {
         var _advogado = GetDbAdvogado(id);
 
-        _advogado.Nome = _advogado.Nome;
-    
+        _advogado.Nome = advogado.Nome;
+
         _context.Advogados.Update(_advogado);
         _context.SaveChanges();
     }
@@ -71,7 +71,8 @@ public class AdvogadoService : IAdvogadoService
     {
         var _advogado = _context.Advogados.FirstOrDefault(advogado => advogado.AdvogadoId == id);
 
-        if(_advogado is null){
+        if (_advogado is null)
+        {
             throw new AdvogadoNotFoundException();
         }
 

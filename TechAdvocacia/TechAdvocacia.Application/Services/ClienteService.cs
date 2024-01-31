@@ -35,15 +35,15 @@ public class ClienteService : IClienteService
         _context.SaveChanges();
     }
 
-    public ICollection<ClienteViewModel> GetAll()
+    public List<ClienteViewModel> GetAll()
     {
-        var clientes = _context.Clientes.Select(cliente => new ClienteViewModel()
+        var _clientes = _context.Clientes.Select(cliente => new ClienteViewModel()
         {
             ClienteId = cliente.ClienteId,
             Nome = cliente.Nome
         });
 
-        return clientes.ToList();
+        return _clientes.ToList();
     }
 
     public ClienteViewModel GetById(int id)
@@ -57,12 +57,12 @@ public class ClienteService : IClienteService
         };
     }
 
-    public void Update(int id, NewClientInputModel client)
+    public void Update(int id, NewClientInputModel cliente)
     {
         var _cliente = GetDbClient(id);
 
-        _cliente.Nome = _cliente.Nome;
-        
+        _cliente.Nome = cliente.Nome;
+
         _context.Clientes.Update(_cliente);
         _context.SaveChanges();
     }
@@ -71,7 +71,8 @@ public class ClienteService : IClienteService
     {
         var _cliente = _context.Clientes.FirstOrDefault(cliente => cliente.ClienteId == id);
 
-        if(_cliente is null){
+        if (_cliente is null)
+        {
             throw new ClienteNotFoundException();
         }
 

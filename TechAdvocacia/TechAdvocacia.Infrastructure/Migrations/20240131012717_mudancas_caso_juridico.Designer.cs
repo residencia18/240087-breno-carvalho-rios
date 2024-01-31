@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechAdvocacia.Infrastructure.Persistence;
 
@@ -10,9 +11,11 @@ using TechAdvocacia.Infrastructure.Persistence;
 namespace TechAdvocacia.Infrastructure.Migrations
 {
     [DbContext(typeof(TechAdvocaciaDbContext))]
-    partial class TechAdvocaciaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240131012717_mudancas_caso_juridico")]
+    partial class mudancas_caso_juridico
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

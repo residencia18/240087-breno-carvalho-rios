@@ -3,5 +3,4 @@ public class DocumentoViewModel
 {
     public int DocumentoId { get; set; }
     public required string Descricao { get; set; }
-    public required CasoJuridicoViewModel CasoJuridico { get; set; }
 }

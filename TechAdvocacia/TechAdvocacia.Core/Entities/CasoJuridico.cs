@@ -8,7 +8,7 @@ public class CasoJuridico : BaseEntity
     public required string Status { get; set; }
     public int AdvogadoId { get; set; }
     public int ClienteId { get; set; }
-    public ICollection<Documento>? Documentos { get; set; }
-    public Cliente? Cliente { get; set; }
-    public Advogado? Advogado { get; set; }
+    public required ICollection<Documento> Documentos { get; set; }
+    public required Cliente Cliente { get; set; }
+    public required Advogado Advogado { get; set; }
 }
