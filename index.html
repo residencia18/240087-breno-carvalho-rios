@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front End - Programa de Residência em Software TIC18</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            font-size: 16px;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        header {
+            background-color: #0C3C60;
+            color: black;
+            text-align: center;
+            padding-top: 7rem;
+        }
+
+        .title {
+            display: inline-block;
+            background-color: white;
+            padding: 2rem 5rem;
+            border-bottom: 1px solid #0C3C60;
+        }
+
+        header .title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header .title h2 {
+            font-size: 2rem;
+        }
+
+        main {
+            padding: 3rem;
+        }
+
+        main .container {
+            display: inline-grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-top: 1px solid rgb(199, 199, 199);
+            border-left: 1px solid rgb(199, 199, 199);
+        }
+
+        .card {
+            padding: 3rem;
+            background-color: white;
+            border-right: 1px solid rgb(199, 199, 199);
+            border-bottom: 1px solid rgb(199, 199, 199);
+        }
+
+        .card-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .card-body {
+            text-align: justify;
+            margin: 4rem 0;
+        }
+
+        .card-button {
+            background-color: #0C3C60;
+            padding: 0.8rem 3.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        .card-button:hover {
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+        }
+
+        .card-footer {
+            text-align: center;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 5px;
+            }
+
+            main {
+                grid-template-columns: 1fr;
+                border: none;
+                gap: 5px;
+            }
+
+            .card {
+                border: 1px solid rgb(199, 199, 199);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="title">
+            <h1> Programa de Residência em Software TIC18 </h1>
+            <h2> Trilha de Front End </h2>
+        </div>
+    </header>
+    <main>
+        <div class="container"></div>
+    </main>
+    <script>
+        const practices = [
+            {
+                'title': 'Pratica 001',
+                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana1/Pratica01'
+            },
+            {
+                'title': 'Pratica 002',
+                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana2/Pratica002'
+            },
+            {
+                'title': 'Pratica 003',
+                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana3/Pratica003'
+            },
+            {
+                'title': 'Pratica 004',
+                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana4/Pratica004'
+            },
+            {
+                'title': 'Pratica 005',
+                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana5/Pratica005'
+            },
+            {
+                'title': 'Pratica 006',
+                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana6/Pratica006/dist/pratica006/browser'
+            },
+            {
+                'title': 'Pratica 007',
+                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana7/Pratica007/dist/pratica007/browser'
+            },
+            {
+                'title': 'Pratica 008',
+                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana8/Pratica008/dist/pratica008/browser'
+            },
+            {
+                'title': 'Pratica 009',
+                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana9/Pratica009/dist/pratica009/browser'
+            },
+        ]
+
+        function renderPractices() {
+            practices.forEach(practice => {
+                const practiceCard = document.createElement('div');
+                practiceCard.className = 'card';
+
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'card-title';
+                titleDiv.textContent = practice.title;
+
+                const bodyDiv = document.createElement('div');
+                bodyDiv.className = 'card-body';
+                bodyDiv.textContent = practice.description;
+
+                const footerDiv = document.createElement('div');
+                footerDiv.className = 'card-footer';
+
+                const footerLink = document.createElement('a');
+                footerLink.href = practice.url;
+                footerLink.target = '_blank'
+                footerLink.className = 'card-button';
+                footerLink.textContent = 'Acesse';
+                footerDiv.appendChild(footerLink);
+
+                practiceCard.appendChild(titleDiv);
+                practiceCard.appendChild(bodyDiv);
+                practiceCard.appendChild(footerDiv);
+
+                document.querySelector('main .container').appendChild(practiceCard);
+            });
+        }
+
+        renderPractices();
+    </script>
+</body>
+
+</html>
