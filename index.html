@@ -49,6 +49,8 @@
         }
 
         .card {
+            display: flex;
+            flex-direction: column;
             padding: 3rem;
             background-color: white;
             border-right: 1px solid rgb(199, 199, 199);
@@ -62,6 +64,11 @@
         }
 
         .card-body {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+            gap: 1rem;
             text-align: justify;
             margin: 4rem 0;
         }
@@ -116,47 +123,56 @@
         const practices = [
             {
                 'title': 'Pratica 001',
-                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'goal': 'Desenvolvimento de um site da web básico, estruturando o conteúdo das páginas utilizando as tags HTML vistas em sala de aula.',
+                'description': 'Criação de uma carta de apresentação para ser entregue na empresa em busca de um trabalho de desenvolvedor web.',
                 'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana1/Pratica01'
             },
             {
                 'title': 'Pratica 002',
-                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'goal': 'Desenvolver um design para uma página da web utilizando a linguagem CSS.',
+                'description': 'Criação de um novo design para a página da web da UESC.',
                 'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana2/Pratica002'
             },
             {
                 'title': 'Pratica 003',
-                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'goal': 'Desenvolver um design para uma página da web utilizando a linguagem CSS, incluindo o Flexbox',
+                'description': 'Criação de um design para ser utilizado por uma agência de turismo.',
                 'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana3/Pratica003'
             },
             {
                 'title': 'Pratica 004',
-                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'goal': 'Adquirir conhecimento sobre a linguagem de programação web e Aplicar os conceitos da linguagem JavaScript que foram vistas em sala de aula.',
+                'description': 'A tarefa consiste em atualizar a página da web criada na Pratica003',
                 'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana4/Pratica004'
             },
             {
                 'title': 'Pratica 005',
-                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'goal': 'Aplicar as propriedades e técnicas da linguagem TypeScript que foram vistas em sala de aula.',
+                'description': 'Requisitar dados de APIs públicas para preencher a página estática criada na FEB-002',
                 'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana5/Pratica005'
             },
             {
                 'title': 'Pratica 006',
-                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'goal': 'Compreender os conceitos fundamentais do Angular.',
+                'description': 'A ideia dessa atividade é que o aluno reformule a página da Web criada na atividade FEB-002 e melhorada na atividade FEB-005 e migre para o framework Angular',
                 'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana6/Pratica006/dist/pratica006/browser'
             },
             {
                 'title': 'Pratica 007',
-                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'goal': 'Aprender a criar componentes e diretivas no Angular, comunicação entre componentes pai-filho e comunicação entre componentes filho-pai',
+                'description': 'A tarefa consiste em desenvolver uma aplicação Angular para a leitura e análise de um arquivo JSON, analisar e exibir todas as categorias de veículos, todos os veículos da categoria selecionada, todas as propriedades do veículo selecionado e por fim o valor da propriedade selecionada',
                 'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana7/Pratica007/dist/pratica007/browser'
             },
             {
                 'title': 'Pratica 008',
-                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'goal': 'Aprender a usar pipes e injeção de dependências no Angular. Criar Services no Angular e injetar serviços em componentes que valem em toda a aplicação',
+                'description': 'O objetivo dessa tarefa é criar uma aplicação web para a consulta de artigos na Wikipédia e disponibilizá-los para os usuários.',
                 'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana8/Pratica008/dist/pratica008/browser'
             },
             {
                 'title': 'Pratica 009',
-                'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia corporis ea aut possimus ab, consequatur quis in neque accusantium saepe dolorem, libero velit eos earum consequuntur voluptatum ad quas accusamus.',
+                'goal': 'Aprender a usar routing e navegar entre páginas no Angular',
+                'description': 'A tarefa proposta consiste numa aplicação de porƞólio, onde o aluno vai poder concentrar os trabalhos já realizados para seus clientes em uma página da Web.',
                 'url': 'https://brenoriios.github.io/FrontEnd-TIC18/Semana9/Pratica009/dist/pratica009/browser'
             },
         ]
@@ -172,7 +188,15 @@
 
                 const bodyDiv = document.createElement('div');
                 bodyDiv.className = 'card-body';
-                bodyDiv.textContent = practice.description;
+
+                const goal = document.createElement('p');
+                goal.textContent = practice.goal;
+
+                const description = document.createElement('p');
+                description.textContent = practice.description;
+
+                bodyDiv.appendChild(goal);
+                bodyDiv.appendChild(description);
 
                 const footerDiv = document.createElement('div');
                 footerDiv.className = 'card-footer';
