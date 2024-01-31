@@ -1,0 +1,8 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    height: 100vh;
+    font-size: 8rem;
+}
