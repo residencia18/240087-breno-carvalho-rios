@@ -1,0 +1,39 @@
+#vehicle-information {
+    display: flex;
+    align-items: center;
+}
+
+#vehicle-information #information {
+    display: flex;
+    align-items: center;
+    background-color: rgba(240, 240, 240);
+    border: 1px solid black;
+}
+
+#vehicle-information img {
+    height: 300px;
+    width: auto;
+}
+
+#vehicle-information #information ul {
+    height: 100%;
+    list-style: none;
+    padding: 0;
+}
+
+@media (max-width: 600px) {
+    #vehicle-information img {
+        height: auto;
+        width: 100%;
+    }
+
+    #vehicle-information #information {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    #vehicle-information #information ul{
+        width: 100%;
+    }
+}

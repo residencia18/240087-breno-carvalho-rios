@@ -1,0 +1,8 @@
+<h2>Seu carrinho:</h2>
+<div id="cart">
+    <div id="empty-cart" *ngIf="cartItems.length == 0">
+        <p> Seu carrinho está vazio :( </p>
+        <p> Que tal adicionar algo incrível hoje?</p>
+    </div>
+    <div *ngFor="let item of cartItems" class="item">{{item.Name}}</div>
+</div>

@@ -1,0 +1,29 @@
+<div id="container">
+    <h2>Escolha seu veículo:</h2>
+    <div id="vehicle-selection">
+        <div id="selectors">
+            <div class="selector-container">
+                <p appBeStrong>Categoria: </p>
+                <div class="select">
+                    <app-objects></app-objects>
+                </div>
+            </div>
+            <div class="selector-container">
+                <p appBeStrong>Modelo: </p>
+                <div class="select">
+                    <app-classes></app-classes>
+                </div>
+            </div>
+            <div class="selector-container">
+                <p appBeStrong>Propriedade: </p>
+                <div class="select">
+                    <app-properties></app-properties>
+                </div>
+            </div>
+            <p-button id="add-button" [style]="{'width': '100%'}" label="Adicionar" icon="pi pi-plus" iconPos="right" (click)="addToCart()"></p-button>
+        </div>
+        <app-vehicle-display id="app-vehicle-display"></app-vehicle-display>
+    </div>
+    <hr>
+    <app-cart></app-cart>
+</div>

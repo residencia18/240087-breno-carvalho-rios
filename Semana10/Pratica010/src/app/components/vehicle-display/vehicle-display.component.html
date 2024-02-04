@@ -1,0 +1,8 @@
+<div id="vehicle-information">
+    <div id="information">
+        <ul>
+            <app-property-value *ngFor="let property of getProperties()" [property]="property"></app-property-value>
+        </ul>
+        <img [src]="getImage()" alt="Placeholder">
+    </div>
+</div>
