@@ -39,11 +39,41 @@
             font-size: 2rem;
         }
 
-        main {
-            padding: 3rem;
+        main #latest-practice-highlight-container {
+            background-color: rgb(0, 148, 197);
+            color: white;
+            padding: 20px 5px;
+        }
+
+        main #latest-practice-highlight-container h2 {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        main #latest-practice-highlight-container a {
+            text-decoration: none;
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 5px;
+            transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.75s;
+        }
+
+        main #latest-practice-highlight-container a::before {
+            content: '🔗';
+        }
+
+        main #latest-practice-highlight-container a:hover {
+            background-color: slateblue;
+            color: white;
         }
 
         main .container {
+            padding: 3rem;
+        }
+
+        main .container .practices-container {
             display: inline-grid;
             grid-template-columns: 1fr 1fr 1fr;
             border-top: 1px solid rgb(199, 199, 199);
@@ -81,6 +111,7 @@
             color: white;
             text-decoration: none;
             transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+            font-weight: bold;
         }
 
         .card-button:hover {
@@ -98,7 +129,7 @@
                 padding: 5px;
             }
 
-            main {
+            main .container {
                 grid-template-columns: 1fr;
                 border: none;
                 gap: 5px;
@@ -119,7 +150,12 @@
         </div>
     </header>
     <main>
-        <div class="container"></div>
+        <div id="latest-practice-highlight-container">
+            <h2>Veja a última atividade adicionada: <a id="latest-practice" target="_blank"></a></h2>
+        </div>
+        <div class="container">
+            <div class="practices-container"></div>
+        </div>
     </main>
     <script>
         const practices = [
@@ -213,15 +249,19 @@
                 footerLink.href = practice.url;
                 footerLink.target = '_blank'
                 footerLink.className = 'card-button';
-                footerLink.textContent = 'Acesse';
+                footerLink.textContent = 'Acessar';
                 footerDiv.appendChild(footerLink);
 
                 practiceCard.appendChild(titleDiv);
                 practiceCard.appendChild(bodyDiv);
                 practiceCard.appendChild(footerDiv);
 
-                document.querySelector('main .container').appendChild(practiceCard);
+                document.querySelector('main .container .practices-container').appendChild(practiceCard);
             });
+
+            const latestPractice = document.querySelector('main #latest-practice');
+            latestPractice.innerHTML = practices[practices.length - 1].title;
+            latestPractice.href = practices[practices.length - 1].url;
         }
 
         renderPractices();
