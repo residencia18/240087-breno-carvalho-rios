@@ -23,7 +23,7 @@ export class VehiclesService {
   cartItems$ = this.cartItemsSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    this.http.get('../../assets/data/vehicles.json', { params: { format: 'json', origin: '*' } }).subscribe(res => {
+    this.http.get('https://github.com/brenoriios/FrontEnd-TIC18/blob/main/Semana10/Pratica010/src/assets/data/vehicles.json', { params: { format: 'json', origin: '*' } }).subscribe(res => {
       this.vehiclesList = res as any[];
       this.vehiclesListSubject.next(this.vehiclesList);
     });
