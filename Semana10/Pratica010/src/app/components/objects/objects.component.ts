@@ -8,11 +8,11 @@ import { VehiclesService } from '../../services/vehicles.service';
 })
 
 export class ObjectsComponent {
-    public categories: string[] = [];
+    public categories: string[] = ["Selecione uma categoria"];
 
     constructor(private vehiclesService: VehiclesService) {
         this.vehiclesService.vehiclesList$.subscribe(vehicles => {
-            this.categories = Object.keys(vehicles);
+            this.categories.push(...Object.keys(vehicles));
         });
         this.vehiclesService.getVehiclesList();
     }
