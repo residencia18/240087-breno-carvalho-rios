@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import data from '../../assets/data/vehicles.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehiclesService {
-  private vehiclesListSubject = new Subject<any[]>();
+  private vehiclesListSubject = new Subject<any>();
   private selectedCategorySubject = new Subject<any[]>();
   private selectedVehicleSubject = new Subject<any>();
   private selectedPropertySubject = new Subject<string>();
@@ -23,10 +24,16 @@ export class VehiclesService {
   cartItems$ = this.cartItemsSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    this.http.get('https://github.com/brenoriios/FrontEnd-TIC18/blob/main/Semana10/Pratica010/src/assets/data/vehicles.json', { params: { format: 'json', origin: '*' } }).subscribe(res => {
-      this.vehiclesList = res as any[];
-      this.vehiclesListSubject.next(this.vehiclesList);
-    });
+    this.vehiclesList = data as any;
+    this.vehiclesListSubject.next(data);
+    // this.http.get('../assets/data/vehicles.json', { params: { format: 'json', origin: '*' } }).subscribe(res => {
+    //   this.vehiclesList = res as any[];
+    //   this.vehiclesListSubject.next(this.vehiclesList);
+    // });
+  }
+
+  public getVehiclesList() {
+    this.vehiclesListSubject.next(data);
   }
 
   selectCategory(category: string) {

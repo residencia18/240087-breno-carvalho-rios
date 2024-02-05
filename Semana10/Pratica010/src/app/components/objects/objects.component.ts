@@ -14,6 +14,7 @@ export class ObjectsComponent {
         this.vehiclesService.vehiclesList$.subscribe(vehicles => {
             this.categories = Object.keys(vehicles);
         });
+        this.vehiclesService.getVehiclesList();
     }
 
     onCategorySelected(category: string) {
