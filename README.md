@@ -13,98 +13,58 @@ Este repositório é dedicado à trilha básica da Residência de Software, abri
 5. Breno Rios - Repositório no GitHub [brenoriios](https://github.com/brenoriios)
 6. Ezequiel Lobo - Repositório no GitHub [EzekLobo](https://github.com/EzekLobo)
 
-
 ### Objetivo
 
-Nesta branch, o foco é a criação das Entidades e os Relacionamentos iniciais do projeto pessoal do grupo, referente a Ordem de Serviço.
+Nesta branch, o foco é desenvolver os primeiros endpoints do projeto.
 
 **Tarefas:**
 
 - **Id_01:**
-  - Criar um arquivo markdown `Readme.md` descrevendo, brevemente, as Entidades e os Relacionamentos iniciais do projeto.
+  - Criar um projeto do tipo WebAPI e editar o arquivo markdown Readme.md descrevendo, brevemente, os endpoints iniciais do projeto.
 
-- **Id_02:**
-  - Montar o Diagrama Entidade Relacionamento desta etapa do projeto e salvar no seguinte diretório: `<raiz do projeto>/files/database/`. Fique à vontade para usar a ferramenta que gerar maior produtividade na sua equipe.
+- **Id_02.”controller”:**
+  - Para cada Controller, implementar sua lógica dos endpoints (Actions). Nesse momento trazendo dados fictícios e/ou retornando NoContent().
 
-- **Id_03:**
-  - Criar o script inicial para criação, se não existir, do Banco de Dados. Nomear o arquivo com “00_init_db.sql” e salvar no diretório citado acima.
+### Estrutura dos Endpoints do Projeto Ordem de Serviço
 
-- **Id_04.sql_”nome da entidade”:**
-  - Para cada entidade, implementar o script SQL responsável pela sua criação, sem adicionar chaves estrangeiras. Nomear os arquivos da seguinte forma “01_create_nome_entidade.sql”.
+## Cliente
 
-- **Id_05:**
-  - Criar um script SQL para alterar as tabelas adicionando as chaves estrangeiras necessárias. Nomear o arquivo com “02_add_FK.sql”.
+- [POST] .../api/v0.1/cliente
+- [GET] .../api/v0.1/clientes
+- [GET] .../api/v0.1/cliente/{id}
+- [PUT] .../api/v0.1/cliente/{id}
+- [DELETE] .../api/v0.1/cliente/{id}
 
-- **Id_06:**
-  - Criar um script SQL para popular, inicialmente, a base de dados. Nomear o arquivo com “03_populate_db.sql”
+## Prestador de Servico
 
-### Estrutura do Repositório
+- [POST] .../api/v0.1/prestador-de-servico
+- [GET] .../api/v0.1/prestadores-de-servico
+- [GET] .../api/v0.1/prestador-de-servico/{id}
+- [PUT] .../api/v0.1/prestador-de-servico/{id}
+- [DELETE] .../api/v0.1/prestador-de-servico/{id}
 
-O repositório está organizado da seguinte forma:
+## Ordem de Servico
 
-### Estrutura do Repositório
+- [POST] .../api/v0.1/ordem-de-servico
+- [GET] .../api/v0.1/ordens-de-servico
+- [GET] .../api/v0.1/ordem-de-servico/{id}
+- [PUT] .../api/v0.1/ordem-de-servico/{id}
+- [DELETE] .../api/v0.1/ordem-de-servico/{id}
 
-O repositório está organizado da seguinte forma:
+## Servico
 
-1. Para cada tarefa a ser realizada, criem um Branch com a seguinte assinatura: `DOTNET-P004/idtarefa-descricao_breve_da_tarefa`.
-2. O desenvolvedor responsável pela tarefa irá fazer todos os commits referentes (e exclusivamente) a essa tarefa nesse Branch.
-3. Após finalizar a implementação, o desenvolvedor irá fazer um novo Merge de `Database` (Origin) em seu Branch (Target) e realizar testes a fim de garantir que tudo ainda esteja funcionando.
-4. Em seguida, o desenvolvedor deve criar um Pull Request para o Branch `Database`, que deverá ser aprovado por alguém da equipe.
+- [POST] .../api/v0.1/servico
+- [GET] .../api/v0.1/servicos
+- [GET] .../api/v0.1/servico/{id}
+- [PUT] .../api/v0.1/servico/{id}
+- [DELETE] .../api/v0.1/servico/{id}
 
+## Pagamento
 
-## Objetivo
-
-**Objetivo Geral:**
-Introduzir os conceitos do Entity Framework Core. Além disso, praticar a modelagem dos dados, relacionamentos entre as entidades e as consultas através do Entity Framework Core. Estimular o trabalho em equipe através do Git Flow recomendado.
-
-### Atividade em Grupo
-
-**Descrição:**
-Atividade em Grupo
-Sobre o versionamento desta atividade:
-- Esta atividade deve ser feita no Repositório/Branch referente ao projeto pessoal da equipe.
-- Na branch “EntityFramework” utilizada na atividade anterior (PI-0004).
-- Sigam o Git Flow discutido em sala:
-  1. Protejam a Branch no GitHub;
-  2. Para cada tarefa a ser realizada, criem um Branch com a seguinte assinatura: `DOTNET-P005/idtarefa-descricao_breve_da_tarefa`.
-  3. O desenvolvedor responsável pela tarefa irá fazer todos os commits referentes (e exclusivamente) a essa tarefa nesse Branch.
-  4. Após finalizar a implementação, o desenvolvedor irá fazer um novo Merge de `EntityFramework` (Origin) em seu Branch (Target) e realizar testes a fim de garantir que tudo ainda esteja funcionando.
-  5. Em seguida, o desenvolvedor deve criar um Pull Request para o Branch `EntityFramework`, que deverá ser aprovado por alguém da equipe.
-
-#### Orientações:
-
-Nessa tarefa nossa equipe deve analisar as entidades modeladas na atividade anterior e identificar os relacionamentos. Nosso projeto deve possuir, ao menos, um relacionamento de cada tipo visto nas aulas: (1) um para um, (2) um para muitos (3) muitos para muitos. Caso a modelagem anterior não possua os relacionamentos, devemos repensar o modelo e fazer as mudanças necessárias. 
-
-##### Tarefas:
-
-- **Id_01:**
-  - Criar um projeto do tipo “Class Library” para a prática. Esse projeto representará a camada de Entidades na Arquitetura do projeto.
-
-- **Id_02:**
-  - No projeto criado anteriormente, modelar as entidades com relacionamento um para um e fazer o Migration inicial.
-
-- **Id_03:**
-  - Modelar as entidades com relacionamento um para muitos e fazer um novo Migration.
-
-- **Id_04:**
-  - Modelar as entidades com relacionamento muitos para muitos e fazer um novo Migration.
-
-- **Id_05:**
-  - Fazer um projeto do tipo Console, colocando o projeto anterior como dependência. Fazer CRUDs de cada entidade para testar as implementações anteriores.
-
-#### Diagrama de Classes:
-
-[Inserir aqui a imagem do Diagrama de Classes]
-![Diagrama_De_Classes](./DiagramaDeClasses/DER.jpeg)
-
-## Estrutura do Repositório
-
-O repositório está organizado da seguinte forma:
-
-1. Cada tarefa realizada deve ter um Branch com a assinatura: `DOTNET-P005/idtarefa-descricao_breve_da_tarefa`.
-2. O desenvolvedor responsável pela tarefa irá fazer todos os commits referentes (e exclusivamente) a essa tarefa nesse Branch.
-3. Após finalizar a implementação, o desenvolvedor irá fazer um novo Merge de `EntityFramework` (Origin) em seu Branch (Target) e realizar testes a fim de garantir que tudo ainda esteja funcionando.
-4. Em seguida, o desenvolvedor deve criar um Pull Request para o Branch `EntityFramework`, que deverá ser aprovado por alguém da equipe.
-
+- [POST] .../api/v0.1/pagamento
+- [GET] .../api/v0.1/pagamentos
+- [GET] .../api/v0.1/pagamento/{id}
+- [PUT] .../api/v0.1/pagamento/{id}
+- [DELETE] .../api/v0.1/pagamento/{id}
 
 **Trilha Básica .NET!**
