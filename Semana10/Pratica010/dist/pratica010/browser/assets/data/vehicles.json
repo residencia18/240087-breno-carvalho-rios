@@ -8,7 +8,7 @@
       "Autonomia": "470 miles",
       "Alcance": "1,135 miles",
       "Teto": "36,500 ft",
-      "Image": "../assets/images/avioes/supermarine-spitfire-mk-v.jpg"
+      "Image": "./assets/images/avioes/supermarine-spitfire-mk-v.jpg"
     },
     {
       "Name": "P-51 Mustang",
@@ -18,7 +18,7 @@
       "Autonomia": "1,650 miles",
       "Alcance": "2,300 miles",
       "Teto": "41,900 ft",
-      "Image": "../assets/images/avioes/p51-mustang-d.avif"
+      "Image": "./assets/images/avioes/p51-mustang-d.avif"
     },
     {
       "Name": "B-17 Flying Fortress",
@@ -28,7 +28,7 @@
       "Autonomia": "2,000 miles",
       "Alcance": "3,750 miles",
       "Teto": "35,600 ft",
-      "Image": "../assets/images/avioes/b17-flying-fortress-g.jpg"
+      "Image": "./assets/images/avioes/b17-flying-fortress-g.jpg"
     }
   ],
   "Carros": [
@@ -39,7 +39,7 @@
       "NumberOfPassengers": "5",
       "Autonomia": "390 miles",
       "Alcance": "N/A",
-      "Image": "../assets/images/carros/tesla-model-s.jpg"
+      "Image": "./assets/images/carros/tesla-model-s.jpg"
     },
     {
       "Name": "Ford Mustang",
@@ -48,7 +48,7 @@
       "NumberOfPassengers": "4",
       "Autonomia": "N/A",
       "Alcance": "N/A",
-      "Image": "../assets/images/carros/ford-mustang-2021.webp"
+      "Image": "./assets/images/carros/ford-mustang-2021.webp"
     },
     {
       "Name": "Chevrolet Camaro",
@@ -57,7 +57,7 @@
       "NumberOfPassengers": "4",
       "Autonomia": "N/A",
       "Alcance": "N/A",
-      "Image": "../assets/images/carros/chevrolet-camaro-2022.jpg"
+      "Image": "./assets/images/carros/chevrolet-camaro-2022.jpg"
     }
   ],
   "Barcos": [
@@ -68,7 +68,7 @@
       "NumberOfPassengers": "12",
       "Autonomia": "N/A",
       "Alcance": "N/A",
-      "Image": "../assets/images/barcos/ferretti-yachts-670.jpg"
+      "Image": "./assets/images/barcos/ferretti-yachts-670.jpg"
     },
     {
       "Name": "Azimut Grande",
@@ -77,7 +77,7 @@
       "NumberOfPassengers": "10",
       "Autonomia": "N/A",
       "Alcance": "N/A",
-      "Image": "../assets/images/barcos/azimut-grande-25-metri.jpg"
+      "Image": "./assets/images/barcos/azimut-grande-25-metri.jpg"
     },
     {
       "Name": "Sunseeker Predator",
@@ -86,7 +86,7 @@
       "NumberOfPassengers": "6",
       "Autonomia": "N/A",
       "Alcance": "N/A",
-      "Image": "../assets/images/barcos/sunseeker-predator-57.jpg"
+      "Image": "./assets/images/barcos/sunseeker-predator-57.jpg"
     }
   ]
 }
