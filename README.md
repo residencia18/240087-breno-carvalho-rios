@@ -51,7 +51,7 @@ O repositório está organizado da seguinte forma:
 3. Após finalizar a implementação, o desenvolvedor irá fazer um novo Merge de `Database` (Origin) em seu Branch (Target) e realizar testes a fim de garantir que tudo ainda esteja funcionando.
 4. Em seguida, o desenvolvedor deve criar um Pull Request para o Branch `Database`, que deverá ser aprovado por alguém da equipe.
 
-=======
+
 ## Objetivo
 
 **Objetivo Geral:**
@@ -95,7 +95,7 @@ Nessa tarefa nossa equipe deve analisar as entidades modeladas na atividade ante
 #### Diagrama de Classes:
 
 [Inserir aqui a imagem do Diagrama de Classes]
-![Diagrama_De_Classes](./DiagramaDeClasses/Diagrama%20de%20Classes.png)
+![Diagrama_De_Classes](./DiagramaDeClasses/DER.png)
 
 ## Estrutura do Repositório
 
