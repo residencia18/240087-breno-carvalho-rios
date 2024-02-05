@@ -95,7 +95,7 @@ Nessa tarefa nossa equipe deve analisar as entidades modeladas na atividade ante
 #### Diagrama de Classes:
 
 [Inserir aqui a imagem do Diagrama de Classes]
-![Diagrama_De_Classes](./DiagramaDeClasses/DER.png)
+![Diagrama_De_Classes](./DiagramaDeClasses/DER.jpeg)
 
 ## Estrutura do Repositório
 
