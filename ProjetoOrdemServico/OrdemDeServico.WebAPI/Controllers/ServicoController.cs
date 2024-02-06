@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using OrdemDeServico.WebAPI.InputModels.NewPrestadorDeServicoInputModel;
+using OrdemDeServico.WebAPI.InputModels;
 
 namespace OrdemDeServico.WebAPI.Controllers
 {
@@ -22,14 +22,14 @@ namespace OrdemDeServico.WebAPI.Controllers
         }
 
         [HttpPost("servico")]
-        public IActionResult Post([FromBody] NewPrestadorDeServicoInputModel servico)
+        public IActionResult Post([FromBody] NewServicoInputModel servico)
         {
             
             return NoContent();
         }
 
         [HttpPut("servico/{id}")]
-        public IActionResult Put(int id, [FromBody] NewPrestadorDeServicoInputModel servico)
+        public IActionResult Put(int id, [FromBody] NewServicoInputModel servico)
         {
             
             return NoContent();
