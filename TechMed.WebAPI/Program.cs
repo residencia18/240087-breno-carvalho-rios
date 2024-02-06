@@ -1,4 +1,5 @@
 using TechMed.Application.Services;
+using TechMed.Application.Services.Auth;
 using TechMed.Application.Services.Interfaces;
 using TechMed.Infrastructure.Persistence;
 using TechMed.Infrastructure.Persistence.Interfaces;
@@ -27,8 +28,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<AuthHandler>();
+
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();
