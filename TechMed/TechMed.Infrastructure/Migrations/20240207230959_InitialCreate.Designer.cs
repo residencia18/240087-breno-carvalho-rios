@@ -11,7 +11,7 @@ using TechMed.Infrastructure.Persistence;
 namespace TechMed.Infrastructure.Migrations
 {
     [DbContext(typeof(TechMedDbContext))]
-    [Migration("20240207221756_InitialCreate")]
+    [Migration("20240207230959_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -58,6 +58,8 @@ namespace TechMed.Infrastructure.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("AtendimentoId");
+
+                    b.HasIndex("MedicoId");
 
                     b.HasIndex("PacienteId");
 
@@ -171,7 +173,7 @@ namespace TechMed.Infrastructure.Migrations
                 {
                     b.HasOne("TechMed.Domain.Entities.Medico", "Medico")
                         .WithMany("Atendimentos")
-                        .HasForeignKey("PacienteId")
+                        .HasForeignKey("MedicoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

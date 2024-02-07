@@ -12,7 +12,7 @@ public class AtendimentoConfigurations : IEntityTypeConfiguration<Atendimento>
 
         builder.HasOne(a => a.Medico)
         .WithMany(m => m.Atendimentos)
-        .HasForeignKey(a => a.PacienteId);
+        .HasForeignKey(a => a.MedicoId);
 
         builder.HasOne(a => a.Paciente)
         .WithMany(p => p.Atendimentos)

@@ -80,8 +80,8 @@ namespace TechMed.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Atendimentos", x => x.AtendimentoId);
                     table.ForeignKey(
-                        name: "FK_Atendimentos_Medicos_PacienteId",
-                        column: x => x.PacienteId,
+                        name: "FK_Atendimentos_Medicos_MedicoId",
+                        column: x => x.MedicoId,
                         principalTable: "Medicos",
                         principalColumn: "MedicoId",
                         onDelete: ReferentialAction.Cascade);
@@ -123,6 +123,11 @@ namespace TechMed.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Atendimentos_MedicoId",
+                table: "Atendimentos",
+                column: "MedicoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Atendimentos_PacienteId",

@@ -56,6 +56,8 @@ namespace TechMed.Infrastructure.Migrations
 
                     b.HasKey("AtendimentoId");
 
+                    b.HasIndex("MedicoId");
+
                     b.HasIndex("PacienteId");
 
                     b.ToTable("Atendimentos");
@@ -168,7 +170,7 @@ namespace TechMed.Infrastructure.Migrations
                 {
                     b.HasOne("TechMed.Domain.Entities.Medico", "Medico")
                         .WithMany("Atendimentos")
-                        .HasForeignKey("PacienteId")
+                        .HasForeignKey("MedicoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
