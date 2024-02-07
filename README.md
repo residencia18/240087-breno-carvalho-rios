@@ -65,4 +65,4 @@ arquivo de configurações na camada de Web API.
 
 #### Diagrama de Classes:
 
-![Imagem do Diagrama de Classes](https://github.com/AlanSantos01/Trilha_dotnet/blob/TechMed_Grupo/DataBase/Diagrama%20de%20Classes.jpg)
+![Imagem do Diagrama de Classes](https://github.com/AlanSantos01/Trilha_dotnet/blob/TechMed_Grupo/Database/DiagramaDeClasses.png)
