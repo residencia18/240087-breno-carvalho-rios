@@ -10,9 +10,9 @@ export class AppComponent {
   title = 'Exercicio01';
   public formulario: FormGroup;
   public statusOptions = [
-    { label: 'Não Instalada', value: 'nao-instalada' },
-    { label: 'Instalada', value: 'instalada' },
-    { label: 'Operante', value: 'operante' }
+    'Não Instalada',
+    'Instalada',
+    'Operante'
   ]
   public sent = false;
 
@@ -21,7 +21,7 @@ export class AppComponent {
       'nome': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email,]),
       'localizacao': new FormControl(null, [Validators.required]),
-      'status': new FormControl(null, [Validators.required])
+      'status': new FormControl(this.statusOptions.at(0))
     });
 
     this.formulario.valueChanges.subscribe(() => {

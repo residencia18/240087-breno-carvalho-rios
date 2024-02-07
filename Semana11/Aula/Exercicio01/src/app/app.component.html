@@ -14,14 +14,18 @@
   <div class="form-group">
     <label for="status">Status de Instalação: </label>
     <select #status id="status" formArrayName="status" (change)="changeStatus(status.value)" name="status" type="text">
-      <option value="" class="placeholder">Escolha o status</option>
-      <option *ngFor="let status of statusOptions" [ngValue]="status.value">{{status.label}}</option>
+      <option *ngFor="let status of statusOptions" [ngValue]="status">{{status}}</option>
     </select>
   </div>
   <button type="submit" [disabled]="formulario.invalid">Enviar</button>
-  <div *ngIf="sent">
-    Enviaremos um email para "{{formulario.value.email}}" quando a estação "{{formulario.value.nome}}/{{formulario.value.localizacao}}" registrar alguma alteração de status. <br>
-    Status atual: {{formulario.value.status}}
+  <div>
+    <p *ngIf="formulario.get('nome')?.invalid && formulario.get('nome')?.touched">Nome Inválido!</p>
+    <p *ngIf="formulario.get('email')?.invalid && formulario.get('email')?.touched">Email Inválido!</p>
+    <p *ngIf="formulario.get('localizacao')?.invalid && formulario.get('localizacao')?.touched">Localização Inválida!</p>
+    <div *ngIf="sent">
+      <p>Enviaremos um email para "{{formulario.value.email}}" quando a estação "{{formulario.value.nome}}" em "{{formulario.value.localizacao}}" registrar alguma alteração de status.</p>
+      <p>Status atual: {{formulario.value.status}}</p>
+    </div>
   </div>
 </form>
 
