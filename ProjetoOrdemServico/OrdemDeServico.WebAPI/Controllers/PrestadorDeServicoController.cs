@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OrdemDeServico.WebAPI.InputModels.NewPrestadorDeServicoInputModel;
-
+using OrdemDeServico.WebAPI.InputModels;
 namespace OrdemDeServico.WebAPI.Controllers.PrestadorDeServico;
 
 [ApiController]
