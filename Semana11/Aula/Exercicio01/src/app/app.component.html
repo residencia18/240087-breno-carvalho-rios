@@ -1,0 +1,27 @@
+<form id="formulario" [formGroup]="formulario" (ngSubmit)="onSubmit()" autocomplete="off">
+  <div class="form-group">
+    <label for="nome">Nome: </label>
+    <input id="nome" formControlName="nome" name="nome" type="text">
+  </div>
+  <div class="form-group">
+    <label for="email">Email de Notificação: </label>
+    <input id="email" formControlName="email" name="email" type="text">
+  </div>
+  <div class="form-group">
+    <label for="localizacao">Localização: </label>
+    <input id="localizacao" formControlName="localizacao" name="localizacao" type="text">
+  </div>
+  <div class="form-group">
+    <label for="status">Status de Instalação: </label>
+    <select #status id="status" formArrayName="status" (change)="changeStatus(status.value)" name="status" type="text">
+      <option value="" class="placeholder">Escolha o status</option>
+      <option *ngFor="let status of statusOptions" [ngValue]="status.value">{{status.label}}</option>
+    </select>
+  </div>
+  <button type="submit" [disabled]="formulario.invalid">Enviar</button>
+  <div *ngIf="sent">
+    Enviaremos um email para "{{formulario.value.email}}" quando a estação "{{formulario.value.nome}}/{{formulario.value.localizacao}}" registrar alguma alteração de status. <br>
+    Status atual: {{formulario.value.status}}
+  </div>
+</form>
+
