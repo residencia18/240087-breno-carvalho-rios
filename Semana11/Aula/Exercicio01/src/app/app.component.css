@@ -8,7 +8,7 @@
     border: 1px solid lightgray;
     padding: 20px;
     gap: 15px;
-    max-width: 50vw;
+    max-width: min(700px, 90vw);
     margin: auto;
 }
 
@@ -46,6 +46,7 @@ input.ng-invalid.ng-touched {
     color: white;
     border: none;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 #formulario > button:disabled {

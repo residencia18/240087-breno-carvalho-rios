@@ -34,7 +34,6 @@ export class AppComponent {
       return;
     }
     this.sent = true;
-    console.log(this.formulario.value)
   }
 
   changeStatus(status: string){
