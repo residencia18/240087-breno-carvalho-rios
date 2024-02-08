@@ -1,5 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TechMed.Application.Auth;
 using TechMed.Application.Services;
-using TechMed.Application.Services.Auth;
 using TechMed.Application.Services.Interfaces;
 using TechMed.Infrastructure.Persistence;
 using TechMed.Infrastructure.Persistence.Interfaces;
@@ -12,6 +13,15 @@ builder.Services.AddScoped<IMedicoService, MedicoService>();
 builder.Services.AddScoped<IPacienteService, PacienteService>();
 builder.Services.AddScoped<IAtendimentoService, AtendimentoService>();
 builder.Services.AddScoped<IExameService, ExameService>();
+
+builder.Services.AddDbContext<TechMedDbContext>(options => {
+    var connectionString = builder.Configuration.GetConnectionString("TechMedDb");
+
+    var serverVersion = ServerVersion.AutoDetect(connectionString);
+
+      options.UseMySql(connectionString, serverVersion);
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -24,15 +34,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseMiddleware<SimpleAuthHandler>();
 }
 
 app.UseHttpsRedirection();
 
-app.UseMiddleware<AuthHandler>();
-
 app.UseAuthorization();
 
 app.MapControllers();
-
 
 app.Run();

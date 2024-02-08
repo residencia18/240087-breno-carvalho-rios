@@ -1,7 +1,9 @@
-namespace TechMed.Application.InputModels;
-public class NewExameInputModel
+namespace TechMed.Application.InputModels
 {
-    public string? Nome { get; set; }
-    public DateTimeOffset DataHora { get; set; }
-    public int AtendimentoId { get; set; }
+   public class NewExameInputModel
+   {
+      public required string Nome { get; set; }
+      public DateTime DataHora { get; set; }
+      public int AtendimentoId { get; set; }
+   }
 }
