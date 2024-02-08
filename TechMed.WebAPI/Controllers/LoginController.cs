@@ -19,7 +19,7 @@ public class LoginController : ControllerBase
         var userViewModel = _loginService.Authenticate(user);
         if (userViewModel is null)
         {
-            return NoContent();
+            return Unauthorized();
         }
         return Ok(userViewModel);
     }
