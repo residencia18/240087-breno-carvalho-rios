@@ -8,13 +8,19 @@ namespace TechMed.WebAPI.Controllers;
 public class LoginController : ControllerBase
 {
     private readonly ILoginService _loginService;
-    public LoginController(ILoginService loginService){
+    public LoginController(ILoginService loginService)
+    {
         _loginService = loginService;
     }
 
     [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginInputModel user){
-        var loginState = _loginService.Authenticate(user);
-        return Ok(loginState);
+    public IActionResult Login([FromBody] LoginInputModel user)
+    {
+        var userViewModel = _loginService.Authenticate(user);
+        if (userViewModel is null)
+        {
+            return NoContent();
+        }
+        return Ok(userViewModel);
     }
 }
