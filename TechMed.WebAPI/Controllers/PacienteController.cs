@@ -22,11 +22,13 @@ public class PacienteController : ControllerBase
    [HttpGet("paciente/{id}")]
    public IActionResult GetById(int id)
    {
-      try{
+      try
+      {
          var paciente = _pacienteService.GetById(id);
          return Ok(paciente);
       }
-      catch(Exception ex){
+      catch (Exception ex)
+      {
          return BadRequest(ex.Message);
       }
    }
@@ -34,11 +36,19 @@ public class PacienteController : ControllerBase
    [HttpPost("paciente")]
    public IActionResult Post([FromBody] NewPacienteInputModel paciente)
    {
+      // if (!ModelState.IsValid)
+      // {
+      //    var errors = ModelState.Values
+      //       .SelectMany(v => v.Errors)
+      //       .Select(e => e.ErrorMessage)
+      //       .ToList();
+      //    return BadRequest(errors);
+      // }
+
       _pacienteService.Create(paciente);
 
-      //service.Create(paciente);
       return CreatedAtAction(nameof(Get), paciente);
- 
+
    }
 
    [HttpPut("paciente/{id}")]
