@@ -1,5 +1,5 @@
 namespace ResTIConnect.Domain.Entities;
-public class Sistemas : BaseEntity
+public class Sistema : BaseEntity
 {
     public int SistemaId { get; set; }
     public string? Descricao { get; set; }

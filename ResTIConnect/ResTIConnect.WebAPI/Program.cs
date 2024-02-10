@@ -1,6 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using ResTIConnect.Infrastructure.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<ResTIConnectDbContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("resticonnectdb");
+
+    var serverVersion = ServerVersion.AutoDetect(connectionString);
+
+    options.UseMySql(connectionString, serverVersion);
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResTIConnect.Domain", "ResT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResTIConnect.Infrastructure", "ResTIConnect.Infrastructure\ResTIConnect.Infrastructure.csproj", "{5FFB6504-ABE1-4FAA-9EB7-F68ACC96AFBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResTIConnect.Console", "ResTIConnect.Console\ResTIConnect.Console.csproj", "{96FAFE19-58D2-4077-AC72-20B02DF56C68}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResTIConnect.Application", "ResTIConnect.Application\ResTIConnect.Application.csproj", "{C712A1E0-398B-4685-ACB9-25155890BBBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResTIConnect.WebAPI", "ResTIConnect.WebAPI\ResTIConnect.WebAPI.csproj", "{F1004076-D80F-43C2-9B58-2AE316095AF9}"
@@ -17,9 +15,6 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{970C8A99-9774-444E-BD30-3FEE66E7280C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,10 +25,6 @@ Global
 		{5FFB6504-ABE1-4FAA-9EB7-F68ACC96AFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FFB6504-ABE1-4FAA-9EB7-F68ACC96AFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FFB6504-ABE1-4FAA-9EB7-F68ACC96AFBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96FAFE19-58D2-4077-AC72-20B02DF56C68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96FAFE19-58D2-4077-AC72-20B02DF56C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96FAFE19-58D2-4077-AC72-20B02DF56C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96FAFE19-58D2-4077-AC72-20B02DF56C68}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C712A1E0-398B-4685-ACB9-25155890BBBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C712A1E0-398B-4685-ACB9-25155890BBBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C712A1E0-398B-4685-ACB9-25155890BBBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,5 +33,8 @@ Global
 		{F1004076-D80F-43C2-9B58-2AE316095AF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1004076-D80F-43C2-9B58-2AE316095AF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1004076-D80F-43C2-9B58-2AE316095AF9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
