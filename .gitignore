@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/linux,visualstudiocode,csharp,dotnetcore
-# Edit at https://www.toptal.com/developers/gitignore?templates=linux,visualstudiocode,csharp,dotnetcore
+# Created by https://www.toptal.com/developers/gitignore/api/csharp,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=csharp,visualstudiocode
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -399,29 +399,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-### DotnetCore ###
-# .NET Core build folders
-bin/
-obj/
-
-# Common node modules locations
-/node_modules
-/wwwroot/node_modules
-
-### Linux ###
-
-# temporary files which can be created if a process still has a handle open of a deleted file
-.fuse_hidden*
-
-# KDE directory preferences
-.directory
-
-# Linux trash folder which might appear on any partition or disk
-.Trash-*
-
-# .nfs files are created when an open file is removed but is still being accessed
-.nfs*
-
 ### VisualStudioCode ###
 !.vscode/*.code-snippets
 
@@ -435,4 +412,4 @@ obj/
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/linux,visualstudiocode,csharp,dotnetcore
+# End of https://www.toptal.com/developers/gitignore/api/csharp,visualstudiocode
