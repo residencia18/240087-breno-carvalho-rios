@@ -5,23 +5,17 @@ namespace ResTIConnect.Infrastructure;
 
 public class OrdemDeServicoContext : DbContext
 {
-    
+
     public DbSet<Endereco> Endereco { get; set; }
     public DbSet<Cliente> Cliente { get; set; }
     public DbSet<ServicoOrdemDeServico> ServicoOrdemDeServico { get; set; }
-    public DbSet<PrestadorDeServico> PrestadorDeServico { get; set;} 
-    public DbSet<Pagamento> Pagamento { get; set;} 
-    public DbSet<OrdemServico> OrdemServico { get; set;} 
-    public DbSet<Servico> Servico { get; set;} 
+    public DbSet<PrestadorDeServico> PrestadorDeServico { get; set; }
+    public DbSet<Pagamento> Pagamento { get; set; }
+    public DbSet<OrdemServico> OrdemServico { get; set; }
+    public DbSet<Servico> Servico { get; set; }
 
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public OrdemDeServicoContext(DbContextOptions<OrdemDeServicoContext> options) : base(options)
     {
-        base.OnConfiguring(optionsBuilder);
-        var connectionString = "server=localhost;user=dotnet;password=tic2023;database=OrdemDeServico";
-        var serverVersion = ServerVersion.AutoDetect(connectionString);
-
-        optionsBuilder.UseMySql(connectionString, serverVersion);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,7 +29,7 @@ public class OrdemDeServicoContext : DbContext
         modelBuilder.Entity<Pagamento>().ToTable("Pagamento").HasKey(pa => pa.PagamentoId);
         modelBuilder.Entity<OrdemServico>().ToTable("OrdemDeServico").HasKey(od => od.OrdemServicoId);
         modelBuilder.Entity<Servico>().ToTable("Servico").HasKey(s => s.ServicoId);
-        
+
 
         modelBuilder.Entity<Cliente>()
             .HasOne(e => e.Endereco)
@@ -51,7 +45,7 @@ public class OrdemDeServicoContext : DbContext
             .HasOne(so => so.Endereco)
             .WithOne(e => e.ServicoOrdemDeServico)
             .HasForeignKey<ServicoOrdemDeServico>(so => so.EnderecoId);
-        
+
         modelBuilder.Entity<Pagamento>()
             .HasOne(pa => pa.OrdemServico)
             .WithMany(e => e.Pagamentos)
@@ -66,12 +60,12 @@ public class OrdemDeServicoContext : DbContext
             .HasOne(od => od.PrestadorDeServico)
             .WithMany(ps => ps.OrdemServico)
             .HasForeignKey(od => od.PrestadorId);
-        
+
         modelBuilder.Entity<ServicoOrdemDeServico>()
             .HasOne(so => so.Servico)
             .WithMany(s => s.ServicoOrdemDeServico)
             .HasForeignKey(s => s.ServicoId);
-        
+
         modelBuilder.Entity<ServicoOrdemDeServico>()
             .HasOne(so => so.OrdemServico)
             .WithMany(s => s.ServicoOrdemDeServico)
