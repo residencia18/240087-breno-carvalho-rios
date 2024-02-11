@@ -1,6 +1,6 @@
-namespace OrdemDeServico.WebAPI.InputModels;
+namespace OrdemDeServico.Application.InputModels;
 
-public class NewOrdemDeServicoInputModel
+public class NewOrdemServicoInputModel
 {
     public required string Descricao { get; set; }
     public required DateTime Data { get; set; }
