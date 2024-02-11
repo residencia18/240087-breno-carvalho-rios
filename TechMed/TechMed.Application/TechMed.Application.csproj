@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TechMed.Domain\TechMed.Domain.csproj" />
+    <ProjectReference Include="..\TechMed.Infrastructure\TechMed.Infrastructure.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
