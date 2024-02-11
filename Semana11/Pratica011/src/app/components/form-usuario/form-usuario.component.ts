@@ -79,7 +79,7 @@ export class FormUsuarioComponent {
       const value = control.value || "";
 
       if (value.length < 4) {
-        errors = { ...errors, 'minLength': { "status": false, "message": "Senha deve ter pelo menos 8 caracteres" } };
+        errors = { ...errors, 'minLength': { "status": false, "message": "Senha deve ter pelo menos 4 caracteres" } };
       }
 
       if (!(/[A-Z]/g.test(value))) {
