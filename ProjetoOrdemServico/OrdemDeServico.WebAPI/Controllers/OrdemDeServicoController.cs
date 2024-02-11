@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using OrdemDeServico.WebAPI.InputModels;
+using OrdemDeServico.Application.InputModels;
 
 namespace OrdemDeServico.WebAPI.Controllers.OrdemDeServico;
 

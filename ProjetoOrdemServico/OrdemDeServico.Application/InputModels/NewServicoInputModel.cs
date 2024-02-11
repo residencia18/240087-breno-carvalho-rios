@@ -1,4 +1,4 @@
-namespace OrdemDeServico.WebAPI.InputModels;
+namespace OrdemDeServico.Application.InputModels;
 public class NewServicoInputModel
 {
     public int ServicoId { get; set; }
