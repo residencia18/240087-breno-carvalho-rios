@@ -16,19 +16,19 @@ public class ClienteController : ControllerBase
     [HttpGet("clientes")]
     public IActionResult Get()
     {
-        return NoContent();
+        return Ok(Clientes);
     }
     [HttpGet("cliente/{id}")]
     public IActionResult GetById(int id)
     {
-        var _paciente = _clienteService.GetById(id);
+        var _cliente = _clienteService.GetById(id);
 
-        if (_paciente is null)
+        if (_cliente is null)
         {
             return NotFound();
         }
 
-        return Ok(_paciente);
+        return Ok(_cliente);
     }
     [HttpPost("cliente")]
     public IActionResult Post([FromBody] NewClienteInputModel cliente)
