@@ -9,5 +9,5 @@ public class Usuario : BaseEntity
     public required string Telefone { get; set; }
     public Endereco? Endereco { get; set; }
     public required ICollection<Perfil> Perfil { get; set; }
-    public required ICollection<Sistemas> Sistemas { get; set; }
+    public required ICollection<Sistema> Sistemas { get; set; }
 }
