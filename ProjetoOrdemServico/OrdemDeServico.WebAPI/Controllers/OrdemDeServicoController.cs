@@ -5,7 +5,7 @@ namespace OrdemDeServico.WebAPI.Controllers.OrdemDeServico;
 
 [ApiController]
 [Route("/api/v0.1/")]
-public class OrdemDeServicoController : ControllerBase
+public class OrdemServicoController : ControllerBase
 {
     [HttpGet("ordens-de-servico")]
     public IActionResult Get()
@@ -20,13 +20,13 @@ public class OrdemDeServicoController : ControllerBase
     }
 
     [HttpPost("ordem-de-servico")]
-    public IActionResult Post([FromBody] NewOrdemDeServicoInputModel ordemDeServico)
+    public IActionResult Post([FromBody] NewOrdemServicoInputModel ordemServico)
     {
         return NoContent();
     }
 
     [HttpPut("ordem-de-servico/{id}")]
-    public IActionResult Put(int id, [FromBody] NewOrdemDeServicoInputModel ordemDeServico)
+    public IActionResult Put(int id, [FromBody] NewOrdemServicoInputModel ordemServico)
     {
         return NoContent();
     }

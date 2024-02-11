@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="InputModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\OrdemDeServico.Domain\OrdemDeServico.Domain.csproj" />
     <ProjectReference Include="..\OrdemDeServico.Infra\OrdemDeServico.Infra.csproj" />
   </ItemGroup>

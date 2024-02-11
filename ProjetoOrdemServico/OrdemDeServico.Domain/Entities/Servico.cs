@@ -6,5 +6,5 @@ public class Servico
     public string? Descricao { get; set; }
     public required float Precos { get; set; }
 
-    public ICollection<ServicoOrdemDeServico>? ServicoOrdemDeServico { get; set; }
+    public ICollection<ServicoOrdemServico>? ServicoOrdemServico { get; set; }
 }

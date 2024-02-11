@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OrdemDeServico.Infra\OrdemDeServico.Infra.csproj" />
     <ProjectReference Include="..\OrdemDeServico.Application\OrdemDeServico.Application.csproj" />
+    <ProjectReference Include="..\OrdemDeServico.Infra\OrdemDeServico.Infra.csproj" />
   </ItemGroup>
 
 </Project>

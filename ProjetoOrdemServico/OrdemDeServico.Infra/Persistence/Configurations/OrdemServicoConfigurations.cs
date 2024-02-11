@@ -8,7 +8,7 @@ public class OrdemServicoConfigurations : IEntityTypeConfiguration<OrdemServico>
 {
     public void Configure(EntityTypeBuilder<OrdemServico> builder)
     {
-        builder.ToTable("OrdemDeServico").HasKey(od => od.OrdemServicoId);
+        builder.ToTable("OrdemServico").HasKey(od => od.OrdemServicoId);
 
         builder.HasOne(od => od.Cliente).WithMany(cli => cli.OrdemServico).HasForeignKey(od => od.ClienteId);
         builder.HasOne(od => od.PrestadorDeServico).WithMany(ps => ps.OrdemServico).HasForeignKey(od => od.PrestadorId);

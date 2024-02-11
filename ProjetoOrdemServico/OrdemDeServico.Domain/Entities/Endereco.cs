@@ -13,5 +13,5 @@ public class Endereco : BaseEntity
 
     public Cliente? Cliente { get; set; }
     public PrestadorDeServico? PrestadorDeServico { get; set; }
-    public ServicoOrdemDeServico? ServicoOrdemDeServico { get; set; }
+    public ServicoOrdemServico? ServicoOrdemServico { get; set; }
 }
