@@ -90,7 +90,7 @@
                     <p-inputGroupAddon>
                         <i class="pi pi-users"></i>
                     </p-inputGroupAddon>
-                    <p-dropdown formControlName="gender" [options]="genderOptions" optionLabel="label" placeholder="Gênero"></p-dropdown>
+                    <p-dropdown formControlName="gender" [options]="genderOptions" optionLabel="label" optionValue="value" placeholder="Gênero"></p-dropdown>
                 </p-inputGroup>
                 <div *ngIf="!formUsuario.get('gender')?.pristine && formUsuario.get('gender')?.errors" class="error-box">
                     <p class="error-message" *ngFor="let error of formUsuario.get('gender')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
@@ -101,7 +101,7 @@
                     <p-inputGroupAddon>
                         <i class="pi pi-wrench"></i>
                     </p-inputGroupAddon>
-                    <input formControlName="profession" pInputText placeholder="Profissão" />
+                    <p-dropdown formControlName="profession" [options]="professionOptions" optionLabel="label" optionValue="value" placeholder="Profissão"></p-dropdown>
                 </p-inputGroup>
                 <div *ngIf="!formUsuario.get('profession')?.pristine && formUsuario.get('profession')?.errors" class="error-box">
                     <p class="error-message" *ngFor="let error of formUsuario.get('profession')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>

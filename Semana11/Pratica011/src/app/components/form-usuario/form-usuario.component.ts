@@ -13,6 +13,19 @@ export class FormUsuarioComponent {
     { label: 'Outro', value: 'O' }
   ]
 
+  public professionOptions = [
+    { label: 'Engenheiro(a)', value: 'engenheiro' },
+    { label: 'Médico(a)', value: 'medico' },
+    { label: 'Professor(a)', value: 'professor' },
+    { label: 'Advogado(a)', value: 'advogado' },
+    { label: 'Arquiteto(a)', value: 'arquiteto' },
+    { label: 'Enfermeiro(a)', value: 'enfermeiro' },
+    { label: 'Dentista', value: 'dentista' },
+    { label: 'Farmacêutico(a)', value: 'farmaceutico' },
+    { label: 'Psicólogo(a)', value: 'psicologo' },
+    { label: 'Contador(a)', value: 'contador' }
+  ]
+
   public formUsuario = new FormGroup({
     "username": new FormControl(null, [Validators.required, this.validUsername()]),
     "password": new FormControl(null, [Validators.required, this.validPassword()]),
@@ -22,7 +35,7 @@ export class FormUsuarioComponent {
     "address": new FormControl(null, [Validators.required]),
     "birthDate": new FormControl(null, [Validators.required, this.validDate()]),
     "gender": new FormControl(null, [Validators.required, this.validGender()]),
-    "profession": new FormControl(null, [Validators.required]),
+    "profession": new FormControl(null, [Validators.required, this.validProfession()]),
   });
 
   submitForm() {
@@ -163,6 +176,19 @@ export class FormUsuarioComponent {
 
       if (!this.genderOptions.includes(value)) {
         errors = { ...errors, 'validGender': { "status": false, "message": "Selecione um gênero da lista" } };
+      }
+
+      return null;
+    }
+  }
+
+  validProfession(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      let errors = {};
+      const value = control.value || "";
+
+      if (!this.professionOptions.includes(value)) {
+        errors = { ...errors, 'validProfession': { "status": false, "message": "Selecione uma profissão da lista" } };
       }
 
       return null;
