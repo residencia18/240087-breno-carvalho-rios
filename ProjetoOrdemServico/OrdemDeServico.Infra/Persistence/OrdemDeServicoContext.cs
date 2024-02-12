@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OrdemDeServico.Domain.Entities;
 
-namespace ResTIConnect.Infrastructure;
+namespace ResTIConnect.Infrastructure.Persistence;
 
 public class OrdemDeServicoContext : DbContext
 {

@@ -1,7 +1,7 @@
 ﻿using OrdemDeServico.Application.InputModels;
 using OrdemDeServico.Application.Services.Interfaces;
 using OrdemDeServico.Domain.Entities;
-using ResTIConnect.Infrastructure;
+using ResTIConnect.Infrastructure.Persistence;
 
 namespace OrdemDeServico.Application.Services;
 
@@ -18,6 +18,7 @@ public class PrestadorDeServicoService : IPrestadorDeServicoService
     public int Create(NewPrestadorDeServicoInputModel prestadorDeServico)
     {
         var _prestadorDeServico = MapPrestadorDeServicoInputModelToPrestadorDeServico(prestadorDeServico);
+        _prestadorDeServico.CreatedAt = DateTime.UtcNow;
         _context.PrestadoresDeServico.Add(_prestadorDeServico);
         _context.SaveChanges();
 
@@ -45,6 +46,7 @@ public class PrestadorDeServicoService : IPrestadorDeServicoService
             _prestadorDeServicoDb.Especialidade = prestadorDeServico.Especialidade;
             _prestadorDeServicoDb.Telefone = prestadorDeServico.Telefone;
             _prestadorDeServicoDb.Endereco = _enderecoservice.MapEnderecoInputModelToEndereco(prestadorDeServico.Endereco);
+            _prestadorDeServicoDb.UpdatedAt = DateTime.UtcNow;
             _context.SaveChanges();
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace OrdemDeServico.Application;
+﻿namespace OrdemDeServico.Application.Services.Interfaces;
 
 public interface IBaseService<TInputModel, TViewModel>
 {

@@ -2,9 +2,9 @@
 using OrdemDeServico.Application.Services.Interfaces;
 using OrdemDeServico.Application.ViewModels;
 using OrdemDeServico.Domain.Entities;
-using ResTIConnect.Infrastructure;
+using ResTIConnect.Infrastructure.Persistence;
 
-namespace OrdemDeServico.Application;
+namespace OrdemDeServico.Application.Services;
 
 public class ClienteService : IClienteService
 {
@@ -18,6 +18,7 @@ public class ClienteService : IClienteService
     public int Create(NewClienteInputModel cliente)
     {
         var _cliente = MapClienteInputModelToCliente(cliente);
+        _cliente.CreatedAt = DateTime.UtcNow;
         _context.Clientes.Add(_cliente);
         _context.SaveChanges();
 
@@ -54,6 +55,7 @@ public class ClienteService : IClienteService
             _clienteDb.Email = cliente.Email;
             _clienteDb.Telefone = cliente.Telefone;
             _clienteDb.Endereco = _enderecoService.MapEnderecoInputModelToEndereco(cliente.Endereco);
+            _clienteDb.UpdatedAt = DateTime.UtcNow;
             _context.SaveChanges();
         }
     }
