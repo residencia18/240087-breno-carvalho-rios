@@ -1,9 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using ResTIConnect.Infrastructure.Context;
+using ResTIConnect.Application.Services;
+using ResTIConnect.Application.Services.Interfaces;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IPerfilService, PerfilService>();
 
 builder.Services.AddDbContext<ResTIConnectDbContext>(options =>
 {
