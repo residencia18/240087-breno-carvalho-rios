@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using OrdemDeServico.Application;
+using OrdemDeServico.Application.Services;
 using OrdemDeServico.Application.Services.Interfaces;
-using ResTIConnect.Infrastructure;
+using ResTIConnect.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IEnderecoService, EnderecoService>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.Services.AddScoped<IPrestadorDeServicoService, PrestadorDeServicoService>();
 
 builder.Services.AddDbContext<OrdemDeServicoContext>(options =>
 {
