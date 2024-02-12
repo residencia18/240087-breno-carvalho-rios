@@ -1,9 +1,14 @@
 using Microsoft.EntityFrameworkCore;
+using OrdemDeServico.Application;
+using OrdemDeServico.Application.Services.Interfaces;
 using ResTIConnect.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddScoped<IEnderecoService, EnderecoService>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
 
 builder.Services.AddDbContext<OrdemDeServicoContext>(options =>
 {
