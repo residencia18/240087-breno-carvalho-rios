@@ -1,8 +1,7 @@
-namespace ResTIConnect.Domain.Entities;
+﻿namespace ResTIConnect.Application.InputModels;
 
-public class Endereco : BaseEntity
+public class NewEnderecoInputModel
 {
-    public int EnderecoId { get; set; }
     public string? Logradouro { get; set; }
     public string? Numero { get; set; }
     public string? Cidade { get; set; }
@@ -11,7 +10,4 @@ public class Endereco : BaseEntity
     public string? Estado { get; set; }
     public string? Cep { get; set; }
     public string? Pais { get; set; }
-
-    public User? Usuario { get; set; }
-    public int UsuarioId { get; set; }
 }
