@@ -1,6 +1,6 @@
-namespace ResTIConnect.Domain.Entities;
+﻿namespace ResTIConnect.Application.ViewModels;
 
-public class Endereco : BaseEntity
+public class EnderecoViewModel
 {
     public int EnderecoId { get; set; }
     public string? Logradouro { get; set; }
@@ -11,7 +11,4 @@ public class Endereco : BaseEntity
     public string? Estado { get; set; }
     public string? Cep { get; set; }
     public string? Pais { get; set; }
-
-    public User? Usuario { get; set; }
-    public int UsuarioId { get; set; }
 }
