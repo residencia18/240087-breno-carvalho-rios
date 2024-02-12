@@ -15,8 +15,18 @@ public class EnderecoService : IEnderecoService
     }
     public int Create(NewEnderecoInputModel endereco)
     {
-        var _endereco = MapEnderecoInputModelToEndereco(endereco);
-        _endereco.CreatedAt = DateTime.UtcNow;
+        var _endereco = new Endereco
+        {
+            Logradouro = endereco.Logradouro,
+            Bairro = endereco.Bairro,
+            Numero = endereco.Numero,
+            Complemento = endereco.Complemento,
+            Cidade = endereco.Cidade,
+            Estado = endereco.Estado,
+            Pais = endereco.Pais,
+            Cep = endereco.Cep,
+            CreatedAt = DateTime.UtcNow,
+        };
         _context.Enderecos.Add(_endereco);
         _context.SaveChanges();
 
@@ -25,7 +35,17 @@ public class EnderecoService : IEnderecoService
 
     public ICollection<EnderecoViewModel> GetAll()
     {
-        var _enderecos = _context.Enderecos.Select(endereco => MapEnderecoToEnderecoViewModel(endereco)).ToArray();
+        var _enderecos = _context.Enderecos.Select(endereco => new EnderecoViewModel
+        {
+            Logradouro = endereco.Logradouro,
+            Bairro = endereco.Bairro,
+            Numero = endereco.Numero,
+            Complemento = endereco.Complemento,
+            Cidade = endereco.Cidade,
+            Estado = endereco.Estado,
+            Pais = endereco.Pais,
+            Cep = endereco.Cep,
+        }).ToArray();
         return _enderecos;
     }
 
@@ -38,7 +58,17 @@ public class EnderecoService : IEnderecoService
             return null;
         }
 
-        var _endereco = MapEnderecoToEnderecoViewModel(_enderecoDb);
+        var _endereco = new EnderecoViewModel
+        {
+            Logradouro = _enderecoDb.Logradouro,
+            Bairro = _enderecoDb.Bairro,
+            Numero = _enderecoDb.Numero,
+            Complemento = _enderecoDb.Complemento,
+            Cidade = _enderecoDb.Cidade,
+            Estado = _enderecoDb.Estado,
+            Pais = _enderecoDb.Pais,
+            Cep = _enderecoDb.Cep,
+        };
         return _endereco;
     }
 
@@ -70,40 +100,6 @@ public class EnderecoService : IEnderecoService
             _context.Enderecos.Remove(_enderecoDb);
             _context.SaveChanges();
         }
-    }
-
-    public Endereco MapEnderecoInputModelToEndereco(NewEnderecoInputModel endereco)
-    {
-        var _endereco = new Endereco
-        {
-            Logradouro = endereco.Logradouro,
-            Bairro = endereco.Bairro,
-            Numero = endereco.Numero,
-            Complemento = endereco.Complemento,
-            Cidade = endereco.Cidade,
-            Estado = endereco.Estado,
-            Pais = endereco.Pais,
-            Cep = endereco.Cep,
-        };
-
-        return _endereco;
-    }
-
-    public EnderecoViewModel MapEnderecoToEnderecoViewModel(Endereco endereco)
-    {
-        var _endereco = new EnderecoViewModel
-        {
-            Logradouro = endereco.Logradouro,
-            Bairro = endereco.Bairro,
-            Numero = endereco.Numero,
-            Complemento = endereco.Complemento,
-            Cidade = endereco.Cidade,
-            Estado = endereco.Estado,
-            Pais = endereco.Pais,
-            Cep = endereco.Cep,
-        };
-
-        return _endereco;
     }
 
     public Endereco? GetByDbId(int id)

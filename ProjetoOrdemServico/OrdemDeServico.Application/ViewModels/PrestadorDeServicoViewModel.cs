@@ -1,6 +1,4 @@
-﻿using OrdemDeServico.Application.ViewModels;
-
-namespace OrdemDeServico.Application;
+﻿namespace OrdemDeServico.Application.ViewModels;
 
 public class PrestadorDeServicoViewModel
 {

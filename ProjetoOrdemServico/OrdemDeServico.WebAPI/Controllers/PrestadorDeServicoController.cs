@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OrdemDeServico.Application;
 using OrdemDeServico.Application.InputModels;
 using OrdemDeServico.Application.Services.Interfaces;
+using OrdemDeServico.Application.ViewModels;
 namespace OrdemDeServico.WebAPI.Controllers.PrestadorDeServico;
 
 [ApiController]

@@ -6,6 +6,4 @@ namespace OrdemDeServico.Application.Services.Interfaces;
 
 public interface IEnderecoService : IBaseService<NewEnderecoInputModel, EnderecoViewModel>
 {
-    public Endereco MapEnderecoInputModelToEndereco(NewEnderecoInputModel endereco);
-    public EnderecoViewModel MapEnderecoToEnderecoViewModel(Endereco endereco);
 }
