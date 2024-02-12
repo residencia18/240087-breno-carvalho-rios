@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ResTIConnect.Infrastructure;
+using ResTIConnect.Infrastructure.Persistence;
 
 #nullable disable
 
 namespace OrdemDeServico.Infra.Migrations
 {
     [DbContext(typeof(OrdemDeServicoContext))]
-    [Migration("20240211195356_projeto_refatorado_correcoes")]
-    partial class projeto_refatorado_correcoes
+    [Migration("20240212004626_initial_create")]
+    partial class initial_create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
