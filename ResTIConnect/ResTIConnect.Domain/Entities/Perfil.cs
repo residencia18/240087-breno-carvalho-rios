@@ -1,9 +1,11 @@
 namespace ResTIConnect.Domain.Entities;
 
-public class Perfis : BaseEntity
+public class Perfil : BaseEntity
 {
     public int PerfilId { get; set; }
     public string? Descricao { get; set; }
     public required string Permissoes { get; set; }
-    public ICollection<User>? Users { get; set; } = new List<User>();
+    public int UsuarioId { get; set; }
+    public required Usuario? Usuario { get; set; }
+
 }
