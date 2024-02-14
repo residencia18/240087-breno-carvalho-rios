@@ -91,7 +91,11 @@ namespace ResTIConnect.Application.Services
                    Users = p.Users.Select(u => new UserViewModel
                    {
                        UserId = u.UserId,
-                       Name = u.Name,
+                       Nome = u.Nome,
+                       Apelido = u.Apelido,
+                       Email = u.Email,
+                       Senha = u.Senha,
+                       Telefone = u.Telefone
                    }).ToList()
                })
                .ToList();
