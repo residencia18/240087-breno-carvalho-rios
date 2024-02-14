@@ -4,9 +4,9 @@ using ResTIConnect.Domain.Entities;
 
 namespace ResTIConnect.Infrastructure;
 
-public class PerfilConfiguration : IEntityTypeConfiguration<Perfis>
+public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
 {
-    public void Configure(EntityTypeBuilder<Perfis> builder)
+    public void Configure(EntityTypeBuilder<Perfil> builder)
     {
         builder.ToTable("perfis").HasKey(p => p.PerfilId);
 
