@@ -9,5 +9,8 @@ public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
     public void Configure(EntityTypeBuilder<Perfil> builder)
     {
         builder.ToTable("perfis").HasKey(p => p.PerfilId);
+
+        builder.HasOne(p => p.Usuario).WithMany(u => u.Perfis).HasForeignKey(p => p.UsuarioId);
+
     }
 }

@@ -9,18 +9,28 @@ namespace ResTIConnect.Application.Services
 {
     public class PerfilService : IPerfilService
     {
-        private readonly ResTIConnectContext _context;
+        private readonly ResTIConnectDbContext _context;
 
-        public PerfilService(ResTIConnectContext context)
+        public PerfilService(ResTIConnectDbContext context)
         {
             _context = context;
         }
         public int Create(NewPerfilInputModel perfil)
-        {
-            var _perfil = new Perfis
+        {   
+            // CREATE / UPDATE
+            // Depois de implementar usuario substituir por:
+            // var _usuario = _usuariosService.GetByDbId(perfil.UsuarioId);
+            var _usuario = _context.Usuarios.Find(perfil.UsuarioId);
+            
+            if(_usuario is null) {
+                throw new UsuarioNotFoundException();
+            }
+
+            var _perfil = new Perfil
             {
                 Descricao = perfil.Descricao,
-                Permissoes = perfil.Permissoes
+                Permissoes = perfil.Permissoes,
+                Usuario = _usuario
             };
 
             _context.Perfis.Add(_perfil);
@@ -35,7 +45,7 @@ namespace ResTIConnect.Application.Services
                 .Select(p => new PerfilViewModel
                 {
                     PerfilId = p.PerfilId,
-                    Descricao = p.Descricao,
+                    Descricao = p.Descricao ?? "",
                     Permissoes = p.Permissoes
                 })
                 .ToList();
@@ -43,7 +53,7 @@ namespace ResTIConnect.Application.Services
             return perfis;
         }
 
-        private Perfis GetByDbId(int id)
+        private Perfil GetByDbId(int id)
         {
             var _perfil = _context.Perfis.Find(id);
 
@@ -55,8 +65,16 @@ namespace ResTIConnect.Application.Services
         public void Update(int id, NewPerfilInputModel perfil)
         {
             var _perfil = GetByDbId(id);
+
             _perfil.Descricao = perfil.Descricao;
             _perfil.Permissoes = perfil.Permissoes;
+
+            // Depois de implementar usuario substituir por:
+            // var _usuario = _usuariosService.GetByDbId(perfil.UsuarioId);
+            var _usuario = _context.Usuarios.Find(perfil.UsuarioId);
+            if(_usuario is not null) {
+                _perfil.Usuario = _usuario;
+            }
 
             _context.Perfis.Update(_perfil);
             _context.SaveChanges();
@@ -73,26 +91,21 @@ namespace ResTIConnect.Application.Services
             var perfilViewModel = new PerfilViewModel
             {
                 PerfilId = perfil.PerfilId,
-                Descricao = perfil.Descricao,
+                Descricao = perfil.Descricao ?? "",
                 Permissoes = perfil.Permissoes
             };
             return perfilViewModel;
         }
 
         public List<PerfilViewModel> GetByUserId(int userId)
-        {
+        {   
             var perfis = _context.Perfis
-               .Where(p => p.Users.Any(u => u.UserId == userId))
+               .Where(p => p.UsuarioId == userId)
                .Select(p => new PerfilViewModel
                {
                    PerfilId = p.PerfilId,
-                   Descricao = p.Descricao,
-                   Permissoes = p.Permissoes,
-                   Users = p.Users.Select(u => new UserViewModel
-                   {
-                       UserId = u.UserId,
-                       Name = u.Name,
-                   }).ToList()
+                   Descricao = p.Descricao ?? "",
+                   Permissoes = p.Permissoes
                })
                .ToList();
 

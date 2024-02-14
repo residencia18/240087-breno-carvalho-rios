@@ -10,7 +10,8 @@ public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
     {
         builder.ToTable("usuarios").HasKey(u => u.UsuarioId);
 
-        builder.HasMany(u => u.Perfil).WithOne(p => p.Usuario);
         builder.HasMany(u => u.Sistemas).WithMany(s => s.Usuarios);
+
+        builder.HasOne(u => u.Endereco).WithOne(e => e.Usuario).HasForeignKey<Usuario>(u => u.EnderecoId);
     }
 }

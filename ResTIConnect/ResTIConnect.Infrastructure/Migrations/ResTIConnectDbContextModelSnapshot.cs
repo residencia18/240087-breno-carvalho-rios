@@ -70,13 +70,7 @@ namespace ResTIConnect.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
-
                     b.HasKey("EnderecoId");
-
-                    b.HasIndex("UsuarioId")
-                        .IsUnique();
 
                     b.ToTable("enderecos", (string)null);
                 });
@@ -167,7 +161,7 @@ namespace ResTIConnect.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("UsuarioId")
+                    b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
                     b.HasKey("PerfilId");
@@ -232,6 +226,9 @@ namespace ResTIConnect.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("EnderecoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -248,6 +245,9 @@ namespace ResTIConnect.Infrastructure.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("UsuarioId");
+
+                    b.HasIndex("EnderecoId")
+                        .IsUnique();
 
                     b.ToTable("usuarios", (string)null);
                 });
@@ -282,24 +282,26 @@ namespace ResTIConnect.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ResTIConnect.Domain.Entities.Endereco", b =>
+            modelBuilder.Entity("ResTIConnect.Domain.Entities.Perfil", b =>
                 {
                     b.HasOne("ResTIConnect.Domain.Entities.Usuario", "Usuario")
-                        .WithOne("Endereco")
-                        .HasForeignKey("ResTIConnect.Domain.Entities.Endereco", "UsuarioId")
+                        .WithMany("Perfis")
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("ResTIConnect.Domain.Entities.Perfil", b =>
+            modelBuilder.Entity("ResTIConnect.Domain.Entities.Usuario", b =>
                 {
-                    b.HasOne("ResTIConnect.Domain.Entities.Usuario", "Usuario")
-                        .WithMany("Perfil")
-                        .HasForeignKey("UsuarioId");
+                    b.HasOne("ResTIConnect.Domain.Entities.Endereco", "Endereco")
+                        .WithOne("Usuario")
+                        .HasForeignKey("ResTIConnect.Domain.Entities.Usuario", "EnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Usuario");
+                    b.Navigation("Endereco");
                 });
 
             modelBuilder.Entity("SistemaUsuario", b =>
@@ -317,11 +319,14 @@ namespace ResTIConnect.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ResTIConnect.Domain.Entities.Endereco", b =>
+                {
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("ResTIConnect.Domain.Entities.Usuario", b =>
                 {
-                    b.Navigation("Endereco");
-
-                    b.Navigation("Perfil");
+                    b.Navigation("Perfis");
                 });
 #pragma warning restore 612, 618
         }
