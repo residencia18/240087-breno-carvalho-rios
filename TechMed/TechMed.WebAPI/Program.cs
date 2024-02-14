@@ -1,8 +1,16 @@
 using Microsoft.EntityFrameworkCore;
+using TechMed.Application.Services;
+using TechMed.Application.Services.InterfacesServices;
 using TechMed.Infrastructure.Persistence;
+using TechMed.Application;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IPacienteService, PacienteService>();
+builder.Services.AddScoped<IMedicoService, MedicoService>();
+builder.Services.AddScoped<IAtendimentoService, AtendimentoService>();
+builder.Services.AddScoped<IExameService, ExameService>();
 
 builder.Services.AddDbContext<TechMedDbContext>(options => {
     var connectionString = builder.Configuration.GetConnectionString("TechMedDb");

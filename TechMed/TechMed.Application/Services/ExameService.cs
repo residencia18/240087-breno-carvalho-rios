@@ -7,10 +7,10 @@ using TechMed.Infrastructure.Persistence;
 
 namespace TechMed.Application;
 
-public class ExameSevice : BaseService, IExameService
+public class ExameService : BaseService
 {
     private readonly TechMedDbContext _atendimentoService;
-    public ExameSevice(TechMedDbContext context, IAtendimentoService atendimentoService) : base(context)
+    public ExameService(TechMedDbContext context, IAtendimentoService atendimentoService) : base(context)
     {
         _atendimentoService = (TechMedDbContext)atendimentoService;
     }
