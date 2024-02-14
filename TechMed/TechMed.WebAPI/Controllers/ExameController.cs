@@ -3,7 +3,6 @@ using TechMed.Application;
 using TechMed.Application.InputModels;
 using TechMed.Application.Services.InterfacesServices;
 
-
 namespace TechMed.WebAPI.Controllers;
 
 [ApiController]
@@ -20,14 +19,11 @@ public class ExameController : ControllerBase
       return Ok(Exames);
 
    }
-
    [HttpPost("exame")]
-   public IActionResult Post(int AtendimentoId, [FromBody] NewExameInputModel exame)
+   public IActionResult Post([FromBody] NewExameInputModel exame)
    {
-      _exameService.Create(AtendimentoId, exame);
+      _exameService.Create(exame);
       return CreatedAtAction(nameof(Get), exame);
  
    }
-
-
 }

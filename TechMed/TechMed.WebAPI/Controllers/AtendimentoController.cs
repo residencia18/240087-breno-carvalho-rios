@@ -31,12 +31,12 @@ public class AtendimentoController : ControllerBase
 
    [HttpGet("atendimento/{id}")]
    public IActionResult GetAtendimentoById(int id){
-      var atendimentos = _atendimentoService.GetById(id);
+      var atendimento = _atendimentoService.GetById(id);
 
       
-      if (atendimentos is null)
+      if (atendimento is null)
          return NoContent();
-      return Ok(atendimentos);
+      return Ok(atendimento);
    }
    [HttpGet("medico/{id}/atendimentos")]
    public IActionResult GetAtendimentosByMedico(int medicoId){
