@@ -9,9 +9,9 @@ namespace ResTIConnect.Application.Services;
 
 public class EnderecoService : IEnderecoService
 {
-    private readonly ResTIConnectContext _context;
+    private readonly ResTIConnectDbContext _context;
 
-    public EnderecoService(ResTIConnectContext context)
+    public EnderecoService(ResTIConnectDbContext context)
     {
         _context = context;
     }

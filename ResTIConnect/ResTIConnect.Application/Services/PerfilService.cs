@@ -9,9 +9,9 @@ namespace ResTIConnect.Application.Services
 {
     public class PerfilService : IPerfilService
     {
-        private readonly ResTIConnectContext _context;
+        private readonly ResTIConnectDbContext _context;
 
-        public PerfilService(ResTIConnectContext context)
+        public PerfilService( ResTIConnectDbContext context)
         {
             _context = context;
         }

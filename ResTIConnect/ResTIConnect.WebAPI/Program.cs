@@ -7,7 +7,6 @@ using ResTIConnect.Application.Services.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<IPerfilService, PerfilService>();
 
 builder.Services.AddDbContext<ResTIConnectDbContext>(options =>
 {
@@ -19,6 +18,10 @@ builder.Services.AddDbContext<ResTIConnectDbContext>(options =>
 });
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<IEnderecoService, EnderecoService>();
+builder.Services.AddScoped<IPerfilService, PerfilService>();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
