@@ -8,6 +8,7 @@ public class Usuario : BaseEntity
     public string? Apelido { get; set; }
     public required string Senha { get; set; }
     public required string Telefone { get; set; }
+    public required string Email { get; set; }   
     public int EnderecoId { get; set; }
     public required Endereco Endereco { get; set; }
     public ICollection<Perfil>? Perfis { get; set; }

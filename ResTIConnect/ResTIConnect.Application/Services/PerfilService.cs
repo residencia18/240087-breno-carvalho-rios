@@ -10,21 +10,16 @@ namespace ResTIConnect.Application.Services
     public class PerfilService : IPerfilService
     {
         private readonly ResTIConnectDbContext _context;
+        private readonly IUsuarioService _usuariosService;
 
-        public PerfilService(ResTIConnectDbContext context)
+        public PerfilService(ResTIConnectDbContext context, IUsuarioService usuariosService)
         {
             _context = context;
+            _usuariosService = usuariosService;
         }
         public int Create(NewPerfilInputModel perfil)
         {   
-            // CREATE / UPDATE
-            // Depois de implementar usuario substituir por:
-            // var _usuario = _usuariosService.GetByDbId(perfil.UsuarioId);
-            var _usuario = _context.Usuarios.Find(perfil.UsuarioId);
-            
-            if(_usuario is null) {
-                throw new UsuarioNotFoundException();
-            }
+            var _usuario = _usuariosService.GetByDbId(perfil.UsuarioId);
 
             var _perfil = new Perfil
             {
@@ -53,7 +48,7 @@ namespace ResTIConnect.Application.Services
             return perfis;
         }
 
-        private Perfil GetByDbId(int id)
+        public Perfil GetByDbId(int id)
         {
             var _perfil = _context.Perfis.Find(id);
 
@@ -69,12 +64,7 @@ namespace ResTIConnect.Application.Services
             _perfil.Descricao = perfil.Descricao;
             _perfil.Permissoes = perfil.Permissoes;
 
-            // Depois de implementar usuario substituir por:
-            // var _usuario = _usuariosService.GetByDbId(perfil.UsuarioId);
-            var _usuario = _context.Usuarios.Find(perfil.UsuarioId);
-            if(_usuario is not null) {
-                _perfil.Usuario = _usuario;
-            }
+            var _usuario = _usuariosService.GetByDbId(perfil.UsuarioId);
 
             _context.Perfis.Update(_perfil);
             _context.SaveChanges();
@@ -113,4 +103,3 @@ namespace ResTIConnect.Application.Services
         }
     }
 }
-

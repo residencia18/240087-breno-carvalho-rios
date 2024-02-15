@@ -4,7 +4,7 @@ using ResTIConnect.Domain.Entities;
 
 namespace ResTIConnect.Infrastructure;
 
-public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
+public class UsuarioConfigurations : IEntityTypeConfiguration<Usuario>
 {
     public void Configure(EntityTypeBuilder<Usuario> builder)
     {
