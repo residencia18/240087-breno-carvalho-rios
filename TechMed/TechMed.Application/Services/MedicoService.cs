@@ -17,7 +17,7 @@ public class MedicoService : IMedicoService
         _context = context;
     }
 
-    private Medico GetByDbId(int id)
+    public Medico GetByDbId(int id)
     {
         var _medico = _context.Medicos.Find(id);
 
@@ -37,7 +37,7 @@ public class MedicoService : IMedicoService
         return _medico;
     }
 
-     public int Create(NewMedicoInputModel medico)
+    public int Create(NewMedicoInputModel medico)
     {
         var _medico = new Medico
         {
@@ -129,12 +129,12 @@ public class MedicoService : IMedicoService
 
     public void Update(int id, NewMedicoInputModel medico)
     {
-       var _medico = GetByDbId(id);
+        var _medico = GetByDbId(id);
 
         _medico.Nome = medico.Nome;
 
         _medico.Crm = medico.Crm;
-        
+
         _medico.Cpf = medico.Cpf;
 
         _context.Medicos.Update(_medico);

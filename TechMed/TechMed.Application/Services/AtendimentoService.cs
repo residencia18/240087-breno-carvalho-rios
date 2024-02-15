@@ -18,7 +18,7 @@ public class AtendimentoService : BaseService, IAtendimentoService
         _pacienteService = pacienteService;
     }
 
-    private Atendimento GetByDbId(int id)
+    public Atendimento GetByDbId(int id)
     {
         var _atendimento = _context.Atendimentos.Find(id);
 
@@ -61,8 +61,9 @@ public class AtendimentoService : BaseService, IAtendimentoService
             DataHoraFim = a.DataHoraFim,
             DataHoraInicio = a.DataHoraInicio,
             SuspeitaInicial = a.SuspeitaInicial,
-            Diagnostico = a.Diagnostico
-
+            Diagnostico = a.Diagnostico,
+            Medico = _medicoService.GetById(a.MedicoId)!,
+            Paciente = _pacienteService.GetById(a.PacienteId)!
         }).ToList();
 
         return _atendimentos;
@@ -77,14 +78,15 @@ public class AtendimentoService : BaseService, IAtendimentoService
             DataHoraInicio = a.DataHoraInicio,
             DataHoraFim = a.DataHoraFim,
             SuspeitaInicial = a.SuspeitaInicial,
-            Diagnostico = a.Diagnostico
-
+            Diagnostico = a.Diagnostico,
+            Medico = _medicoService.GetById(a.MedicoId)!,
+            Paciente = _pacienteService.GetById(a.PacienteId)!
         }).ToList();
 
         return _atendimentos;
     }
 
-    public AtendimentoViewModel GetById(int id)
+    public AtendimentoViewModel? GetById(int id)
     {
         // var _atendimento = GetByDbId(id);
 
@@ -98,15 +100,7 @@ public class AtendimentoService : BaseService, IAtendimentoService
         // };
         // return AtendimentoViewModel;
 
-        var atendimentoDb = _context.Atendimentos.Find(id);
-        if (atendimentoDb is null)
-            throw new AtendimentoNotFoundException();
-
-        var medicoVM = _medicoService.GetById(atendimentoDb.Medico.MedicoId);
-        var pacienteVM = _pacienteService.GetById(atendimentoDb.Paciente.PacienteId);
-
-        if (medicoVM is null || pacienteVM is null)
-            return null;
+        var atendimentoDb = GetByDbId(id);
 
         return new AtendimentoViewModel
         {
@@ -114,7 +108,9 @@ public class AtendimentoService : BaseService, IAtendimentoService
             DataHoraInicio = atendimentoDb.DataHoraInicio,
             DataHoraFim = atendimentoDb.DataHoraFim,
             SuspeitaInicial = atendimentoDb.SuspeitaInicial,
-            Diagnostico = atendimentoDb.Diagnostico
+            Diagnostico = atendimentoDb.Diagnostico,
+            Medico = _medicoService.GetById(atendimentoDb.MedicoId)!,
+            Paciente = _pacienteService.GetById(atendimentoDb.PacienteId)!
         };
     }
 
@@ -127,13 +123,8 @@ public class AtendimentoService : BaseService, IAtendimentoService
             DataHoraInicio = a.DataHoraInicio,
             SuspeitaInicial = a.SuspeitaInicial,
             Diagnostico = a.Diagnostico,
-            Medico = new MedicoViewModel
-            {
-                MedicoId = a.Medico.MedicoId,
-                Nome = a.Medico.Nome,
-                Cpf = a.Medico.Cpf,
-                Crm = a.Medico.Crm
-            }
+            Medico = _medicoService.GetById(a.MedicoId)!,
+            Paciente = _pacienteService.GetById(a.PacienteId)!
 
         }).ToList();
 
@@ -149,14 +140,8 @@ public class AtendimentoService : BaseService, IAtendimentoService
             DataHoraInicio = a.DataHoraInicio,
             SuspeitaInicial = a.SuspeitaInicial,
             Diagnostico = a.Diagnostico,
-            Paciente = new PacienteViewModel
-            {
-                PacienteId = a.Paciente.PacienteId,
-                Nome = a.Paciente.Nome,
-                Cpf = a.Paciente.Cpf,
-                DataNascimento = a.Paciente.DataNascimento
-            }
-
+            Medico = _medicoService.GetById(a.MedicoId)!,
+            Paciente = _pacienteService.GetById(a.PacienteId)!
         }).ToList();
 
         return _atendimento;
@@ -168,6 +153,8 @@ public class AtendimentoService : BaseService, IAtendimentoService
 
         _atendimento.SuspeitaInicial = atendimento.SuspeitaInicial;
         _atendimento.Diagnostico = atendimento.Diagnostico;
+        _atendimento.MedicoId = atendimento.MedicoId;
+        _atendimento.PacienteId = atendimento.PacienteId;
 
         _context.Atendimentos.Update(_atendimento);
 

@@ -15,13 +15,13 @@ public class PacienteService : IPacienteService
         _context = context;
     }
 
-     private Paciente GetByDbId(int id)
+    public Paciente GetByDbId(int id)
     {
         var _paciente = _context.Pacientes.Find(id);
 
         if (_paciente is null)
             throw new PacienteNotFoundException();
-        
+
         return _paciente;
     }
 
@@ -92,7 +92,7 @@ public class PacienteService : IPacienteService
 
     public void Update(int id, NewPacienteInputModel medico)
     {
-       var _paciente = GetByDbId(id);
+        var _paciente = GetByDbId(id);
 
         _paciente.Nome = medico.Nome;
 
