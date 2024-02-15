@@ -4,7 +4,7 @@ using ResTIConnect.Domain.Entities;
 
 namespace ResTIConnect.Infrastructure;
 
-public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
+public class PerfilConfigurations : IEntityTypeConfiguration<Perfil>
 {
     public void Configure(EntityTypeBuilder<Perfil> builder)
     {

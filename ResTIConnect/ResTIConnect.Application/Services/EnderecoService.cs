@@ -16,7 +16,7 @@ public class EnderecoService : IEnderecoService
         _context = context;
     }
 
-    private Endereco GetByDbId(int id)
+    public Endereco GetByDbId(int id)
     {
         var _endereco = _context.Enderecos.Find(id);
 
