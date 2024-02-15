@@ -17,9 +17,5 @@ public class AtendimentoConfigurations : IEntityTypeConfiguration<Atendimento>
         builder.HasOne(a => a.Paciente)
         .WithMany(p => p.Atendimentos)
         .HasForeignKey(a => a.PacienteId);
-
-        builder.HasMany(a => a.Exames)
-        .WithOne(e => e.Atendimento)
-        .HasForeignKey(a => a.ExameId);
     }
 }

@@ -9,10 +9,8 @@ namespace TechMed.Application;
 
 public class ExameService : BaseService, IExameService
 {
-    private readonly TechMedDbContext _atendimentoService;
-    public ExameService(TechMedDbContext context, IAtendimentoService atendimentoService) : base(context)
+    public ExameService(TechMedDbContext context) : base(context)
     {
-        _atendimentoService = (TechMedDbContext)atendimentoService;
     }
 
     public Exame GetByDbId(int id)

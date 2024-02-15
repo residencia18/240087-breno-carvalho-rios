@@ -7,13 +7,9 @@ using TechMed.Infrastructure.Persistence;
 
 namespace TechMed.Application.Services;
 
-public class PacienteService : IPacienteService
+public class PacienteService : BaseService, IPacienteService
 {
-    private readonly TechMedDbContext _context;
-    public PacienteService(TechMedDbContext context)
-    {
-        _context = context;
-    }
+    public PacienteService(TechMedDbContext context) : base(context) { }
 
     public Paciente GetByDbId(int id)
     {

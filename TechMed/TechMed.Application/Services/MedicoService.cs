@@ -1,5 +1,4 @@
 ﻿
-using Microsoft.EntityFrameworkCore;
 using TechMed.Application.InputModels;
 using TechMed.Application.Services.InterfacesServices;
 using TechMed.Application.ViewModels;
@@ -9,13 +8,9 @@ using TechMed.Infrastructure.Persistence;
 
 namespace TechMed.Application.Services;
 
-public class MedicoService : IMedicoService
+public class MedicoService : BaseService, IMedicoService
 {
-    private readonly TechMedDbContext _context;
-    public MedicoService(TechMedDbContext context)
-    {
-        _context = context;
-    }
+    public MedicoService(TechMedDbContext context) : base(context) { }
 
     public Medico GetByDbId(int id)
     {
@@ -50,31 +45,6 @@ public class MedicoService : IMedicoService
         _context.SaveChanges();
 
         return _medico.MedicoId;
-    }
-
-    public int CreateAtendimento(int medicoId, NewAtendimentoInputModel atendimento)
-    {
-        var medico = GetByDbId(medicoId);
-        if (medico is null)
-            throw new MedicoNotFoundException();
-
-        var paciente = _context.Pacientes.Find(atendimento.PacienteId);
-        //var paciente = _context.Pacientes.GetById(atendimento.PacienteId);
-        if (paciente is null)
-            throw new PacienteNotFoundException();
-
-        return _context.Atendimentos.Add(new Atendimento
-        {
-            DataHoraInicio = atendimento.DataHoraInicio,
-            DataHoraFim = atendimento.DataHoraFim,
-            SuspeitaInicial = atendimento.SuspeitaInicial,
-            Diagnostico = atendimento.Diagnostico,
-            Medico = medico,
-            Paciente = paciente,
-            PacienteId = atendimento.PacienteId,
-            MedicoId = medicoId
-
-        }).Entity.AtendimentoId;
     }
 
     public void Delete(int id)

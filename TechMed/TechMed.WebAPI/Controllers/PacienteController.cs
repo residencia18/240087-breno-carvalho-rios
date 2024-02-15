@@ -58,15 +58,4 @@ public class PacienteController : ControllerBase
       _pacienteService.Delete(id);
       return Ok();
    }
-
-   [HttpGet("paciente/{id}/atendimentos")]
-   public IActionResult GetAtendimentosByPaciente(int id)
-   {
-      var atendimentos = _atendimentoService.GetByPacienteId(id);
-
-
-      if (atendimentos is null)
-         return NoContent();
-      return Ok(atendimentos);
-   }
 }

@@ -41,14 +41,6 @@ public class MedicoController : ControllerBase
 
    }
 
-   [HttpPost("medico/{id}/atendimento")]
-   public IActionResult Post(int id, [FromBody] NewAtendimentoInputModel atendimento)
-   {
-      _medicoService.CreateAtendimento(id, atendimento);
-      return CreatedAtAction(nameof(Get), atendimento);
-
-   }
-
    [HttpPut("medico/{id}")]
    public IActionResult Put(int id, [FromBody] NewMedicoInputModel medico)
    {
@@ -65,16 +57,5 @@ public class MedicoController : ControllerBase
          return NoContent();
       _medicoService.Delete(id);
       return Ok();
-   }
-
-   [HttpGet("medico/{id}/atendimentos")]
-   public IActionResult GetAtendimentosByMedico(int id)
-   {
-      var atendimentos = _atendimentoService.GetByMedicoId(id);
-
-
-      if (atendimentos is null)
-         return NoContent();
-      return Ok(atendimentos);
    }
 }

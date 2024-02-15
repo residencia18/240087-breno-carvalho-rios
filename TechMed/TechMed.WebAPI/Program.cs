@@ -17,7 +17,7 @@ builder.Services.AddDbContext<TechMedDbContext>(options =>
   var connectionString = builder.Configuration.GetConnectionString("TechMedDb");
   var serverVersion = ServerVersion.AutoDetect(connectionString);
   options.UseMySql(connectionString, serverVersion);
-});
+}, ServiceLifetime.Transient);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
