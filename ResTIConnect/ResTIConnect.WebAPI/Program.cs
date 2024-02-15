@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IPerfilService, PerfilService>();
 builder.Services.AddScoped<IEnderecoService, EnderecoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<ISistemaService, SistemaService>();
 
 builder.Services.AddDbContext<ResTIConnectDbContext>(options =>
 {
