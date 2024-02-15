@@ -97,5 +97,29 @@ namespace ResTIConnect.Application.Services
             _evento.Sistemas!.Add(_sistema);
             _context.SaveChanges();
         }
+
+        public void Update(int id, NewSistemaInputModel entity)
+        {
+            var _sistema = GetByDbId(id);
+            _sistema.Descricao = entity.Descricao;
+            _sistema.Tipo = entity.Tipo;
+            _context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            _context.Sistemas.Remove(GetByDbId(id));
+            _context.SaveChanges();
+        }
+
+        public Sistema GetByDbId(int id)
+        {
+            var sistema = _context.Sistemas.Find(id);
+            if (sistema == null)
+            {
+                throw new SistemaNotFoundException();
+            }
+            return sistema;
+        }
     }
 }
