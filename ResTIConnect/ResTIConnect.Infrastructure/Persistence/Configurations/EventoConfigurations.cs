@@ -4,7 +4,7 @@ using ResTIConnect.Domain.Entities;
 
 namespace ResTIConnect.Infrastructure;
 
-public class EventoConfiguration : IEntityTypeConfiguration<Evento>
+public class EventoConfigurations : IEntityTypeConfiguration<Evento>
 {
     public void Configure(EntityTypeBuilder<Evento> builder)
     {

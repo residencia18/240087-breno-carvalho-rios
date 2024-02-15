@@ -20,8 +20,4 @@
     <ProjectReference Include="..\ResTIConnect.Application\ResTIConnect.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

@@ -7,9 +7,9 @@ public class ResTIConnectDbContext : DbContext
 {
     public DbSet<Log> Logs { get; set; }
     public DbSet<Endereco> Enderecos { get; set; }
-    public DbSet<Perfis> Perfis { get; set; }
+    public DbSet<Perfil> Perfis { get; set; }
     public DbSet<Sistema> Sistemas { get; set; }
-    public DbSet<User> Users { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Evento> Eventos { get; set; }
 
     public ResTIConnectDbContext(DbContextOptions<ResTIConnectDbContext> options) : base(options) { }

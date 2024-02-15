@@ -4,8 +4,7 @@ using ResTIConnect.Domain.Entities;
 
 namespace ResTIConnect.Application.Services.Interfaces
 {
-    public interface IPerfilService : IBaseService<NewPerfilInputModel, PerfilViewModel, Perfil>
+    public interface IUsuarioService : IBaseService<NewUsuarioInputModel, UsuarioViewModel, Usuario>
     {
-        List<PerfilViewModel> GetByUserId(int userId);
     }
 }
