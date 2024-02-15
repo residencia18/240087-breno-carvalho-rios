@@ -58,4 +58,15 @@ public class MedicoController : ControllerBase
       _medicoService.Delete(id);
       return Ok();
    }
+
+   [HttpGet("medico/{id}/atendimentos")]
+   public IActionResult GetAtendimentosByMedico(int id)
+   {
+      var atendimentos = _atendimentoService.GetByMedicoId(id);
+
+
+      if (atendimentos is null)
+         return NoContent();
+      return Ok(atendimentos);
+   }
 }
