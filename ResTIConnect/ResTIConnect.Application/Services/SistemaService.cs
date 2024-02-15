@@ -29,105 +29,47 @@ namespace ResTIConnect.Application.Services
 
             return _sistema.SistemaId;
         }
-
-        public List<SistemaViewModel> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<SistemaViewModel> GetByEventoPeriodos(string tipoEvento, DateTime inicio)
-        {
-            throw new NotImplementedException();
-        }
-
-        public SistemaViewModel? GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        /*
         public List<SistemaViewModel> GetAll()
         {
             var sistemas = _context.Sistemas
-                .Include(s => s.Usuarios)
-                .Include(s => s.Eventos)
                 .Select(s => new SistemaViewModel
                 {
                     SistemaId = s.SistemaId,
                     Descricao = s.Descricao,
-                    Tipo = s.Tipo,
-                    Users = s.Usuarios != null ? s.Usuarios.Select(s => new UsuarioViewModel
-                    {
-                        UsuarioId = s.UsuarioId,
-                        Nome = s.Nome
-                    }).ToList() : null,
-                    Eventos = s.Eventos != null ? s.Eventos.Select(e => new EventoViewModel
-                    {
-                        EventoId = e.EventoId,
-                        Codigo = e.Codigo,
-                        DataHoraOcorrencia = e.DataHoraOcorrencia,
-                        Descricao = e.Descricao,
-                        Tipo = e.Tipo
-                    }).ToList() : null
+                    Tipo = s.Tipo
                 })
                 .ToList();
 
             return sistemas;
         }
-        */
-
-        /*
         public List<SistemaViewModel> GetByEventoPeriodos(string tipoEvento, DateTime inicio)
         {
             var sistemas = _context.Sistemas
-            .Where(s => s.Eventos != null && s.Eventos.Any(e => e.Tipo == tipoEvento && e.DataHoraOcorrencia >= inicio))
-            .Select(s => new SistemaViewModel
-            {
-                SistemaId = s.SistemaId,
-                Descricao = s.Descricao,
-                Tipo = s.Tipo
-            })
-            .ToList();
+                .Where(s => s.Eventos!.Any(e => e.Tipo == tipoEvento && e.DataHoraOcorrencia >= inicio))
+                .Select(s => new SistemaViewModel
+                {
+                    SistemaId = s.SistemaId,
+                    Descricao = s.Descricao,
+                    Tipo = s.Tipo
+                })
+                .ToList();
 
             return sistemas;
         }
-        */
-
-        /*    
         public SistemaViewModel GetById(int id)
         {
-            var _sistema = _context.Sistemas
-                .Include(s => s.Usuarios)
-                .Include(s => s.Eventos)
-                .FirstOrDefault(s => s.SistemaId == id);
-
-            if (_sistema is null)
-                throw new SistemaNotFoundException();
-
-
-            var sistemaViewModel = new SistemaViewModel
+            var sistema = _context.Sistemas.Find(id);
+            if (sistema != null)
             {
-                SistemaId = _sistema.SistemaId,
-                Descricao = _sistema.Descricao,
-                Tipo = _sistema.Tipo,
-                    Users = _sistema.Users != null ? _sistema.Users.Select(s => new UsuarioViewModel
-                    {
-                        UsuarioId = s.UsuarioId,
-                        Nome = s.Nome
-                    }).ToList() : null,
-                    Eventos = _sistema.Eventos != null ? _sistema.Eventos.Select(e => new EventoViewModel
-                    {
-                        EventoId = e.EventoId,
-                        Codigo = e.Codigo,
-                        DataHoraOcorrencia = e.DataHoraOcorrencia,
-                        Descricao = e.Descricao,
-                        Tipo = e.Tipo
-                    }).ToList() : null
-            };
-            return sistemaViewModel;
-
+                return new SistemaViewModel
+                {
+                    SistemaId = sistema.SistemaId,
+                    Descricao = sistema.Descricao,
+                    Tipo = sistema.Tipo
+                };
+            }
+            throw new SistemaNotFoundException();
         }
-        */
         public List<SistemaViewModel> GetUserById(int usuarioId)
         {
             var sistemas = _context.Sistemas
@@ -142,8 +84,6 @@ namespace ResTIConnect.Application.Services
 
             return sistemas;
         }
-
-        /*
         public void AdicionaSistemaAoEvento(int EventoId, int sistemaId)
         {
             var _evento = _context.Eventos.Find(EventoId);
@@ -157,6 +97,5 @@ namespace ResTIConnect.Application.Services
             _evento.Sistemas!.Add(_sistema);
             _context.SaveChanges();
         }
-        */
     }
 }

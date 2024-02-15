@@ -12,5 +12,5 @@ public class Sistema : BaseEntity
     public DateTimeOffset DataHoraInicioIntegracao { get; set; }
     public string? Status { get; set; }
     public ICollection<Usuario>? Usuarios { get; set; }
-   // public ICollection<Evento>? Eventos { get; set; }
+     public ICollection<Evento>? Eventos { get; set; }
 }
