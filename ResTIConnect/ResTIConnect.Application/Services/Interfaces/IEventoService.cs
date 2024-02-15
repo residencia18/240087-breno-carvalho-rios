@@ -1,15 +1,10 @@
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.ViewModels;
-using System;
-using System.Collections.Generic;
+using ResTIConnect.Domain.Entities;
 
 namespace ResTIConnect.Application.Services.Interfaces
 {
-    public interface IEventoService 
+    public interface IEventoService : IBaseService<NewEventoInputModel, EventoViewModel, Evento>
     {
-        EventoViewModel GetById(int id);
-        int Create(NewEventoInputModel evento);
-        void Update(int id, NewEventoInputModel evento);
-        void Delete(int id);
     }
 }

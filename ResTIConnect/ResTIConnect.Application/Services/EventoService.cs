@@ -2,8 +2,9 @@ using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
 using ResTIConnect.Domain.Entities;
+using ResTIConnect.Domain.Exceptions;
 using ResTIConnect.Infrastructure.Context;
-using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ResTIConnect.Application.Services
@@ -37,20 +38,32 @@ namespace ResTIConnect.Application.Services
 
         public void Delete(int id)
         {
-          var evento = _context.Eventos.Find(id);
-          if (evento != null)
-          {
-             _context.Eventos.Remove(evento);
-             _context.SaveChanges();
-          }
+            _context.Eventos.Remove(GetByDbId(id));
+            _context.SaveChanges();
         }
 
+        public List<EventoViewModel> GetAll()
+        {
+            var eventos = _context.Eventos
+                .Select(e => new EventoViewModel
+                {
+                    EventoId = e.EventoId,
+                    Tipo = e.Tipo,
+                    Descricao = e.Descricao,
+                    Codigo = e.Codigo,
+                    Conteudo = e.Conteudo,
+                    DataHoraOcorrencia = e.DataHoraOcorrencia
+                })
+                .ToList();
+
+            return eventos;
+        }
 
         public EventoViewModel GetById(int id)
+{
+        var evento = _context.Eventos.Find(id);
+        if (evento != null)
         {
-            var evento = _context.Eventos.Find(id);
-            if (evento != null)
-            {
                 return new EventoViewModel
                 {
                     EventoId = evento.EventoId,
@@ -61,12 +74,13 @@ namespace ResTIConnect.Application.Services
                     DataHoraOcorrencia = evento.DataHoraOcorrencia
                 };
             }
-            return null;
+            throw new EventoNotFoundException();
         }
+
 
         public void Update(int id, NewEventoInputModel evento)
         {
-            var eventoExistente = GetById(id);
+            var eventoExistente = GetByDbId(id);
             if (eventoExistente != null)
             {
                 eventoExistente.Tipo = evento.Tipo;
@@ -77,6 +91,16 @@ namespace ResTIConnect.Application.Services
 
                 _context.SaveChanges();
             }
+        }
+
+        public Evento GetByDbId(int id)
+        {
+            var evento = _context.Eventos.Find(id);
+            if (evento == null)
+            {
+                throw new EventoNotFoundException();
+            }
+            return evento;
         }
     }
 }

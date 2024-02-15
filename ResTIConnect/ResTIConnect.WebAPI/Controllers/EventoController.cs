@@ -20,36 +20,64 @@ namespace ResTIConnect.WebAPI.Controllers
         [HttpPost("eventos")]
         public IActionResult Create([FromBody] NewEventoInputModel evento)
         {
-            var eventoId = _eventoService.Create(evento);
-            var createdEvent = _eventoService.GetById(eventoId);
-            return CreatedAtAction(nameof(GetById), new { id = eventoId }, createdEvent);
+            try
+            {
+                var eventoId = _eventoService.Create(evento);
+                var createdEvent = _eventoService.GetById(eventoId);
+                return CreatedAtAction(nameof(GetById), new { id = eventoId }, createdEvent);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         [HttpGet("eventos/{id}")]
         public IActionResult GetById(int id)
         {
-            var evento = _eventoService.GetById(id);
-            if (evento == null)
-                return NotFound();
-            return Ok(evento);
+            try
+            {
+                var evento = _eventoService.GetById(id);
+                if (evento == null)
+                    return NotFound();
+                return Ok(evento);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         [HttpPut("eventos/{id}")]
         public IActionResult Update(int id, [FromBody] NewEventoInputModel evento)
         {
-            if (_eventoService.GetById(id) == null)
-                return NotFound();
-            _eventoService.Update(id, evento);
-            return NoContent();
+            try
+            {
+                if (_eventoService.GetById(id) == null)
+                    return NotFound();
+                _eventoService.Update(id, evento);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         [HttpDelete("eventos/{id}")]
         public IActionResult Delete(int id)
         {
-            if (_eventoService.GetById(id) == null)
-                return NotFound();
-            _eventoService.Delete(id);
-            return NoContent();
+            try
+            {
+                if (_eventoService.GetById(id) == null)
+                    return NotFound();
+                _eventoService.Delete(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
     }
 }
