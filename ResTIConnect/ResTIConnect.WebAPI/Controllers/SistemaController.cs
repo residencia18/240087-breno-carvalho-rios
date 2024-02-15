@@ -37,7 +37,7 @@ namespace ResTIConnect.WebAPI.Controllers
         [HttpGet("system/user/{id}")]
         public IActionResult GetSistemasByUserId(int usuarioId)
         {
-            var sistemas = _sistemaService.GetUserById(usuarioId);
+            var sistemas = _sistemaService.GetById(usuarioId);
             return Ok(sistemas);
         }
 
@@ -54,7 +54,7 @@ namespace ResTIConnect.WebAPI.Controllers
                
         public IActionResult AdicionaSistemaAoEvento(int eventoId, int sistemaId)
         {
-                //_sistemaService.AdicionaSistemaAoEvento(eventoId, sistemaId);
+                _sistemaService.AdicionaSistemaAoEvento(eventoId, sistemaId);
                 return Ok("Evento adicionado ao sistema com sucesso");
            
         }
