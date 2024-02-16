@@ -7,21 +7,17 @@ using TechMed.Infrastructure.Persistence;
 
 namespace TechMed.Application.Services;
 
-public class PacienteService : IPacienteService
+public class PacienteService : BaseService, IPacienteService
 {
-    private readonly TechMedDbContext _context;
-    public PacienteService(TechMedDbContext context)
-    {
-        _context = context;
-    }
+    public PacienteService(TechMedDbContext context) : base(context) { }
 
-     private Paciente GetByDbId(int id)
+    public Paciente GetByDbId(int id)
     {
         var _paciente = _context.Pacientes.Find(id);
 
         if (_paciente is null)
             throw new PacienteNotFoundException();
-        
+
         return _paciente;
     }
 
@@ -92,7 +88,7 @@ public class PacienteService : IPacienteService
 
     public void Update(int id, NewPacienteInputModel medico)
     {
-       var _paciente = GetByDbId(id);
+        var _paciente = GetByDbId(id);
 
         _paciente.Nome = medico.Nome;
 

@@ -10,8 +10,13 @@ namespace TechMed.WebAPI.Controllers;
 public class MedicoController : ControllerBase
 {
    private readonly IMedicoService _medicoService;
+   private readonly IAtendimentoService _atendimentoService;
    public List<MedicoViewModel> Medicos => _medicoService.GetAll().ToList();
-   public MedicoController(IMedicoService service) => _medicoService = service;
+   public MedicoController(IMedicoService service, IAtendimentoService atendimentoService)
+   {
+      _medicoService = service;
+      _atendimentoService = atendimentoService;
+   }
 
    [HttpGet("medicos")]
    public IActionResult Get()
@@ -33,15 +38,7 @@ public class MedicoController : ControllerBase
    {
       _medicoService.Create(medico);
       return CreatedAtAction(nameof(Get), medico);
- 
-   }
 
-   [HttpPost("medico/{id}/atendimento")]
-   public IActionResult Post(int id, [FromBody] NewAtendimentoInputModel atendimento)
-   {
-      _medicoService.CreateAtendimento(id,atendimento);
-      return CreatedAtAction(nameof(Get), atendimento);
- 
    }
 
    [HttpPut("medico/{id}")]

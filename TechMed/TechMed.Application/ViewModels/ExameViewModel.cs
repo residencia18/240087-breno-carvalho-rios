@@ -10,6 +10,4 @@ public class ExameViewModel
     public required string Local { get; set; }
     public required DateTimeOffset DataHora { get; set; }
     public required string ResultadoDescricao { get; set; }
-    public AtendimentoViewModel Atendimento { get; set; } = null!;
-
 }

@@ -12,61 +12,48 @@ namespace TechMed.WebAPI.Controllers;
 public class AtendimentoController : ControllerBase
 {
    private readonly IAtendimentoService _atendimentoService;
+   private readonly IExameService _exameService;
    public List<AtendimentoViewModel> Atendimentos => _atendimentoService.GetAll();
-   public AtendimentoController(IAtendimentoService service) => _atendimentoService = service;
-   [HttpGet("atendimentos")]
-   public IActionResult Get()
+   public AtendimentoController(IAtendimentoService service, IExameService exameService)
    {
-      return Ok(Atendimentos);
-
+      _atendimentoService = service;
+      _exameService = exameService;
    }
 
    [HttpPost("atendimento")]
    public IActionResult Post([FromBody] NewAtendimentoInputModel atendimento)
    {
-      _atendimentoService.Create(atendimento);
-      return CreatedAtAction(nameof(Get), atendimento);
- 
+      var atendimentoId = _atendimentoService.Create(atendimento);
+      return CreatedAtAction(nameof(GetAtendimentoById), new { id = atendimentoId }, atendimento);
    }
 
    [HttpGet("atendimento/{id}")]
-   public IActionResult GetAtendimentoById(int id){
+   public IActionResult GetAtendimentoById(int id)
+   {
       var atendimento = _atendimentoService.GetById(id);
 
-      
       if (atendimento is null)
          return NoContent();
       return Ok(atendimento);
    }
-   [HttpGet("medico/{id}/atendimentos")]
-   public IActionResult GetAtendimentosByMedico(int medicoId){
-      var atendimentos = _atendimentoService.GetByMedicoId(medicoId);
 
-      
-      if (atendimentos is null)
-         return NoContent();
-      return Ok(atendimentos);
+   [HttpGet("atendimentos")]
+   public IActionResult Get()
+   {
+      return Ok(Atendimentos);
    }
 
-   
-   [HttpGet("paciente/{id}/atendimentos")]
-   public IActionResult GetAtendimentosByPaciente(int pacienteId){
-      var atendimentos = _atendimentoService.GetByPacienteId(pacienteId);
-
-      
-      if (atendimentos is null)
-         return NoContent();
-      return Ok(atendimentos);
-   }
-   [HttpGet("atendimentos/periodo")]
-   public IActionResult Get(DateTime inicio, DateTime fim){
-      var atendimentos = _atendimentoService.GetByDateInterval(inicio, fim);
-
-      
-      if (atendimentos is null)
-         return NoContent();
-      return Ok(atendimentos);
+   [HttpPut("atendimento/{id}")]
+   public IActionResult Put(int id, [FromBody] NewAtendimentoInputModel atendimento)
+   {
+      _atendimentoService.Update(id, atendimento);
+      return Ok(_atendimentoService.GetById(id));
    }
 
-
+   [HttpDelete("atendimento/{id}")]
+   public IActionResult Delete(int id)
+   {
+      _atendimentoService.Delete(id);
+      return NoContent();
+   }
 }

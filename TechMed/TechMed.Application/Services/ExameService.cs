@@ -7,34 +7,32 @@ using TechMed.Infrastructure.Persistence;
 
 namespace TechMed.Application;
 
-public class ExameService : BaseService
+public class ExameService : BaseService, IExameService
 {
-    private readonly TechMedDbContext _atendimentoService;
-    public ExameService(TechMedDbContext context, IAtendimentoService atendimentoService) : base(context)
+    public ExameService(TechMedDbContext context) : base(context)
     {
-        _atendimentoService = (TechMedDbContext)atendimentoService;
     }
 
-     private Exame GetByDbId(int id)
+    public Exame GetByDbId(int id)
     {
         var _exame = _context.Exames.Find(id);
 
         if (_exame is null)
             throw new ExameNotFoundException();
-        
+
         return _exame;
     }
 
     public int Create(NewExameInputModel exame)
     {
-         var _exame = new Exame
+        var _exame = new Exame
         {
-           Nome = exame.Nome,
-           Valor = exame.Valor,
-           Local = exame.Local,
-           DataHora = exame.DataHora,
-           ResultadoDescricao = exame.ResultadoDescricao,
-           AtendimentoId = exame.AtendimentoId
+            Nome = exame.Nome,
+            Valor = exame.Valor,
+            Local = exame.Local,
+            DataHora = exame.DataHora,
+            ResultadoDescricao = exame.ResultadoDescricao,
+            AtendimentoId = exame.AtendimentoId
         };
         _context.Exames.Add(_exame);
 
@@ -78,5 +76,33 @@ public class ExameService : BaseService
         _context.Exames.Update(_exame);
 
         _context.SaveChanges();
+    }
+
+    public ExameViewModel? GetById(int id)
+    {
+        var _exame = GetByDbId(id);
+
+        return new ExameViewModel
+        {
+            Nome = _exame.Nome,
+            DataHora = _exame.DataHora,
+            Local = _exame.Local,
+            ResultadoDescricao = _exame.ResultadoDescricao,
+            Valor = _exame.Valor
+        };
+    }
+
+    public List<ExameViewModel> GetByAtendimentoId(int id)
+    {
+        var _exames = _context.Exames.Where(m => m.AtendimentoId == id).Select(exame => new ExameViewModel
+        {
+            Nome = exame.Nome,
+            DataHora = exame.DataHora,
+            Local = exame.Local,
+            ResultadoDescricao = exame.ResultadoDescricao,
+            Valor = exame.Valor
+        }).ToList();
+
+        return _exames;
     }
 }

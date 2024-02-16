@@ -10,8 +10,13 @@ namespace TechMed.WebAPI.Controllers;
 public class PacienteController : ControllerBase
 {
    private readonly IPacienteService _pacienteService;
+   private readonly IAtendimentoService _atendimentoService;
    public List<PacienteViewModel> Pacientes => _pacienteService.GetAll();
-   public PacienteController(IPacienteService service) => _pacienteService = service;
+   public PacienteController(IPacienteService service, IAtendimentoService atendimentoService)
+   {
+      _pacienteService = service;
+      _atendimentoService = atendimentoService;
+   }
 
    [HttpGet("pacientes")]
    public IActionResult Get()
@@ -33,7 +38,7 @@ public class PacienteController : ControllerBase
 
       //service.Create(paciente);
       return CreatedAtAction(nameof(Get), paciente);
- 
+
    }
 
    [HttpPut("paciente/{id}")]

@@ -7,6 +7,6 @@ public class AtendimentoViewModel
     public required DateTimeOffset DataHoraFim { get; set; }
     public required string SuspeitaInicial { get; set; }
     public required string Diagnostico { get; set; }
-    public PacienteViewModel Paciente { get; set; } = null!;
-    public MedicoViewModel Medico { get; set; } = null!;
+    public required PacienteViewModel Paciente { get; set; } = null!;
+    public required MedicoViewModel Medico { get; set; } = null!;
 }
