@@ -21,13 +21,13 @@ public class PacienteService : BaseService, IPacienteService
         return _paciente;
     }
 
-    public int Create(NewPacienteInputModel medico)
+    public int Create(NewPacienteInputModel paciente)
     {
         var _paciente = new Paciente
         {
-            Nome = medico.Nome,
-            Cpf = medico.Cpf,
-            DataNascimento = medico.DataNascimento
+            Nome = paciente.Nome,
+            Cpf = paciente.Cpf,
+            DataNascimento = paciente.DataNascimento
         };
         _context.Pacientes.Add(_paciente);
 
@@ -86,11 +86,13 @@ public class PacienteService : BaseService, IPacienteService
         return PacienteViewModel;
     }
 
-    public void Update(int id, NewPacienteInputModel medico)
+    public void Update(int id, NewPacienteInputModel paciente)
     {
         var _paciente = GetByDbId(id);
 
-        _paciente.Nome = medico.Nome;
+        _paciente.Nome = paciente.Nome;
+        _paciente.Cpf = paciente.Cpf;
+        _paciente.DataNascimento = paciente.DataNascimento;
 
         _context.Pacientes.Update(_paciente);
 
