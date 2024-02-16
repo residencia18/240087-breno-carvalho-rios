@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
+using ResTIConnect.Domain.Entities;
 using System;
 
 namespace ResTIConnect.WebAPI.Controllers
@@ -11,6 +12,7 @@ namespace ResTIConnect.WebAPI.Controllers
     public class EventoController : ControllerBase
     {
         private readonly IEventoService _eventoService;
+        public List<EventoViewModel> Eventos => _eventoService.GetAll();
 
         public EventoController(IEventoService eventoService)
         {
@@ -46,6 +48,12 @@ namespace ResTIConnect.WebAPI.Controllers
             {
                 return BadRequest(new { error = ex.Message });
             }
+        }
+
+        [HttpGet("eventos")]
+        public IActionResult Get()
+        {
+            return Ok(Eventos);
         }
 
         [HttpPut("eventos/{id}")]

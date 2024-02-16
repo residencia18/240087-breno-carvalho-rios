@@ -1,9 +1,7 @@
-
-namespace ResTIConnect.Application.ViewModels
+namespace ResTIConnect.Application.InputModels
 {
-    public class SistemaViewModel
+    public class NewSistemaInputModel
     {
-        public int SistemaId { get; set; }
         public required string Descricao { get; set; }
         public required string Tipo { get; set; }
         public required string Status { get; set; }
@@ -11,7 +9,6 @@ namespace ResTIConnect.Application.ViewModels
         public required string EnderecoSaida { get; set; }
         public required string Protocolo { get; set; }
         public required DateTimeOffset DataHoraInicioIntegracao { get; set; }
-        public required List<UsuarioViewModel> Usuarios { get; set; }
-        public required List<EventoViewModel> Eventos { get; set; }
+        public required List<int> UsuariosId { get; set; }
     }
 }

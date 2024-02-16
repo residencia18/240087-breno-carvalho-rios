@@ -18,7 +18,7 @@ namespace ResTIConnect.WebAPI.Controllers
             _usuarioService = usuarioService;
         }
 
-        [HttpGet("usuario")]
+        [HttpGet("usuarios")]
         public IActionResult Get()
         {
             return Ok(Usuarios);

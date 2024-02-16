@@ -30,35 +30,43 @@ namespace ResTIConnect.WebAPI.Controllers
         public IActionResult Post([FromBody] NewSistemaInputModel sistema)
         {
             _sistemaService.Create(sistema);
-
             return CreatedAtAction(nameof(Get), sistema);
-
         }
-        [HttpGet("system/user/{id}")]
+
+        [HttpGet("sistema/usuario/{id}")]
         public IActionResult GetSistemasByUserId(int usuarioId)
         {
             var sistemas = _sistemaService.GetById(usuarioId);
             return Ok(sistemas);
         }
 
-        [HttpGet("system/event/{type}/from/{date}")] 
-        public IActionResult GetSistemasByEventoTipoByData(String tipo, DateTime dataInicio)
-        {
+        // [HttpGet("sistema/evento/{tipo}/from/{dataInicio}")] 
+        // public IActionResult GetSistemasByEventoTipoByData(String tipo, DateTime dataInicio)
+        // {
 
-            var sistemas = _sistemaService.GetByEventoPeriodos(tipo, dataInicio);
-            return Ok(sistemas);
+        //     var sistemas = _sistemaService.GetByEventoPeriodos(tipo, dataInicio);
+        //     return Ok(sistemas);
              
-        }
-         [HttpPut("evento/{eventoId}/sistema/{sistemaId}")]
-               
-               
-        public IActionResult AdicionaSistemaAoEvento(int eventoId, int sistemaId)
+        // }
+        
+        [HttpPut("sistema/{sistemaId}/evento")]
+        public IActionResult AdicionaEventoAoSistema(int sistemaId, [FromBody] int eventoId)
         {
-                _sistemaService.AdicionaSistemaAoEvento(eventoId, sistemaId);
-                return Ok("Evento adicionado ao sistema com sucesso");
-           
+            _sistemaService.AdicionaEventoAoSistema(eventoId, sistemaId);
+            return Ok("Evento adicionado ao sistema com sucesso");
+        }
+
+        [HttpPut("sistema/{id}")]
+        public IActionResult Put(int id, [FromBody] NewSistemaInputModel sistema)
+        {
+            _sistemaService.Update(id, sistema);
+            return Ok(sistema);
         }
         
-
+        [HttpDelete("sistema/{id}")]
+        public IActionResult Delete(int id){
+            _sistemaService.Delete(id);
+            return NoContent();
+        }
     }
 }

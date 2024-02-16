@@ -12,23 +12,45 @@ namespace ResTIConnect.Application.Services
     public class SistemaService : ISistemaService
     {
         private readonly ResTIConnectDbContext _context;
-        public SistemaService(ResTIConnectDbContext context)
+        private readonly IUsuarioService _usuarioService;
+        private readonly IEventoService _eventoService;
+        public SistemaService(ResTIConnectDbContext context, IUsuarioService usuarioService, IEventoService eventoService)
         {
             _context = context;
+            _usuarioService = usuarioService;
+            _eventoService = eventoService;
         }
+
         public int Create(NewSistemaInputModel sistema)
         {
+            if(sistema.UsuariosId.Count < 1)
+            {
+                throw new EmptyUsersListException();
+            }
+
             var _sistema = new Sistema
             {
                 Descricao = sistema.Descricao,
-                Tipo = sistema.Tipo
+                Tipo = sistema.Tipo,
+                DataHoraInicioIntegracao = sistema.DataHoraInicioIntegracao,
+                EnderecoEntrada = sistema.EnderecoEntrada,
+                EnderecoSaida = sistema.EnderecoSaida,
+                Protocolo = sistema.Protocolo,
+                Status = sistema.Status,
+                Usuarios = new List<Usuario>()
             };
+
+            foreach (var usuarioId in sistema.UsuariosId)
+            {
+                _sistema.Usuarios!.Add(_usuarioService.GetByDbId(usuarioId));
+            }
 
             _context.Sistemas.Add(_sistema);
             _context.SaveChanges();
 
             return _sistema.SistemaId;
         }
+
         public List<SistemaViewModel> GetAll()
         {
             var sistemas = _context.Sistemas
@@ -36,12 +58,20 @@ namespace ResTIConnect.Application.Services
                 {
                     SistemaId = s.SistemaId,
                     Descricao = s.Descricao,
-                    Tipo = s.Tipo
+                    Tipo = s.Tipo,
+                    DataHoraInicioIntegracao = s.DataHoraInicioIntegracao,
+                    EnderecoEntrada = s.EnderecoEntrada,
+                    EnderecoSaida = s.EnderecoSaida,
+                    Protocolo = s.Protocolo,
+                    Status = s.Status,
+                    Eventos = _eventoService.GetBySistemaId(s.SistemaId),
+                    Usuarios = _usuarioService.GetBySistemaId(s.SistemaId)
                 })
                 .ToList();
 
             return sistemas;
         }
+
         public List<SistemaViewModel> GetByEventoPeriodos(string tipoEvento, DateTime inicio)
         {
             var sistemas = _context.Sistemas
@@ -50,12 +80,36 @@ namespace ResTIConnect.Application.Services
                 {
                     SistemaId = s.SistemaId,
                     Descricao = s.Descricao,
-                    Tipo = s.Tipo
+                    Tipo = s.Tipo,
+                    DataHoraInicioIntegracao = s.DataHoraInicioIntegracao,
+                    EnderecoEntrada = s.EnderecoEntrada,
+                    EnderecoSaida = s.EnderecoSaida,
+                    Protocolo = s.Protocolo,
+                    Status = s.Status,
+                    Eventos = s.Eventos!.Select(e => new EventoViewModel
+                    {
+                        EventoId = e.EventoId,
+                        Tipo = e.Tipo,
+                        Descricao = e.Descricao,
+                        Codigo = e.Codigo,
+                        Conteudo = e.Conteudo,
+                        DataHoraOcorrencia = e.DataHoraOcorrencia
+                    }).ToList(),
+                    Usuarios = s.Usuarios!.Select(u => new UsuarioViewModel
+                    {
+                        UsuarioId = u.UsuarioId,
+                        Nome = u.Nome,
+                        Senha = u.Senha,
+                        Email = u.Email,
+                        Apelido = u.Apelido ?? "",
+                        Telefone = u.Telefone,
+                    }).ToList()
                 })
                 .ToList();
 
             return sistemas;
         }
+
         public SistemaViewModel GetById(int id)
         {
             var sistema = _context.Sistemas.Find(id);
@@ -65,11 +119,19 @@ namespace ResTIConnect.Application.Services
                 {
                     SistemaId = sistema.SistemaId,
                     Descricao = sistema.Descricao,
-                    Tipo = sistema.Tipo
+                    Tipo = sistema.Tipo,
+                    DataHoraInicioIntegracao = sistema.DataHoraInicioIntegracao,
+                    EnderecoEntrada = sistema.EnderecoEntrada,
+                    EnderecoSaida = sistema.EnderecoSaida,
+                    Protocolo = sistema.Protocolo,
+                    Status = sistema.Status,
+                    Eventos = _eventoService.GetBySistemaId(id),
+                    Usuarios = _usuarioService.GetBySistemaId(id),
                 };
             }
             throw new SistemaNotFoundException();
         }
+
         public List<SistemaViewModel> GetUserById(int usuarioId)
         {
             var sistemas = _context.Sistemas
@@ -78,31 +140,60 @@ namespace ResTIConnect.Application.Services
                 {
                     SistemaId = s.SistemaId,
                     Descricao = s.Descricao,
-                    Tipo = s.Tipo
+                    Tipo = s.Tipo,
+                    DataHoraInicioIntegracao = s.DataHoraInicioIntegracao,
+                    EnderecoEntrada = s.EnderecoEntrada,
+                    EnderecoSaida = s.EnderecoSaida,
+                    Protocolo = s.Protocolo,
+                    Status = s.Status,
+                    Eventos = s.Eventos!.Select(e => new EventoViewModel
+                    {
+                        EventoId = e.EventoId,
+                        Tipo = e.Tipo,
+                        Descricao = e.Descricao,
+                        Codigo = e.Codigo,
+                        Conteudo = e.Conteudo,
+                        DataHoraOcorrencia = e.DataHoraOcorrencia
+                    }).ToList(),
+                    Usuarios = s.Usuarios!.Select(u => new UsuarioViewModel
+                    {
+                        UsuarioId = u.UsuarioId,
+                        Nome = u.Nome,
+                        Senha = u.Senha,
+                        Email = u.Email,
+                        Apelido = u.Apelido ?? "",
+                        Telefone = u.Telefone,
+                    }).ToList()
                 })
                 .ToList();
 
             return sistemas;
         }
-        public void AdicionaSistemaAoEvento(int EventoId, int sistemaId)
+
+        public void AdicionaEventoAoSistema(int eventoId, int sistemaId)
         {
-            var _evento = _context.Eventos.Find(EventoId);
-            if (_evento is null)
-                throw new EventoNotFoundException();
+            var _evento = _eventoService.GetByDbId(eventoId);
+            var _sistema = GetByDbId(sistemaId);
 
-            var _sistema = _context.Sistemas.Find(sistemaId);
-            if (_sistema is null)
-                throw new SistemaNotFoundException();
-
-            _evento.Sistemas!.Add(_sistema);
+            _sistema.Eventos.Add(_evento);
+            
+            _context.Sistemas.Update(_sistema);
             _context.SaveChanges();
         }
 
         public void Update(int id, NewSistemaInputModel entity)
         {
             var _sistema = GetByDbId(id);
+            
             _sistema.Descricao = entity.Descricao;
             _sistema.Tipo = entity.Tipo;
+            _sistema.DataHoraInicioIntegracao = entity.DataHoraInicioIntegracao;
+            _sistema.EnderecoEntrada = entity.EnderecoEntrada;
+            _sistema.EnderecoSaida = entity.EnderecoSaida;
+            _sistema.Protocolo = entity.Protocolo;
+            _sistema.Status = entity.Status;
+            
+            _context.Sistemas.Update(_sistema);
             _context.SaveChanges();
         }
 
