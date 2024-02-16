@@ -25,7 +25,7 @@ namespace ResTIConnect.WebAPI.Controllers
             var sistema = _sistemaService.GetById(id);
             return Ok(sistema);
         }
-        
+
         [HttpPost("sistema")]
         public IActionResult Post([FromBody] NewSistemaInputModel sistema)
         {
@@ -33,27 +33,34 @@ namespace ResTIConnect.WebAPI.Controllers
             return CreatedAtAction(nameof(Get), sistema);
         }
 
-        [HttpGet("sistema/usuario/{id}")]
+        [HttpGet("sistema/usuario/{usuarioId}")]
         public IActionResult GetSistemasByUserId(int usuarioId)
         {
-            var sistemas = _sistemaService.GetById(usuarioId);
+            var sistemas = _sistemaService.GetSistemasByUserId(usuarioId);
             return Ok(sistemas);
         }
 
-        // [HttpGet("sistema/evento/{tipo}/from/{dataInicio}")] 
-        // public IActionResult GetSistemasByEventoTipoByData(String tipo, DateTime dataInicio)
-        // {
+        [HttpGet("sistema/evento/{tipo}/from/{dataInicio}")]
+        public IActionResult GetSistemasByEventoTipoByData(string tipo, DateTime dataInicio)
+        {
 
-        //     var sistemas = _sistemaService.GetByEventoPeriodos(tipo, dataInicio);
-        //     return Ok(sistemas);
-             
-        // }
-        
+            var sistemas = _sistemaService.GetByEventoPeriodos(tipo, dataInicio);
+            return Ok(sistemas);
+
+        }
+
         [HttpPut("sistema/{sistemaId}/evento")]
         public IActionResult AdicionaEventoAoSistema(int sistemaId, [FromBody] int eventoId)
         {
             _sistemaService.AdicionaEventoAoSistema(eventoId, sistemaId);
             return Ok("Evento adicionado ao sistema com sucesso");
+        }
+
+        [HttpPut("sistema/{sistemaId}/usuario")]
+        public IActionResult AdicionaUsuarioAoSistema(int sistemaId, [FromBody] int usuarioId)
+        {
+            _sistemaService.AdicionaUsuarioAoSistema(sistemaId, usuarioId);
+            return Ok("Usuário adicionado ao sistema com sucesso");
         }
 
         [HttpPut("sistema/{id}")]
@@ -62,9 +69,10 @@ namespace ResTIConnect.WebAPI.Controllers
             _sistemaService.Update(id, sistema);
             return Ok(sistema);
         }
-        
+
         [HttpDelete("sistema/{id}")]
-        public IActionResult Delete(int id){
+        public IActionResult Delete(int id)
+        {
             _sistemaService.Delete(id);
             return NoContent();
         }

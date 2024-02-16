@@ -23,7 +23,7 @@ namespace ResTIConnect.Application.Services
 
         public int Create(NewSistemaInputModel sistema)
         {
-            if(sistema.UsuariosId.Count < 1)
+            if (sistema.UsuariosId.Count < 1)
             {
                 throw new EmptyUsersListException();
             }
@@ -42,7 +42,8 @@ namespace ResTIConnect.Application.Services
 
             foreach (var usuarioId in sistema.UsuariosId)
             {
-                _sistema.Usuarios!.Add(_usuarioService.GetByDbId(usuarioId));
+                var _usuario = _usuarioService.GetByDbId(usuarioId);
+                _sistema.Usuarios!.Add(_usuario);
             }
 
             _context.Sistemas.Add(_sistema);
@@ -64,8 +65,35 @@ namespace ResTIConnect.Application.Services
                     EnderecoSaida = s.EnderecoSaida,
                     Protocolo = s.Protocolo,
                     Status = s.Status,
-                    Eventos = _eventoService.GetBySistemaId(s.SistemaId),
-                    Usuarios = _usuarioService.GetBySistemaId(s.SistemaId)
+                    Eventos = s.Eventos.Select(e => new EventoViewModel
+                    {
+                        EventoId = e.EventoId,
+                        Codigo = e.Codigo,
+                        DataHoraOcorrencia = e.DataHoraOcorrencia,
+                        Descricao = e.Descricao,
+                        Tipo = e.Tipo,
+                        Conteudo = e.Conteudo
+                    }).ToList(),
+                    Usuarios = s.Usuarios.Select(u => new UsuarioViewModel
+                    {
+                        Nome = u.Nome,
+                        Apelido = u.Apelido ?? "",
+                        Email = u.Email,
+                        Senha = u.Senha,
+                        Telefone = u.Telefone,
+                        Endereco = new EnderecoViewModel
+                        {
+                            Bairro = u.Endereco.Bairro,
+                            Cep = u.Endereco.Cep,
+                            Cidade = u.Endereco.Cidade,
+                            Complemento = u.Endereco.Complemento,
+                            EnderecoId = u.Endereco.EnderecoId,
+                            Estado = u.Endereco.Estado,
+                            Logradouro = u.Endereco.Logradouro,
+                            Numero = u.Endereco.Numero,
+                            Pais = u.Endereco.Pais
+                        }
+                    }).ToList()
                 })
                 .ToList();
 
@@ -86,23 +114,34 @@ namespace ResTIConnect.Application.Services
                     EnderecoSaida = s.EnderecoSaida,
                     Protocolo = s.Protocolo,
                     Status = s.Status,
-                    Eventos = s.Eventos!.Select(e => new EventoViewModel
+                    Eventos = s.Eventos.Select(e => new EventoViewModel
                     {
                         EventoId = e.EventoId,
-                        Tipo = e.Tipo,
-                        Descricao = e.Descricao,
                         Codigo = e.Codigo,
-                        Conteudo = e.Conteudo,
-                        DataHoraOcorrencia = e.DataHoraOcorrencia
+                        DataHoraOcorrencia = e.DataHoraOcorrencia,
+                        Descricao = e.Descricao,
+                        Tipo = e.Tipo,
+                        Conteudo = e.Conteudo
                     }).ToList(),
-                    Usuarios = s.Usuarios!.Select(u => new UsuarioViewModel
+                    Usuarios = s.Usuarios.Select(u => new UsuarioViewModel
                     {
-                        UsuarioId = u.UsuarioId,
                         Nome = u.Nome,
-                        Senha = u.Senha,
-                        Email = u.Email,
                         Apelido = u.Apelido ?? "",
+                        Email = u.Email,
+                        Senha = u.Senha,
                         Telefone = u.Telefone,
+                        Endereco = new EnderecoViewModel
+                        {
+                            Bairro = u.Endereco.Bairro,
+                            Cep = u.Endereco.Cep,
+                            Cidade = u.Endereco.Cidade,
+                            Complemento = u.Endereco.Complemento,
+                            EnderecoId = u.Endereco.EnderecoId,
+                            Estado = u.Endereco.Estado,
+                            Logradouro = u.Endereco.Logradouro,
+                            Numero = u.Endereco.Numero,
+                            Pais = u.Endereco.Pais
+                        }
                     }).ToList()
                 })
                 .ToList();
@@ -115,6 +154,8 @@ namespace ResTIConnect.Application.Services
             var sistema = _context.Sistemas.Find(id);
             if (sistema != null)
             {
+                var _eventos = _eventoService.GetBySistemaId(id);
+                var _usuarios = _usuarioService.GetBySistemaId(id);
                 return new SistemaViewModel
                 {
                     SistemaId = sistema.SistemaId,
@@ -125,14 +166,14 @@ namespace ResTIConnect.Application.Services
                     EnderecoSaida = sistema.EnderecoSaida,
                     Protocolo = sistema.Protocolo,
                     Status = sistema.Status,
-                    Eventos = _eventoService.GetBySistemaId(id),
-                    Usuarios = _usuarioService.GetBySistemaId(id),
+                    Eventos = _eventos,
+                    Usuarios = _usuarios
                 };
             }
             throw new SistemaNotFoundException();
         }
 
-        public List<SistemaViewModel> GetUserById(int usuarioId)
+        public List<SistemaViewModel> GetSistemasByUserId(int usuarioId)
         {
             var sistemas = _context.Sistemas
                 .Where(s => s.Usuarios!.Any(u => u.UsuarioId == usuarioId))
@@ -146,23 +187,34 @@ namespace ResTIConnect.Application.Services
                     EnderecoSaida = s.EnderecoSaida,
                     Protocolo = s.Protocolo,
                     Status = s.Status,
-                    Eventos = s.Eventos!.Select(e => new EventoViewModel
+                    Eventos = s.Eventos.Select(e => new EventoViewModel
                     {
                         EventoId = e.EventoId,
-                        Tipo = e.Tipo,
-                        Descricao = e.Descricao,
                         Codigo = e.Codigo,
-                        Conteudo = e.Conteudo,
-                        DataHoraOcorrencia = e.DataHoraOcorrencia
+                        DataHoraOcorrencia = e.DataHoraOcorrencia,
+                        Descricao = e.Descricao,
+                        Tipo = e.Tipo,
+                        Conteudo = e.Conteudo
                     }).ToList(),
-                    Usuarios = s.Usuarios!.Select(u => new UsuarioViewModel
+                    Usuarios = s.Usuarios.Select(u => new UsuarioViewModel
                     {
-                        UsuarioId = u.UsuarioId,
                         Nome = u.Nome,
-                        Senha = u.Senha,
-                        Email = u.Email,
                         Apelido = u.Apelido ?? "",
+                        Email = u.Email,
+                        Senha = u.Senha,
                         Telefone = u.Telefone,
+                        Endereco = new EnderecoViewModel
+                        {
+                            Bairro = u.Endereco.Bairro,
+                            Cep = u.Endereco.Cep,
+                            Cidade = u.Endereco.Cidade,
+                            Complemento = u.Endereco.Complemento,
+                            EnderecoId = u.Endereco.EnderecoId,
+                            Estado = u.Endereco.Estado,
+                            Logradouro = u.Endereco.Logradouro,
+                            Numero = u.Endereco.Numero,
+                            Pais = u.Endereco.Pais
+                        }
                     }).ToList()
                 })
                 .ToList();
@@ -176,7 +228,18 @@ namespace ResTIConnect.Application.Services
             var _sistema = GetByDbId(sistemaId);
 
             _sistema.Eventos.Add(_evento);
-            
+
+            _context.Sistemas.Update(_sistema);
+            _context.SaveChanges();
+        }
+
+        public void AdicionaUsuarioAoSistema(int sistemaId, int usuarioId)
+        {
+            var _usuario = _usuarioService.GetByDbId(usuarioId);
+            var _sistema = GetByDbId(sistemaId);
+
+            _sistema.Usuarios.Add(_usuario);
+
             _context.Sistemas.Update(_sistema);
             _context.SaveChanges();
         }
@@ -184,7 +247,7 @@ namespace ResTIConnect.Application.Services
         public void Update(int id, NewSistemaInputModel entity)
         {
             var _sistema = GetByDbId(id);
-            
+
             _sistema.Descricao = entity.Descricao;
             _sistema.Tipo = entity.Tipo;
             _sistema.DataHoraInicioIntegracao = entity.DataHoraInicioIntegracao;
@@ -192,7 +255,7 @@ namespace ResTIConnect.Application.Services
             _sistema.EnderecoSaida = entity.EnderecoSaida;
             _sistema.Protocolo = entity.Protocolo;
             _sistema.Status = entity.Status;
-            
+
             _context.Sistemas.Update(_sistema);
             _context.SaveChanges();
         }
