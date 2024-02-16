@@ -10,6 +10,8 @@ public class SistemaConfiguration : IEntityTypeConfiguration<Sistema>
     {
         builder.ToTable("Sistemas").HasKey(m => m.SistemaId);
 
+        builder.HasMany(s => s.Usuarios).WithMany(u => u.Sistemas);
+
         builder.HasMany(s => s.Eventos).WithMany(ev => ev.Sistemas);
     }
 }

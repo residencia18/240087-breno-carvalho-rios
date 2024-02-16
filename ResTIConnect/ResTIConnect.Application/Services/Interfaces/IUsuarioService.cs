@@ -6,5 +6,6 @@ namespace ResTIConnect.Application.Services.Interfaces
 {
     public interface IUsuarioService : IBaseService<NewUsuarioInputModel, UsuarioViewModel, Usuario>
     {
+        List<UsuarioViewModel> GetBySistemaId(int sistemaId);
     }
 }

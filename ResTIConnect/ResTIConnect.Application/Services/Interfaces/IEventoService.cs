@@ -6,5 +6,6 @@ namespace ResTIConnect.Application.Services.Interfaces
 {
     public interface IEventoService : IBaseService<NewEventoInputModel, EventoViewModel, Evento>
     {
+        List<EventoViewModel> GetBySistemaId(int sistemaId);
     }
 }

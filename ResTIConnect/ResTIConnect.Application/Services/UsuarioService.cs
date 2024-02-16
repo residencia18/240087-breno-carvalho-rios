@@ -63,12 +63,30 @@ namespace ResTIConnect.Application.Services
             return user;
         }
 
+        public List<UsuarioViewModel> GetBySistemaId(int sistemaId)
+        {
+            var user = _context.Usuarios
+                .Where(u => u.Sistemas!.Any(s => s.SistemaId == sistemaId))
+                .Select(u => new UsuarioViewModel
+                {
+                    UsuarioId = u.UsuarioId,
+                    Nome = u.Nome,
+                    Apelido = u.Apelido ?? "",
+                    Email = u.Email,
+                    Senha = u.Senha,
+                    Telefone = u.Telefone
+                })
+                .ToList();
+
+            return user;
+        }
+
         public Usuario GetByDbId(int id)
         {
             var user = _context.Usuarios.Find(id);
 
             if (user is null)
-                throw new UserNotFoundException();
+                throw new UsuarioNotFoundException();
 
             return user;
         }

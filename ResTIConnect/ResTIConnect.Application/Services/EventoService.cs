@@ -20,7 +20,7 @@ namespace ResTIConnect.Application.Services
 
         public int Create(NewEventoInputModel evento)
         {
-            var novoEvento = new Evento
+            var _evento = new Evento
             {
                 Tipo = evento.Tipo,
                 Descricao = evento.Descricao,
@@ -30,10 +30,19 @@ namespace ResTIConnect.Application.Services
                 Sistemas = new List<Sistema>()
             };
 
-            _context.Eventos.Add(novoEvento);
+            foreach (var eventoId in evento.SistemasIds)
+            {
+                var _sistema = _context.Sistemas.Find(eventoId);
+                if (_sistema is null){
+                    throw new SistemaNotFoundException();
+                }
+                _evento.Sistemas!.Add(_sistema);
+            }
+
+            _context.Eventos.Add(_evento);
             _context.SaveChanges();
 
-            return novoEvento.EventoId;
+            return _evento.EventoId;
         }
 
         public void Delete(int id)
@@ -45,6 +54,24 @@ namespace ResTIConnect.Application.Services
         public List<EventoViewModel> GetAll()
         {
             var eventos = _context.Eventos
+                .Select(e => new EventoViewModel
+                {
+                    EventoId = e.EventoId,
+                    Tipo = e.Tipo,
+                    Descricao = e.Descricao,
+                    Codigo = e.Codigo,
+                    Conteudo = e.Conteudo,
+                    DataHoraOcorrencia = e.DataHoraOcorrencia
+                })
+                .ToList();
+
+            return eventos;
+        }
+
+        public List<EventoViewModel> GetBySistemaId(int sistemaId)
+        {
+            var eventos = _context.Eventos
+                .Where(e => e.Sistemas!.Any(e => e.SistemaId == sistemaId))
                 .Select(e => new EventoViewModel
                 {
                     EventoId = e.EventoId,

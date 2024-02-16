@@ -10,7 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IPerfilService, PerfilService>();
 builder.Services.AddScoped<IEnderecoService, EnderecoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<ISistemaService, SistemaService>();
 builder.Services.AddScoped<IEventoService, EventoService>();
+
 
 builder.Services.AddDbContext<ResTIConnectDbContext>(options =>
 {
@@ -19,7 +21,7 @@ builder.Services.AddDbContext<ResTIConnectDbContext>(options =>
     var serverVersion = ServerVersion.AutoDetect(connectionString);
 
     options.UseMySql(connectionString, serverVersion);
-});
+}, ServiceLifetime.Transient);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
