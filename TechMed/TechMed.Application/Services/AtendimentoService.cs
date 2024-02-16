@@ -11,11 +11,13 @@ public class AtendimentoService : BaseService, IAtendimentoService
 {
     private readonly IMedicoService _medicoService;
     private readonly IPacienteService _pacienteService;
+    private readonly IExameService _exameService;
 
-    public AtendimentoService(TechMedDbContext context, IMedicoService medicoService, IPacienteService pacienteService) : base(context)
+    public AtendimentoService(TechMedDbContext context, IMedicoService medicoService, IPacienteService pacienteService, IExameService exameService) : base(context)
     {
         _medicoService = medicoService;
         _pacienteService = pacienteService;
+        _exameService = exameService;
     }
 
     public Atendimento GetByDbId(int id)
@@ -66,7 +68,8 @@ public class AtendimentoService : BaseService, IAtendimentoService
             SuspeitaInicial = a.SuspeitaInicial,
             Diagnostico = a.Diagnostico,
             Medico = _medicoService.GetById(a.MedicoId)!,
-            Paciente = _pacienteService.GetById(a.PacienteId)!
+            Paciente = _pacienteService.GetById(a.PacienteId)!,
+            Exames = _exameService.GetByAtendimentoId(a.AtendimentoId)
         }).ToList();
 
         return _atendimentos;
@@ -83,7 +86,8 @@ public class AtendimentoService : BaseService, IAtendimentoService
             SuspeitaInicial = a.SuspeitaInicial,
             Diagnostico = a.Diagnostico,
             Medico = _medicoService.GetById(a.MedicoId)!,
-            Paciente = _pacienteService.GetById(a.PacienteId)!
+            Paciente = _pacienteService.GetById(a.PacienteId)!,
+            Exames = _exameService.GetByAtendimentoId(a.AtendimentoId)
         }).ToList();
 
         return _atendimentos;
@@ -101,7 +105,8 @@ public class AtendimentoService : BaseService, IAtendimentoService
             SuspeitaInicial = atendimentoDb.SuspeitaInicial,
             Diagnostico = atendimentoDb.Diagnostico,
             Medico = _medicoService.GetById(atendimentoDb.MedicoId)!,
-            Paciente = _pacienteService.GetById(atendimentoDb.PacienteId)!
+            Paciente = _pacienteService.GetById(atendimentoDb.PacienteId)!,
+            Exames = _exameService.GetByAtendimentoId(atendimentoDb.AtendimentoId)
         };
     }
 
@@ -117,8 +122,8 @@ public class AtendimentoService : BaseService, IAtendimentoService
             SuspeitaInicial = a.SuspeitaInicial,
             Diagnostico = a.Diagnostico,
             Medico = _medicoService.GetById(a.MedicoId)!,
-            Paciente = _pacienteService.GetById(a.PacienteId)!
-
+            Paciente = _pacienteService.GetById(a.PacienteId)!,
+            Exames = _exameService.GetByAtendimentoId(a.AtendimentoId)
         }).ToList();
 
         return _atendimentos;
@@ -136,7 +141,8 @@ public class AtendimentoService : BaseService, IAtendimentoService
             SuspeitaInicial = a.SuspeitaInicial,
             Diagnostico = a.Diagnostico,
             Medico = _medicoService.GetById(a.MedicoId)!,
-            Paciente = _pacienteService.GetById(a.PacienteId)!
+            Paciente = _pacienteService.GetById(a.PacienteId)!,
+            Exames = _exameService.GetByAtendimentoId(a.AtendimentoId)
         }).ToList();
 
         return _atendimentos;

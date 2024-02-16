@@ -37,6 +37,16 @@ public class AtendimentoController : ControllerBase
       return Ok(atendimento);
    }
 
+   [HttpGet("atendimentos/porPeriodo/{inicio}/{fim}")]
+   public IActionResult GetByDateInterval(DateTime inicio, DateTime fim)
+   {
+      var atendimentos = _atendimentoService.GetByDateInterval(inicio, fim);
+
+      if (atendimentos is null)
+         return NoContent();
+      return Ok(atendimentos);
+   }
+
    [HttpGet("atendimentos")]
    public IActionResult Get()
    {
@@ -55,5 +65,12 @@ public class AtendimentoController : ControllerBase
    {
       _atendimentoService.Delete(id);
       return NoContent();
+   }
+
+   [HttpGet("atendimentos/{id}/exames")]
+   public IActionResult GetExamesByAtendimento(int id)
+   {
+      var _exames = _exameService.GetByAtendimentoId(id);
+      return Ok(_exames);
    }
 }
