@@ -21,7 +21,7 @@ builder.Services.AddDbContext<ResTIConnectDbContext>(options =>
     var serverVersion = ServerVersion.AutoDetect(connectionString);
 
     options.UseMySql(connectionString, serverVersion);
-}, ServiceLifetime.Transient);
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

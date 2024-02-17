@@ -56,16 +56,58 @@ namespace ResTIConnect.Application.Services
                     Apelido = u.Apelido ?? "",
                     Email = u.Email,
                     Senha = u.Senha,
-                    Telefone = u.Telefone
+                    Telefone = u.Telefone,
+                    Endereco = new EnderecoViewModel
+                    {
+                        Bairro = u.Endereco.Bairro,
+                        Cep = u.Endereco.Cep,
+                        Cidade = u.Endereco.Cidade,
+                        Complemento = u.Endereco.Complemento,
+                        EnderecoId = u.Endereco.EnderecoId,
+                        Estado = u.Endereco.Estado,
+                        Logradouro = u.Endereco.Logradouro,
+                        Numero = u.Endereco.Numero,
+                        Pais = u.Endereco.Pais
+                    }
                 })
                 .ToList();
 
             return user;
         }
 
+        public List<UsuarioViewModel> GetByPerfilId(int perfilId)
+        {
+            var usuarios = _context.Usuarios
+                .Where(u => u.Perfis!.Any(p => p.PerfilId == perfilId))
+                .Select(u => new UsuarioViewModel
+                {
+                    UsuarioId = u.UsuarioId,
+                    Nome = u.Nome,
+                    Apelido = u.Apelido ?? "",
+                    Email = u.Email,
+                    Senha = u.Senha,
+                    Telefone = u.Telefone,
+                    Endereco = new EnderecoViewModel
+                    {
+                        Bairro = u.Endereco.Bairro,
+                        Cep = u.Endereco.Cep,
+                        Cidade = u.Endereco.Cidade,
+                        Complemento = u.Endereco.Complemento,
+                        EnderecoId = u.Endereco.EnderecoId,
+                        Estado = u.Endereco.Estado,
+                        Logradouro = u.Endereco.Logradouro,
+                        Numero = u.Endereco.Numero,
+                        Pais = u.Endereco.Pais
+                    }
+                })
+                .ToList();
+
+            return usuarios;
+        }
+
         public List<UsuarioViewModel> GetBySistemaId(int sistemaId)
         {
-            var user = _context.Usuarios
+            var usuarios = _context.Usuarios
                 .Where(u => u.Sistemas!.Any(s => s.SistemaId == sistemaId))
                 .Select(u => new UsuarioViewModel
                 {
@@ -74,11 +116,23 @@ namespace ResTIConnect.Application.Services
                     Apelido = u.Apelido ?? "",
                     Email = u.Email,
                     Senha = u.Senha,
-                    Telefone = u.Telefone
+                    Telefone = u.Telefone,
+                    Endereco = new EnderecoViewModel
+                    {
+                        Bairro = u.Endereco.Bairro,
+                        Cep = u.Endereco.Cep,
+                        Cidade = u.Endereco.Cidade,
+                        Complemento = u.Endereco.Complemento,
+                        EnderecoId = u.Endereco.EnderecoId,
+                        Estado = u.Endereco.Estado,
+                        Logradouro = u.Endereco.Logradouro,
+                        Numero = u.Endereco.Numero,
+                        Pais = u.Endereco.Pais
+                    }
                 })
                 .ToList();
 
-            return user;
+            return usuarios;
         }
 
         public Usuario GetByDbId(int id)
@@ -115,6 +169,7 @@ namespace ResTIConnect.Application.Services
         public UsuarioViewModel? GetById(int id)
         {
             var usuario = GetByDbId(id);
+            var _endereco = _enderecoservice.GetById(usuario.EnderecoId)!;
 
             var _usuarioViewModel = new UsuarioViewModel
             {
@@ -123,10 +178,41 @@ namespace ResTIConnect.Application.Services
                 Apelido = usuario.Apelido ?? "",
                 Email = usuario.Email,
                 Senha = usuario.Senha,
-                Telefone = usuario.Telefone
+                Telefone = usuario.Telefone,
+                Endereco = _endereco
             };
 
             return _usuarioViewModel;
+        }
+
+        public List<UsuarioViewModel> GetByEstado(string estado)
+        {
+            var usuarios = _context.Usuarios
+               .Where(u => u.Endereco.Estado == estado)
+               .Select(u => new UsuarioViewModel
+               {
+                   UsuarioId = u.UsuarioId,
+                   Nome = u.Nome,
+                   Apelido = u.Apelido ?? "",
+                   Email = u.Email,
+                   Senha = u.Senha,
+                   Telefone = u.Telefone,
+                   Endereco = new EnderecoViewModel
+                   {
+                       Bairro = u.Endereco.Bairro,
+                       Cep = u.Endereco.Cep,
+                       Cidade = u.Endereco.Cidade,
+                       Complemento = u.Endereco.Complemento,
+                       EnderecoId = u.Endereco.EnderecoId,
+                       Estado = u.Endereco.Estado,
+                       Logradouro = u.Endereco.Logradouro,
+                       Numero = u.Endereco.Numero,
+                       Pais = u.Endereco.Pais
+                   }
+               })
+               .ToList();
+
+            return usuarios;
         }
     }
 }

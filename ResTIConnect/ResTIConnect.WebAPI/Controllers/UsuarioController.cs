@@ -31,6 +31,20 @@ namespace ResTIConnect.WebAPI.Controllers
             return Ok(usuario);
         }
 
+        [HttpGet("usuario/perfil/{perfilId}")]
+        public IActionResult GetByPerfilId(int perfilId)
+        {
+            var usuario = _usuarioService.GetByPerfilId(perfilId);
+            return Ok(usuario);
+        }
+
+        [HttpGet("usuario/endereco/{estado}")]
+        public IActionResult GetByEstado(string estado)
+        {
+            var usuario = _usuarioService.GetByEstado(estado);
+            return Ok(usuario);
+        }
+
         [HttpPost("usuario")]
         public IActionResult Post([FromBody] NewUsuarioInputModel usuario)
         {
