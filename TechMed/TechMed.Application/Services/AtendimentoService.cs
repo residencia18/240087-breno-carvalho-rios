@@ -156,6 +156,8 @@ public class AtendimentoService : BaseService, IAtendimentoService
 
         _atendimento.SuspeitaInicial = atendimento.SuspeitaInicial;
         _atendimento.Diagnostico = atendimento.Diagnostico;
+        _atendimento.DataHoraInicio = atendimento.DataHoraInicio;
+        _atendimento.DataHoraFim = atendimento.DataHoraFim;
         _atendimento.MedicoId = _medico.MedicoId;
         _atendimento.PacienteId = _paciente.PacienteId;
 
