@@ -73,9 +73,11 @@ public class OrdemServicoService : IOrdemServicoService
     {
         var _ordemServico = _context.OrdensServico.Find(id) ?? throw new OrdemServicoNotFoundException();
 
-        foreach (var servico in _context.ServicosOrdensServico.Where(servico => servico.OrdemServicoId == _ordemServico.OrdemServicoId))
+        foreach (var servicoOrdemServico in _context.ServicosOrdensServico.Where(servico => servico.OrdemServicoId == _ordemServico.OrdemServicoId).ToList())
         {
-            _context.ServicosOrdensServico.Remove(servico);
+            var _endereco = _context.Enderecos.Find(servicoOrdemServico.EnderecoId) ?? throw new EnderecoNotFoundException();
+            _context.Enderecos.Remove(_endereco);
+            _context.ServicosOrdensServico.Remove(servicoOrdemServico);
         }
 
         _context.OrdensServico.Remove(_ordemServico);
@@ -130,13 +132,27 @@ public class OrdemServicoService : IOrdemServicoService
             },
             Servicos = _context.ServicosOrdensServico
                 .Where(servicoOrdemServico => servicoOrdemServico.OrdemServicoId == ordemServico.OrdemServicoId)
-                .Select(servicoOrdemServico => _context.Servicos.FirstOrDefault(servico => servico.ServicoId == servicoOrdemServico.ServicoId))
-                .Select(servico => new ServicoViewModel
+                .Select(servicoOrdemServico => new ServicoOrdemServicoViewModel
                 {
-                    ServicoId = servico!.ServicoId,
-                    Nome = servico!.Nome,
-                    Descricao = servico!.Descricao,
-                    Precos = servico!.Precos
+                    Servico = new ServicoViewModel
+                    {
+                        ServicoId = servicoOrdemServico.Servico!.ServicoId,
+                        Nome = servicoOrdemServico.Servico!.Nome,
+                        Descricao = servicoOrdemServico.Servico!.Descricao,
+                        Precos = servicoOrdemServico.Servico!.Precos
+                    },
+                    Endereco = new EnderecoViewModel
+                    {
+                        EnderecoId = servicoOrdemServico.Endereco!.EnderecoId,
+                        Logradouro = servicoOrdemServico.Endereco!.Logradouro,
+                        Bairro = servicoOrdemServico.Endereco!.Bairro,
+                        Numero = servicoOrdemServico.Endereco!.Numero,
+                        Complemento = servicoOrdemServico.Endereco!.Complemento,
+                        Cidade = servicoOrdemServico.Endereco!.Cidade,
+                        Estado = servicoOrdemServico.Endereco!.Estado,
+                        Pais = servicoOrdemServico.Endereco!.Pais,
+                        Cep = servicoOrdemServico.Endereco!.Cep,
+                    }
                 }).ToList(),
             Pagamentos = _context.Pagamentos.Select(pagamento => new PagamentoViewModel
             {
@@ -165,13 +181,27 @@ public class OrdemServicoService : IOrdemServicoService
             PrestadorDeServico = _prestadorDeServico,
             Servicos = _context.ServicosOrdensServico
                 .Where(servicoOrdemServico => servicoOrdemServico.OrdemServicoId == _ordemServicoDb.OrdemServicoId)
-                .Select(servicoOrdemServico => _context.Servicos.FirstOrDefault(servico => servico.ServicoId == servicoOrdemServico.ServicoId))
-                .Select(servico => new ServicoViewModel
+                .Select(servicoOrdemServico => new ServicoOrdemServicoViewModel
                 {
-                    ServicoId = servico!.ServicoId,
-                    Nome = servico!.Nome,
-                    Descricao = servico!.Descricao,
-                    Precos = servico!.Precos
+                    Servico = new ServicoViewModel
+                    {
+                        ServicoId = servicoOrdemServico.Servico!.ServicoId,
+                        Nome = servicoOrdemServico.Servico!.Nome,
+                        Descricao = servicoOrdemServico.Servico!.Descricao,
+                        Precos = servicoOrdemServico.Servico!.Precos
+                    },
+                    Endereco = new EnderecoViewModel
+                    {
+                        EnderecoId = servicoOrdemServico.Endereco!.EnderecoId,
+                        Logradouro = servicoOrdemServico.Endereco!.Logradouro,
+                        Bairro = servicoOrdemServico.Endereco!.Bairro,
+                        Numero = servicoOrdemServico.Endereco!.Numero,
+                        Complemento = servicoOrdemServico.Endereco!.Complemento,
+                        Cidade = servicoOrdemServico.Endereco!.Cidade,
+                        Estado = servicoOrdemServico.Endereco!.Estado,
+                        Pais = servicoOrdemServico.Endereco!.Pais,
+                        Cep = servicoOrdemServico.Endereco!.Cep,
+                    }
                 }).ToList(),
             Pagamentos = _context.Pagamentos.Select(pagamento => new PagamentoViewModel
             {
@@ -254,9 +284,9 @@ public class OrdemServicoService : IOrdemServicoService
                 && servicoOrdemServico.ServicoId == _servico.ServicoId
             ) ?? throw new ServicoNotFoundException();
 
-        // var _endereco = _context.Enderecos.Find(_servicoOrdemServico.EnderecoId)!;
+        var _endereco = _context.Enderecos.Find(_servicoOrdemServico.EnderecoId) ?? throw new EnderecoNotFoundException();
 
-        // _context.Enderecos.Remove(_endereco);
+        _context.Enderecos.Remove(_endereco);
         _context.ServicosOrdensServico.Remove(_servicoOrdemServico);
         _context.SaveChanges();
     }

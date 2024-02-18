@@ -9,6 +9,6 @@ public class OrdemServicoViewModel
     public required string Status { get; set; }
     public required ClienteViewModel Cliente { get; set; }
     public required PrestadorDeServicoViewModel PrestadorDeServico { get; set; }
-    public ICollection<ServicoViewModel> Servicos { get; set; } = new List<ServicoViewModel>();
+    public ICollection<ServicoOrdemServicoViewModel> Servicos { get; set; } = new List<ServicoOrdemServicoViewModel>();
     public ICollection<PagamentoViewModel> Pagamentos { get; set; } = new List<PagamentoViewModel>();
 }
