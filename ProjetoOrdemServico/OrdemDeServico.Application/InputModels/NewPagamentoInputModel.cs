@@ -1,8 +1,8 @@
 namespace OrdemDeServico.Application.InputModels;
 public class NewPagamentoInputModel
 {
-    public required double Valor { get; set; }
-    public required DateTime Data_pagamento { get; set; }
-    public required string Metodo_pagamento { get; set; }
+    public required float Valor { get; set; }
+    public required DateTime DataPagamento { get; set; }
+    public required string MetodoPagamento { get; set; }
     public required int OrdemServicoId { get; set; }
 }
