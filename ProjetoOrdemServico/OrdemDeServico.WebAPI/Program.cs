@@ -10,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IEnderecoService, EnderecoService>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IPrestadorDeServicoService, PrestadorDeServicoService>();
+builder.Services.AddScoped<IServicoOrdemServicoService, ServicoOrdemServicoService>();
+builder.Services.AddScoped<IServicoService, ServicoService>();
 
 builder.Services.AddDbContext<OrdemDeServicoContext>(options =>
 {
