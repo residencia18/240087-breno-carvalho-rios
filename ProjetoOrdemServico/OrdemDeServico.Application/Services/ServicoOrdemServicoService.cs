@@ -23,12 +23,26 @@ namespace OrdemDeServico.Application.Services
 
         public int Create(NewServicoOrdemServicoInputModel servicoOrdemServico)
         {
+            var _endereco = new Endereco
+            {
+                Logradouro = servicoOrdemServico.Endereco.Logradouro,
+                Bairro = servicoOrdemServico.Endereco.Bairro,
+                Numero = servicoOrdemServico.Endereco.Numero,
+                Complemento = servicoOrdemServico.Endereco.Complemento,
+                Cidade = servicoOrdemServico.Endereco.Cidade,
+                Estado = servicoOrdemServico.Endereco.Estado,
+                Pais = servicoOrdemServico.Endereco.Pais,
+                Cep = servicoOrdemServico.Endereco.Cep,
+            };
+
+            _context.Add(_endereco);
+
             var _servicoOrdemServico = new ServicoOrdemServico
             {
                 ServicoId = servicoOrdemServico.ServicoId,
                 OrdemServicoId = servicoOrdemServico.OrdemServicoId,
-                EnderecoId = servicoOrdemServico.EnderecoId,
-                
+                EnderecoId = _endereco.EnderecoId,
+
             };
 
             _context.ServicosOrdensServico.Add(_servicoOrdemServico);
@@ -37,44 +51,45 @@ namespace OrdemDeServico.Application.Services
             return _servicoOrdemServico.ServicoOrdemServicoId;
         }
         public void Delete(int id)
-    {
-        var _ServicoOrdemServicoDb = _context.ServicosOrdensServico.Find(id);
-
-        if (_ServicoOrdemServicoDb is not null)
         {
-            _context.ServicosOrdensServico.Remove(_ServicoOrdemServicoDb);
+            var _ServicoOrdemServicoDb = _context.ServicosOrdensServico.Find(id);
+
+            if (_ServicoOrdemServicoDb is not null)
+            {
+                _context.ServicosOrdensServico.Remove(_ServicoOrdemServicoDb);
+                _context.SaveChanges();
+            }
+        }
+        public void Update(int id, NewServicoOrdemServicoInputModel servicoOrdemServico)
+        {
+            var _servicoOrdemServicoDb = _context.ServicosOrdensServico.Find(id);
+
+            if (_servicoOrdemServicoDb is null)
+            {
+                return;
+            }
+
+            _enderecoService.Update(_servicoOrdemServicoDb.EnderecoId, servicoOrdemServico.Endereco);
+
+            _servicoOrdemServicoDb.ServicoId = servicoOrdemServico.ServicoId;
+            _servicoOrdemServicoDb.OrdemServicoId = servicoOrdemServico.OrdemServicoId;
+
+            _context.ServicosOrdensServico.Update(_servicoOrdemServicoDb);
             _context.SaveChanges();
         }
-    }
-        public void Update(int id, NewServicoOrdemServicoInputModel servicoOrdemServico)
-    {
-        var _servicoOrdemServicoDb = _context.ServicosOrdensServico.Find(id);
-
-        if (_servicoOrdemServicoDb  is null)
+        public ICollection<ServicoOrdemServicoViewModel> GetAll()
         {
-            return;
+            var _servicoOrdemServico = _context.ServicosOrdensServico.Select(servicoOrdemServico => new ServicoOrdemServicoViewModel
+            {
+                ServicoId = servicoOrdemServico.ServicoId,
+                OrdemServicoId = servicoOrdemServico.OrdemServicoId,
+                EnderecoId = servicoOrdemServico.EnderecoId,
+
+            }).ToArray();
+
+            return _servicoOrdemServico;
         }
 
-        _servicoOrdemServicoDb.ServicoId = servicoOrdemServico.ServicoId;
-        _servicoOrdemServicoDb.OrdemServicoId = servicoOrdemServico.OrdemServicoId;
-        _servicoOrdemServicoDb.EnderecoId = servicoOrdemServico.EnderecoId;
-        
-        _context.ServicosOrdensServico.Update(_servicoOrdemServicoDb);
-        _context.SaveChanges();
-    }
-    public ICollection<ServicoOrdemServicoViewModel> GetAll()
-    {
-        var _servicoOrdemServico  = _context.ServicosOrdensServico.Select(servicoOrdemServico => new ServicoOrdemServicoViewModel
-        {
-            ServicoId = servicoOrdemServico.ServicoId,
-            OrdemServicoId = servicoOrdemServico.OrdemServicoId,
-            EnderecoId = servicoOrdemServico.EnderecoId,
-        
-        }).ToArray();
-
-        return _servicoOrdemServico ;
-    }
-        
         public ServicoOrdemServicoViewModel? GetById(int id)
         {
             var _servicoOrdemServicoDb = _context.ServicosOrdensServico.Find(id);
@@ -84,7 +99,7 @@ namespace OrdemDeServico.Application.Services
                 return null;
             }
 
-            
+
             var _servicoOrdemServico = new ServicoOrdemServicoViewModel
             {
                 ServicoOrdemServicoId = _servicoOrdemServicoDb.ServicoOrdemServicoId,
@@ -93,7 +108,7 @@ namespace OrdemDeServico.Application.Services
                 EnderecoId = _servicoOrdemServicoDb.EnderecoId
 
             };
-                          
+
 
             return _servicoOrdemServico;
         }
