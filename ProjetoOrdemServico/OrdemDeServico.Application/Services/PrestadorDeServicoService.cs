@@ -132,4 +132,29 @@ public class PrestadorDeServicoService : IPrestadorDeServicoService
         };
         return _prestadorDeServico;
     }
+    public List<PrestadorDeServicoViewModel> GetByEspecialidade(string especialidade)
+    {
+        var _prestadoresDeServico = _context.PrestadoresDeServico
+            .Where(prestadorDeServico => prestadorDeServico.Especialidade == especialidade)
+            .Select(prestadorDeServico => new PrestadorDeServicoViewModel
+            {
+                PrestadorDeServicoId = prestadorDeServico.PrestadorDeServicoId,
+                Nome = prestadorDeServico.Nome,
+                Especialidade = prestadorDeServico.Especialidade,
+                Telefone = prestadorDeServico.Telefone,
+                Endereco = new EnderecoViewModel
+                {
+                    Logradouro = prestadorDeServico.Endereco.Logradouro,
+                    Bairro = prestadorDeServico.Endereco.Bairro,
+                    Numero = prestadorDeServico.Endereco.Numero,
+                    Complemento = prestadorDeServico.Endereco.Complemento,
+                    Cidade = prestadorDeServico.Endereco.Cidade,
+                    Estado = prestadorDeServico.Endereco.Estado,
+                    Pais = prestadorDeServico.Endereco.Pais,
+                    Cep = prestadorDeServico.Endereco.Cep,
+                }
+            }).ToList();
+
+        return _prestadoresDeServico;
+    }
 }
