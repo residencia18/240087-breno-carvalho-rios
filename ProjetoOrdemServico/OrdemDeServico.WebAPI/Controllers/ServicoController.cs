@@ -34,6 +34,13 @@ namespace OrdemDeServico.WebAPI.Controllers
             return Ok(servico);
         }
 
+        [HttpGet("servico-nome/{nome}")]
+        public IActionResult GetByNome(string nome)
+        {
+            var servico = _servicoService.GetByNome(nome);
+            return Ok(servico);
+        }
+
         [HttpPost("servico")]
         public IActionResult Post([FromBody] NewServicoInputModel servicoInputModel)
         {

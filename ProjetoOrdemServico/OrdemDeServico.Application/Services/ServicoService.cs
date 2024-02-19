@@ -59,7 +59,7 @@ namespace OrdemDeServico.Application.Services
             return servicos;
         }
 
-        public ServicoViewModel GetById(int id)
+        public ServicoViewModel? GetById(int id)
         {
             var servico = _context.Servicos.Find(id);
 
@@ -90,6 +90,21 @@ namespace OrdemDeServico.Application.Services
                 _context.Servicos.Update(servicoToUpdate);
                 _context.SaveChanges();
             }
+        }
+
+        public List<ServicoViewModel> GetByNome(string nome)
+        {
+            var servicos = _context.Servicos
+                .Where(servico => servico.Nome == nome)
+                .Select(servico => new ServicoViewModel
+                {
+                    ServicoId = servico.ServicoId,
+                    Nome = servico.Nome,
+                    Descricao = servico.Descricao,
+                    Precos = servico.Precos
+                }).ToList();
+
+            return servicos;
         }
     }
 }

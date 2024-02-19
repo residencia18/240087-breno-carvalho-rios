@@ -90,4 +90,19 @@ public class PagamentoService : IPagamentoService
             _context.SaveChanges();
         }
     }
+
+    public List<PagamentoViewModel> GetPagamentoByMetodo(string metodoDePagamento)
+    {
+        var _pagamentos = _context.Pagamentos
+            .Where(pagamento => pagamento.MetodoPagamento == metodoDePagamento)
+            .Select(pagamento => new PagamentoViewModel
+            {
+                PagamentoId = pagamento.PagamentoId,
+                Valor = pagamento.Valor,
+                DataPagamento = pagamento.DataPagamento,
+                MetodoPagamento = pagamento.MetodoPagamento
+            }).ToList();
+
+        return _pagamentos;
+    }
 }

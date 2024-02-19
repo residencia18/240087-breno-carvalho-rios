@@ -30,6 +30,13 @@ public class PrestadorDeServicoController : ControllerBase
         return Ok(_prestadorDeServico);
     }
 
+    [HttpGet("prestador-de-servico/{especialidade}")]
+    public IActionResult GetByEspecialidade(string especialidade)
+    {
+        var _prestadorDeServico = _prestadorDeServicoService.GetByEspecialidade(especialidade);
+        return Ok(_prestadorDeServico);
+    }
+
     [HttpPost("prestador-de-servico")]
     public IActionResult Post([FromBody] NewPrestadorDeServicoInputModel prestadorDeServico)
     {

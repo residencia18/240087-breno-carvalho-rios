@@ -6,4 +6,5 @@ namespace OrdemDeServico.Application.Services.Interfaces;
 
 public interface IClienteService : IBaseService<NewClienteInputModel, ClienteViewModel>
 {
+    List<ClienteViewModel> GetByTelefone(string telefone);
 }
