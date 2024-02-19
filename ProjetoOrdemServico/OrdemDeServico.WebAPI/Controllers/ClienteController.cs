@@ -3,7 +3,7 @@ using OrdemDeServico.Application.InputModels;
 using OrdemDeServico.Application.Services.Interfaces;
 using OrdemDeServico.Application.ViewModels;
 
-namespace OrdemServico.WebAPI.Controllers;
+namespace OrdemDeServico.WebAPI.Controllers;
 
 [ApiController]
 [Route("/api/v0.1/")]

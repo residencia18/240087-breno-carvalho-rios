@@ -10,7 +10,7 @@ public class OrdemServico : BaseEntity
     public required DateTimeOffset DataDeEmissao { get; set; }
     public required string Status { get; set; }
     public int ClienteId { get; set; }
-    public int PrestadorId { get; set; }
+    public int PrestadorDeServicoId { get; set; }
     public Cliente? Cliente { get; set; }
     public PrestadorDeServico? PrestadorDeServico { get; set; }
     public ICollection<Pagamento>? Pagamentos { get; set; }

@@ -10,8 +10,8 @@ public class ServicoOrdemDeServicoConfigurations : IEntityTypeConfiguration<Serv
     {
         builder.ToTable("ServicoOrdemServico").HasKey(s => s.ServicoOrdemServicoId);
 
-        builder.HasOne(so => so.Endereco).WithOne(e => e.ServicoOrdemServico).HasForeignKey<ServicoOrdemServico>(so => so.EnderecoId);
-        builder.HasOne(so => so.Servico).WithMany(s => s.ServicoOrdemServico).HasForeignKey(s => s.ServicoId);
-        builder.HasOne(so => so.OrdemServico).WithMany(s => s.ServicoOrdemServico).HasForeignKey(os => os.OrdemServicoId);
+        builder.HasOne(sos => sos.Endereco).WithOne(e => e.ServicoOrdemServico).HasForeignKey<ServicoOrdemServico>(sos => sos.EnderecoId);
+        builder.HasOne(sos => sos.Servico).WithMany(s => s.ServicoOrdemServico).HasForeignKey(sos => sos.ServicoId);
+        builder.HasOne(sos => sos.OrdemServico).WithMany(s => s.ServicoOrdemServico).HasForeignKey(sos => sos.OrdemServicoId);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using OrdemDeServico.Application.InputModels;
 using OrdemDeServico.Application.Services.Interfaces;
 using OrdemDeServico.Application.ViewModels;
+using OrdemDeServico.Domain;
 using OrdemDeServico.Domain.Entities;
 using ResTIConnect.Infrastructure.Persistence;
 
@@ -17,16 +18,17 @@ public class PagamentoService : IPagamentoService
 
     public int Create(NewPagamentoInputModel pagamento)
     {
+        var _ordemServico = _context.OrdensServico.Find(pagamento.OrdemServicoId) ?? throw new OrdemServicoNotFoundException();
         var _pagamento = new Pagamento
         {
             Valor = pagamento.Valor,
             DataPagamento = pagamento.DataPagamento,
             MetodoPagamento = pagamento.MetodoPagamento,
-            OrdemServicoId = pagamento.OrdemServicoId
+            OrdemServicoId = _ordemServico.OrdemServicoId
         };
         _context.Pagamentos.Add(_pagamento);
         _context.SaveChanges();
-        
+
         return _pagamento.PagamentoId;
 
     }

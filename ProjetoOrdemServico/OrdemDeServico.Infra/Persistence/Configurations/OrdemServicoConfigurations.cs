@@ -11,6 +11,6 @@ public class OrdemServicoConfigurations : IEntityTypeConfiguration<OrdemServico>
         builder.ToTable("OrdemServico").HasKey(od => od.OrdemServicoId);
 
         builder.HasOne(od => od.Cliente).WithMany(cli => cli.OrdemServico).HasForeignKey(od => od.ClienteId);
-        builder.HasOne(od => od.PrestadorDeServico).WithMany(ps => ps.OrdemServico).HasForeignKey(od => od.PrestadorId);
+        builder.HasOne(od => od.PrestadorDeServico).WithMany(ps => ps.OrdemServico).HasForeignKey(od => od.PrestadorDeServicoId);
     }
 }
