@@ -119,4 +119,31 @@ public class ClienteService : IClienteService
             _context.SaveChanges();
         }
     }
+
+    public List<ClienteViewModel> GetByTelefone(string telefone)
+    {
+        var clientes = _context.Clientes
+            .Where(cliente => cliente.Telefone == telefone)
+            .Select(cliente => new ClienteViewModel
+            {
+                ClienteId = cliente.ClienteId,
+                Nome = cliente.Nome,
+                Email = cliente.Email,
+                Telefone = cliente.Telefone,
+                Endereco = new EnderecoViewModel
+                {
+                    EnderecoId = cliente.Endereco.EnderecoId,
+                    Logradouro = cliente.Endereco.Logradouro,
+                    Numero = cliente.Endereco.Numero,
+                    Bairro = cliente.Endereco.Bairro,
+                    Complemento = cliente.Endereco.Complemento,
+                    Estado = cliente.Endereco.Estado,
+                    Cidade = cliente.Endereco.Cidade,
+                    Cep = cliente.Endereco.Cep,
+                    Pais = cliente.Endereco.Pais
+                }
+            }).ToList();
+
+        return clientes;
+    }
 }
