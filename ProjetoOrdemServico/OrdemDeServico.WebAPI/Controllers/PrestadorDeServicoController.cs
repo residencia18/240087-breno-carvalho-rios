@@ -30,7 +30,7 @@ public class PrestadorDeServicoController : ControllerBase
         return Ok(_prestadorDeServico);
     }
 
-    [HttpGet("prestador-de-servico/{especialidade}")]
+    [HttpGet("prestador-de-servico/por-especialidade/{especialidade}")]
     public IActionResult GetByEspecialidade(string especialidade)
     {
         var _prestadorDeServico = _prestadorDeServicoService.GetByEspecialidade(especialidade);

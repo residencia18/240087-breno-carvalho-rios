@@ -31,7 +31,7 @@ public class ClienteController : ControllerBase
         return Ok(_cliente);
     }
 
-    [HttpGet("cliente/telefone/{telefone}")]
+    [HttpGet("cliente/por-telefone/{telefone}")]
     public IActionResult GetByTelefone(string telefone)
     {
         var cliente = _clienteService.GetByTelefone(telefone);
