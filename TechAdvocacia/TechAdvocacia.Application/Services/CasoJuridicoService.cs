@@ -94,14 +94,18 @@ public class CasoJuridicoService : ICasoJuridicoService
     public CasoJuridicoViewModel GetById(int id)
     {
         var _casoJuridico = GetDbCasoJuridico(id);
+        var _advogado = _advogadoService.GetById(_casoJuridico.AdvogadoId);
+        var _cliente = _clienteService.GetById(_casoJuridico.ClienteId);
 
         return new CasoJuridicoViewModel
         {
             ChanceSucesso = _casoJuridico.ChanceSucesso,
             Status = _casoJuridico.Status,
-            Advogado = _advogadoService.GetById(_casoJuridico.AdvogadoId),
-            Cliente = _clienteService.GetById(_casoJuridico.ClienteId),
-            Documentos = _casoJuridico.Documentos.Select(
+            Advogado = _advogado,
+            Cliente = _cliente,
+            Documentos = _context.Documentos.Where(
+                documento => documento.CasoJuridicoId == id
+            ).Select(
                 documento => new DocumentoViewModel
                 {
                     DocumentoId = documento.DocumentoId,
