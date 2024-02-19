@@ -34,7 +34,7 @@ namespace OrdemDeServico.WebAPI.Controllers
             return Ok(servico);
         }
 
-        [HttpGet("servico-nome/{nome}")]
+        [HttpGet("servico/por-nome/{nome}")]
         public IActionResult GetByNome(string nome)
         {
             var servico = _servicoService.GetByNome(nome);

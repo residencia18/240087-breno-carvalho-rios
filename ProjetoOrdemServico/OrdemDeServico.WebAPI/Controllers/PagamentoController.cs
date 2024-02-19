@@ -25,7 +25,7 @@ namespace OrdemDeServico.WebAPI.Controllers
             var _pagamento = _pagamentoService.GetById(id);
             return Ok(_pagamento);
         }
-        [HttpGet("pagamento/metodo/{metodoDePagamento}")]
+        [HttpGet("pagamento/por-metodo/{metodoDePagamento}")]
         public IActionResult GetPagamentoByMetodo(string metodoDePagamento)
         {
             var _pagamento = _pagamentoService.GetPagamentoByMetodo(metodoDePagamento);
