@@ -1,4 +1,21 @@
+using Microsoft.EntityFrameworkCore;
+using MvcMovie.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddDbContext<MvcMovieContext>(options =>
+        options.UseSqlite(builder.Configuration.GetConnectionString("MvcMovieContext")));
+}
+else
+{
+    builder.Services.AddDbContext<MvcMovieContext>(options => {
+        var connectionString = builder.Configuration.GetConnectionString("ProductionMvcMovieContext");
+        var serverVersion = ServerVersion.AutoDetect(connectionString);
+        options.UseMySql(connectionString, serverVersion);
+    });
+}
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
