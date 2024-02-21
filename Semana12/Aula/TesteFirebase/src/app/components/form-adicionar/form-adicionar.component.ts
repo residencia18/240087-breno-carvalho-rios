@@ -11,12 +11,12 @@ import { Carro } from '../../types/carro';
 
 export class FormAdicionarComponent {  
   formAdicionar: FormGroup = new FormGroup({
-    "modelo": new FormControl(null, []),
-    "marca": new FormControl(null, []),
-    "ano": new FormControl(null, []),
-    "cor": new FormControl(null, []),
-    "valor": new FormControl(null, []),
-    "foto": new FormControl(null, []),
+    "modelo": new FormControl(null, [Validators.required]),
+    "marca": new FormControl(null, [Validators.required]),
+    "ano": new FormControl(null, [Validators.required]),
+    "cor": new FormControl(null, [Validators.required]),
+    "valor": new FormControl(null, [Validators.required]),
+    "foto": new FormControl(null, [Validators.required]),
   });
 
   constructor(private bancoService: BancoServiceService){}
