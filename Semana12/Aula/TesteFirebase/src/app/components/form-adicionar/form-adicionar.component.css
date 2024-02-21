@@ -1,0 +1,47 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+    border: 1px solid lightgray;
+    padding: 20px;
+    gap: 10px;
+    margin: auto;
+}
+
+form legend {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+form .form-control {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+}
+
+form input {
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px 5px;
+    background-color: cadetblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    border-radius: 3px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+form button:hover {
+    background-color: skyblue;
+}

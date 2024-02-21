@@ -1,0 +1,9 @@
+
+<div class="lista-carros">
+    <button *ngFor="let carro of carros" (click)="selectCarro(carro)">{{carro.modelo}}</button>
+</div>
+<div class="lista-propriedades">
+    <ul>
+        <li *ngFor="let property of getProperties(carro)">{{property}}</li>
+    </ul>
+</div>

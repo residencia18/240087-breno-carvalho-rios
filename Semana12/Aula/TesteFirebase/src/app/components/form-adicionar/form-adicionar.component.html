@@ -1,0 +1,28 @@
+<form [formGroup]="formAdicionar" (ngSubmit)="onSubmit()">
+    <legend>Adicionar um Carro</legend>
+    <div class="form-control">
+        <label for="modelo">Modelo: </label>
+        <input id="modelo" type="text" formControlName="modelo" placeholder="Modelo">
+    </div>
+    <div class="form-control">
+        <label for="marca">Marca: </label>
+        <input id="marca" type="text" formControlName="marca" placeholder="Marca">
+    </div>
+    <div class="form-control">
+        <label for="ano">Ano: </label>
+        <input id="ano" type="text" formControlName="ano" placeholder="Ano">
+    </div>
+    <div class="form-control">
+        <label for="valor">Valor: </label>
+        <input id="valor" type="text" formControlName="valor" placeholder="Valor">
+    </div>
+    <div class="form-control">
+        <label for="cor">Cor: </label>
+        <input id="cor" type="text" formControlName="cor" placeholder="Cor">
+    </div>
+    <div class="form-control">
+        <label for="foto">Foto: </label>
+        <input id="foto" type="text" formControlName="foto" placeholder="Foto">
+    </div>
+    <button>Enviar</button>
+</form>

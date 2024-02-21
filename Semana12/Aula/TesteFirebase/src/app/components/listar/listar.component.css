@@ -1,0 +1,42 @@
+:host {
+    display: flex;
+    gap: 5px;
+}
+
+.lista-carros{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.lista-carros button {
+    width: 200px;
+    padding: 10px 10px;
+    background-color: slategray;
+    color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.lista-carros button:hover {
+    background-color: black;
+    color: white;
+}
+
+.lista-propriedades {
+    background-color: lightblue;
+}
+
+.lista-propriedades ul {
+    list-style: none;
+    width: 300px;
+    margin: 0;
+    padding: 10px;
+}
+
+.lista-propriedades ul li {
+    text-align: center;
+    padding: 10px;
+    font-size: 1.1rem;
+}
