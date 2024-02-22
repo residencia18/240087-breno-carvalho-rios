@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
+using MvcMovie.AppUtils;
 
 namespace MvcMovie.Controllers
 {
@@ -61,7 +62,8 @@ namespace MvcMovie.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                var _encryptedPassword = Utils.ComputeSha256Hash(user.Password);
+                user.Password = _encryptedPassword;
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -101,6 +103,8 @@ namespace MvcMovie.Controllers
             {
                 try
                 {
+                    var _encryptedPassword = Utils.ComputeSha256Hash(user.Password);
+                    user.Password = _encryptedPassword;
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
