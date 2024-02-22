@@ -31,12 +31,10 @@ namespace MvcMovie.Controllers
         {
             if (ModelState.IsValid)
             {
-                ViewData["jwt"] = GenerateJwtToken(login.Email, login.Password);
-                Console.WriteLine($"{ViewData["jwt"]}");
-                
-                return RedirectToAction(nameof(Login));
+                var _token = GenerateJwtToken(login.Email, login.Password);                
+                return RedirectToAction("Index", "Home");
             }
-            return View();
+            return View(login);
         }
 
         public string GenerateJwtToken(string email, string role)
