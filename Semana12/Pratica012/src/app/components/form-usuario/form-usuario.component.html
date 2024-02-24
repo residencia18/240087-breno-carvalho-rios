@@ -117,7 +117,7 @@
 
 <div class="logs">
     <h2>Logs</h2>
-    <div *ngFor="let log of formLog; let first = first">
+    <div *ngFor="let log of formLog.reverse(); let first = first">
         <hr *ngIf="!first"/>
         <p>Elemento: {{log.element}}</p>
         <p>Tipo: {{log.event}}</p>
