@@ -1,0 +1,59 @@
+:host {
+    display: flex;
+    justify-content: center;
+}
+
+#form-usuario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+#form-usuario .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+::ng-deep p-inputmask .p-inputtext,
+::ng-deep p-calendar .p-inputtext,
+::ng-deep p-dropdown .p-dropdown {
+    border-radius: 0 6px 6px 0;
+}
+
+::ng-deep p-inputmask,
+::ng-deep p-inputmask .p-inputtext {
+    width: 100%;
+}
+
+::ng-deep p-dropdown .p-dropdown {
+    width: 100%;
+}
+
+.error-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid red;
+    border-radius: 3px;
+    padding: 15px;
+}
+
+.error-message {
+    color: darkred;
+    margin: 0;
+    padding: 0;
+}
+
+.logs {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 20px;
+    max-height: 90lvh;
+    font-size: 0.9rem;
+}
