@@ -5,6 +5,8 @@ public class PrestadorDeServico : BaseEntity
     public required string Nome { get; set; }
     public required string Especialidade { get; set; }
     public required string Telefone { get; set; }
+    public int UsuarioId { get; set; }
+    public required Usuario Usuario { get; set; }
     public required Endereco Endereco { get; set; }
     public int EnderecoId { get; set; }
     public ICollection<OrdemServico>? OrdemServico { get; set; }

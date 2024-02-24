@@ -3,6 +3,7 @@
 public class ClienteViewModel
 {
     public int ClienteId { get; set; }
+    public required string NomeUsuario { get; set; }
     public required string Nome { get; set; }
     public required string Email { get; set; }
     public required string Telefone { get; set; }
