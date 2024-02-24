@@ -7,4 +7,9 @@ namespace ResTIConnect.Domain.Exceptions
         {
         }
     }
+
+    public class EmailAlreadyExistsException : Exception
+    {
+        public EmailAlreadyExistsException() : base("O email informado ja existe") { }
+    }
 }

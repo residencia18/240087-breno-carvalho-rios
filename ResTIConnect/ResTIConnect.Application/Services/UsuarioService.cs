@@ -22,6 +22,11 @@ namespace ResTIConnect.Application.Services
 
         public int Create(NewUsuarioInputModel usuario)
         {
+            if (_context.Usuarios.Any(u => u.Email == usuario.Email))
+            {
+                throw new EmailAlreadyExistsException();
+            }
+
             var _hashedSenha = _authService.ComputeSha256Hash(usuario.Senha);
             var _usuario = new Usuario
             {
@@ -151,6 +156,11 @@ namespace ResTIConnect.Application.Services
 
         public void Update(int id, NewUsuarioInputModel usuario)
         {
+            if (_context.Usuarios.Any(u => u.Email == usuario.Email))
+            {
+                throw new EmailAlreadyExistsException();
+            }
+
             var _usuarioDb = GetByDbId(id);
 
             _usuarioDb.Nome = usuario.Nome;
