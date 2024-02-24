@@ -31,40 +31,9 @@ namespace MvcMovie.Controllers
         {
             if (ModelState.IsValid)
             {
-                var _token = GenerateJwtToken(login.Email, login.Password);                
                 return RedirectToAction("Index", "Home");
             }
             return View(login);
-        }
-
-        public string GenerateJwtToken(string email, string role)
-        {
-            var issuer = _configuration["Jwt:Issuer"];
-            var audience = _configuration["Jwt:Audience"];
-            var key = _configuration["Jwt:Key"];
-            //cria uma chave utilizando criptografia simétrica
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
-            //cria as credenciais do token
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var claims = new[]
-            {
-                new Claim("email", email)
-            };
-
-            var token = new JwtSecurityToken( //cria o token
-               issuer: issuer, //emissor do token
-               audience: audience, //destinatário do token
-               claims: claims, //informações do usuário
-               expires: DateTime.Now.AddMinutes(30), //tempo de expiração do token
-               signingCredentials: credentials //credenciais do token
-            );
-
-            var tokenHandler = new JwtSecurityTokenHandler(); //cria um manipulador de token
-
-            var stringToken = tokenHandler.WriteToken(token);
-
-            return stringToken;
         }
     }
 }

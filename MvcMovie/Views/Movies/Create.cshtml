@@ -33,6 +33,26 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="StudioId" class="control-label">Studio</label>
+                <select asp-for="StudioId" class="form-control">
+                    @foreach (var studio in (List<Studio>)ViewData["studios"]!)
+                    {
+                        <option value="@studio.Id">@studio.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="StudioId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Artists" class="control-label">Artists (multiple choices)</label>
+                <select asp-for="Artists" class="form-control" multiple>
+                    @foreach (var artist in (List<Artist>)ViewData["artists"]!)
+                    {
+                        <option value="@artist.Id">@artist.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="Artists" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -44,5 +64,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

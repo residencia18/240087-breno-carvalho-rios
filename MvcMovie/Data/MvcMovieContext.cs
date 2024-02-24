@@ -9,13 +9,23 @@ namespace MvcMovie.Data
 {
     public class MvcMovieContext : DbContext
     {
-        public MvcMovieContext (DbContextOptions<MvcMovieContext> options)
+        public MvcMovieContext(DbContextOptions<MvcMovieContext> options)
             : base(options)
         {
         }
 
-        public DbSet<MvcMovie.Models.Movie> Movie { get; set; } = default!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MvcMovieContext).Assembly);
+        }
 
-        public DbSet<MvcMovie.Models.User> User { get; set; } = default!;
+        public DbSet<Movie> Movie { get; set; } = default!;
+
+        public DbSet<User> User { get; set; } = default!;
+
+        public DbSet<Artist> Artist { get; set; } = default!;
+
+        public DbSet<Studio> Studio { get; set; } = default!;
     }
 }
