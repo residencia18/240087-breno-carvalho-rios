@@ -219,15 +219,6 @@ export class FormUsuarioComponent {
   }
 
   public initializeLogs(element: string) {
-    this.formUsuario.get(element)?.valueChanges.subscribe(value => {
-      this.formLogService.registerEvent({
-        event: "Alteração no valor do campo",
-        element: element,
-        description: `Valor do campo ${element} foi alterado para '${value}'`,
-        dateTime: new Date()
-      });
-    })
-
     this.formUsuario.get(element)?.statusChanges.subscribe(status => {
       this.formLogService.registerEvent({
         event: "Alteração no estado do campo",
@@ -235,6 +226,15 @@ export class FormUsuarioComponent {
         description: `Status do campo ${element} foi alterado para '${status}'`,
         dateTime: new Date()
       });
-    })
+    });
+
+    this.formUsuario.get(element)?.valueChanges.subscribe(value => {
+      this.formLogService.registerEvent({
+        event: "Alteração no valor do campo",
+        element: element,
+        description: `Valor do campo ${element} foi alterado para '${value}'`,
+        dateTime: new Date()
+      });
+    });
   }
 }
