@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OrdemDeServico.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class initial_create : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,6 +65,25 @@ namespace OrdemDeServico.Infra.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    UsuarioId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    NomeUsuario = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Senha = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.UsuarioId);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Cliente",
                 columns: table => new
                 {
@@ -76,6 +95,7 @@ namespace OrdemDeServico.Infra.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Telefone = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
                     EnderecoId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
@@ -88,6 +108,12 @@ namespace OrdemDeServico.Infra.Migrations
                         column: x => x.EnderecoId,
                         principalTable: "Endereco",
                         principalColumn: "EnderecoId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Cliente_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "UsuarioId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -104,6 +130,7 @@ namespace OrdemDeServico.Infra.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Telefone = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
                     EnderecoId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
@@ -116,6 +143,12 @@ namespace OrdemDeServico.Infra.Migrations
                         column: x => x.EnderecoId,
                         principalTable: "Endereco",
                         principalColumn: "EnderecoId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PrestadorDeServico_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "UsuarioId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -133,7 +166,7 @@ namespace OrdemDeServico.Infra.Migrations
                     Status = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ClienteId = table.Column<int>(type: "int", nullable: false),
-                    PrestadorId = table.Column<int>(type: "int", nullable: false),
+                    PrestadorDeServicoId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
@@ -147,8 +180,8 @@ namespace OrdemDeServico.Infra.Migrations
                         principalColumn: "ClienteId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrdemServico_PrestadorDeServico_PrestadorId",
-                        column: x => x.PrestadorId,
+                        name: "FK_OrdemServico_PrestadorDeServico_PrestadorDeServicoId",
+                        column: x => x.PrestadorDeServicoId,
                         principalTable: "PrestadorDeServico",
                         principalColumn: "PrestadorDeServicoId",
                         onDelete: ReferentialAction.Cascade);
@@ -224,14 +257,20 @@ namespace OrdemDeServico.Infra.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cliente_UsuarioId",
+                table: "Cliente",
+                column: "UsuarioId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrdemServico_ClienteId",
                 table: "OrdemServico",
                 column: "ClienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrdemServico_PrestadorId",
+                name: "IX_OrdemServico_PrestadorDeServicoId",
                 table: "OrdemServico",
-                column: "PrestadorId");
+                column: "PrestadorDeServicoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pagamento_OrdemServicoId",
@@ -242,6 +281,12 @@ namespace OrdemDeServico.Infra.Migrations
                 name: "IX_PrestadorDeServico_EnderecoId",
                 table: "PrestadorDeServico",
                 column: "EnderecoId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PrestadorDeServico_UsuarioId",
+                table: "PrestadorDeServico",
+                column: "UsuarioId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -284,6 +329,9 @@ namespace OrdemDeServico.Infra.Migrations
 
             migrationBuilder.DropTable(
                 name: "Endereco");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
         }
     }
 }

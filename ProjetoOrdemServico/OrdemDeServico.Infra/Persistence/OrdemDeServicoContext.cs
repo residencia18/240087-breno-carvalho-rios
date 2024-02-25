@@ -7,6 +7,7 @@ public class OrdemDeServicoContext : DbContext
 {
 
     public DbSet<Endereco> Enderecos { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Cliente> Clientes { get; set; }
     public DbSet<ServicoOrdemServico> ServicosOrdensServico { get; set; }
     public DbSet<PrestadorDeServico> PrestadoresDeServico { get; set; }

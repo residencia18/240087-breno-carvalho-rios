@@ -2,6 +2,8 @@
 using OrdemDeServico.Application.Services.Interfaces;
 using OrdemDeServico.Application.ViewModels;
 using OrdemDeServico.Domain.Entities;
+using OrdemDeServico.Domain.Exceptions;
+using OrdemDeServico.Infra.Auth;
 using ResTIConnect.Infrastructure.Persistence;
 
 namespace OrdemDeServico.Application.Services;
@@ -9,16 +11,30 @@ namespace OrdemDeServico.Application.Services;
 public class ClienteService : IClienteService
 {
     private readonly OrdemDeServicoContext _context;
+    private readonly IAuthService _authService;
     private readonly IEnderecoService _enderecoService;
-    public ClienteService(OrdemDeServicoContext context, IEnderecoService enderecoService)
+    public ClienteService(OrdemDeServicoContext context, IEnderecoService enderecoService, IAuthService authService)
     {
         _context = context;
+        _authService = authService;
         _enderecoService = enderecoService;
     }
     public int Create(NewClienteInputModel cliente)
     {
+        if (_context.Usuarios.Any(u => u.NomeUsuario == cliente.Usuario.NomeUsuario))
+        {
+            throw new UsuarioAlreadyExistsException();
+        }
+
+        var _hashedPassword = _authService.ComputeSha256Hash(cliente.Usuario.Senha);
+
         var _cliente = new Cliente
         {
+            Usuario = new Usuario
+            {
+                NomeUsuario = cliente.Usuario.NomeUsuario,
+                Senha = _hashedPassword
+            },
             Nome = cliente.Nome,
             Email = cliente.Email,
             Telefone = cliente.Telefone,
@@ -45,6 +61,11 @@ public class ClienteService : IClienteService
     {
         var _clientes = _context.Clientes.Select(cliente => new ClienteViewModel
         {
+            Usuario = new UsuarioViewModel
+            {
+                UsuarioId = cliente.UsuarioId,
+                NomeUsuario = cliente.Usuario.NomeUsuario,
+            },
             ClienteId = cliente.ClienteId,
             Nome = cliente.Nome,
             Email = cliente.Email,
@@ -84,6 +105,11 @@ public class ClienteService : IClienteService
 
         var _clienteViewModel = new ClienteViewModel
         {
+            Usuario = new UsuarioViewModel
+            {
+                UsuarioId = _cliente.UsuarioId,
+                NomeUsuario = _cliente.Usuario.NomeUsuario
+            },
             ClienteId = _cliente.ClienteId,
             Nome = _cliente.Nome,
             Email = _cliente.Email,
@@ -100,6 +126,9 @@ public class ClienteService : IClienteService
 
         if (_clienteDb is not null)
         {
+            var _hashedPassword = _authService.ComputeSha256Hash(cliente.Usuario.Senha);
+            _clienteDb.Usuario.NomeUsuario = cliente.Usuario.NomeUsuario;
+            _clienteDb.Usuario.Senha = _hashedPassword;
             _clienteDb.Nome = cliente.Nome;
             _clienteDb.Email = cliente.Email;
             _clienteDb.Telefone = cliente.Telefone;
@@ -126,6 +155,11 @@ public class ClienteService : IClienteService
             .Where(cliente => cliente.Telefone == telefone)
             .Select(cliente => new ClienteViewModel
             {
+                Usuario = new UsuarioViewModel
+                {
+                    UsuarioId = cliente.UsuarioId,
+                    NomeUsuario = cliente.Usuario.NomeUsuario,
+                },
                 ClienteId = cliente.ClienteId,
                 Nome = cliente.Nome,
                 Email = cliente.Email,

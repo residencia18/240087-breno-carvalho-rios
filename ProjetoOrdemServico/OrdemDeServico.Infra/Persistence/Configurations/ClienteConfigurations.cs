@@ -10,6 +10,7 @@ public class ClienteConfigurations : IEntityTypeConfiguration<Cliente>
     {
         builder.ToTable("Cliente").HasKey(c => c.ClienteId);
 
-        builder.HasOne(e => e.Endereco).WithOne(e => e.Cliente).HasForeignKey<Cliente>(c => c.EnderecoId);
+        builder.HasOne(c => c.Usuario).WithOne(u => u.Cliente).HasForeignKey<Cliente>(c => c.UsuarioId);
+        builder.HasOne(c => c.Endereco).WithOne(e => e.Cliente).HasForeignKey<Cliente>(c => c.EnderecoId);
     }
 }
