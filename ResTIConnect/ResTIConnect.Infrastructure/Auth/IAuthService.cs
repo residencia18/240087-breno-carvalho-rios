@@ -3,4 +3,5 @@
 public interface IAuthService
 {
     string ComputeSha256Hash(string pass);
+    bool Login(string email, string senha);
 }
