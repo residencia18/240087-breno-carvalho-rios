@@ -2,6 +2,7 @@
 using OrdemDeServico.Application.Services.Interfaces;
 using OrdemDeServico.Application.ViewModels;
 using OrdemDeServico.Domain.Entities;
+using OrdemDeServico.Domain.Exceptions;
 using ResTIConnect.Infrastructure.Persistence;
 
 namespace OrdemDeServico.Application.Services;
@@ -17,8 +18,18 @@ public class ClienteService : IClienteService
     }
     public int Create(NewClienteInputModel cliente)
     {
+        if (_context.Usuarios.Any(u => u.NomeUsuario == cliente.Usuario.NomeUsuario))
+        {
+            throw new UsuarioAlreadyExistsException();
+        }
+
         var _cliente = new Cliente
         {
+            Usuario = new Usuario
+            {
+                NomeUsuario = cliente.Usuario.NomeUsuario,
+                Senha = cliente.Usuario.Senha
+            },
             Nome = cliente.Nome,
             Email = cliente.Email,
             Telefone = cliente.Telefone,
@@ -45,6 +56,11 @@ public class ClienteService : IClienteService
     {
         var _clientes = _context.Clientes.Select(cliente => new ClienteViewModel
         {
+            Usuario = new UsuarioViewModel
+            {
+                UsuarioId = cliente.UsuarioId,
+                NomeUsuario = cliente.Usuario.NomeUsuario,
+            },
             ClienteId = cliente.ClienteId,
             Nome = cliente.Nome,
             Email = cliente.Email,
@@ -84,6 +100,11 @@ public class ClienteService : IClienteService
 
         var _clienteViewModel = new ClienteViewModel
         {
+            Usuario = new UsuarioViewModel
+            {
+                UsuarioId = _cliente.UsuarioId,
+                NomeUsuario = _cliente.Usuario.NomeUsuario
+            },
             ClienteId = _cliente.ClienteId,
             Nome = _cliente.Nome,
             Email = _cliente.Email,
@@ -100,6 +121,8 @@ public class ClienteService : IClienteService
 
         if (_clienteDb is not null)
         {
+            _clienteDb.Usuario.NomeUsuario = cliente.Usuario.NomeUsuario;
+            _clienteDb.Usuario.Senha = cliente.Usuario.Senha;
             _clienteDb.Nome = cliente.Nome;
             _clienteDb.Email = cliente.Email;
             _clienteDb.Telefone = cliente.Telefone;
@@ -126,6 +149,11 @@ public class ClienteService : IClienteService
             .Where(cliente => cliente.Telefone == telefone)
             .Select(cliente => new ClienteViewModel
             {
+                Usuario = new UsuarioViewModel
+                {
+                    UsuarioId = cliente.UsuarioId,
+                    NomeUsuario = cliente.Usuario.NomeUsuario,
+                },
                 ClienteId = cliente.ClienteId,
                 Nome = cliente.Nome,
                 Email = cliente.Email,

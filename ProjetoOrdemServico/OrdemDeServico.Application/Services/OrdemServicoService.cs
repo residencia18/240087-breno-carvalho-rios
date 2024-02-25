@@ -95,6 +95,11 @@ public class OrdemServicoService : IOrdemServicoService
             Status = ordemServico.Status,
             Cliente = new ClienteViewModel
             {
+                Usuario = new UsuarioViewModel
+                {
+                    UsuarioId = ordemServico.Cliente!.UsuarioId,
+                    NomeUsuario = ordemServico.Cliente!.Usuario.NomeUsuario,
+                },
                 ClienteId = ordemServico.Cliente!.ClienteId,
                 Nome = ordemServico.Cliente!.Nome,
                 Email = ordemServico.Cliente!.Email,
@@ -114,6 +119,11 @@ public class OrdemServicoService : IOrdemServicoService
             },
             PrestadorDeServico = new PrestadorDeServicoViewModel
             {
+                Usuario = new UsuarioViewModel
+                {
+                    UsuarioId = ordemServico.PrestadorDeServico!.UsuarioId,
+                    NomeUsuario = ordemServico.PrestadorDeServico!.Usuario.NomeUsuario,
+                },
                 PrestadorDeServicoId = ordemServico.PrestadorDeServico!.PrestadorDeServicoId,
                 Nome = ordemServico.PrestadorDeServico!.Nome,
                 Especialidade = ordemServico.PrestadorDeServico!.Especialidade,

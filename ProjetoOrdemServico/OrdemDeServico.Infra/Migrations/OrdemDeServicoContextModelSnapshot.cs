@@ -46,9 +46,15 @@ namespace OrdemDeServico.Infra.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("ClienteId");
 
                     b.HasIndex("EnderecoId")
+                        .IsUnique();
+
+                    b.HasIndex("UsuarioId")
                         .IsUnique();
 
                     b.ToTable("Cliente", (string)null);
@@ -201,9 +207,15 @@ namespace OrdemDeServico.Infra.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("PrestadorDeServicoId");
 
                     b.HasIndex("EnderecoId")
+                        .IsUnique();
+
+                    b.HasIndex("UsuarioId")
                         .IsUnique();
 
                     b.ToTable("PrestadorDeServico", (string)null);
@@ -263,6 +275,31 @@ namespace OrdemDeServico.Infra.Migrations
                     b.ToTable("ServicoOrdemServico", (string)null);
                 });
 
+            modelBuilder.Entity("OrdemDeServico.Domain.Entities.Usuario", b =>
+                {
+                    b.Property<int>("UsuarioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("NomeUsuario")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("UsuarioId");
+
+                    b.ToTable("Usuarios");
+                });
+
             modelBuilder.Entity("OrdemDeServico.Domain.Entities.Cliente", b =>
                 {
                     b.HasOne("OrdemDeServico.Domain.Entities.Endereco", "Endereco")
@@ -271,7 +308,15 @@ namespace OrdemDeServico.Infra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("OrdemDeServico.Domain.Entities.Usuario", "Usuario")
+                        .WithOne("Cliente")
+                        .HasForeignKey("OrdemDeServico.Domain.Entities.Cliente", "UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Endereco");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("OrdemDeServico.Domain.Entities.OrdemServico", b =>
@@ -312,7 +357,15 @@ namespace OrdemDeServico.Infra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("OrdemDeServico.Domain.Entities.Usuario", "Usuario")
+                        .WithOne("PrestadorDeServico")
+                        .HasForeignKey("OrdemDeServico.Domain.Entities.PrestadorDeServico", "UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Endereco");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("OrdemDeServico.Domain.Entities.ServicoOrdemServico", b =>
@@ -371,6 +424,13 @@ namespace OrdemDeServico.Infra.Migrations
             modelBuilder.Entity("OrdemDeServico.Domain.Entities.Servico", b =>
                 {
                     b.Navigation("ServicoOrdemServico");
+                });
+
+            modelBuilder.Entity("OrdemDeServico.Domain.Entities.Usuario", b =>
+                {
+                    b.Navigation("Cliente");
+
+                    b.Navigation("PrestadorDeServico");
                 });
 #pragma warning restore 612, 618
         }

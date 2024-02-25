@@ -10,6 +10,7 @@ public class PrestadorDeServicoConfigurations : IEntityTypeConfiguration<Prestad
     {
         builder.ToTable("PrestadorDeServico").HasKey(p => p.PrestadorDeServicoId);
 
+        builder.HasOne(p => p.Usuario).WithOne(u => u.PrestadorDeServico).HasForeignKey<PrestadorDeServico>(p => p.UsuarioId);
         builder.HasOne(p => p.Endereco).WithOne(e => e.PrestadorDeServico).HasForeignKey<PrestadorDeServico>(p => p.EnderecoId);
     }
 }
