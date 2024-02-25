@@ -3,6 +3,7 @@ using OrdemDeServico.Application.Services.Interfaces;
 using OrdemDeServico.Application.ViewModels;
 using OrdemDeServico.Domain.Entities;
 using OrdemDeServico.Domain.Exceptions;
+using OrdemDeServico.Infra.Auth;
 using ResTIConnect.Infrastructure.Persistence;
 
 namespace OrdemDeServico.Application.Services;
@@ -10,10 +11,12 @@ namespace OrdemDeServico.Application.Services;
 public class ClienteService : IClienteService
 {
     private readonly OrdemDeServicoContext _context;
+    private readonly IAuthService _authService;
     private readonly IEnderecoService _enderecoService;
-    public ClienteService(OrdemDeServicoContext context, IEnderecoService enderecoService)
+    public ClienteService(OrdemDeServicoContext context, IEnderecoService enderecoService, IAuthService authService)
     {
         _context = context;
+        _authService = authService;
         _enderecoService = enderecoService;
     }
     public int Create(NewClienteInputModel cliente)
@@ -23,12 +26,14 @@ public class ClienteService : IClienteService
             throw new UsuarioAlreadyExistsException();
         }
 
+        var _hashedPassword = _authService.ComputeSha256Hash(cliente.Usuario.Senha);
+
         var _cliente = new Cliente
         {
             Usuario = new Usuario
             {
                 NomeUsuario = cliente.Usuario.NomeUsuario,
-                Senha = cliente.Usuario.Senha
+                Senha = _hashedPassword
             },
             Nome = cliente.Nome,
             Email = cliente.Email,
@@ -121,8 +126,9 @@ public class ClienteService : IClienteService
 
         if (_clienteDb is not null)
         {
+            var _hashedPassword = _authService.ComputeSha256Hash(cliente.Usuario.Senha);
             _clienteDb.Usuario.NomeUsuario = cliente.Usuario.NomeUsuario;
-            _clienteDb.Usuario.Senha = cliente.Usuario.Senha;
+            _clienteDb.Usuario.Senha = _hashedPassword;
             _clienteDb.Nome = cliente.Nome;
             _clienteDb.Email = cliente.Email;
             _clienteDb.Telefone = cliente.Telefone;

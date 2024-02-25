@@ -3,6 +3,7 @@ using OrdemDeServico.Application.Services.Interfaces;
 using OrdemDeServico.Application.ViewModels;
 using OrdemDeServico.Domain.Entities;
 using OrdemDeServico.Domain.Exceptions;
+using OrdemDeServico.Infra.Auth;
 using ResTIConnect.Infrastructure.Persistence;
 
 namespace OrdemDeServico.Application.Services;
@@ -10,10 +11,12 @@ namespace OrdemDeServico.Application.Services;
 public class PrestadorDeServicoService : IPrestadorDeServicoService
 {
     private readonly OrdemDeServicoContext _context;
+    private readonly IAuthService _authService;
     private readonly IEnderecoService _enderecoService;
-    public PrestadorDeServicoService(OrdemDeServicoContext context, IEnderecoService enderecoService)
+    public PrestadorDeServicoService(OrdemDeServicoContext context, IEnderecoService enderecoService, IAuthService authService)
     {
         _context = context;
+        _authService = authService;
         _enderecoService = enderecoService;
     }
     public int Create(NewPrestadorDeServicoInputModel prestadorDeServico)
@@ -23,12 +26,14 @@ public class PrestadorDeServicoService : IPrestadorDeServicoService
             throw new UsuarioAlreadyExistsException();
         }
 
+        var _hashedPassword = _authService.ComputeSha256Hash(prestadorDeServico.Usuario.Senha);
+
         var _prestadorDeServico = new PrestadorDeServico
         {
             Usuario = new Usuario
             {
                 NomeUsuario = prestadorDeServico.Usuario.NomeUsuario,
-                Senha = prestadorDeServico.Usuario.Senha,
+                Senha = _hashedPassword,
             },
             Nome = prestadorDeServico.Nome,
             Especialidade = prestadorDeServico.Especialidade,
@@ -72,6 +77,10 @@ public class PrestadorDeServicoService : IPrestadorDeServicoService
             return;
         }
 
+        var _hashedPassword = _authService.ComputeSha256Hash(prestadorDeServico.Usuario.Senha);
+
+        _prestadorDeServicoDb.Usuario.NomeUsuario = prestadorDeServico.Usuario.NomeUsuario;
+        _prestadorDeServicoDb.Usuario.Senha = _hashedPassword;
         _prestadorDeServicoDb.Nome = prestadorDeServico.Nome;
         _prestadorDeServicoDb.Especialidade = prestadorDeServico.Especialidade;
         _prestadorDeServicoDb.Telefone = prestadorDeServico.Telefone;
