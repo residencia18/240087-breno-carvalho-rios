@@ -2,11 +2,15 @@ using Microsoft.EntityFrameworkCore;
 using ResTIConnect.Infrastructure.Context;
 using ResTIConnect.Application.Services;
 using ResTIConnect.Application.Services.Interfaces;
+using System.Text;
+using ResTIConnect.Infrastructure.Auth.Interfaces;
+using ResTIConnect.Infrastructure.Auth;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IPerfilService, PerfilService>();
 builder.Services.AddScoped<IEnderecoService, EnderecoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
