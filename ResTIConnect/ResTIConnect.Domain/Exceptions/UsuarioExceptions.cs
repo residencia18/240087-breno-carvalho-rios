@@ -12,4 +12,8 @@ namespace ResTIConnect.Domain.Exceptions
     {
         public EmailAlreadyExistsException() : base("O email informado ja existe") { }
     }
+
+    public class InvalidCredentialsException : Exception {
+        public InvalidCredentialsException() : base("Email ou senha inválidos") { }
+    }
 }

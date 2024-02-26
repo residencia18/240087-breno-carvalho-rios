@@ -48,8 +48,8 @@ namespace ResTIConnect.WebAPI.Controllers
         [HttpPost("usuario")]
         public IActionResult Post([FromBody] NewUsuarioInputModel usuario)
         {
-            _usuarioService.Create(usuario);
-            return CreatedAtAction(nameof(Get), usuario);
+            var usuarioId = _usuarioService.Create(usuario);
+            return CreatedAtAction(nameof(Get), _usuarioService.GetById(usuarioId));
         }
 
         [HttpPut("usuario/{id}")]

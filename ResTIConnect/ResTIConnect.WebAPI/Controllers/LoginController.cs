@@ -9,25 +9,18 @@ namespace ResTIConnect.WebAPI.Controllers
     [Route("api/v0.1/login")]
     public class LoginController : ControllerBase
     {
-        private readonly IAuthService _authService;
+        private readonly ILoginService _loginService;
 
-        public LoginController(IAuthService authService)
+        public LoginController(ILoginService loginService)
         {
-            _authService = authService;
+            _loginService = loginService;
         }
 
         [HttpPost]
         public IActionResult Login([FromBody] LoginInputModel loginInput)
         {
-            var loginSucceeded = _authService.Login(loginInput.Email, loginInput.Password);
-            if (loginSucceeded)
-            {
-                return Ok(new { Mensagem = "Login bem-sucedido." });
-            }
-            else
-            {
-                return Unauthorized(new { Mensagem = "Login falhou. E-mail ou senha inválidos." });
-            }
+            var authenticatedUser = _loginService.Authenticate(loginInput);
+            return Ok(authenticatedUser);
         }
     }
 }
