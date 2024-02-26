@@ -1,7 +1,7 @@
-using System.Security.Authentication;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
+using ResTIConnect.Domain.Exceptions;
 using ResTIConnect.Infrastructure.Auth.Interfaces;
 using ResTIConnect.Infrastructure.Context;
 
@@ -18,11 +18,13 @@ public class LoginService : ILoginService
     {
         var senhaCriptografada = _authService.ComputeSha256Hash(user.Password);
 
-        var userDb = _context.Usuarios.First(u =>
+        var userDb = _context.Usuarios.FirstOrDefault(u =>
             u.Email == user.Email && u.Senha == senhaCriptografada
-        ) ?? throw new InvalidCredentialException();
+        ) ?? throw new InvalidCredentialsException();
 
-        var token = _authService.GenerateJwtToken(user.Email, userDb.Perfis!);
+        var _perfis = _context.Perfis.Where(p => p.UsuarioId == userDb.UsuarioId).ToList();
+
+        var token = _authService.GenerateJwtToken(user.Email, _perfis);
         return new LoginViewModel
         {
             Email = user.Email,

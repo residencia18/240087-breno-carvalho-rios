@@ -46,10 +46,19 @@ namespace ResTIConnect.Application.Services
                     Pais = usuario.Endereco.Pais,
                     Cep = usuario.Endereco.Cep,
                 },
+                Perfis = new List<Perfil>(),
                 Sistemas = new List<Sistema>()
             };
 
             _context.Usuarios.Add(_usuario);
+
+            foreach(var perfil in usuario.Perfis){
+                var _perfil = new Perfil {
+                    UsuarioId = _usuario.UsuarioId,
+                    Permissoes = perfil.Permissoes
+                };
+            }
+
             _context.SaveChanges();
 
             return _usuario.UsuarioId;
@@ -189,7 +198,7 @@ namespace ResTIConnect.Application.Services
                 Apelido = usuario.Apelido ?? "",
                 Email = usuario.Email,
                 Telefone = usuario.Telefone,
-                Endereco = _endereco
+                Endereco = _endereco,
             };
 
             return _usuarioViewModel;
