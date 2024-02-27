@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ResTIConnect.WebAPI.Controllers{
     [ApiController]
@@ -13,18 +15,21 @@ namespace ResTIConnect.WebAPI.Controllers{
         public PerfilController(IPerfilService service) => _perfilService = service;
 
         [HttpGet("perfis")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Get()
         {
             return Ok(Perfis);
         }
 
         [HttpGet("perfil/{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult GetById(int id)
         {
             var perfil = _perfilService.GetById(id);
             return Ok(perfil);
         }
         [HttpPost("perfil")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Post([FromBody] NewPerfilInputModel perfil)
         {
             _perfilService.Create(perfil);
@@ -33,6 +38,7 @@ namespace ResTIConnect.WebAPI.Controllers{
 
         }
         [HttpPut("perfil/{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Put(int id, [FromBody] NewPerfilInputModel perfil)
         {
             if (_perfilService.GetById(id) == null)
@@ -42,6 +48,7 @@ namespace ResTIConnect.WebAPI.Controllers{
         }
 
         [HttpDelete("perfil/{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Delete(int id)
         {
             if (_perfilService.GetById(id) == null)

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
@@ -20,6 +21,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPost("eventos")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Create([FromBody] NewEventoInputModel evento)
         {
             try
@@ -35,6 +37,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpGet("eventos/{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult GetById(int id)
         {
             try
@@ -51,12 +54,14 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpGet("eventos")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Get()
         {
             return Ok(Eventos);
         }
 
         [HttpPut("eventos/{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Update(int id, [FromBody] NewEventoInputModel evento)
         {
             try
@@ -73,6 +78,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpDelete("eventos/{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Delete(int id)
         {
             try

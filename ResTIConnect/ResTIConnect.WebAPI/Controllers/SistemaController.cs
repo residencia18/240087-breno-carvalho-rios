@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
@@ -15,11 +16,13 @@ namespace ResTIConnect.WebAPI.Controllers
         public SistemaController(ISistemaService sistemaService) => _sistemaService = sistemaService;
 
         [HttpGet("sistemas")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Get()
         {
             return Ok(Sistemas);
         }
         [HttpGet("sistema/{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult GetById(int id)
         {
             var sistema = _sistemaService.GetById(id);
@@ -27,6 +30,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPost("sistema")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Post([FromBody] NewSistemaInputModel sistema)
         {
             _sistemaService.Create(sistema);
@@ -34,6 +38,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpGet("sistema/usuario/{usuarioId}")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult GetSistemasByUserId(int usuarioId)
         {
             var sistemas = _sistemaService.GetSistemasByUserId(usuarioId);
@@ -41,6 +46,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpGet("sistema/evento/{tipo}/from/{dataInicio}")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult GetSistemasByEventoTipoByData(string tipo, DateTime dataInicio)
         {
 
@@ -50,6 +56,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPut("sistema/{sistemaId}/evento")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult AdicionaEventoAoSistema(int sistemaId, [FromBody] int eventoId)
         {
             _sistemaService.AdicionaEventoAoSistema(eventoId, sistemaId);
@@ -57,6 +64,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPut("sistema/{sistemaId}/usuario")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult AdicionaUsuarioAoSistema(int sistemaId, [FromBody] int usuarioId)
         {
             _sistemaService.AdicionaUsuarioAoSistema(sistemaId, usuarioId);
@@ -64,6 +72,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPut("sistema/{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Put(int id, [FromBody] NewSistemaInputModel sistema)
         {
             _sistemaService.Update(id, sistema);
@@ -71,6 +80,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpDelete("sistema/{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Delete(int id)
         {
             _sistemaService.Delete(id);
