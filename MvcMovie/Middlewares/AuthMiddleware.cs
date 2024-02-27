@@ -1,3 +1,6 @@
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using NuGet.Common;
 using NuGet.Protocol;
 
 namespace MvcMovie.Middlewares;
@@ -12,23 +15,7 @@ public class AuthMiddleware
    public async Task InvokeAsync(HttpContext context)
    {
       //verificar se existe a chave Authorization no Header da requisição
-      Console.WriteLine(context.Request.Cookies.ToJson());
-      
-    //   if(!context.Request.Headers.ContainsKey("Authorization"))
-    //   {
-    //      //context.Response.Headers.Add("WWW-Authenticate", "Basic");
-    //      context.Response.StatusCode = 401;
-    //      await context.Response.WriteAsync("Authorization header is missing");
-    //      return;
-    //   }
-
-      if(false)
-      {
-         context.Response.StatusCode = 401;
-         await context.Response.WriteAsync("Invalid username or password");
-         return;
-      }
-
+      context.Request.Headers.Authorization = "Bearer " + context.Request.Cookies["Token"];
       await _next(context);
    }
 }

@@ -6,6 +6,7 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
@@ -16,7 +17,6 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies
-        [Authorize]
         public async Task<IActionResult> Index()
         {
             return _context.Movie != null ?

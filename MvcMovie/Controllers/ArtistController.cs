@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ArtistController : Controller
     {
         private readonly MvcMovieContext _context;
@@ -22,9 +24,9 @@ namespace MvcMovie.Controllers
         // GET: Artist
         public async Task<IActionResult> Index()
         {
-              return _context.Artist != null ? 
-                          View(await _context.Artist.ToListAsync()) :
-                          Problem("Entity set 'MvcMovieContext.Artist'  is null.");
+            return _context.Artist != null ?
+                        View(await _context.Artist.ToListAsync()) :
+                        Problem("Entity set 'MvcMovieContext.Artist'  is null.");
         }
 
         // GET: Artist/Details/5
@@ -150,14 +152,14 @@ namespace MvcMovie.Controllers
             {
                 _context.Artist.Remove(artist);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ArtistExists(int id)
         {
-          return (_context.Artist?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Artist?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

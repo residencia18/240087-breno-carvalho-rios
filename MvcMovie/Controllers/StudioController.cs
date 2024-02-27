@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StudioController : Controller
     {
         private readonly MvcMovieContext _context;
@@ -22,9 +24,9 @@ namespace MvcMovie.Controllers
         // GET: Studio
         public async Task<IActionResult> Index()
         {
-              return _context.Studio != null ? 
-                          View(await _context.Studio.ToListAsync()) :
-                          Problem("Entity set 'MvcMovieContext.Studio'  is null.");
+            return _context.Studio != null ?
+                        View(await _context.Studio.ToListAsync()) :
+                        Problem("Entity set 'MvcMovieContext.Studio'  is null.");
         }
 
         // GET: Studio/Details/5
@@ -150,14 +152,14 @@ namespace MvcMovie.Controllers
             {
                 _context.Studio.Remove(studio);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StudioExists(int id)
         {
-          return (_context.Studio?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Studio?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

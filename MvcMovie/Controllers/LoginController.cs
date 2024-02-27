@@ -1,4 +1,4 @@
-using System.Net.Http.Headers;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using MvcMovie.Auth;
 using MvcMovie.Data;
@@ -10,13 +10,11 @@ namespace MvcMovie.Controllers
     {
         private readonly MvcMovieContext _context;
         private readonly IAuthService _authService;
-        private readonly IHttpClientFactory _clientFactory;
 
-        public LoginController(MvcMovieContext context, IAuthService authService, IHttpClientFactory clientFactory)
+        public LoginController(MvcMovieContext context, IAuthService authService)
         {
             _context = context;
             _authService = authService;
-            _clientFactory = clientFactory;
         }
 
         public IActionResult Index()
@@ -31,22 +29,27 @@ namespace MvcMovie.Controllers
             if (ModelState.IsValid)
             {
                 var _encriptedPassword = _authService.ComputeSha256Hash(login.Password);
-                var user = _context.User.FirstOrDefault(user => 
+                var user = _context.User.FirstOrDefault(user =>
                     user.Email == login.Email && user.Password == _encriptedPassword
                 );
 
-                if(user is null){
+                if (user is null)
+                {
                     return Problem("Invalid Credentials: Login or Password invalid.");
                 }
 
                 var token = _authService.GenerateJwtToken(login.Email, "Admin");
-
-                var httpClient = _clientFactory.CreateClient();
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                HttpContext.Response.Cookies.Append("Token", token);
 
                 return RedirectToAction("Index", "Home");
             }
             return View(login);
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Response.Cookies.Delete("Token");
+            return RedirectToAction("Index", "Login");
         }
     }
 }
