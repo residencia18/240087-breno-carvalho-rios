@@ -1,9 +1,5 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using MvcMovie.AppUtils;
+using MvcMovie.Auth;
 using MvcMovie.Data;
 using MvcMovie.Models;
 
@@ -13,11 +9,13 @@ namespace MvcMovie.Controllers
     {
         private readonly MvcMovieContext _context;
         private readonly IConfiguration _configuration;
+        private readonly IAuthService _authService;
 
-        public LoginController(MvcMovieContext context, IConfiguration configuration)
+        public LoginController(MvcMovieContext context, IConfiguration configuration, IAuthService authService)
         {
             _context = context;
             _configuration = configuration;
+            _authService = authService;
         }
 
         public IActionResult Index()
@@ -31,6 +29,19 @@ namespace MvcMovie.Controllers
         {
             if (ModelState.IsValid)
             {
+                var _encriptedPassword = _authService.ComputeSha256Hash(login.Password);
+                var user = _context.User.FirstOrDefault(user => 
+                    user.Email == login.Email && user.Password == _encriptedPassword
+                );
+
+                if(user is null){
+                    return Problem("Invalid Credentials: Login or Password invalid.");
+                }
+                
+                var token = _authService.GenerateJwtToken(_encriptedPassword, "Admin");
+
+                Console.WriteLine($"{token}");
+
                 return RedirectToAction("Index", "Home");
             }
             return View(login);

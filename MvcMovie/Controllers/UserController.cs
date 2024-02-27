@@ -1,24 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MvcMovie.Auth;
 using MvcMovie.Data;
 using MvcMovie.Models;
-using MvcMovie.AppUtils;
 
 namespace MvcMovie.Controllers
 {
     public class UserController : Controller
     {
         private readonly MvcMovieContext _context;
+        private readonly IAuthService _authService;
 
-        public UserController(MvcMovieContext context)
+        public UserController(MvcMovieContext context, IAuthService authService)
         {
             _context = context;
+            _authService = authService;
         }
 
         // GET: User
@@ -62,7 +58,7 @@ namespace MvcMovie.Controllers
         {
             if (ModelState.IsValid)
             {
-                var _encryptedPassword = Utils.ComputeSha256Hash(user.Password);
+                var _encryptedPassword = _authService.ComputeSha256Hash(user.Password);
                 user.Password = _encryptedPassword;
                 _context.Add(user);
                 await _context.SaveChangesAsync();
@@ -103,7 +99,7 @@ namespace MvcMovie.Controllers
             {
                 try
                 {
-                    var _encryptedPassword = Utils.ComputeSha256Hash(user.Password);
+                    var _encryptedPassword = _authService.ComputeSha256Hash(user.Password);
                     user.Password = _encryptedPassword;
                     _context.Update(user);
                     await _context.SaveChangesAsync();

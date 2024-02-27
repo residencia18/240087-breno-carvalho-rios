@@ -2,8 +2,11 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using MvcMovie.Auth;
 using MvcMovie.Data;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 if (builder.Environment.IsDevelopment())
 {
