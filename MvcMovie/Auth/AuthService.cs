@@ -21,7 +21,7 @@ public class AuthService : IAuthService
         }
     }
 
-    public string GenerateJwtToken(string username, string role)
+    public string GenerateJwtToken(string email, string role)
     {
         var issuer = _configuration["Jwt:Issuer"];
         var audience = _configuration["Jwt:Audience"];
@@ -32,7 +32,7 @@ public class AuthService : IAuthService
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
         var claims = new[]{
-            new Claim("username", username),
+            new Claim("email", email),
             new Claim(ClaimTypes.Role, role),
         };
 

@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 using MvcMovie.Auth;
 using MvcMovie.Data;
@@ -8,14 +9,14 @@ namespace MvcMovie.Controllers
     public class LoginController : Controller
     {
         private readonly MvcMovieContext _context;
-        private readonly IConfiguration _configuration;
         private readonly IAuthService _authService;
+        private readonly IHttpClientFactory _clientFactory;
 
-        public LoginController(MvcMovieContext context, IConfiguration configuration, IAuthService authService)
+        public LoginController(MvcMovieContext context, IAuthService authService, IHttpClientFactory clientFactory)
         {
             _context = context;
-            _configuration = configuration;
             _authService = authService;
+            _clientFactory = clientFactory;
         }
 
         public IActionResult Index()
@@ -37,10 +38,11 @@ namespace MvcMovie.Controllers
                 if(user is null){
                     return Problem("Invalid Credentials: Login or Password invalid.");
                 }
-                
-                var token = _authService.GenerateJwtToken(_encriptedPassword, "Admin");
 
-                Console.WriteLine($"{token}");
+                var token = _authService.GenerateJwtToken(login.Email, "Admin");
+
+                var httpClient = _clientFactory.CreateClient();
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 return RedirectToAction("Index", "Home");
             }

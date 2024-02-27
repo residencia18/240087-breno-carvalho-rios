@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
@@ -15,6 +16,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return _context.Movie != null ?
