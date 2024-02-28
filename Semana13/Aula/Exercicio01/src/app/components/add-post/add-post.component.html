@@ -1,0 +1,10 @@
+<div class="form-content">
+    <h2>Adicionar uma nova postagem</h2>
+    <form [formGroup]="addPostForm" (ngSubmit)="post()">
+        <input type="text" pInputText placeholder="Título" formControlName="title"/>
+        <textarea rows="5" cols="30" pInputTextarea placeholder="Conteúdo" formControlName="content"></textarea>
+        <div class="p-fluid">
+            <p-button label="Publicar" type="submit"></p-button>
+        </div>
+    </form>
+</div>

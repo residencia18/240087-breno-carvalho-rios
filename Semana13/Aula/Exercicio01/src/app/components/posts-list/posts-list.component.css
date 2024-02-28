@@ -1,0 +1,12 @@
+::ng-deep .p-dataview-content{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: lightgray;
+    padding: 20px;
+}
+
+::ng-deep .p-card-footer {
+    display: flex;
+    gap: 5px;
+}
