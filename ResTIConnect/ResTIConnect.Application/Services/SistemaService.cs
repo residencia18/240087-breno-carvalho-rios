@@ -79,7 +79,6 @@ namespace ResTIConnect.Application.Services
                         Nome = u.Nome,
                         Apelido = u.Apelido ?? "",
                         Email = u.Email,
-                        Senha = u.Senha,
                         Telefone = u.Telefone,
                         Endereco = new EnderecoViewModel
                         {
@@ -128,7 +127,6 @@ namespace ResTIConnect.Application.Services
                         Nome = u.Nome,
                         Apelido = u.Apelido ?? "",
                         Email = u.Email,
-                        Senha = u.Senha,
                         Telefone = u.Telefone,
                         Endereco = new EnderecoViewModel
                         {
@@ -201,7 +199,6 @@ namespace ResTIConnect.Application.Services
                         Nome = u.Nome,
                         Apelido = u.Apelido ?? "",
                         Email = u.Email,
-                        Senha = u.Senha,
                         Telefone = u.Telefone,
                         Endereco = new EnderecoViewModel
                         {

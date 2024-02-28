@@ -4,27 +4,36 @@ using ResTIConnect.Infrastructure.Context;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
+using ResTIConnect.Infrastructure.Auth.Interfaces;
 namespace ResTIConnect.Application.Services
 {
     public class UsuarioService : IUsuarioService
     {
         private readonly ResTIConnectDbContext _context;
+        private readonly IAuthService _authService;
         private readonly IEnderecoService _enderecoservice;
 
-        public UsuarioService(ResTIConnectDbContext context, IEnderecoService enderecoservice)
+        public UsuarioService(ResTIConnectDbContext context, IEnderecoService enderecoservice, IAuthService authService)
         {
             _context = context;
+            _authService = authService;
             _enderecoservice = enderecoservice;
         }
 
         public int Create(NewUsuarioInputModel usuario)
         {
+            if (_context.Usuarios.Any(u => u.Email == usuario.Email))
+            {
+                throw new EmailAlreadyExistsException();
+            }
+
+            var _hashedSenha = _authService.ComputeSha256Hash(usuario.Senha);
             var _usuario = new Usuario
             {
                 Nome = usuario.Nome,
                 Apelido = usuario.Apelido,
                 Email = usuario.Email,
-                Senha = usuario.Senha,
+                Senha = _hashedSenha,
                 Telefone = usuario.Telefone,
                 Endereco = new Endereco
                 {
@@ -37,10 +46,19 @@ namespace ResTIConnect.Application.Services
                     Pais = usuario.Endereco.Pais,
                     Cep = usuario.Endereco.Cep,
                 },
+                Perfis = new List<Perfil>(),
                 Sistemas = new List<Sistema>()
             };
 
             _context.Usuarios.Add(_usuario);
+
+            foreach(var perfil in usuario.Perfis){
+                var _perfil = new Perfil {
+                    UsuarioId = _usuario.UsuarioId,
+                    Permissoes = perfil.Permissoes
+                };
+            }
+
             _context.SaveChanges();
 
             return _usuario.UsuarioId;
@@ -55,7 +73,6 @@ namespace ResTIConnect.Application.Services
                     Nome = u.Nome,
                     Apelido = u.Apelido ?? "",
                     Email = u.Email,
-                    Senha = u.Senha,
                     Telefone = u.Telefone,
                     Endereco = new EnderecoViewModel
                     {
@@ -85,7 +102,6 @@ namespace ResTIConnect.Application.Services
                     Nome = u.Nome,
                     Apelido = u.Apelido ?? "",
                     Email = u.Email,
-                    Senha = u.Senha,
                     Telefone = u.Telefone,
                     Endereco = new EnderecoViewModel
                     {
@@ -115,7 +131,6 @@ namespace ResTIConnect.Application.Services
                     Nome = u.Nome,
                     Apelido = u.Apelido ?? "",
                     Email = u.Email,
-                    Senha = u.Senha,
                     Telefone = u.Telefone,
                     Endereco = new EnderecoViewModel
                     {
@@ -147,12 +162,17 @@ namespace ResTIConnect.Application.Services
 
         public void Update(int id, NewUsuarioInputModel usuario)
         {
+            if (_context.Usuarios.Any(u => u.Email == usuario.Email))
+            {
+                throw new EmailAlreadyExistsException();
+            }
+
             var _usuarioDb = GetByDbId(id);
 
             _usuarioDb.Nome = usuario.Nome;
             _usuarioDb.Apelido = usuario.Apelido;
             _usuarioDb.Email = usuario.Email;
-            _usuarioDb.Senha = usuario.Senha;
+            _usuarioDb.Senha = _authService.ComputeSha256Hash(usuario.Senha); ;
             _usuarioDb.Telefone = usuario.Telefone;
             _enderecoservice.Update(_usuarioDb.Endereco.EnderecoId, usuario.Endereco);
 
@@ -177,9 +197,8 @@ namespace ResTIConnect.Application.Services
                 Nome = usuario.Nome,
                 Apelido = usuario.Apelido ?? "",
                 Email = usuario.Email,
-                Senha = usuario.Senha,
                 Telefone = usuario.Telefone,
-                Endereco = _endereco
+                Endereco = _endereco,
             };
 
             return _usuarioViewModel;
@@ -195,7 +214,6 @@ namespace ResTIConnect.Application.Services
                    Nome = u.Nome,
                    Apelido = u.Apelido ?? "",
                    Email = u.Email,
-                   Senha = u.Senha,
                    Telefone = u.Telefone,
                    Endereco = new EnderecoViewModel
                    {
