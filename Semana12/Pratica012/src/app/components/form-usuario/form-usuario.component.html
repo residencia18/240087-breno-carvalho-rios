@@ -1,0 +1,127 @@
+<form id="form-usuario" [formGroup]="formUsuario" (ngSubmit)="submitForm()">
+    <div>
+        <h2>Dados de Login</h2>
+        <div class="form-group">
+            <div class="form-group">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-user"></i>
+                    </p-inputGroupAddon>
+                    <input formControlName="username" pInputText placeholder="Nome de Usuário" />
+                </p-inputGroup>
+                <div *ngIf="!formUsuario.get('username')?.pristine && formUsuario.get('username')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of formUsuario.get('username')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-key"></i>
+                    </p-inputGroupAddon>
+                    <input type="password" formControlName="password" pInputText placeholder="Senha" />
+                </p-inputGroup>
+                <div *ngIf="!formUsuario.get('password')?.pristine && formUsuario.get('password')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of formUsuario.get('password')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h2>Dados Pessoais</h2>
+        <div class="form-group">
+            <div class="form-group">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-id-card"></i>
+                    </p-inputGroupAddon>
+                    <input formControlName="name" pInputText placeholder="Nome Completo" />
+                </p-inputGroup>
+                <div *ngIf="!formUsuario.get('name')?.pristine && formUsuario.get('name')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of formUsuario.get('name')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-at"></i>
+                    </p-inputGroupAddon>
+                    <input formControlName="mail" pInputText placeholder="E-mail" />
+                </p-inputGroup>
+                <div *ngIf="!formUsuario.get('mail')?.pristine && formUsuario.get('mail')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of formUsuario.get('mail')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-phone"></i>
+                    </p-inputGroupAddon>
+                    <p-inputMask mask="(99) 99999-9999" formControlName="phone" placeholder="(99) 99999-9999"></p-inputMask>
+                </p-inputGroup>
+                <div *ngIf="!formUsuario.get('phone')?.pristine && formUsuario.get('phone')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of formUsuario.get('phone')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-map-marker"></i>
+                    </p-inputGroupAddon>
+                    <input formControlName="address" pInputText placeholder="Endereço" />
+                </p-inputGroup>
+                <div *ngIf="!formUsuario.get('address')?.pristine && formUsuario.get('address')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of formUsuario.get('address')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-calendar"></i>
+                    </p-inputGroupAddon>
+                    <p-calendar placeholder="Data de Nascimento" formControlName="birthDate" dateFormat="dd/mm/yy" class="p-fluid"></p-calendar>
+                </p-inputGroup>
+                <div *ngIf="!formUsuario.get('birthDate')?.pristine && formUsuario.get('birthDate')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of formUsuario.get('birthDate')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-users"></i>
+                    </p-inputGroupAddon>
+                    <p-dropdown formControlName="gender" [options]="genderOptions" optionLabel="label" optionValue="value" placeholder="Gênero"></p-dropdown>
+                </p-inputGroup>
+                <div *ngIf="!formUsuario.get('gender')?.pristine && formUsuario.get('gender')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of formUsuario.get('gender')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-wrench"></i>
+                    </p-inputGroupAddon>
+                    <p-dropdown formControlName="profession" [options]="professionOptions" optionLabel="label" optionValue="value" placeholder="Profissão"></p-dropdown>
+                </p-inputGroup>
+                <div *ngIf="!formUsuario.get('profession')?.pristine && formUsuario.get('profession')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of formUsuario.get('profession')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-fluid">
+        <p-button label="Fazer Cadastro" type="submit"></p-button>
+    </div>
+</form>
+
+<div class="logs">
+    <h2>Logs</h2>
+    <div *ngFor="let log of formLog.reverse(); let first = first">
+        <hr *ngIf="!first"/>
+        <p>Elemento: {{log.element}}</p>
+        <p>Tipo: {{log.event}}</p>
+        <p>Evento: {{log.description}}</p>
+        <p>Data/Hora: {{log.dateTime | date:'dd/MM/yyyy HH:mm:ss'}}</p>
+    </div>
+</div>

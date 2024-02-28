@@ -38,3 +38,6 @@ Repositório dedicado à disciplina de Front End do Programa de Residência em S
 * Prática 011
     * [Repositório](https://github.com/brenoriios/FrontEnd-TIC18/tree/main/Semana11/Pratica011)
     * [Github Pages](https://brenoriios.github.io/FrontEnd-TIC18/Semana11/Pratica011/dist/pratica011/browser)
+* Prática 012
+    * [Repositório](https://github.com/brenoriios/FrontEnd-TIC18/tree/main/Semana12/Pratica012)
+    * [Github Pages](https://brenoriios.github.io/FrontEnd-TIC18/Semana12/Pratica012/dist/pratica012/browser)
