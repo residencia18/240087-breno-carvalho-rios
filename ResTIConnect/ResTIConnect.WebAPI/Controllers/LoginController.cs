@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
@@ -7,6 +9,7 @@ namespace ResTIConnect.WebAPI.Controllers
 {
     [ApiController]
     [Route("api/v0.1/login")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class LoginController : ControllerBase
     {
         private readonly ILoginService _loginService;

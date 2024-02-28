@@ -1,3 +1,4 @@
+using System.Security.Authentication;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
@@ -20,7 +21,7 @@ public class LoginService : ILoginService
 
         var userDb = _context.Usuarios.FirstOrDefault(u =>
             u.Email == user.Email && u.Senha == senhaCriptografada
-        ) ?? throw new InvalidCredentialsException();
+        ) ?? throw new InvalidCredentialException();
 
         var _perfis = _context.Perfis.Where(p => p.UsuarioId == userDb.UsuarioId).ToList();
 
