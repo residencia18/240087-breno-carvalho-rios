@@ -1,7 +1,7 @@
 namespace OrdemDeServico.Application.InputModels;
 
-public class NLoginInputModel
+public class NewLoginInputModel
 {
     public required string NomeUsuario { get; set; }
-    public required string Password { get; set; }
+    public required string Senha { get; set; }
 }

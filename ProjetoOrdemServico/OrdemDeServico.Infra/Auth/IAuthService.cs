@@ -2,6 +2,6 @@
 
 public interface IAuthService
 {
-    string ComputeSha256Hash(string text);
-    bool Login(string nome, string senha);
+    string GenerateJwtToken(string username, string role);
+    string ComputeSha256Hash(string password);
 }
