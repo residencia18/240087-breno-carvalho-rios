@@ -19,6 +19,7 @@ builder.Services.AddScoped<IPrestadorDeServicoService, PrestadorDeServicoService
 builder.Services.AddScoped<IOrdemServicoService, OrdemServicoService>();
 builder.Services.AddScoped<IPagamentoService, PagamentoService>();
 builder.Services.AddScoped<IServicoService, ServicoService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 
 builder.Services.AddDbContext<OrdemDeServicoContext>(options =>
 {
