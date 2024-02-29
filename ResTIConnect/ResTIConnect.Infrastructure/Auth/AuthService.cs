@@ -1,6 +1,10 @@
-﻿using System.Security.Cryptography;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using ResTIConnect.Domain.Entities;
 using ResTIConnect.Infrastructure.Auth.Interfaces;
 using ResTIConnect.Infrastructure.Context;
 
@@ -28,9 +32,36 @@ public class AuthService : IAuthService
         }
     }
 
-    public bool Login(string email, string senha)
+    public string GenerateJwtToken(string username, ICollection<Perfil> perfis)
     {
-        var senhaCriptografada = ComputeSha256Hash(senha);
-        return _context.Usuarios.Any(u => u.Email == email && u.Senha == senhaCriptografada);
+        var issuer = _configuration["Jwt:Issuer"];
+        var audience = _configuration["Jwt:Audience"];
+        var key = _configuration["Jwt:Key"] ?? "";
+        //cria uma chave utilizando criptografia simétrica
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+        //cria as credenciais do token
+        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+        var claims = perfis
+            .Select(perfil => perfil.Permissoes)
+            .Select(permissoes => new Claim(ClaimTypes.Role, permissoes));
+
+        claims.Append(new Claim("username", username));
+        
+        var token = new JwtSecurityToken( //cria o token
+           issuer: issuer, //emissor do token
+           audience: audience, //destinatário do token
+           claims: claims, //informações do usuário
+           expires: DateTime.Now.AddMinutes(30), //tempo de expiração do token
+           signingCredentials: credentials //credenciais do token
+        );
+
+
+        var tokenHandler = new JwtSecurityTokenHandler(); //cria um manipulador de token
+
+        var stringToken = tokenHandler.WriteToken(token);
+
+        return stringToken;
     }
+
 }

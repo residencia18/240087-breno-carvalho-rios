@@ -11,6 +11,7 @@ namespace ResTIConnect.WebAPI.Controllers
     [ApiController]
     [Route("/api/v0.1/")]
     [Authorize(Roles="Admin")]
+
     public class EventoController : ControllerBase
     {
         private readonly IEventoService _eventoService;

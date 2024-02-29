@@ -8,4 +8,5 @@ public class NewUsuarioInputModel
     public required string Senha { get; set; }
     public required string Telefone { get; set; }
     public required NewEnderecoInputModel Endereco { get; set; }
+    public required ICollection<PerfilIntoUsuarioInputModel> Perfis { get; set; }
 }

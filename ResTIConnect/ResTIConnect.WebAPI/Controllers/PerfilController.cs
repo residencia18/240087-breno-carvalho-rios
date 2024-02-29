@@ -4,11 +4,15 @@ using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace ResTIConnect.WebAPI.Controllers{
     [ApiController]
     [Route("/api/v0.1/")]
+
     [Authorize(Roles="Admin")]
+
     public class PerfilController : ControllerBase
     {
         private readonly IPerfilService _perfilService;
