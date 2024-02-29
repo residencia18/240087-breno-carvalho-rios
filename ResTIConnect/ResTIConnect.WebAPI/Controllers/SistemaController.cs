@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
@@ -8,6 +9,7 @@ namespace ResTIConnect.WebAPI.Controllers
 
     [ApiController]
     [Route("/api/v0.1/")]
+    [Authorize]
     public class SistemaController : ControllerBase
     {
         private readonly ISistemaService _sistemaService;
