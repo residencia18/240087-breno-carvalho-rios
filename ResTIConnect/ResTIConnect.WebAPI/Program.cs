@@ -17,17 +17,21 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ISistemaService, SistemaService>();
 builder.Services.AddScoped<IEventoService, EventoService>();
 
-
 builder.Services.AddDbContext<ResTIConnectDbContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("resticonnectdb");
-
     var serverVersion = ServerVersion.AutoDetect(connectionString);
-
     options.UseMySql(connectionString, serverVersion);
 });
 
 builder.Services.AddControllers();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy =>
+        policy.RequireRole("Admin"));
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
