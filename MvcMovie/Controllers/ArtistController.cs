@@ -11,7 +11,6 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class ArtistController : Controller
     {
         private readonly MvcMovieContext _context;
@@ -22,6 +21,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Artist
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return _context.Artist != null ?
@@ -30,6 +30,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Artist/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Artist == null)
@@ -48,6 +49,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Artist/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -58,6 +60,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name,Bio,Site")] Artist artist)
         {
             if (ModelState.IsValid)
@@ -70,6 +73,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Artist/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Artist == null)
@@ -90,6 +94,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Bio,Site")] Artist artist)
         {
             if (id != artist.Id)
@@ -121,6 +126,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Artist/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Artist == null)
@@ -141,6 +147,7 @@ namespace MvcMovie.Controllers
         // POST: Artist/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Artist == null)

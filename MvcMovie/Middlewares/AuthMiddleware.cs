@@ -14,8 +14,10 @@ public class AuthMiddleware
 
    public async Task InvokeAsync(HttpContext context)
    {
-      //verificar se existe a chave Authorization no Header da requisição
-      context.Request.Headers.Authorization = "Bearer " + context.Request.Cookies["Token"];
+      if (context.Request.Cookies.ContainsKey("Token"))
+      {
+         context.Request.Headers.Authorization = "Bearer " + context.Request.Cookies["Token"];
+      }
       await _next(context);
    }
 }
