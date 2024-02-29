@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OrdemDeServico.Application.InputModels;
 using OrdemDeServico.Application.Services.Interfaces;
 using OrdemDeServico.Application.ViewModels;
@@ -6,6 +7,7 @@ namespace OrdemDeServico.WebAPI.Controllers.PrestadorDeServico;
 
 [ApiController]
 [Route("/api/v0.1/")]
+[Authorize]
 public class PrestadorDeServicoController : ControllerBase
 {
     private readonly IPrestadorDeServicoService _prestadorDeServicoService;

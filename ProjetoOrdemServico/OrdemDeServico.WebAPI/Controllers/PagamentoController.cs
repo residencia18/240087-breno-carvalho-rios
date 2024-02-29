@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrdemDeServico.Application.InputModels;
 using OrdemDeServico.Application.Services.Interfaces;
@@ -7,6 +8,7 @@ namespace OrdemDeServico.WebAPI.Controllers
 {
     [ApiController]
     [Route("/api/v0.1/")]
+    [Authorize]
     public class PagamentoController : ControllerBase
     {
         private readonly IPagamentoService _pagamentoService;
