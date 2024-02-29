@@ -52,12 +52,12 @@ namespace ResTIConnect.Application.Services
 
             _context.Usuarios.Add(_usuario);
 
-            foreach(var perfil in usuario.Perfis){
-                var _perfil = new Perfil {
-                    UsuarioId = _usuario.UsuarioId,
-                    Permissoes = perfil.Permissoes
-                };
-            }
+            // foreach(var perfil in usuario.Perfis){
+            //     var _perfil = new Perfil {
+            //         UsuarioId = _usuario.UsuarioId,
+            //         Permissoes = perfil.Permissoes
+            //     };
+            // }
 
             _context.SaveChanges();
 

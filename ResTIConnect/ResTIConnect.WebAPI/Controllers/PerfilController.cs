@@ -3,15 +3,14 @@ using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
 
 
-namespace ResTIConnect.WebAPI.Controllers{
+namespace ResTIConnect.WebAPI.Controllers
+{
     [ApiController]
     [Route("/api/v0.1/")]
 
-    [Authorize(Roles="Admin")]
+    [Authorize(Roles = "Admin")]
 
     public class PerfilController : ControllerBase
     {
@@ -20,21 +19,21 @@ namespace ResTIConnect.WebAPI.Controllers{
         public PerfilController(IPerfilService service) => _perfilService = service;
 
         [HttpGet("perfis")]
-        
+
         public IActionResult Get()
         {
             return Ok(Perfis);
         }
 
         [HttpGet("perfil/{id}")]
-        
+
         public IActionResult GetById(int id)
         {
             var perfil = _perfilService.GetById(id);
             return Ok(perfil);
         }
         [HttpPost("perfil")]
-        
+
         public IActionResult Post([FromBody] NewPerfilInputModel perfil)
         {
             _perfilService.Create(perfil);
@@ -43,7 +42,7 @@ namespace ResTIConnect.WebAPI.Controllers{
 
         }
         [HttpPut("perfil/{id}")]
-        
+
         public IActionResult Put(int id, [FromBody] NewPerfilInputModel perfil)
         {
             if (_perfilService.GetById(id) == null)
@@ -53,7 +52,7 @@ namespace ResTIConnect.WebAPI.Controllers{
         }
 
         [HttpDelete("perfil/{id}")]
-        
+
         public IActionResult Delete(int id)
         {
             if (_perfilService.GetById(id) == null)
