@@ -9,7 +9,8 @@ namespace ResTIConnect.WebAPI.Controllers
 
     [ApiController]
     [Route("/api/v0.1/")]
-    [Authorize]
+    [Authorize(Roles="Admin")]
+
     public class SistemaController : ControllerBase
     {
         private readonly ISistemaService _sistemaService;
@@ -17,11 +18,13 @@ namespace ResTIConnect.WebAPI.Controllers
         public SistemaController(ISistemaService sistemaService) => _sistemaService = sistemaService;
 
         [HttpGet("sistemas")]
+        
         public IActionResult Get()
         {
             return Ok(Sistemas);
         }
         [HttpGet("sistema/{id}")]
+        
         public IActionResult GetById(int id)
         {
             var sistema = _sistemaService.GetById(id);
@@ -29,6 +32,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPost("sistema")]
+        
         public IActionResult Post([FromBody] NewSistemaInputModel sistema)
         {
             _sistemaService.Create(sistema);
@@ -36,6 +40,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpGet("sistema/usuario/{usuarioId}")]
+        
         public IActionResult GetSistemasByUserId(int usuarioId)
         {
             var sistemas = _sistemaService.GetSistemasByUserId(usuarioId);
@@ -43,6 +48,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpGet("sistema/evento/{tipo}/from/{dataInicio}")]
+        
         public IActionResult GetSistemasByEventoTipoByData(string tipo, DateTime dataInicio)
         {
 
@@ -52,6 +58,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPut("sistema/{sistemaId}/evento")]
+        
         public IActionResult AdicionaEventoAoSistema(int sistemaId, [FromBody] int eventoId)
         {
             _sistemaService.AdicionaEventoAoSistema(eventoId, sistemaId);
@@ -59,6 +66,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPut("sistema/{sistemaId}/usuario")]
+        
         public IActionResult AdicionaUsuarioAoSistema(int sistemaId, [FromBody] int usuarioId)
         {
             _sistemaService.AdicionaUsuarioAoSistema(sistemaId, usuarioId);
@@ -66,6 +74,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPut("sistema/{id}")]
+        
         public IActionResult Put(int id, [FromBody] NewSistemaInputModel sistema)
         {
             _sistemaService.Update(id, sistema);
@@ -73,6 +82,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpDelete("sistema/{id}")]
+        
         public IActionResult Delete(int id)
         {
             _sistemaService.Delete(id);

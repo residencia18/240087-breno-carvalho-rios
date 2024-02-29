@@ -10,7 +10,8 @@ namespace ResTIConnect.WebAPI.Controllers
 {
     [ApiController]
     [Route("/api/v0.1/")]
-    [Authorize]
+    [Authorize(Roles="Admin")]
+
     public class EventoController : ControllerBase
     {
         private readonly IEventoService _eventoService;
@@ -22,6 +23,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPost("eventos")]
+        
         public IActionResult Create([FromBody] NewEventoInputModel evento)
         {
             try
@@ -37,6 +39,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpGet("eventos/{id}")]
+        
         public IActionResult GetById(int id)
         {
             try
@@ -53,12 +56,14 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpGet("eventos")]
+        
         public IActionResult Get()
         {
             return Ok(Eventos);
         }
 
         [HttpPut("eventos/{id}")]
+        
         public IActionResult Update(int id, [FromBody] NewEventoInputModel evento)
         {
             try
@@ -75,6 +80,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpDelete("eventos/{id}")]
+        
         public IActionResult Delete(int id)
         {
             try
