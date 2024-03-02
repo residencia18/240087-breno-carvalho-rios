@@ -1,0 +1,67 @@
+<div class="form-content">
+    <h2>Adicionar uma nova postagem</h2>
+    <form [formGroup]="addAtendimentoForm" (ngSubmit)="submit()">
+        <div class="form-group">
+            <div class="form-group-title">
+                <h3>Dados do Cliente</h3>
+                <p-divider></p-divider>
+            </div>
+            <div class="form-group-content">
+                <div>
+                    <label for="nomeCliente">Nome</label>
+                    <input id="nomeCliente" type="text" pInputText placeholder="Seu Nome" formControlName="nomeCliente"/>
+                </div>
+                <div>
+                    <label for="emailCliente">Email</label>
+                    <input id="emailCliente" type="text" pInputText placeholder="Seu Email" formControlName="emailCliente" />
+                </div>
+                <div>
+                    <label for="cpfCliente">CPF</label>
+                    <input id="cpfCliente" type="text" pInputText placeholder="Seu CPF" formControlName="cpfCliente" />
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group-title">
+            <h3>Dados do Pet</h3>
+            <p-divider></p-divider>
+        </div>
+        <div class="form-group-content">
+            <div>
+                <label for="nomePet">Nome</label>
+                <input id="nomePet" type="text" pInputText placeholder="Nome do Pet" formControlName="nomePet" />
+            </div>
+            <div>
+                <label for="racaPet">Raça</label>
+                <input id="racaPet" type="text" pInputText placeholder="Raça do Pet" formControlName="racaPet" />
+            </div>
+            <div>
+                <label for="portePet">Porte</label>
+                <input id="portePet" type="text" pInputText placeholder="Porte do Pet" formControlName="portePet" />
+            </div>
+            <div>
+                <label for="sexoPet">Sexo</label>
+                <input id="sexoPet" type="text" pInputText placeholder="Macho/Fêmea" formControlName="sexoPet" />
+            </div>
+            <div>
+                <label for="dataNascimentoPet">Data de Nascimento</label>
+                <input id="dataNascimentoPet" type="text" pInputText placeholder="Data de Nascimento do Pet" formControlName="dataNascimentoPet" />
+            </div>
+        </div>
+        
+        <div class="form-group-title">
+            <h3>Dados do Atendimento</h3>
+            <p-divider></p-divider>
+        </div>
+        <div class="form-group-content">
+            <input type="text" pInputText placeholder="Data/Hora do Atendimento" formControlName="dataHora" />
+            <input type="text" pInputText placeholder="Procedimento" formControlName="procedimento" />
+            <input type="text" pInputText placeholder="Profissional" formControlName="nomeProfissional" />
+            <input type="text" pInputText placeholder="Status" formControlName="status" *ngIf="id"/>
+        </div>
+
+        <div class="p-fluid">
+            <p-button [label]="id ? 'Alterar Atendimento' : 'Cadastrar Atendimento'" type="submit"></p-button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,20 @@
+<p-dataView [value]="atendimentos" layout="grid">
+    <ng-template pTemplate="header">
+        <p-dataViewLayoutOptions>
+        </p-dataViewLayoutOptions>
+    </ng-template>
+    <ng-template pTemplate="list">
+        <div class="atendimentos-list">
+            <div class="atendimento" *ngFor="let atendimento of atendimentos">
+                <app-card-atendimento [atendimento]="atendimento" (onDelete)="getAll()"></app-card-atendimento>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="grid">
+        <div class="atendimentos-grid">
+            <div class="atendimento" *ngFor="let atendimento of atendimentos">
+                <app-card-atendimento [atendimento]="atendimento" (onDelete)="getAll()"></app-card-atendimento>
+            </div>
+        </div>
+    </ng-template>
+</p-dataView>
