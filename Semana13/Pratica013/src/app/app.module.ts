@@ -14,6 +14,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AddAtendimentoComponent } from './components/add-atendimento/add-atendimento.component';
@@ -41,7 +43,9 @@ import { DetalhesAtendimentoComponent } from './components/detalhes-atendimento/
     InputTextModule,
     InputTextareaModule,
     ButtonModule,
-    DividerModule
+    DividerModule,
+    DropdownModule,
+    CalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

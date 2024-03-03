@@ -11,6 +11,23 @@ import { AtendimentoViewModel } from '../../models/Atendimento/AtendimentoViewMo
   styleUrl: './add-atendimento.component.css'
 })
 export class AddAtendimentoComponent {
+  public porteOptions = [
+    'Pequeno',
+    'Medio',
+    'Grande',
+  ]
+
+  public sexoOptions = [
+    'Macho',
+    'Fêmea',
+  ]
+
+  public statusOptions = [
+    'Pendente',
+    'Concluído',
+    'Cancelado',
+  ]
+
   public id = this.route.snapshot.paramMap.get('id');
   public atendimento: AtendimentoViewModel = {} as AtendimentoViewModel;
 

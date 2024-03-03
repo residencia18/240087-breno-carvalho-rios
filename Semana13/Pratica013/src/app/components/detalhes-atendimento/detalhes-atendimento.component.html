@@ -1,9 +1,10 @@
 <p-card class="atendimento-card">
     <ng-template pTemplate="header">
         <h2>
-            {{ atendimento.nomePet }} - {{atendimento.dataHora}} ({{atendimento.status}})
+            {{ atendimento.nomePet }} ({{atendimento.status}})
         </h2>
         <h3>Procedimento: {{ atendimento.procedimento }}</h3>
+        <h3>{{atendimento.dataHora | date:'dd/MM/yyyy'}} as {{atendimento.dataHora | date:'HH:mm'}}</h3>
     </ng-template>
 
     <div class="atendimento-property-group">
@@ -28,7 +29,7 @@
                 Data de Nascimento:
             </div>
             <div class="atendimento-property-value">
-                {{ atendimento.dataNascimentoPet }}
+                {{ atendimento.dataNascimentoPet | date:'dd/MM/yyyy'}}
             </div>
         </div>
     </div>
