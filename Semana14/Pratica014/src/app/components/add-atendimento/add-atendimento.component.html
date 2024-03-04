@@ -1,0 +1,79 @@
+<div class="form-content">
+    <h2>Adicionar uma nova postagem</h2>
+    <form [formGroup]="addAtendimentoForm" (ngSubmit)="submit()">
+        <div class="form-group">
+            <div class="form-group-title">
+                <h3>Dados do Cliente</h3>
+                <p-divider></p-divider>
+            </div>
+            <div class="form-group-content">
+                <div>
+                    <label for="nomeCliente">Nome</label>
+                    <input id="nomeCliente" type="text" pInputText placeholder="Seu Nome" formControlName="nomeCliente"/>
+                </div>
+                <div>
+                    <label for="emailCliente">Email</label>
+                    <input id="emailCliente" type="text" pInputText placeholder="Seu Email" formControlName="emailCliente" />
+                </div>
+                <div>
+                    <label for="cpfCliente">CPF</label>
+                    <input id="cpfCliente" type="text" pInputText placeholder="Seu CPF" formControlName="cpfCliente" />
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group-title">
+            <h3>Dados do Pet</h3>
+            <p-divider></p-divider>
+        </div>
+        <div class="form-group-content">
+            <div>
+                <label for="nomePet">Nome</label>
+                <input id="nomePet" type="text" pInputText placeholder="Nome do Pet" formControlName="nomePet" />
+            </div>
+            <div>
+                <label for="racaPet">Raça</label>
+                <input id="racaPet" type="text" pInputText placeholder="Raça do Pet" formControlName="racaPet" />
+            </div>
+            <div class="p-fluid">
+                <label for="portePet">Porte</label>
+                <p-dropdown id="portePet" [options]="porteOptions" formControlName="portePet" placeholder="Porte do Pet"></p-dropdown>
+            </div>
+            <div class="p-fluid">
+                <label for="sexoPet">Sexo</label>
+                <p-dropdown id="sexoPet" [options]="sexoOptions" formControlName="sexoPet" placeholder="Macho/Fêmea"></p-dropdown>
+            </div>
+            <div class="p-fluid">
+                <label for="dataNascimentoPet">Data de Nascimento</label>
+                <p-calendar id="dataNascimentoPet" formControlName="dataNascimentoPet" dateFormat="dd/mm/yy" placeholder="xx/xx/xxxx"></p-calendar>
+            </div>
+        </div>
+        
+        <div class="form-group-title">
+            <h3>Dados do Atendimento</h3>
+            <p-divider></p-divider>
+        </div>
+        <div class="form-group-content">
+            <div class="p-fluid">
+                <label for="dataHora">Data/Hora do Atendimento</label>
+                <p-calendar id="dataHora" formControlName="dataHora" dateFormat="dd/mm/yy" [showTime]="true" placeholder="xx/xx/xxxx xx:xx"></p-calendar>
+            </div>
+            <div>
+                <label for="dataHora">Procedimento</label>
+                <input type="text" pInputText placeholder="Procedimento" formControlName="procedimento" />
+            </div>
+            <div>
+                <label for="Profissional">Nome do Profissional</label>
+                <input type="text" pInputText placeholder="Profissional" formControlName="nomeProfissional" />
+            </div>
+            <div *ngIf="id" class="p-fluid">
+                <label for="status">Status</label>
+                <p-dropdown id="status" [options]="statusOptions" formControlName="status" placeholder="Status"></p-dropdown>
+            </div>
+        </div>
+
+        <div class="p-fluid">
+            <p-button [label]="id ? 'Alterar Atendimento' : 'Cadastrar Atendimento'" type="submit"></p-button>
+        </div>
+    </form>
+</div>

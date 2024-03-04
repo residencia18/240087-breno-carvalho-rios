@@ -1,0 +1,20 @@
+::ng-deep .atendimentos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: lightgray;
+    padding: 20px;
+}
+
+::ng-deep .atendimentos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: lightgray;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+::ng-deep .atendimentos-grid .atendimento {
+    width: 25%;
+}

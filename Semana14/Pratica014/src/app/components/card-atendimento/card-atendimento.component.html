@@ -1,0 +1,61 @@
+<p-card class="atendimento-card">
+    <ng-template pTemplate="header">
+        <h2>
+            <a (click)="detalhes(atendimento.id)">{{ atendimento.nomePet }} ({{atendimento.status}})</a>
+        </h2>
+        <h3>Procedimento: {{ atendimento.procedimento }}</h3>
+        <h3>{{atendimento.dataHora | date:'dd/MM/yyyy'}} as {{atendimento.dataHora | date:'HH:mm'}}</h3>
+    </ng-template>
+
+    <div class="atendimento-property-group">
+        <div class="atendimento-property">
+            <div class="atendimento-property-label">
+                Raça:
+            </div>
+            <div class="atendimento-property-value">
+                {{ atendimento.racaPet }} ({{ atendimento.sexoPet }})
+            </div>
+        </div>
+        <div class="atendimento-property">
+            <div class="atendimento-property-label">
+                Porte:
+            </div>
+            <div class="atendimento-property-value">
+                {{ atendimento.portePet }}
+            </div>
+        </div>
+        <div class="atendimento-property">
+            <div class="atendimento-property-label">
+                Data de Nascimento:
+            </div>
+            <div class="atendimento-property-value">
+                {{ atendimento.dataNascimentoPet | date:'dd/MM/yyyy'}}
+            </div>
+        </div>
+    </div>
+
+    <div class="atendimento-property-group">
+        <div class="atendimento-property">
+            <div class="atendimento-property-label">
+                Cliente:
+            </div>
+            <div class="atendimento-property-value">
+                {{ atendimento.nomeCliente }}
+            </div>
+        </div>
+        <div class="atendimento-property">
+            <div class="atendimento-property-label">
+                Profisional:
+            </div>
+            <div class="atendimento-property-value">
+                {{ atendimento.nomeProfissional }}
+            </div>
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-trash" severity="danger" (click)="delete(atendimento.id)"></p-button>
+        <p-button icon="pi pi-pencil" (click)="update(atendimento.id)"></p-button>
+        <p-button icon="pi pi-eye" (click)="detalhes(atendimento.id)"></p-button>
+    </ng-template>
+</p-card>

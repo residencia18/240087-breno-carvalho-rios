@@ -1,0 +1,22 @@
+<div class="welcome">
+  <img
+    src="https://blocks.primeng.org/assets/images/blocks/logos/hyper.svg"
+    alt="Logo"
+  />
+  <h3>Bem Vindo(a) de volta!</h3>
+</div>
+<form class="form-login" [formGroup]="loginForm" (ngSubmit)="submit()">
+  <div class="form-control">
+    <label for="email">Email: </label>
+    <input pInputText formControlName="email" id="email" type="text" placeholder="Email" />
+  </div>
+  <div class="form-control">
+    <label for="password">Senha: </label>
+    <input pInputText formControlName="password" id="password" type="password" placeholder="Senha" />
+  </div>
+  <div class="p-fluid">
+    <p-button label="Entrar" type="submit"></p-button>
+  </div>
+  <div *ngIf="error" class="error">{{error}}</div>
+</form>
+<h4>Não tem uma conta? <a routerLink="/auth/signin">Cadastre-se</a></h4>
