@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/Usuario/UsuarioViewModel';
-import { BehaviorSubject, catchError, exhaustMap, take, tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { AuthResponse } from '../models/Auth/AuthResponse';
 
 @Injectable({
