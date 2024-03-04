@@ -21,10 +21,10 @@ export class CardAtendimentoComponent {
   }
 
   public update(id: string) {
-    this.router.navigate([`/editar/atendimento/${id}`]);
+    this.router.navigate([`/atendimentos/editar/${id}`]);
   }
 
   public detalhes(id: string) {
-    this.router.navigate([`/detalhes/atendimento/${id}`]);
+    this.router.navigate([`/atendimentos/detalhes/${id}`]);
   }
 }

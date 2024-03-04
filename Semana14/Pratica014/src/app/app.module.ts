@@ -17,13 +17,14 @@ import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AddAtendimentoComponent } from './components/add-atendimento/add-atendimento.component';
 import { CardAtendimentoComponent } from './components/card-atendimento/card-atendimento.component';
 import { DetalhesAtendimentoComponent } from './components/detalhes-atendimento/detalhes-atendimento.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { SignupComponent } from './components/auth/signup/signup.component';
     DropdownModule,
     CalendarModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

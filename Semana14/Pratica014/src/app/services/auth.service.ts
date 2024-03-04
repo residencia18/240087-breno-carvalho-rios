@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/Usuario/UsuarioViewModel';
-import { BehaviorSubject, catchError, tap } from 'rxjs';
+import { BehaviorSubject, catchError, exhaustMap, take, tap } from 'rxjs';
 import { AuthResponse } from '../models/Auth/AuthResponse';
 
 @Injectable({
@@ -86,5 +86,6 @@ export class AuthService {
 
   logout() {
     this.usuario.next(new Usuario('', '', '', new Date()));
+    localStorage.removeItem('user');
   }
 }

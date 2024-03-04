@@ -1,4 +1,4 @@
-<p-menubar [model]="menuItems">
+<p-menubar [model]="menuItems" *ngIf="loggedIn">
   <ng-template pTemplate="start">
       <img src="https://brenorios.com.br/imgs/logo-brenorios.png" height="40" class="mr-2" />
   </ng-template>

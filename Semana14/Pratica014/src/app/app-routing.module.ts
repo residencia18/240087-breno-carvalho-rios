@@ -6,6 +6,7 @@ import { DetalhesAtendimentoComponent } from './components/detalhes-atendimento/
 import { AuthComponent } from './components/auth/auth.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -17,10 +18,22 @@ const routes: Routes = [
       { path: '', component: LoginComponent },
     ],
   },
-  { path: "novo/atendimento", component: AddAtendimentoComponent },
-  { path: "editar/atendimento/:id", component: AddAtendimentoComponent },
-  { path: "detalhes/atendimento/:id", component: DetalhesAtendimentoComponent },
-  { path: "", component: ListaAtendimentosComponent }
+  {
+    path: "",
+    canActivate: [authGuard],
+    children: [
+      {
+        path: "atendimentos",
+        children: [
+          { path: "novo", component: AddAtendimentoComponent },
+          { path: "editar/:id", component: AddAtendimentoComponent },
+          { path: "detalhes/:id", component: DetalhesAtendimentoComponent },
+          { path: "", component: ListaAtendimentosComponent }
+        ]
+      },
+      { path: "", component: ListaAtendimentosComponent }
+    ]
+  },
 ];
 
 @NgModule({

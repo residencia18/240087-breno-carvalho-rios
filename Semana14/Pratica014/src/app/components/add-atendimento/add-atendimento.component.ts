@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AtendimentoService } from '../../services/atendimento.service';
@@ -81,7 +81,7 @@ export class AddAtendimentoComponent {
     const atendimento = this.getDataFromForm();
 
     this.service.update(id, atendimento).subscribe(_ => {
-      this.router.navigate([`detalhes/atendimento/${id}`]);
+      this.router.navigate([`/atendimentos/detalhes/${id}`]);
     });
   }
 
