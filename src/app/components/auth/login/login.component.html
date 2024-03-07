@@ -1,8 +1,8 @@
 <div class="welcome">
-  <img class="logo"src="assets/images/logo-fazenda.png" alt="Logo" />
+  <img class="logo" src="assets/images/logo-fazenda.png" alt="Logo" />
   <h3>Bem Vindo(a) de volta!</h3>
 </div>
-<form class="form-login" [formGroup]="loginForm" (ngSubmit)="submit()">
+<form class="form-login" [formGroup]="loginForm" (ngSubmit)="submit(loginForm)">
   <div class="form-control">
     <label for="email">Email: </label>
     <input pInputText formControlName="email" id="email" type="text" placeholder="Email" />
