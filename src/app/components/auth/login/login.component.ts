@@ -37,7 +37,6 @@ export class LoginComponent {
 
         }, 2300)
       })
-
     } else {
       Swal.fire({
         title: 'Error !',
