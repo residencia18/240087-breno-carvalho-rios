@@ -8,7 +8,7 @@ import { AuthResponse } from '../models/Auth/AuthResponse';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiKey = '...';
+  private readonly apiKey = 'AIzaSyBm9jnoXfIbnbhaOzUskgcdJfbCU4rmfWg';
   private readonly baseUrl = `https://identitytoolkit.googleapis.com/v1/accounts`;
   private readonly loginUrl = `${this.baseUrl}:signInWithPassword?key=${this.apiKey}`;
   private readonly signupUrl = `${this.baseUrl}:signUp?key=${this.apiKey}`;
