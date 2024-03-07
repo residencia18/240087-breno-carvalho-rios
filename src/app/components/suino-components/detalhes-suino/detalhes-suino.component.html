@@ -9,7 +9,7 @@
                 suino.status }}</span>
         </h3>
     </ng-template>
-    
+
     <div class="suino-property-group">
         <div class="suino-property">
             <div class="suino-property-label">
@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="suino-property-group" *ngIf="suino.status === 'Vendido'">
         <div class="suino-property">
             <div class="suino-property-label">
@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="suino-property-group">
         <div class="suino-property" *ngIf="suino.status === 'Morto'">
             <div class="suino-property-label">

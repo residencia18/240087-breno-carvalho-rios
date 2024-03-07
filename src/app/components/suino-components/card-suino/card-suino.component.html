@@ -5,7 +5,9 @@
                 <a (click)="view(suino.id)">Brinco {{ suino.brinco | number:'3.0' }} ( {{suino.sexo}} )</a>
             </h2>
             <h3>
-                Status: <span [ngClass]="{'suino-active': suino.status === 'Ativo', 'suino-sold': suino.status === 'Vendido', 'suino-dead': suino.status === 'Morto'}">{{ suino.status }}</span>
+                Status: <span
+                    [ngClass]="{'suino-active': suino.status === 'Ativo', 'suino-sold': suino.status === 'Vendido', 'suino-dead': suino.status === 'Morto'}">{{
+                    suino.status }}</span>
             </h3>
         </div>
         <div #contextMenu>

@@ -29,9 +29,9 @@ export class AddSuinoComponent {
   constructor(private service: SuinoService, private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
 
   addSuinoForm: FormGroup = new FormGroup({
-    brinco: new FormControl(null, Validators.required),
-    brincoPai: new FormControl(null, Validators.required),
-    brincoMae: new FormControl(null, Validators.required),
+    brinco: new FormControl(null, [Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]*$')]),
+    brincoPai: new FormControl(null, [Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]*$')]),
+    brincoMae: new FormControl(null, [Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]*$')]),
     dataNascimento: new FormControl(null, Validators.required),
     sexo: new FormControl(null, Validators.required),
     dataSaida: new FormControl(null, Validators.required),

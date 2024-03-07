@@ -10,8 +10,8 @@ describe('AddSuinoComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AddSuinoComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(AddSuinoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -10,8 +10,8 @@ describe('DetalhesSuinoComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [DetalhesSuinoComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(DetalhesSuinoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

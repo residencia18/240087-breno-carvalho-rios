@@ -36,7 +36,7 @@ export class CardSuinoComponent {
     this.router.navigate([`/suinos/detalhes/${id}`]);
   }
 
-  public pesar(id: string){
+  public pesar(id: string) {
     this.router.navigate([`/pesos/novo/${id}`]);
   }
 }

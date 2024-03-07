@@ -77,6 +77,6 @@ export class DetalhesSuinoComponent {
   public createChartData() {
     const labels = this.pesos.map(peso => peso.data.toString().slice(0, 10).split('-').reverse().join('/'));
     const data = this.pesos.map(peso => peso.peso);
-    return { labels, datasets: [ { label: "Peso", data } ] };
+    return { labels, datasets: [{ label: "Peso", data }] };
   }
 }

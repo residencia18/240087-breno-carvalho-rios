@@ -10,8 +10,8 @@ describe('AuthComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AuthComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(AuthComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

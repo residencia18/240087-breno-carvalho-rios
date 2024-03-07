@@ -10,8 +10,8 @@ describe('AddPesoComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AddPesoComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(AddPesoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
