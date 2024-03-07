@@ -25,7 +25,7 @@ export class AuthService {
         password: password,
         returnSecureToken: true
       }).pipe(
-        tap((response: AuthResponse) => {
+        tap(response => {
           const expiracaoData = new Date(new Date().getTime() + (parseInt(response.expiresIn) * 1000));
           const usuario = new Usuario(
             response.email,
@@ -36,6 +36,15 @@ export class AuthService {
 
           this.usuario.next(usuario);
           localStorage.setItem('user', JSON.stringify(usuario));
+        }),
+        catchError(error => {
+          console.error(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro!',
+            text: 'Ocorreu um erro ao realizar seu registro. Por favor, tente novamente.'
+          });
+          return throwError(error);
         })
       );
   }
@@ -47,7 +56,7 @@ export class AuthService {
         password: password,
         returnSecureToken: true
       }).pipe(
-        tap((res: AuthResponse) => {
+        tap(res => {
           const expiracaoData = new Date(new Date().getTime() + (parseInt(res.expiresIn) * 1000));
           const usuario = new Usuario(
             res.email,
@@ -76,8 +85,8 @@ export class AuthService {
       id: string;
       _token: string;
       _tokenExpirationDate: string;
-    } = JSON.parse(localStorage.getItem('user') as string);
 
+    } = JSON.parse(localStorage.getItem('user') as string);
     if (!userData) {
       return;
     }

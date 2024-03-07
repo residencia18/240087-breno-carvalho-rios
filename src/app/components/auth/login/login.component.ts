@@ -31,7 +31,6 @@ export class LoginComponent {
           icon: 'success',
           showConfirmButton: false,
           timer: 2000
-
         })
         setTimeout(() => {
           this.router.navigate(['/'])
@@ -45,7 +44,6 @@ export class LoginComponent {
         icon: 'error',
         text: 'Oppss... Houve um error ao enviar o formulário, verifique os  campos e tente novamente.',
         showConfirmButton: true,
-
       })
       console.error('Por favor, corrija os erros no formulário.');
     }
