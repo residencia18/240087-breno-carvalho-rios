@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/Usuario/UsuarioViewModel';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { AuthResponse } from '../models/Auth/AuthResponse';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,15 @@ export class AuthService {
           this.usuario.next(usuario);
           localStorage.setItem('user', JSON.stringify(usuario));
         }),
+        catchError(error => {
+          console.error(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro!',
+            text: 'Ocorreu um erro ao realizar seu login. Por favor, tente novamente.'
+          });
+          return throwError(error);
+        })
       );
   }
 
