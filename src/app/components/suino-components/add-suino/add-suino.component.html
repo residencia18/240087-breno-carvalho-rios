@@ -1,0 +1,44 @@
+<div class="form-content">
+    <h2>Cadastrar um novo suíno</h2>
+    <form [formGroup]="addSuinoForm" (ngSubmit)="submit()">
+        <div class="form-group">
+            <div class="form-group-title">
+                <h3>Dados do Suíno</h3>
+                <p-divider></p-divider>
+            </div>
+            <div class="form-group-content">
+                <div>
+                    <label for="brinco">Brinco do Animal</label>
+                    <input id="brinco" pInputText placeholder="Ex.: 201" formControlName="brinco"/>
+                </div>
+                <div>
+                    <label for="brincoPai">Brinco do Pai</label>
+                    <input id="brincoPai" pInputText placeholder="Ex.: 100" formControlName="brincoPai" />
+                </div>
+                <div>
+                    <label for="brincoMae">Brinco da Mãe</label>
+                    <input id="brincoMae" pInputText placeholder="Ex.: 101" formControlName="brincoMae" />
+                </div>
+                <div class="p-fluid">
+                    <label for="dataNascimento">Data de Nascimento</label>
+                    <p-calendar id="dataNascimento" formControlName="dataNascimento" dateFormat="dd/mm/yy" placeholder="xx/xx/xxxx"></p-calendar>
+                </div>
+                <div class="p-fluid">
+                    <label for="sexo">Sexo</label>
+                    <p-dropdown id="sexo" [options]="sexoOptions" formControlName="sexo" placeholder="Macho/Fêmea"></p-dropdown>
+                </div>
+                <div class="p-fluid">
+                    <label for="dataSaida">Data de Saída</label>
+                    <p-calendar id="dataSaida" formControlName="dataSaida" dateFormat="dd/mm/yy" placeholder="xx/xx/xxxx"></p-calendar>
+                </div>
+                <div class="p-fluid">
+                    <label for="status">Status</label>
+                    <p-dropdown id="status" [options]="statusOptions" formControlName="status" placeholder="Status"></p-dropdown>
+                </div>
+            </div>
+        </div>
+        <div class="p-fluid">
+            <p-button [label]="id ? 'Alterar Suíno' : 'Cadastrar Suíno'" type="submit"></p-button>
+        </div>
+    </form>
+</div>

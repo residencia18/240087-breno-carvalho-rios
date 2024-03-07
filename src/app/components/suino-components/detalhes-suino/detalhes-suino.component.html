@@ -1,0 +1,63 @@
+<p-card class="suino-card">
+    <ng-template pTemplate="header">
+        <h2>
+            <a>Brinco {{ suino.brinco | number:'3.0' }} ( {{suino.sexo}} )</a>
+        </h2>
+        <h3>
+            Status: <span
+                [ngClass]="{'suino-active': suino.status === 'Ativo', 'suino-sold': suino.status === 'Vendido', 'suino-dead': suino.status === 'Morto'}">{{
+                suino.status }}</span>
+        </h3>
+    </ng-template>
+    
+    <div class="suino-property-group">
+        <div class="suino-property">
+            <div class="suino-property-label">
+                Pai:
+            </div>
+            <div class="suino-property-value">
+                Brinco {{ suino.brincoPai | number:'3.0' }}
+            </div>
+        </div>
+        <div class="suino-property">
+            <div class="suino-property-label">
+                Mãe:
+            </div>
+            <div class="suino-property-value">
+                Brinco {{ suino.brincoMae | number:'3.0' }}
+            </div>
+        </div>
+        <div class="suino-property">
+            <div class="suino-property-label">
+                Data de Nascimento:
+            </div>
+            <div class="suino-property-value">
+                {{ suino.dataNascimento | date:'dd/MM/yyyy'}}
+            </div>
+        </div>
+    </div>
+    
+    <div class="suino-property-group" *ngIf="suino.status === 'Vendido'">
+        <div class="suino-property">
+            <div class="suino-property-label">
+                Data da Saída:
+            </div>
+            <div class="suino-property-value">
+                {{ suino.dataSaida | date:'dd/MM/yyyy'}}
+            </div>
+        </div>
+    </div>
+    
+    <div class="suino-property-group">
+        <div class="suino-property" *ngIf="suino.status === 'Morto'">
+            <div class="suino-property-label">
+                Data da Morte:
+            </div>
+            <div class="suino-property-value">
+                {{ suino.dataSaida | date:'dd/MM/yyyy'}}
+            </div>
+        </div>
+    </div>
+
+    <p-chart type="bar" [data]="chartData" [options]="chartOptions" width="100%" height="300px"></p-chart>
+</p-card>

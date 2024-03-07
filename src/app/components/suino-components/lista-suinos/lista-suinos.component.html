@@ -1,0 +1,19 @@
+<p-dataView [value]="suinos" layout="grid">
+    <ng-template pTemplate="header">
+        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+    </ng-template>
+    <ng-template pTemplate="list">
+        <div class="suinos-list">
+            <div class="suino" *ngFor="let suino of suinos">
+                <app-card-suino [suino]="suino" (onDelete)="getAll()"></app-card-suino>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="grid">
+        <div class="suinos-grid">
+            <div class="suino" *ngFor="let suino of suinos">
+                <app-card-suino [suino]="suino" (onDelete)="getAll()"></app-card-suino>
+            </div>
+        </div>
+    </ng-template>
+</p-dataView>

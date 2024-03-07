@@ -1,0 +1,24 @@
+<div class="form-content">
+    <h2>Cadastrar um novo suíno</h2>
+    <form [formGroup]="pesoForm" (ngSubmit)="submit()">
+        <div class="form-group">
+            <div class="form-group-title">
+                <h3>Peso do Suíno</h3>
+                <p-divider></p-divider>
+            </div>
+            <div class="form-group-content">
+                <div>
+                    <label for="peso">Peso</label>
+                    <input id="peso" pInputText placeholder="Ex.: 100" formControlName="peso" />
+                </div>
+                <div class="p-fluid">
+                    <label for="data">Data da Pesagem</label>
+                    <p-calendar id="data" formControlName="data" dateFormat="dd/mm/yy" placeholder="xx/xx/xxxx"></p-calendar>
+                </div>
+            </div>
+        </div>
+        <div class="p-fluid">
+            <p-button [label]="id ? 'Alterar Peso' : 'Cadastrar Peso'" type="submit"></p-button>
+        </div>
+    </form>
+</div>

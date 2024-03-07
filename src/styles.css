@@ -1,0 +1,13 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+html, body {
+    margin: 0;
+    height: 100%;
+    background-color: lightgray;
+}
+
+a:visited {
+    color: inherit;
+}
