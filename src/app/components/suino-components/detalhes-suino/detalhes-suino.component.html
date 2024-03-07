@@ -35,6 +35,14 @@
                 {{ suino.dataNascimento | date:'dd/MM/yyyy'}}
             </div>
         </div>
+        <div class="suino-property">
+            <div class="suino-property-label">
+                Cadastrado por:
+            </div>
+            <div class="suino-property-value">
+                {{ suino.cadastradoPor }}
+            </div>
+        </div>
     </div>
     
     <div class="suino-property-group" *ngIf="suino.status === 'Vendido'">
