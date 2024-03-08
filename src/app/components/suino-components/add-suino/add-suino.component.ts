@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
   styleUrl: './add-suino.component.css'
 })
 export class AddSuinoComponent {
+  
   public sexoOptions = [
     'M',
     'F',

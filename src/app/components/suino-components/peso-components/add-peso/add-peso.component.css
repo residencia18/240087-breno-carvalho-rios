@@ -58,3 +58,7 @@ form {
   font-size: 0.95em;
   margin-bottom: 3px;
 }
+
+.error_message {
+  color: #bd2828;
+}

@@ -10,11 +10,17 @@
                 <div>
                     <label for="peso">Peso</label>
                     <input id="peso" pInputText placeholder="Ex.: 100" formControlName="peso" />
+                    <div *ngIf="pesoForm.get('peso')?.errors?.['required'] && pesoForm.get('peso')?.touched">
+                        <span class="error_message">O peso é obrigatório.</span>
+                    </div>
                 </div>
                 <div class="p-fluid">
                     <label for="data">Data da Pesagem</label>
                     <p-calendar id="data" formControlName="data" dateFormat="dd/mm/yy"
                         placeholder="xx/xx/xxxx"></p-calendar>
+                    <div *ngIf="pesoForm.get('data')?.errors?.['required'] && pesoForm.get('data')?.touched">
+                        <span class="error_message">A data da pesagem é obrigatória.</span>
+                    </div>
                 </div>
             </div>
         </div>
