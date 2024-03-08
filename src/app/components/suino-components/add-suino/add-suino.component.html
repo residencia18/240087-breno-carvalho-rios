@@ -71,7 +71,7 @@
                     <label for="sexo">Sexo</label>
                     <p-dropdown id="sexo" [options]="sexoOptions" formControlName="sexo"
                         placeholder="Macho/Fêmea"></p-dropdown>
-                    <div *ngIf="addSuinoForm.get('sexo')?.errors?.['required']">
+                    <div *ngIf="addSuinoForm.get('sexo')?.errors?.['required'] && addSuinoForm.get('sexo')?.touched">
                         <span class="error_message">O sexo é obrigatório.</span>
                     </div>
                 </div>

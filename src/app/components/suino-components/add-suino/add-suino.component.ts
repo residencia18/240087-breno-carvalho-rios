@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrl: './add-suino.component.css'
 })
 export class AddSuinoComponent {
-  
+
   public sexoOptions = [
     'M',
     'F',
@@ -35,9 +35,9 @@ export class AddSuinoComponent {
     brincoPai: new FormControl(null, [Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]*$')]),
     brincoMae: new FormControl(null, [Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]*$')]),
     dataNascimento: new FormControl(null, [Validators.required, this.dataNascimentoValidator.bind(this)]),
-    sexo: new FormControl(null, Validators.required),
+    sexo: new FormControl(null, [Validators.required]),
     dataSaida: new FormControl(null, [Validators.required, this.dataSaidaValidator.bind(this)]),
-    status: new FormControl("Ativo", Validators.required),
+    status: new FormControl("Ativo", [Validators.required]),
   });
 
   ngOnInit() {
@@ -48,13 +48,13 @@ export class AddSuinoComponent {
       });
     }
   }
-  
+
   public submit() {
     if (this.id) {
       this.update(this.id);
       return;
     }
-
+    
     this.create();
   }
 

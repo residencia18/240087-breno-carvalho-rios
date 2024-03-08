@@ -25,7 +25,7 @@ export class AddPesoComponent {
 
   pesoForm: FormGroup = new FormGroup({
     brinco: new FormControl(null, [Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]*$')]),
-    peso: new FormControl(null, Validators.required),
+    peso: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]+)?$')]),
     data: new FormControl(null, Validators.required),
   });
 
@@ -58,58 +58,82 @@ export class AddPesoComponent {
   public create() {
     const peso = this.getDataFromForm();
 
-    // Obter informações do suíno com base no suinoId
     this.suinoService.getById(this.suinoId!).subscribe({
       next: (suino: SuinoViewModel) => {
-
-        // Verificar se o suíno está ativo
-        if (suino && suino.status === "Ativo") {
-          // Verificar se a data de pesagem é posterior à data de nascimento do suíno
-          if (new Date(peso.data) < new Date(suino.dataNascimento)) {
-            Swal.fire({
-              title: 'Erro!',
-              text: 'A data de pesagem não pode ser anterior à data de nascimento do suíno!',
-              icon: 'error',
-              confirmButtonText: 'OK'
-            });
-            return; // Encerrar a execução da função create()
+        if (this.validateSuino(suino)) {
+          if (this.validatePesagemDate(peso, suino.dataNascimento)) {
+            this.addPeso(peso);
           }
-
-          // Suíno está ativo e a data de pesagem é válida, então pode adicionar o peso
-          this.service.create(this.suinoId!, peso).subscribe({
-            next: (_) => {
-              this.router.navigate([`/suinos/detalhes/${this.suinoId}`]);
-            },
-            error: (error: any) => {
-              console.error("Erro ao criar peso:", error);
-              Swal.fire({
-                title: 'Erro!',
-                text: 'Ocorreu um erro ao criar o peso. Por favor, tente novamente mais tarde.',
-                icon: 'error',
-                confirmButtonText: 'OK'
-              });
-            }
-          });
-        } else {
-          // Suíno não está ativo ou não foi encontrado, exiba uma mensagem de erro
-          Swal.fire({
-            title: 'Erro!',
-            text: 'Não é possível adicionar um peso para um suíno que não está ativo ou não foi encontrado!',
-            icon: 'error',
-            confirmButtonText: 'OK'
-          });
         }
       },
       error: (error: any) => {
-        // Tratar erros ao obter informações do suíno
-        console.error("Erro ao obter informações do suíno:", error);
-        Swal.fire({
-          title: 'Erro!',
-          text: 'Ocorreu um erro ao obter informações do suíno. Por favor, tente novamente mais tarde.',
-          icon: 'error',
-          confirmButtonText: 'OK'
-        });
+        this.handleSuinoError(error);
       }
+    });
+  }
+
+  private validateSuino(suino: SuinoViewModel): boolean {
+    if (!suino || suino.status !== "Ativo") {
+      this.showSuinoNotFoundError();
+      return false;
+    }
+    return true;
+  }
+
+  private validatePesagemDate(peso: any, dataNascimento: Date): boolean {
+    if (new Date(peso.data) < new Date(dataNascimento)) {
+      this.showPesagemDateError();
+      return false;
+    }
+    return true;
+  }
+
+  private addPeso(peso: any) {
+    this.service.create(this.suinoId!, peso).subscribe({
+      next: (_) => {
+        this.router.navigate([`/suinos/detalhes/${this.suinoId}`]);
+      },
+      error: (error: any) => {
+        this.handlePesoError(error);
+      }
+    });
+  }
+
+  private handleSuinoError(error: any) {
+    console.error("Erro ao obter informações do suíno:", error);
+    Swal.fire({
+      title: 'Erro!',
+      text: 'Ocorreu um erro ao obter informações do suíno. Por favor, tente novamente mais tarde.',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+  }
+
+  private showSuinoNotFoundError() {
+    Swal.fire({
+      title: 'Erro!',
+      text: 'Não é possível adicionar um peso para um suíno que não está ativo ou não foi encontrado!',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+  }
+
+  private showPesagemDateError() {
+    Swal.fire({
+      title: 'Erro!',
+      text: 'A data de pesagem não pode ser anterior à data de nascimento do suíno!',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+  }
+
+  private handlePesoError(error: any) {
+    console.error("Erro ao criar peso:", error);
+    Swal.fire({
+      title: 'Erro!',
+      text: 'Ocorreu um erro ao criar o peso. Por favor, tente novamente mais tarde.',
+      icon: 'error',
+      confirmButtonText: 'OK'
     });
   }
 

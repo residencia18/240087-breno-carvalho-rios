@@ -13,6 +13,9 @@
                     <div *ngIf="pesoForm.get('peso')?.errors?.['required'] && pesoForm.get('peso')?.touched">
                         <span class="error_message">O peso é obrigatório.</span>
                     </div>
+                    <div *ngIf="pesoForm.get('peso')?.errors?.['pattern'] && pesoForm.get('peso')?.touched">
+                        <span class="error_message"> O peso deve conter apenas números. </span>
+                    </div>
                 </div>
                 <div class="p-fluid">
                     <label for="data">Data da Pesagem</label>
