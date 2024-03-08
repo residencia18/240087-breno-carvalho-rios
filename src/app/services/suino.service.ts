@@ -36,8 +36,11 @@ export class SuinoService {
     );
   }
 
-  // Verificar se o brinco já existe
-  public checkBrincoExists(brinco: string): Observable<boolean> {
-    return this.http.get<boolean>(`this.loginUrl${brinco}`);
+  // Método para verificar se já existe um suíno com o brinco fornecido
+  getByBrinco(brinco: number): Observable<SuinoViewModel | null> {
+    return this.getAll().pipe(
+      map(suinos => suinos.find(suino => `${suino.brinco}` === `${brinco}`) || null)
+    );
   }
+
 }

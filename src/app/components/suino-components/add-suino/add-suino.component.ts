@@ -54,27 +54,40 @@ export class AddSuinoComponent {
       this.update(this.id);
       return;
     }
-    
+
     this.create();
   }
 
   public create() {
     const suino = this.getDataFromForm();
 
-    if (!this.isValidForm(suino)) {
-      // Exibir modal de erro se o formulário não for válido
-      Swal.fire({
-        title: 'Erro!',
-        icon: 'error',
-        text: 'Ops... Houve um erro ao enviar o formulário, verifique os campos e tente novamente.',
-        showConfirmButton: true,
-      });
-      console.error('Por favor, corrija os erros no formulário.');
-      return; // Abortar a criação do suíno
-    }
+    // Verifica se já existe um suíno com o brinco cadastrado
+    this.service.getByBrinco(suino.brinco).subscribe(existingSuino => {
+      if (existingSuino) {
+        Swal.fire({
+          title: 'Erro!',
+          icon: 'error',
+          text: `Já existe um suíno cadastrado com o brinco ${suino.brinco}.`,
+          showConfirmButton: true,
+        });
+        return;
+      } else {
+        // Se não houver suíno com o mesmo brinco, continua com a criação
+        if (!this.isValidForm(suino)) {
+          Swal.fire({
+            title: 'Erro!',
+            icon: 'error',
+            text: 'Ops... Houve um erro ao enviar o formulário, verifique os campos e tente novamente.',
+            showConfirmButton: true,
+          });
+          console.error('Por favor, corrija os erros no formulário.');
+          return;
+        }
 
-    this.service.create(suino).subscribe(_ => {
-      this.router.navigate(['/']);
+        this.service.create(suino).subscribe(_ => {
+          this.router.navigate(['/']);
+        });
+      }
     });
   }
 
