@@ -60,7 +60,7 @@ export class AddPesoComponent {
 
     this.suinoService.getById(this.suinoId!).subscribe({
       next: (suino: SuinoViewModel) => {
-        if (this.validateSuino(suino)) {
+        if (this.isStatusAtivo(suino)) {
           if (this.validatePesagemDate(peso, suino.dataNascimento)) {
             this.addPeso(peso);
           }
@@ -72,7 +72,7 @@ export class AddPesoComponent {
     });
   }
 
-  private validateSuino(suino: SuinoViewModel): boolean {
+  private isStatusAtivo(suino: SuinoViewModel): boolean {
     if (!suino || suino.status !== "Ativo") {
       this.showSuinoNotFoundError();
       return false;

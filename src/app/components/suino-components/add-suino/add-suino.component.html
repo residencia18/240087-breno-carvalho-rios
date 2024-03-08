@@ -26,15 +26,15 @@
                     <label for="brincoPai">Brinco do Pai</label>
                     <input id="brincoPai" pInputText placeholder="Ex.: 100" formControlName="brincoPai" />
                     <div
-                        *ngIf="addSuinoForm.get('brincoPai')?.errors?.['required'] && addSuinoForm.get('brinco')?.touched">
+                        *ngIf="addSuinoForm.get('brincoPai')?.errors?.['required'] && addSuinoForm.get('brincoPai')?.touched">
                         <span class="error_message"> O brinco é obrigatório.</span>
                     </div>
                     <div
-                        *ngIf="addSuinoForm.get('brincoPai')?.errors?.['maxlength'] && addSuinoForm.get('brinco')?.touched">
+                        *ngIf="addSuinoForm.get('brincoPai')?.errors?.['maxlength'] && addSuinoForm.get('brincoPai')?.touched">
                         <span class="error_message"> O brinco deve ter no máximo 4 caracteres. </span>
                     </div>
                     <div
-                        *ngIf="addSuinoForm.get('brincoPai')?.errors?.['pattern'] && addSuinoForm.get('brinco')?.touched">
+                        *ngIf="addSuinoForm.get('brincoPai')?.errors?.['pattern'] && addSuinoForm.get('brincoPai')?.touched">
                         <span class="error_message"> O brinco deve conter apenas números. </span>
                     </div>
                 </div>
@@ -42,14 +42,14 @@
                     <label for="brincoMae">Brinco da Mãe</label>
                     <input id="brincoMae" pInputText placeholder="Ex.: 101" formControlName="brincoMae" />
                     <div
-                        *ngIf="addSuinoForm.get('brinco')?.errors?.['required'] && addSuinoForm.get('brinco')?.touched">
+                        *ngIf="addSuinoForm.get('brincoMae')?.errors?.['required'] && addSuinoForm.get('brincoMae')?.touched">
                         <span class="error_message"> O brinco é obrigatório.</span>
                     </div>
                     <div
-                        *ngIf="addSuinoForm.get('brinco')?.errors?.['maxlength'] && addSuinoForm.get('brinco')?.touched">
+                        *ngIf="addSuinoForm.get('brincoMae')?.errors?.['maxlength'] && addSuinoForm.get('brincoMae')?.touched">
                         <span class="error_message"> O brinco deve ter no máximo 4 caracteres. </span>
                     </div>
-                    <div *ngIf="addSuinoForm.get('brinco')?.errors?.['pattern'] && addSuinoForm.get('brinco')?.touched">
+                    <div *ngIf="addSuinoForm.get('brincoMae')?.errors?.['pattern'] && addSuinoForm.get('brincoMae')?.touched">
                         <span class="error_message"> O brinco deve conter apenas números. </span>
                     </div>
                 </div>
