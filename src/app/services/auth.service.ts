@@ -107,4 +107,5 @@ export class AuthService {
     this.usuario.next(new Usuario('', '', '', new Date()));
     localStorage.removeItem('user');
   }
+
 }

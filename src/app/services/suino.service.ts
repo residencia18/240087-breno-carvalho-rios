@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SuinoInputModel } from '../models/Suino/SuinoInputModel';
 import { SuinoViewModel } from '../models/Suino/SuinoViewModel';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +34,10 @@ export class SuinoService {
         return Object.entries(suinos).map(([key, value]) => ({ ...value, id: key }) as SuinoViewModel)
       })
     );
+  }
+
+  // Verificar se o brinco já existe
+  public checkBrincoExists(brinco: string): Observable<boolean> {
+    return this.http.get<boolean>(`this.loginUrl${brinco}`);
   }
 }
