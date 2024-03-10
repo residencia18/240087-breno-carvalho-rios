@@ -3,17 +3,14 @@ import { SuinoInputModel } from '../models/Suino/SuinoInputModel';
 import { SuinoViewModel } from '../models/Suino/SuinoViewModel';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
+import { env } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SuinoService {
-  private readonly baseUrl = "https://pratica15-suino-default-rtdb.firebaseio.com/"
+  private readonly baseUrl = env.api.baseUrl;
   constructor(private http: HttpClient) { }
-
-  // public create(atendimento: SuinoInputModel) {
-  //   return this.http.post(`${this.baseUrl}/suinos.json`, atendimento);
-  // }
 
   public create(suino: SuinoInputModel) {
     return this.http.post<SuinoInputModel>(`${this.baseUrl}/suinos.json`, suino);
@@ -58,5 +55,17 @@ export class SuinoService {
         return of(null); // Retorna null em caso de erro
       })
     );
+  }
+
+  calculateAge(dataNascimento: Date): number {
+    const nascimento = new Date(dataNascimento);
+    const hoje = new Date();
+
+    const difAnos = hoje.getFullYear() - nascimento.getFullYear();
+    const difMeses = (hoje.getMonth() + 1) - (nascimento.getMonth() + 1);
+    const difDias = nascimento.getDay() - hoje.getDay();
+    var idade = difAnos * 12 + difMeses;
+
+    return difDias < 0 ? idade - 1 : idade;
   }
 }

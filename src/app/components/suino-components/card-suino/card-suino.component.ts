@@ -40,27 +40,7 @@ export class CardSuinoComponent {
     this.router.navigate([`/pesos/novo/${id}`]);
   }
 
-  public calculateAge(dataNascimento: Date | string): number {
-    // Se dataNascimento for uma string, converte para Date
-    if (typeof dataNascimento === 'string') {
-      dataNascimento = new Date(dataNascimento);
-    }
-    const hoje = new Date();
-    const anoAtual = hoje.getFullYear();
-    const mesAtual = hoje.getMonth() + 1;
-    const diaAtual = hoje.getDate();
-
-    const anoNascimento = dataNascimento.getFullYear();
-    const mesNascimento = dataNascimento.getMonth() + 1;
-    const diaNascimento = dataNascimento.getDate();
-
-    let idade = anoAtual - anoNascimento;
-
-    if (mesAtual < mesNascimento || (mesAtual === mesNascimento && diaAtual < diaNascimento)) {
-      idade--;
-    }
-
-    return idade;
+  public calculateAge(dataNascimento: Date): number {
+    return this.service.calculateAge(dataNascimento);
   }
-
 }
