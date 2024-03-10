@@ -1,0 +1,28 @@
+<p-card class="suino-card">
+
+  <ng-template pTemplate="header">
+    <div #contextMenu>
+      <p-button icon="pi pi-ellipsis-v" (click)="menu.toggle($event)"></p-button>
+      <p-menu #menu [model]="contextMenuItems" [popup]="true" appendTo="body"></p-menu>
+    </div>
+  </ng-template>
+  <div class="suino-property-group">
+    <div class="suino-property">
+      <div class="suino-property-label">
+        Data de Pesagem:
+      </div>
+      <div class="suino-property-value">
+        {{ suino.data| date:'dd/MM/yyyy' }}
+      </div>
+    </div>
+    <div class="suino-property">
+      <div class="suino-property-label">
+        Peso:
+      </div>
+      <div class="suino-property-value">
+        {{ suino.peso }} kg
+      </div>
+    </div>
+  </div>
+
+</p-card>

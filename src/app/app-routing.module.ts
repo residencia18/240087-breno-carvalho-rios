@@ -40,7 +40,7 @@ const routes: Routes = [
             path: "pesos",
             children: [
               { path: "novo/:suinoId", component: AddPesoComponent },
-              { path: "editar/:suinoId/:id", component: AddSuinoComponent },
+              { path: "editar/:suinoId/:id", component: AddPesoComponent },
               { path: "detalhes/:suinoId/:id", component: DetalhesSuinoComponent },
               { path: "", component: ListaSuinosComponent }
             ]
