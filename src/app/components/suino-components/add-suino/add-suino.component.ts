@@ -63,7 +63,7 @@ export class AddSuinoComponent {
 
     // Verifica se já existe um suíno com o brinco cadastrado
     this.service.getByBrinco(suino.brinco).subscribe(existingSuino => {
-      if (existingSuino) {
+      if (existingSuino !== undefined && existingSuino !== null) {
         Swal.fire({
           title: 'Erro!',
           icon: 'error',
@@ -120,19 +120,19 @@ export class AddSuinoComponent {
       dataSaida: this.addSuinoForm.value.dataSaida,
       status: this.addSuinoForm.value.status,
       cadastradoPor: this.authService.usuario.value.email,
-    }
+    };
 
     return suino;
   }
 
-  // Verificar se o formulário é válido
+  // Verifica se o formulário é válido
   private isValidForm(suino: any): boolean {
 
-    // Verificando se os campos obrigatórios foram preenchidos
+    // Verifica se os campos obrigatórios foram preenchidos
     return !!suino.brinco && !!suino.brincoPai && !!suino.brincoMae && !!suino.dataNascimento && !!suino.sexo && !!suino.status;
   }
 
-  // Proibe a data de nascimento futura
+  // Proibe data de nascimento futura
   public dataNascimentoValidator(control: FormControl): { [s: string]: boolean } {
     const dataNascimento = control.value;
 
@@ -143,7 +143,7 @@ export class AddSuinoComponent {
     return {};
   }
 
-  // Proibe a data de saída anterior a data de nascimento
+  // Proibe data de saída anterior a data de nascimento
   public dataSaidaValidator(control: FormControl): { [s: string]: boolean } {
     const dataNascimento = this.addSuinoForm?.get('dataNascimento')?.value;
     const dataSaida = control.value;

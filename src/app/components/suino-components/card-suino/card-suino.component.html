@@ -35,10 +35,10 @@
         </div>
         <div class="suino-property">
             <div class="suino-property-label">
-                Data de Nascimento:
+                Idade:
             </div>
             <div class="suino-property-value">
-                {{ suino.dataNascimento | date:'dd/MM/yyyy'}}
+                {{ calculateAge(suino.dataNascimento) | number}} anos
             </div>
         </div>
     </div>
