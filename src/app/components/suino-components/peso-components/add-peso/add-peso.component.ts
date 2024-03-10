@@ -26,7 +26,7 @@ export class AddPesoComponent {
   pesoForm: FormGroup = new FormGroup({
     brinco: new FormControl(null, [Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]*$')]),
     peso: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]+)?$')]),
-    data: new FormControl(null, Validators.required),
+    data: new FormControl(null, [Validators.required, this.dataPesoValidator.bind(this)]),
   });
 
   ngOnInit() {
@@ -81,7 +81,7 @@ export class AddPesoComponent {
   }
 
   private validatePesagemDate(peso: any, dataNascimento: Date): boolean {
-    if (new Date(peso.data) < new Date(dataNascimento)) {
+    if (new Date(peso.data) < new Date(dataNascimento) || new Date(peso.data) > new Date()) {
       this.showPesagemDateError();
       return false;
     }
@@ -121,7 +121,7 @@ export class AddPesoComponent {
   private showPesagemDateError() {
     Swal.fire({
       title: 'Erro!',
-      text: 'A data de pesagem não pode ser anterior à data de nascimento do suíno!',
+      text: 'A data de pesagem não pode ser anterior à data de nascimento do suíno ou posterior à data atual!',
       icon: 'error',
       confirmButtonText: 'OK'
     });
@@ -152,5 +152,15 @@ export class AddPesoComponent {
     }
 
     return suino;
+  }
+
+  public dataPesoValidator(control: FormControl): { [s: string]: boolean } {
+    const dataNascimento = control.value;
+
+    if (dataNascimento && new Date(dataNascimento) > new Date()) {
+      return { 'dataPesoFutura': true };
+    }
+
+    return {};
   }
 }

@@ -21,8 +21,13 @@
                     <label for="data">Data da Pesagem</label>
                     <p-calendar id="data" formControlName="data" dateFormat="dd/mm/yy"
                         placeholder="xx/xx/xxxx"></p-calendar>
-                    <div *ngIf="pesoForm.get('data')?.errors?.['required'] && pesoForm.get('data')?.touched">
-                        <span class="error_message">A data da pesagem é obrigatória.</span>
+                    <div *ngIf="pesoForm.get('data')?.errors && pesoForm.get('data')?.touched">
+                        <div *ngIf="pesoForm.get('data')?.errors?.['required']">
+                            <span class="error_message"> A data de pesagem é obrigatoria. </span>
+                        </div>
+                        <div *ngIf="pesoForm.get('data')?.errors?.['dataPesoFutura']">
+                            <span class="error_message"> A data de pesagem não pode ser uma data futura. </span>
+                        </div>
                     </div>
                 </div>
             </div>
