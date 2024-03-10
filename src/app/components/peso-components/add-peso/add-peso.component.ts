@@ -1,11 +1,11 @@
-import { SuinoService } from './../../../../services/suino.service';
+import { SuinoService } from '../../../services/suino.service';
 import { Component } from '@angular/core';
-import { PesoViewModel } from '../../../../models/Peso/PesoViewModel';
-import { PesoService } from '../../../../services/peso.service';
+import { PesoViewModel } from '../../../models/Peso/PesoViewModel';
+import { PesoService } from '../../../services/peso.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PesoInputModel } from '../../../../models/Peso/PesoInputModel';
-import { SuinoViewModel } from '../../../../models/Suino/SuinoViewModel';
+import { PesoInputModel } from '../../../models/Peso/PesoInputModel';
+import { SuinoViewModel } from '../../../models/Suino/SuinoViewModel';
 import Swal from 'sweetalert2';
 
 @Component({

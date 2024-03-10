@@ -16,5 +16,6 @@
 }
 
 ::ng-deep .suinos-grid .suino {
-  max-width: 33%;
+  width: 30%;
+  max-width: 450px;
 }

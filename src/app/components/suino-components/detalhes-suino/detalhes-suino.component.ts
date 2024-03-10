@@ -81,4 +81,7 @@ export class DetalhesSuinoComponent {
     return { labels, datasets: [{ label: "Peso", data }] };
   }
 
+  public calculateAge(dataNascimento: Date): number {
+    return this.service.calculateAge(dataNascimento);
+  }
 }

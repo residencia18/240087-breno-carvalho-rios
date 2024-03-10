@@ -12,6 +12,8 @@
 
 ::ng-deep .suino-card .p-card {
   padding: 1.25rem;
+  height: 330px;
+  overflow: auto;
 }
 
 ::ng-deep .suino-card .p-card-header,

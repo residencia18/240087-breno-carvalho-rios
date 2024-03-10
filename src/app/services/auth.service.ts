@@ -4,15 +4,14 @@ import { Usuario } from '../models/Usuario/UsuarioViewModel';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { AuthResponse } from '../models/Auth/AuthResponse';
 import Swal from 'sweetalert2';
+import { env } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiKey = 'AIzaSyBm9jnoXfIbnbhaOzUskgcdJfbCU4rmfWg';
-  private readonly baseUrl = `https://identitytoolkit.googleapis.com/v1/accounts`;
-  private readonly loginUrl = `${this.baseUrl}:signInWithPassword?key=${this.apiKey}`;
-  private readonly signupUrl = `${this.baseUrl}:signUp?key=${this.apiKey}`;
+  private readonly loginUrl = `${env.auth.baseUrl}:signInWithPassword?key=${env.auth.apiKey}`;
+  private readonly signupUrl = `${env.auth.baseUrl}:signUp?key=${env.auth.apiKey}`;
 
   usuario = new BehaviorSubject<Usuario>(new Usuario('', '', '', new Date()));
 

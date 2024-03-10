@@ -27,7 +27,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { AddPesoComponent } from './components/suino-components/peso-components/add-peso/add-peso.component';
+import { AddPesoComponent } from './components/peso-components/add-peso/add-peso.component';
 
 @NgModule({
   declarations: [
