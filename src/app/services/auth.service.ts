@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/Usuario/UsuarioViewModel';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { AuthResponse } from '../models/Auth/AuthResponse';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiKey = '...';
+  private readonly apiKey = 'AIzaSyBm9jnoXfIbnbhaOzUskgcdJfbCU4rmfWg';
   private readonly baseUrl = `https://identitytoolkit.googleapis.com/v1/accounts`;
   private readonly loginUrl = `${this.baseUrl}:signInWithPassword?key=${this.apiKey}`;
   private readonly signupUrl = `${this.baseUrl}:signUp?key=${this.apiKey}`;
@@ -24,7 +25,7 @@ export class AuthService {
         password: password,
         returnSecureToken: true
       }).pipe(
-        tap((response: AuthResponse) => {
+        tap(response => {
           const expiracaoData = new Date(new Date().getTime() + (parseInt(response.expiresIn) * 1000));
           const usuario = new Usuario(
             response.email,
@@ -35,6 +36,15 @@ export class AuthService {
 
           this.usuario.next(usuario);
           localStorage.setItem('user', JSON.stringify(usuario));
+        }),
+        catchError(error => {
+          console.error(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro!',
+            text: 'Ocorreu um erro ao realizar seu registro. Por favor, tente novamente.'
+          });
+          return throwError(error);
         })
       );
   }
@@ -46,7 +56,7 @@ export class AuthService {
         password: password,
         returnSecureToken: true
       }).pipe(
-        tap((res: AuthResponse) => {
+        tap(res => {
           const expiracaoData = new Date(new Date().getTime() + (parseInt(res.expiresIn) * 1000));
           const usuario = new Usuario(
             res.email,
@@ -57,6 +67,15 @@ export class AuthService {
           this.usuario.next(usuario);
           localStorage.setItem('user', JSON.stringify(usuario));
         }),
+        catchError(error => {
+          console.error(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro!',
+            text: 'Ocorreu um erro ao realizar seu login. Por favor, tente novamente.'
+          });
+          return throwError(error);
+        })
       );
   }
 
@@ -66,8 +85,8 @@ export class AuthService {
       id: string;
       _token: string;
       _tokenExpirationDate: string;
-    } = JSON.parse(localStorage.getItem('user') as string);
 
+    } = JSON.parse(localStorage.getItem('user') as string);
     if (!userData) {
       return;
     }
@@ -88,4 +107,5 @@ export class AuthService {
     this.usuario.next(new Usuario('', '', '', new Date()));
     localStorage.removeItem('user');
   }
+
 }

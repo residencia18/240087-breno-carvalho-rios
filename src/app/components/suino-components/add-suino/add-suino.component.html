@@ -9,31 +9,94 @@
             <div class="form-group-content">
                 <div>
                     <label for="brinco">Brinco do Animal</label>
-                    <input id="brinco" pInputText placeholder="Ex.: 201" formControlName="brinco"/>
+                    <input id="brinco" pInputText placeholder="Ex.: 201" formControlName="brinco">
+                    <div
+                        *ngIf="addSuinoForm.get('brinco')?.errors?.['required'] && addSuinoForm.get('brinco')?.touched">
+                        <span class="error_message"> O brinco é obrigatório.</span>
+                    </div>
+                    <div
+                        *ngIf="addSuinoForm.get('brinco')?.errors?.['maxlength'] && addSuinoForm.get('brinco')?.touched">
+                        <span class="error_message"> O brinco deve ter no máximo 4 caracteres. </span>
+                    </div>
+                    <div *ngIf="addSuinoForm.get('brinco')?.errors?.['pattern'] && addSuinoForm.get('brinco')?.touched">
+                        <span class="error_message"> O brinco deve conter apenas números. </span>
+                    </div>
                 </div>
                 <div>
                     <label for="brincoPai">Brinco do Pai</label>
                     <input id="brincoPai" pInputText placeholder="Ex.: 100" formControlName="brincoPai" />
+                    <div
+                        *ngIf="addSuinoForm.get('brincoPai')?.errors?.['required'] && addSuinoForm.get('brincoPai')?.touched">
+                        <span class="error_message"> O brinco é obrigatório.</span>
+                    </div>
+                    <div
+                        *ngIf="addSuinoForm.get('brincoPai')?.errors?.['maxlength'] && addSuinoForm.get('brincoPai')?.touched">
+                        <span class="error_message"> O brinco deve ter no máximo 4 caracteres. </span>
+                    </div>
+                    <div
+                        *ngIf="addSuinoForm.get('brincoPai')?.errors?.['pattern'] && addSuinoForm.get('brincoPai')?.touched">
+                        <span class="error_message"> O brinco deve conter apenas números. </span>
+                    </div>
                 </div>
                 <div>
                     <label for="brincoMae">Brinco da Mãe</label>
                     <input id="brincoMae" pInputText placeholder="Ex.: 101" formControlName="brincoMae" />
+                    <div
+                        *ngIf="addSuinoForm.get('brincoMae')?.errors?.['required'] && addSuinoForm.get('brincoMae')?.touched">
+                        <span class="error_message"> O brinco é obrigatório.</span>
+                    </div>
+                    <div
+                        *ngIf="addSuinoForm.get('brincoMae')?.errors?.['maxlength'] && addSuinoForm.get('brincoMae')?.touched">
+                        <span class="error_message"> O brinco deve ter no máximo 4 caracteres. </span>
+                    </div>
+                    <div *ngIf="addSuinoForm.get('brincoMae')?.errors?.['pattern'] && addSuinoForm.get('brincoMae')?.touched">
+                        <span class="error_message"> O brinco deve conter apenas números. </span>
+                    </div>
                 </div>
                 <div class="p-fluid">
                     <label for="dataNascimento">Data de Nascimento</label>
-                    <p-calendar id="dataNascimento" formControlName="dataNascimento" dateFormat="dd/mm/yy" placeholder="xx/xx/xxxx"></p-calendar>
+                    <p-calendar id="dataNascimento" formControlName="dataNascimento" dateFormat="dd/mm/yy"
+                        placeholder="xx/xx/xxxx"></p-calendar>
+                    <div
+                        *ngIf="addSuinoForm.get('dataNascimento')?.errors && addSuinoForm.get('dataNascimento')?.touched">
+                        <div *ngIf="addSuinoForm.get('dataNascimento')?.errors?.['required']">
+                            <span class="error_message"> A data de nascimento é obrigatória. </span>
+                        </div>
+                        <div *ngIf="addSuinoForm.get('dataNascimento')?.errors?.['dataNascimentoFutura']">
+                            <span class="error_message"> A data de nascimento não pode ser uma data futura. </span>
+                        </div>
+                    </div>
                 </div>
                 <div class="p-fluid">
                     <label for="sexo">Sexo</label>
-                    <p-dropdown id="sexo" [options]="sexoOptions" formControlName="sexo" placeholder="Macho/Fêmea"></p-dropdown>
+                    <p-dropdown id="sexo" [options]="sexoOptions" formControlName="sexo"
+                        placeholder="Macho/Fêmea"></p-dropdown>
+                    <div *ngIf="addSuinoForm.get('sexo')?.errors?.['required'] && addSuinoForm.get('sexo')?.touched">
+                        <span class="error_message">O sexo é obrigatório.</span>
+                    </div>
                 </div>
                 <div class="p-fluid">
                     <label for="dataSaida">Data de Saída</label>
-                    <p-calendar id="dataSaida" formControlName="dataSaida" dateFormat="dd/mm/yy" placeholder="xx/xx/xxxx"></p-calendar>
+                    <p-calendar id="dataSaida" formControlName="dataSaida" dateFormat="dd/mm/yy"
+                        placeholder="xx/xx/xxxx"></p-calendar>
+
+                    <div *ngIf="addSuinoForm.get('dataSaida')?.errors && addSuinoForm.get('dataSaida')?.touched">
+                        <div *ngIf="addSuinoForm.get('dataSaida')?.errors?.['required']">
+                            <span class="error_message"> A data de saída é obrigatória. </span>
+                        </div>
+                        <div *ngIf="addSuinoForm.get('dataSaida')?.errors?.['dataSaidaAnterior']">
+                            <span class="error_message">A data de saída deve ser posterior à data de nascimento. </span>
+                        </div>
+                        <div *ngIf="addSuinoForm.get('dataSaida')?.errors?.['dataSaidaRequerida']">
+                            <span class="error_message">A data de saída é necessária quando o status não é "Ativo".
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 <div class="p-fluid">
                     <label for="status">Status</label>
-                    <p-dropdown id="status" [options]="statusOptions" formControlName="status" placeholder="Status"></p-dropdown>
+                    <p-dropdown id="status" [options]="statusOptions" formControlName="status"
+                        placeholder="Status"></p-dropdown>
                 </div>
             </div>
         </div>

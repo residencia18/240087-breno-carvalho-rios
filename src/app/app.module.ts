@@ -60,7 +60,7 @@ import { AddPesoComponent } from './components/suino-components/peso-components/
     ChartModule,
     MenuModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

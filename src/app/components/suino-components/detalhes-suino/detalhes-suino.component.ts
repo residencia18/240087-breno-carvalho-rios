@@ -11,6 +11,7 @@ import { PesoViewModel } from '../../../models/Peso/PesoViewModel';
   styleUrl: './detalhes-suino.component.css'
 })
 export class DetalhesSuinoComponent {
+
   private id = this.route.snapshot.paramMap.get('id');
   public suino: SuinoViewModel = {} as SuinoViewModel;
   public pesos: PesoViewModel[] = [];
@@ -77,6 +78,7 @@ export class DetalhesSuinoComponent {
   public createChartData() {
     const labels = this.pesos.map(peso => peso.data.toString().slice(0, 10).split('-').reverse().join('/'));
     const data = this.pesos.map(peso => peso.peso);
-    return { labels, datasets: [ { label: "Peso", data } ] };
+    return { labels, datasets: [{ label: "Peso", data }] };
   }
+
 }

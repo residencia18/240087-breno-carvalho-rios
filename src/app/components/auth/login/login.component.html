@@ -1,18 +1,25 @@
 <div class="welcome">
-  <img class="logo"src="assets/images/logo-fazenda.png" alt="Logo" />
+  <img class="logo" src="assets/images/logo-fazenda.png" alt="Logo" />
   <h3>Bem Vindo(a) de volta!</h3>
 </div>
-<form class="form-login" [formGroup]="loginForm" (ngSubmit)="submit()">
+<form class="form-login" [formGroup]="loginForm" (ngSubmit)="submit(loginForm)">
   <div class="form-control">
     <label for="email">Email: </label>
     <input pInputText formControlName="email" id="email" type="text" placeholder="Email" />
+    <div *ngIf="!loginForm.get('email')?.valid &&  loginForm.get('email')?.touched">
+      <span class="error_message">Informe um e-mail válido</span>
+    </div>
   </div>
   <div class="form-control">
     <label for="password">Senha: </label>
     <input pInputText formControlName="password" id="password" type="password" placeholder="Senha" />
+    <div *ngIf="!loginForm.get('password')?.valid &&  loginForm.get('password')?.touched">
+      <span class="error_message">Mínimo de 4 caracteres, deve incluir pelo
+        menos uma letra maiúscula e um símbolo</span>
+    </div>
   </div>
   <div class="p-fluid">
-    <p-button label="Entrar" type="submit"></p-button>
+    <p-button label="Entrar" type="submit" [disabled]="loginForm.invalid"></p-button>
   </div>
   <div *ngIf="error" class="error">{{error}}</div>
 </form>

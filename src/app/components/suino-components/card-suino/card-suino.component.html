@@ -5,7 +5,9 @@
                 <a (click)="view(suino.id)">Brinco {{ suino.brinco | number:'3.0' }} ( {{suino.sexo}} )</a>
             </h2>
             <h3>
-                Status: <span [ngClass]="{'suino-active': suino.status === 'Ativo', 'suino-sold': suino.status === 'Vendido', 'suino-dead': suino.status === 'Morto'}">{{ suino.status }}</span>
+                Status: <span
+                    [ngClass]="{'suino-active': suino.status === 'Ativo', 'suino-sold': suino.status === 'Vendido', 'suino-dead': suino.status === 'Morto'}">{{
+                    suino.status }}</span>
             </h3>
         </div>
         <div #contextMenu>
@@ -33,10 +35,10 @@
         </div>
         <div class="suino-property">
             <div class="suino-property-label">
-                Data de Nascimento:
+                Idade:
             </div>
             <div class="suino-property-value">
-                {{ suino.dataNascimento | date:'dd/MM/yyyy'}}
+                {{ calculateAge(suino.dataNascimento) | number }} anos
             </div>
         </div>
     </div>

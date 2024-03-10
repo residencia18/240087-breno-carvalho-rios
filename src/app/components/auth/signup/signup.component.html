@@ -6,10 +6,17 @@
   <div class="form-control">
     <label for="email">Email: </label>
     <input formControlName="email" pInputText id="email" type="text" placeholder="Email" />
+    <div *ngIf="!signupForm.get('email')?.valid &&  signupForm.get('email')?.touched">
+      <span class="error_message">Informe um e-mail válido</span>
+    </div>
   </div>
   <div class="form-control">
     <label for="password">Senha: </label>
     <input formControlName="password" pInputText id="password" type="password" placeholder="Senha" />
+    <div *ngIf="!signupForm.get('password')?.valid &&  signupForm.get('password')?.touched">
+      <span class="error_message">Mínimo de 4 caracteres, deve incluir pelo
+        menos uma letra maiúscula e um símbolo</span>
+    </div>
   </div>
   <div class="p-fluid">
     <p-button label="Cadastrar" type="submit"></p-button>

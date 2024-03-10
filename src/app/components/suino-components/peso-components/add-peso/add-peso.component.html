@@ -10,10 +10,25 @@
                 <div>
                     <label for="peso">Peso</label>
                     <input id="peso" pInputText placeholder="Ex.: 100" formControlName="peso" />
+                    <div *ngIf="pesoForm.get('peso')?.errors?.['required'] && pesoForm.get('peso')?.touched">
+                        <span class="error_message">O peso é obrigatório.</span>
+                    </div>
+                    <div *ngIf="pesoForm.get('peso')?.errors?.['pattern'] && pesoForm.get('peso')?.touched">
+                        <span class="error_message"> O peso deve conter apenas números. </span>
+                    </div>
                 </div>
                 <div class="p-fluid">
                     <label for="data">Data da Pesagem</label>
-                    <p-calendar id="data" formControlName="data" dateFormat="dd/mm/yy" placeholder="xx/xx/xxxx"></p-calendar>
+                    <p-calendar id="data" formControlName="data" dateFormat="dd/mm/yy"
+                        placeholder="xx/xx/xxxx"></p-calendar>
+                    <div *ngIf="pesoForm.get('data')?.errors && pesoForm.get('data')?.touched">
+                        <div *ngIf="pesoForm.get('data')?.errors?.['required']">
+                            <span class="error_message"> A data de pesagem é obrigatoria. </span>
+                        </div>
+                        <div *ngIf="pesoForm.get('data')?.errors?.['dataPesoFutura']">
+                            <span class="error_message"> A data de pesagem não pode ser uma data futura. </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

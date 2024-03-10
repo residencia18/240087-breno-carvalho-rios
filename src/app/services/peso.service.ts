@@ -8,7 +8,7 @@ import { map } from 'rxjs';
   providedIn: 'root'
 })
 export class PesoService {
-  private readonly baseUrl = "https://pratica015-frontend-default-rtdb.firebaseio.com/"
+  private readonly baseUrl = "https://pratica15-suino-default-rtdb.firebaseio.com/"
   constructor(private http: HttpClient) { }
 
   public create(suinoId: string, peso: PesoInputModel) {

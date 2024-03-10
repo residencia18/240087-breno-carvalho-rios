@@ -10,8 +10,8 @@ describe('CardSuinoComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [CardSuinoComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(CardSuinoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

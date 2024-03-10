@@ -1,5 +1,5 @@
 export interface SuinoInputModel {
-    brinco: number;
+    brinco: number; 
     brincoPai: number;
     brincoMae: number;
     dataNascimento: Date;
