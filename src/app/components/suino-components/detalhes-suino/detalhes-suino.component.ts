@@ -71,6 +71,13 @@ export class DetalhesSuinoComponent {
 
     this.pesosService.getAll(this.id).subscribe(pesos => {
       this.pesos = pesos;
+
+      this.pesos.sort((a: PesoViewModel, b: PesoViewModel) => {
+        let dataA = new Date(a.data);
+        let dataB = new Date(b.data);
+        return dataA.getTime() - dataB.getTime();
+      });
+      console.log(this.pesos);
       this.chartData = this.createChartData();
     });
   }
