@@ -30,6 +30,11 @@
   width: 235px;
 }
 
+::ng-deep .p-dataview-header .buttons {
+  display: flex;
+  gap: 5px;
+}
+
 ::ng-deep .suinos-list {
   display: flex;
   flex-direction: column;

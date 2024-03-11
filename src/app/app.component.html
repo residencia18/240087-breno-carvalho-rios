@@ -1,9 +1,9 @@
 <p-menubar [model]="menuItems" *ngIf="loggedIn">
   <ng-template pTemplate="start">
-    <img src="assets/images/logo-fazenda.png" width="40" height="40" class="mr-2" />
+    <a routerLink="/"><img src="assets/images/logo-fazenda.png" width="40" height="40" class="mr-2" /></a>
   </ng-template>
   <ng-template pTemplate="end">
-    <p-button label="Sair" icon="pi pi-power-off" (click)="logout()"></p-button>
+    <p-button label="Sair" icon="pi pi-sign-out" (click)="logout()"></p-button>
   </ng-template>
 </p-menubar>
 
