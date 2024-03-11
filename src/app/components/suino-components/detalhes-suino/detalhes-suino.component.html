@@ -4,7 +4,8 @@
             <a>Brinco {{ suino.brinco | number:'3.0' }} ( {{suino.sexo}} )</a>
         </h2>
         <h3>
-            Status: <span [ngClass]="{'suino-active': suino.status === 'Ativo', 'suino-sold': suino.status === 'Vendido', 'suino-dead': suino.status === 'Morto'}">{{
+            Status: <span
+                [ngClass]="{'suino-active': suino.status === 'Ativo', 'suino-sold': suino.status === 'Vendido', 'suino-dead': suino.status === 'Morto'}">{{
                 suino.status }}</span>
         </h3>
     </ng-template>
@@ -75,4 +76,14 @@
     </div>
 
     <p-chart type="bar" [data]="chartData" [options]="chartOptions" width="100%" height="300px"></p-chart>
+
+    <ng-template pTemplate="grid">
+        <div class="suinos-grid">
+            <div class="pesos-container">
+                <div class="card-peso" *ngFor="let peso of pesos">
+                    <app-card-peso [suino]="peso"></app-card-peso>
+                </div>
+            </div>
+        </div>
+    </ng-template>
 </p-card>
