@@ -1,6 +1,6 @@
 export const env = {
     auth: {
-        apiKey: '...',
+        apiKey: '',
         baseUrl: '',
     },
     api: {

@@ -8,6 +8,8 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { authGuard } from './guards/auth.guard';
 import { AddPesoComponent } from './components/peso-components/add-peso/add-peso.component';
+import { AddVacinaComponent } from './components/vacina-components/add-vacina/add-vacina.component';
+import { ListaVacinasComponent } from './components/vacina-components/lista-vacinas/lista-vacinas.component';
 
 const routes: Routes = [
   {
@@ -43,6 +45,21 @@ const routes: Routes = [
               { path: "editar/:suinoId/:id", component: AddPesoComponent },
               { path: "detalhes/:suinoId/:id", component: DetalhesSuinoComponent },
               { path: "", component: ListaSuinosComponent }
+            ]
+          },
+          { path: "", component: ListaSuinosComponent }
+        ]
+      },
+      {
+        path: "",
+        canActivate: [authGuard],
+        children: [
+          {
+            path: "vacinas",
+            children: [
+              { path: "nova", component: AddVacinaComponent },
+              { path: "editar/:id", component: AddVacinaComponent },
+              { path: "", component: ListaVacinasComponent }
             ]
           },
           { path: "", component: ListaSuinosComponent }

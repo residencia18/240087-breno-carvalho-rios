@@ -1,0 +1,12 @@
+<p-dataView [value]="vacinas" layout="list">
+    <ng-template pTemplate="header">
+        <p-button icon="pi pi-plus" (click)="addVacina()"></p-button>
+    </ng-template>
+    <ng-template pTemplate="list">
+        <div class="vacinas-list">
+            <div class="vacina" *ngFor="let vacina of vacinas">
+                <app-card-vacina [vacina]="vacina" (onDelete)="getAll()"></app-card-vacina>
+            </div>
+        </div>
+    </ng-template>
+</p-dataView>

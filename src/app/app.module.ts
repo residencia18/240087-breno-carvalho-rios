@@ -30,6 +30,9 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AddPesoComponent } from './components/peso-components/add-peso/add-peso.component';
 import { CardPesoComponent } from './components/suino-components/card-peso/card-peso.component';
+import { AddVacinaComponent } from './components/vacina-components/add-vacina/add-vacina.component';
+import { ListaVacinasComponent } from './components/vacina-components/lista-vacinas/lista-vacinas.component';
+import { CardVacinaComponent } from './components/vacina-components/card-vacina/card-vacina.component';
 
 
 @NgModule({
@@ -43,7 +46,10 @@ import { CardPesoComponent } from './components/suino-components/card-peso/card-
     LoginComponent,
     SignupComponent,
     AddPesoComponent,
-    CardPesoComponent
+    CardPesoComponent,
+    AddVacinaComponent,
+    ListaVacinasComponent,
+    CardVacinaComponent
   ],
   imports: [
     BrowserModule,

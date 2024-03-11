@@ -1,0 +1,4 @@
+::ng-deep .p-dataview-header {
+    display: flex;
+    justify-content: flex-end;
+}
