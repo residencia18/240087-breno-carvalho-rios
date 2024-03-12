@@ -20,30 +20,35 @@ public class Data
     }
     public Data(int dia, int mes, int ano, int hora, int minuto, int segundo) : this(dia, mes, ano)
     {
-        if (hora > 0 || hora < 24)
+        if (hora >= 0 || hora <= 23)
         {
             this.hora = hora;
         }
-        this.minuto = minuto;
-        this.segundo = segundo;
+        if (minuto >= 0 || minuto <= 59){
+            this.minuto = minuto;
+        }
+        if (segundo >= 0 || segundo <= 59){
+            this.segundo = segundo;
+        }
+        
         this.fullDateTime = true;
     }
 
     public void Imprimir(string formato)
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append($"{dia}/{mes}/{ano} ");
+        sb.Append($"{dia}/{mes}/{ano}");
 
         if (fullDateTime)
         {
             if (formato.Equals(FORMATO_24H))
             {
-                sb.Append($"{hora}:{minuto}:{segundo}");
+                sb.Append($" {hora}:{minuto}:{segundo}");
             }
 
             if (formato.Equals(FORMATO_12H))
             {
-                sb.Append($"{(hora > 12 ? hora - 12 : hora)}:{minuto}:{segundo} {(hora > 12 ? "PM" : "AM")}");
+                sb.Append($" {(hora > 12 ? hora - 12 : hora)}:{minuto}:{segundo} {(hora > 12 ? "PM" : "AM")}");
             }
         }
 
