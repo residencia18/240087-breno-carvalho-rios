@@ -1,7 +1,7 @@
 import { SuinoInputModel } from "../Suino/SuinoInputModel";
 import { VacinaInputModel } from "../Vacina/VacinaInputModel";
 
-export interface EventoInputModel {
+export interface SessaoInputModel {
     nome: string,
     data: Date,
     vacinas: VacinaInputModel[],

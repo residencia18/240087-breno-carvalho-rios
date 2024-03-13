@@ -19,7 +19,7 @@ export class AppComponent {
       this.menuItems = [
         { label: "Suinos", routerLink: '/suinos' },
         { label: "Vacinas", routerLink: '/vacinas' },
-        { label: "Eventos", routerLink: '/eventos' }
+        { label: "Sessoes", routerLink: '/sessoes' }
       ]
     })
   }

@@ -18,7 +18,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { ChartModule } from 'primeng/chart';
 import { MenuModule } from 'primeng/menu';
-import { AccordionModule } from 'primeng/accordion';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AddSuinoComponent } from './components/suino-components/add-suino/add-suino.component';
@@ -33,9 +32,8 @@ import { CardPesoComponent } from './components/suino-components/card-peso/card-
 import { AddVacinaComponent } from './components/vacina-components/add-vacina/add-vacina.component';
 import { ListaVacinasComponent } from './components/vacina-components/lista-vacinas/lista-vacinas.component';
 import { CardVacinaComponent } from './components/vacina-components/card-vacina/card-vacina.component';
-import { AddEventoComponent } from './components/evento-components/add-evento/add-evento.component';
-import { ListaEventosComponent } from './components/evento-components/lista-eventos/lista-eventos.component';
-
+import { AddSessaoComponent } from './components/evento-components/add-evento/add-sessao.component';
+import { ListaSessoesComponent } from './components/evento-components/lista-eventos/lista-sessoes.component';
 
 @NgModule({
   declarations: [
@@ -52,8 +50,8 @@ import { ListaEventosComponent } from './components/evento-components/lista-even
     AddVacinaComponent,
     ListaVacinasComponent,
     CardVacinaComponent,
-    AddEventoComponent,
-    ListaEventosComponent
+    AddSessaoComponent,
+    ListaSessoesComponent
   ],
   imports: [
     BrowserModule,
@@ -72,8 +70,7 @@ import { ListaEventosComponent } from './components/evento-components/lista-even
     DropdownModule,
     CalendarModule,
     ChartModule,
-    MenuModule,
-    AccordionModule
+    MenuModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
