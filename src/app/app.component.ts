@@ -18,7 +18,8 @@ export class AppComponent {
       this.loggedIn = usuario.token ? true : false;
       this.menuItems = [
         { label: "Suinos", routerLink: '/suinos' },
-        { label: "Vacinas", routerLink: '/vacinas' }
+        { label: "Vacinas", routerLink: '/vacinas' },
+        { label: "Eventos", routerLink: '/eventos' }
       ]
     })
   }

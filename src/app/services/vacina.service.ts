@@ -12,8 +12,8 @@ export class VacinaService {
   private readonly baseUrl = env.api.baseUrl;
   constructor(private http: HttpClient) { }
 
-  public create(suino: VacinaInputModel) {
-    return this.http.post<VacinaInputModel>(`${this.baseUrl}/vacinas.json`, suino);
+  public create(vacina: VacinaInputModel) {
+    return this.http.post<VacinaInputModel>(`${this.baseUrl}/vacinas.json`, vacina);
   }
 
   public update(id: string, atendimento: VacinaInputModel) {

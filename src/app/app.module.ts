@@ -33,6 +33,8 @@ import { CardPesoComponent } from './components/suino-components/card-peso/card-
 import { AddVacinaComponent } from './components/vacina-components/add-vacina/add-vacina.component';
 import { ListaVacinasComponent } from './components/vacina-components/lista-vacinas/lista-vacinas.component';
 import { CardVacinaComponent } from './components/vacina-components/card-vacina/card-vacina.component';
+import { AddEventoComponent } from './components/evento-components/add-evento/add-evento.component';
+import { ListaEventosComponent } from './components/evento-components/lista-eventos/lista-eventos.component';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { CardVacinaComponent } from './components/vacina-components/card-vacina/
     CardPesoComponent,
     AddVacinaComponent,
     ListaVacinasComponent,
-    CardVacinaComponent
+    CardVacinaComponent,
+    AddEventoComponent,
+    ListaEventosComponent
   ],
   imports: [
     BrowserModule,
