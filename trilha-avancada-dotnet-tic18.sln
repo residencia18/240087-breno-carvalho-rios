@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercicio01", "Praticas\Exe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercicio02", "Praticas\Exercicio02\Exercicio02.csproj", "{A8F3FF8C-6631-4271-B7FB-6034B923BF89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercicio03", "Praticas\Exercicio03\Exercicio03.csproj", "{CE36D08B-6E63-4C55-83F1-8145A53C5792}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,9 +40,14 @@ Global
 		{A8F3FF8C-6631-4271-B7FB-6034B923BF89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8F3FF8C-6631-4271-B7FB-6034B923BF89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8F3FF8C-6631-4271-B7FB-6034B923BF89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE36D08B-6E63-4C55-83F1-8145A53C5792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE36D08B-6E63-4C55-83F1-8145A53C5792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE36D08B-6E63-4C55-83F1-8145A53C5792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE36D08B-6E63-4C55-83F1-8145A53C5792}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EFD8147B-861F-4430-8A9D-83465B7CE329} = {8736547B-169F-4856-AB26-9689B512FC1D}
 		{A8F3FF8C-6631-4271-B7FB-6034B923BF89} = {8736547B-169F-4856-AB26-9689B512FC1D}
+		{CE36D08B-6E63-4C55-83F1-8145A53C5792} = {8736547B-169F-4856-AB26-9689B512FC1D}
 	EndGlobalSection
 EndGlobal
