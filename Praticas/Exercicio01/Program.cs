@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
-using Exercicio01;
 using Praticas.Exercicio01.Exceptions;
+using Praticas.Exercicio01.Models;
 
 CultureInfo.CurrentCulture = new CultureInfo("pt-BR");
 

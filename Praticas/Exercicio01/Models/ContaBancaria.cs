@@ -1,6 +1,7 @@
 ﻿using Praticas.Exercicio01.Exceptions;
+using Praticas.Exercicio01.Models.Interfaces;
 
-namespace Exercicio01;
+namespace Praticas.Exercicio01.Models;
 
 public class ContaBancaria : IContaBancaria
 {

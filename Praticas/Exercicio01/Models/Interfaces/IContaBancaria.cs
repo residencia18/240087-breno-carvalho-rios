@@ -1,5 +1,6 @@
 ﻿namespace Exercicio01;
 
+namespace Praticas.Exercicio01.Models.Interfaces;
 public interface IContaBancaria
 {
     double Depositar(double valor);
