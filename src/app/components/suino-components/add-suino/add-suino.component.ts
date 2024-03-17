@@ -106,7 +106,7 @@ export class AddSuinoComponent {
     }
 
     this.service.update(id, suino).subscribe(_ => {
-      this.router.navigate([`/suinos/detalhes/${id}`]);
+      this.router.navigate([`app/suinos/detalhes/${id}`]);
     });
   }
 

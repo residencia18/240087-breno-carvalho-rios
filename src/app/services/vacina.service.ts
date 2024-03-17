@@ -30,9 +30,9 @@ export class VacinaService {
 
   public getAll() {
     return this.http.get<VacinaViewModel[]>(`${this.baseUrl}/vacinas.json`).pipe(
-        map((vacinas) => {
-          return Object.entries(vacinas).map(([key, value]) => ({ ...value, id: key }) as VacinaViewModel)
-        })
+      map((vacinas) => {
+        return Object.entries(vacinas).map(([key, value]) => ({ ...value, id: key }) as VacinaViewModel)
+      })
     );
   }
 }

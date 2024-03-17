@@ -10,8 +10,8 @@ describe('ListaVacinasComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ListaVacinasComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(ListaVacinasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

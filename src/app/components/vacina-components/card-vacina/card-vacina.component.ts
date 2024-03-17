@@ -27,6 +27,6 @@ export class CardVacinaComponent {
   }
 
   public update(id: string) {
-    this.router.navigate([`/vacinas/editar/${id}`]);
+    this.router.navigate([`app/vacinas/editar/${id}`]);
   }
 }

@@ -2,15 +2,15 @@
     <ng-template pTemplate="header">
         <div>
             <h2>
-                <a (click)="view(suino.id)">Brinco {{ suino.brinco | number:'3.0' }} ( {{suino.sexo}} )</a>
+                <a (click)="view(suino.id)">Brinco {{ suino.brinco | number:'3.0':'pt-BR' }} ( {{suino.sexo}} )</a>
             </h2>
             <h3>
                 Status: <span [ngClass]="{'suino-active': suino.status === 'Ativo', 'suino-sold': suino.status === 'Vendido', 'suino-dead': suino.status === 'Morto'}">{{
                     suino.status }}</span>
             </h3>
         </div>
-        <div #contextMenu>
-            <p-button icon="pi pi-ellipsis-v" (click)="menu.toggle($event)"></p-button>
+        <div #contextMenu class="context-menu">
+            <p-button icon="pi pi-ellipsis-v" (click)="menu.toggle($event)" [text]="true" severity="secondary"></p-button>
             <p-menu #menu [model]="contextMenuItems" [popup]="true" appendTo="body"></p-menu>
         </div>
     </ng-template>
@@ -21,7 +21,7 @@
                 Pai:
             </div>
             <div class="suino-property-value">
-                Brinco {{ suino.brincoPai | number:'3.0' }}
+                Brinco {{ suino.brincoPai | number:'3.0':'pt-BR' }}
             </div>
         </div>
         <div class="suino-property">
@@ -29,7 +29,7 @@
                 Mãe:
             </div>
             <div class="suino-property-value">
-                Brinco {{ suino.brincoMae | number:'3.0' }}
+                Brinco {{ suino.brincoMae | number:'3.0':'pt-BR' }}
             </div>
         </div>
         <div class="suino-property">

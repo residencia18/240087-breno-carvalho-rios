@@ -1,0 +1,37 @@
+<p-card class="sessao-card">
+    <ng-template pTemplate="header">
+        <div>
+            <h2>
+                <a (click)="view(sessao.id)">{{ sessao.nome }}</a>
+            </h2>
+            <h3>
+                {{sessao.data | date:'dd/MM/yyyy'}}
+            </h3>
+        </div>
+        <div #contextMenu class="context-menu">
+            <p-button icon="pi pi-ellipsis-v" (click)="menu.toggle($event)" [text]="true" severity="secondary"></p-button>
+            <p-menu #menu [model]="contextMenuItems" [popup]="true" appendTo="body"></p-menu>
+        </div>
+    </ng-template>
+
+    <div class="sessao-property-group">
+        <div class="sessao-property">
+            <div class="sessao-property-label">
+                Suinos na sessão:
+            </div>
+            <div class="sessao-property-value">
+                {{ sessao.suinos.length }} suino{{ sessao.suinos.length > 1 ? 's' : '' }}
+            </div>
+        </div>
+    </div>
+    <div class="sessao-property-group">
+        <div class="sessao-property">
+            <div class="sessao-property-label">
+                Vacinas na sessão:
+            </div>
+            <div class="sessao-property-value">
+                {{ sessao.vacinas.length }} vacina{{ sessao.vacinas.length > 1 ? 's' : '' }}
+            </div>
+        </div>
+    </div>
+</p-card>

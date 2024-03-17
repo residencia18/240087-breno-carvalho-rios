@@ -29,15 +29,15 @@ export class CardSuinoComponent {
   }
 
   public update(id: string) {
-    this.router.navigate([`/suinos/editar/${id}`]);
+    this.router.navigate([`app/suinos/editar/${id}`]);
   }
 
   public view(id: string) {
-    this.router.navigate([`/suinos/detalhes/${id}`]);
+    this.router.navigate([`app/suinos/detalhes/${id}`]);
   }
 
   public pesar(id: string) {
-    this.router.navigate([`/pesos/novo/${id}`]);
+    this.router.navigate([`app/pesos/novo/${id}`]);
   }
 
   public calculateAge(dataNascimento: Date): number {

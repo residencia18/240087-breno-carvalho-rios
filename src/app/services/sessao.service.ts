@@ -31,7 +31,8 @@ export class SessaoService {
   public getAll() {
     return this.http.get<SessaoViewModel[]>(`${this.baseUrl}/sessoes.json`).pipe(
       map((sessoes) => {
-        return Object.entries(sessoes).map(([key, value]) => ({ ...value, id: key }) as SessaoViewModel)
+        const _sessoes: SessaoViewModel[] = Object.entries(sessoes).map(([key, value]) => ({ ...value, id: key }) as SessaoViewModel);
+        return _sessoes;
       })
     );
   }

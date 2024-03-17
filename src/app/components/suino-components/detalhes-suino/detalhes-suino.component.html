@@ -1,11 +1,10 @@
 <p-card class="suino-card">
     <ng-template pTemplate="header">
         <h2>
-            <a>Brinco {{ suino.brinco | number:'3.0' }} ( {{suino.sexo}} )</a>
+            <a>Brinco {{ suino.brinco | number:'3.0':'pt-BR' }} ( {{suino.sexo}} )</a>
         </h2>
         <h3>
-            Status: <span
-                [ngClass]="{'suino-active': suino.status === 'Ativo', 'suino-sold': suino.status === 'Vendido', 'suino-dead': suino.status === 'Morto'}">{{
+            Status: <span [ngClass]="{'suino-active': suino.status === 'Ativo', 'suino-sold': suino.status === 'Vendido', 'suino-dead': suino.status === 'Morto'}">{{
                 suino.status }}</span>
         </h3>
     </ng-template>
@@ -16,7 +15,7 @@
                 Pai:
             </div>
             <div class="suino-property-value">
-                Brinco {{ suino.brincoPai | number:'3.0' }}
+                Brinco {{ suino.brincoPai | number:'3.0':'pt-BR' }}
             </div>
         </div>
         <div class="suino-property">
@@ -24,7 +23,7 @@
                 Mãe:
             </div>
             <div class="suino-property-value">
-                Brinco {{ suino.brincoMae | number:'3.0' }}
+                Brinco {{ suino.brincoMae | number:'3.0':'pt-BR' }}
             </div>
         </div>
         <div class="suino-property">

@@ -1,0 +1,51 @@
+<p-card class="sessao-card">
+    <ng-template pTemplate="header">
+        <div>
+            <h2>
+                {{ sessao.nome }}
+            </h2>
+            <h3>
+                {{sessao.data | date:'dd/MM/yyyy'}}
+            </h3>
+        </div>
+    </ng-template>
+
+    <div class="sessao-property-group">
+        <div class="sessao-property">
+            <div class="sessao-property-label">
+                Suinos na sessão:
+            </div>
+            <div class="sessao-property-value">
+                {{ getSuinosCount() }}
+            </div>
+        </div>
+    </div>
+    <div class="sessao-property-group">
+        <div class="sessao-property">
+            <div class="sessao-property-label">
+                Vacinas na sessão:
+            </div>
+            <div class="sessao-property-value">
+                {{ getVacinasCount() }}
+            </div>
+        </div>
+    </div>
+    <p-table [columns]="sessao.vacinas" [value]="sessao.aplicacoes || []" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th>Suinos</th>
+                <th *ngFor="let col of columns">
+                    {{ col.nome }}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td>{{ rowData.suino }}</td>
+                <td *ngFor="let vacina of rowData.vacinas">
+                    {{ vacina.aplicada ? 'Aplicada' : 'Não Aplicada' }}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>

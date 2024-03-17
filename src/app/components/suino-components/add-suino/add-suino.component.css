@@ -39,7 +39,7 @@ form {
   gap: 10px;
 }
 
-.form-group-title > h3 {
+.form-group-title>h3 {
   margin: 0;
 }
 

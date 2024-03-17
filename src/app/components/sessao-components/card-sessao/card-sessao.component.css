@@ -1,0 +1,83 @@
+::ng-deep .context-menu button {
+    justify-content: end;
+    padding: 0;
+    width: min-content;
+}
+
+::ng-deep .sessao-card .p-card {
+    border: 1px solid lightgray;
+}
+
+::ng-deep .sessao-card .p-card {
+    padding: 1.25rem;
+    height: 370px;
+}
+
+::ng-deep .sessao-card .p-card-header,
+::ng-deep .sessao-card .p-card-body,
+::ng-deep .sessao-card .p-card-content,
+::ng-deep .sessao-card .p-card-footer {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+::ng-deep .sessao-card .p-card-footer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+::ng-deep .sessao-card .p-card-footer button {
+    font-size: 0.95rem;
+    padding: 10px 14px;
+}
+
+::ng-deep .sessao-card .p-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 75px;
+}
+
+::ng-deep .sessao-card .p-card-header h2,
+::ng-deep .sessao-card .p-card-header h3 {
+    margin: 0;
+}
+
+::ng-deep .sessao-card .p-card-header h2 {
+    color: black;
+    font-size: 1.5rem;
+}
+
+::ng-deep .sessao-card .p-card-header h2 a {
+    cursor: pointer;
+}
+
+::ng-deep .sessao-card .p-card-header h2 a:hover {
+    text-decoration: underline;
+}
+
+::ng-deep .sessao-card .p-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 0.95rem;
+}
+
+.sessao-property-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sessao-property {
+    display: flex;
+    flex-direction: column;
+}
+
+.sessao-property-label {
+    font-weight: bold;
+    margin-bottom: 3px;
+}

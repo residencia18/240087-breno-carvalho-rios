@@ -1,0 +1,43 @@
+<p-dataView [value]="sessoes" layout="grid">
+    <ng-template pTemplate="header">
+        <div class="controls">
+            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            <h2>Lista de Sessões</h2>
+            <div class="buttons">
+                <p-button icon="pi pi-filter" (click)="toggleFilter()"></p-button>
+                <p-button icon="pi pi-plus" routerLink="/app/sessoes/nova" severity="success"></p-button>
+            </div>
+        </div>
+        <div class="filters" *ngIf="filtersIsVisible" [@inOutAnimation]>
+            <div class="filter filter-dropdown p-fluid">
+                <label>Filtrar por:</label>
+                <p-dropdown [options]="filterOptions" [(ngModel)]="filter"></p-dropdown>
+            </div>
+            <div class="filter-value">
+                <div class="filter p-fluid" *ngIf="filter == 'DS'">
+                    <p-calendar [(ngModel)]="filterValue" dateFormat="dd/mm/yy" placeholder="Data"></p-calendar>
+                </div>
+            </div>
+            <div class="filter-button">
+                <p-button icon="pi pi-filter-slash" severity="danger" (click)="clearFilters()"></p-button>
+            </div>
+            <div class="filter-button">
+                <p-button icon="pi pi-search" (click)="filtersessoes()"></p-button>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="list">
+        <div class="sessoes-list">
+            <div class="sessao" *ngFor="let sessao of sessoes">
+                <app-card-sessao [sessao]="sessao" (onDelete)="getAll()"></app-card-sessao>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="grid">
+        <div class="sessoes-grid">
+            <div class="sessao" *ngFor="let sessao of sessoes">
+                <app-card-sessao [sessao]="sessao" (onDelete)="getAll()"></app-card-sessao>
+            </div>
+        </div>
+    </ng-template>
+</p-dataView>

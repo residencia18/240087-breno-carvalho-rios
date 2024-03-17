@@ -2,9 +2,10 @@
     <ng-template pTemplate="header">
         <div class="controls">
             <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            <h2>Lista de Suínos</h2>
             <div class="buttons">
                 <p-button icon="pi pi-filter" (click)="toggleFilter()"></p-button>
-                <p-button icon="pi pi-plus" routerLink="/suinos/novo" severity="success"></p-button>
+                <p-button icon="pi pi-plus" routerLink="/app/suinos/novo" severity="success"></p-button>
             </div>
         </div>
         <div class="filters" *ngIf="filtersIsVisible" [@inOutAnimation]>

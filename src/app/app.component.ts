@@ -17,9 +17,9 @@ export class AppComponent {
     this.authService.usuario.subscribe((usuario) => {
       this.loggedIn = usuario.token ? true : false;
       this.menuItems = [
-        { label: "Suinos", routerLink: '/suinos' },
-        { label: "Vacinas", routerLink: '/vacinas' },
-        { label: "Sessoes", routerLink: '/sessoes' }
+        { label: "Suinos", routerLink: 'app/suinos' },
+        { label: "Vacinas", routerLink: 'app/vacinas' },
+        { label: "Sessoes", routerLink: 'app/sessoes' }
       ]
     })
   }

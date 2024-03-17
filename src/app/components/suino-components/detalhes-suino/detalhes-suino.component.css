@@ -1,3 +1,7 @@
+:host {
+  padding: 10px;
+}
+
 .suino-active {
   color: blue;
 }
@@ -11,7 +15,7 @@
 }
 
 ::ng-deep .suino-card .p-card {
-  margin: 30px;
+  margin: 15px 30px;
 }
 
 ::ng-deep .suino-card .p-card {

@@ -1,0 +1,46 @@
+<div class="form-content">
+    <h2>{{id ? 'Alterar Sessão' : 'Cadastrar Sessão'}}</h2>
+    <form [formGroup]="addSessaoForm" (ngSubmit)="submit()">
+        <div class="form-group">
+            <div class="form-group-title">
+                <h3>Dados da Sessão</h3>
+                <p-divider></p-divider>
+            </div>
+            <div class="form-group-content">
+                <div>
+                    <label for="nome">Identificar a sessão</label>
+                    <input id="nome" pInputText placeholder="Ex.: Sessão de Vacinação" formControlName="nome">
+                    <div *ngIf="addSessaoForm.get('nome')?.errors?.['required'] && addSessaoForm.get('nome')?.touched">
+                        <span class="error_message"> O nome é obrigatório.</span>
+                    </div>
+                </div>
+                <div class="p-fluid">
+                    <label for="data">Data da sessão</label>
+                    <p-calendar id="data" placeholder="Ex.: Sessão de Vacinação" formControlName="data" dateFormat="dd/mm/yy" placeholder="xx/xx/xxxx"></p-calendar>
+                    <div *ngIf="addSessaoForm.get('data')?.errors?.['required'] && addSessaoForm.get('data')?.touched">
+                        <span class="error_message"> A data é obrigatória.</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="suinos">Suínos</label>
+                    <p-pickList id="suinos" filterBy="brinco" sourceFilterPlaceholder="Buscar por brinco" targetFilterPlaceholder="Buscar por brinco" sourceHeader="Lista de Suínos" targetHeader="Suínos na sessão" [source]="suinos" [target]="selectedSuinos" [dragdrop]="true" [responsive]="true" [showSourceControls]="false" [showTargetControls]="false" [sourceStyle]="{ height: '250px' }" [targetStyle]="{ height: '250px' }">
+                        <ng-template let-suino pTemplate="item">
+                            <div>{{suino.brinco}}</div>
+                        </ng-template>
+                    </p-pickList>
+                </div>
+                <div>
+                    <label for="vacinas">Vacinas</label>
+                    <p-pickList [source]="vacinas" [target]="selectedVacinas" id="vacinas" filterBy="nome" sourceFilterPlaceholder="Buscar por nome" targetFilterPlaceholder="Buscar por nome" sourceHeader="Lista de Vacinas" targetHeader="Vacinas adicionados a sessão" [dragdrop]="true" [responsive]="true" [showSourceControls]="false" [showTargetControls]="false" [sourceStyle]="{ height: '250px' }" [targetStyle]="{ height: '250px' }">
+                        <ng-template let-vacina pTemplate="item">
+                            <div>{{vacina.nome}}</div>
+                        </ng-template>
+                    </p-pickList>
+                </div>
+            </div>
+        </div>
+        <div class="p-fluid">
+            <p-button [label]="id ? 'Alterar Sessão' : 'Cadastrar Sessão'" type="submit"></p-button>
+        </div>
+    </form>
+</div>

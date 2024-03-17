@@ -46,7 +46,7 @@ export class AddVacinaComponent {
 
     this.service.create(vacina).subscribe({
       next: _ => {
-        this.router.navigate(['/vacinas']);
+        this.router.navigate(['app/vacinas']);
       },
       error: (error: any) => {
         this.handleVacinaError(error);
@@ -58,7 +58,7 @@ export class AddVacinaComponent {
     const vacina = this.getDataFromForm();
 
     this.service.update(id, vacina).subscribe(_ => {
-      this.router.navigate([`/vacinas/detalhes/${this.id}`]);
+      this.router.navigate([`app/vacinas/detalhes/${this.id}`]);
     });
   }
 

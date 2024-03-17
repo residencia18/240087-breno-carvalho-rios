@@ -1,6 +1,8 @@
 <p-dataView [value]="vacinas" layout="list">
     <ng-template pTemplate="header">
-        <p-button icon="pi pi-plus" (click)="addVacina()"></p-button>
+        <div></div>
+        <h2>Lista de Vacinas</h2>
+        <p-button icon="pi pi-plus" (click)="addVacina()" severity="success"></p-button>
     </ng-template>
     <ng-template pTemplate="list">
         <div class="vacinas-list">

@@ -17,12 +17,11 @@ export class ListaVacinasComponent {
 
   public getAll() {
     this.service.getAll().subscribe(vacinas => {
-      console.log(vacinas)
       this.vacinas = vacinas.reverse();
     });
   }
 
-  public addVacina(){
-    this.router.navigate(['/vacinas/nova']);
+  public addVacina() {
+    this.router.navigate(['app/vacinas/nova']);
   }
 }

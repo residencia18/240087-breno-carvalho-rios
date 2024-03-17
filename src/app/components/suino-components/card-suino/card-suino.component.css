@@ -10,10 +10,19 @@
   color: red;
 }
 
+::ng-deep .context-menu button {
+  justify-content: end;
+  padding: 0;
+  width: min-content;
+}
+
+::ng-deep .suino-card .p-card {
+  border: 1px solid lightgray;
+}
+
 ::ng-deep .suino-card .p-card {
   padding: 1.25rem;
   height: 370px;
-  overflow: auto;
 }
 
 ::ng-deep .suino-card .p-card-header,
