@@ -47,3 +47,6 @@ Repositório dedicado à disciplina de Front End do Programa de Residência em S
 * Prática 014
     * [Repositório](https://github.com/brenoriios/FrontEnd-TIC18/tree/main/Semana14/Pratica014)
     * [Deploy no Firebase](https://pratica014-frontend.web.app/)
+* Prática 015
+    * [Repositório](https://github.com/brenoriios/pratica015-frontend-tic18)
+    * [Deploy no Firebase](https://pratica015-frontend.web.app/)
