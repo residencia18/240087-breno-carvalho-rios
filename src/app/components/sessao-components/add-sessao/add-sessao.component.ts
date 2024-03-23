@@ -43,8 +43,14 @@ export class AddSessaoComponent {
     private router: Router,
     private route: ActivatedRoute,
   ) {
-    this.suinoService.getAll().subscribe(suinos => { this._suinos = suinos; });
-    this.vacinasService.getAll().subscribe(vacinas => { this._vacinas = vacinas; });
+    this.suinoService.getAll().subscribe(suinos => {
+      this._suinos = suinos;
+      this.suinos = this._suinos;
+    });
+    this.vacinasService.getAll().subscribe(vacinas => {
+      this._vacinas = vacinas;
+      this.vacinas = this._vacinas;
+    });
   }
 
   addSessaoForm: FormGroup = new FormGroup({
@@ -111,13 +117,13 @@ export class AddSessaoComponent {
       const _vacinas: any = []
       vacinas.forEach(vacina => {
         let aplicada = false;
-        if (this.sessao) {
-          let _aplicacao: any = this.sessao.aplicacoes.find(a => parseInt(a.suino) == suino.brinco);
-          let _vacina: any = _aplicacao.vacinas.find((v: any) => v.nome == vacina.nome);
-          if (_vacina) {
-            aplicada = _vacina.aplicada;
-          }
-        }
+        // if (this.sessao) {
+        //   let _aplicacao: any = this.sessao.aplicacoes.find(a => parseInt(a.suino) == suino.brinco);
+        //   let _vacina: any = _aplicacao.vacinas.find((v: any) => v.nome == vacina.nome);
+        //   if (_vacina) {
+        //     aplicada = _vacina.aplicada;
+        //   }
+        // }
 
         _vacinas.push({
           nome: vacina.nome,
