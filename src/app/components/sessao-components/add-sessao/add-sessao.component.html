@@ -16,14 +16,22 @@
                 </div>
                 <div class="p-fluid">
                     <label for="data">Data da sessão</label>
-                    <p-calendar id="data" placeholder="Ex.: Sessão de Vacinação" formControlName="data" dateFormat="dd/mm/yy" placeholder="xx/xx/xxxx"></p-calendar>
+                    <p-calendar id="data" placeholder="Ex.: Sessão de Vacinação" formControlName="data"
+                        dateFormat="dd/mm/yy" placeholder="xx/xx/xxxx"></p-calendar>
                     <div *ngIf="addSessaoForm.get('data')?.errors?.['required'] && addSessaoForm.get('data')?.touched">
                         <span class="error_message"> A data é obrigatória.</span>
+                    </div>
+                    <div *ngIf="addSessaoForm.get('data')?.errors?.['dataFutura']">
+                        <span class="error_message"> A data da sessão não poder ser futura!. </span>
                     </div>
                 </div>
                 <div>
                     <label for="suinos">Suínos</label>
-                    <p-pickList id="suinos" filterBy="brinco" sourceFilterPlaceholder="Buscar por brinco" targetFilterPlaceholder="Buscar por brinco" sourceHeader="Lista de Suínos" targetHeader="Suínos na sessão" [source]="suinos" [target]="selectedSuinos" [dragdrop]="true" [responsive]="true" [showSourceControls]="false" [showTargetControls]="false" [sourceStyle]="{ height: '250px' }" [targetStyle]="{ height: '250px' }">
+                    <p-pickList id="suinos" filterBy="brinco" sourceFilterPlaceholder="Buscar por brinco"
+                        targetFilterPlaceholder="Buscar por brinco" sourceHeader="Lista de Suínos"
+                        targetHeader="Suínos na sessão" [source]="suinos" [target]="selectedSuinos" [dragdrop]="true"
+                        [responsive]="true" [showSourceControls]="false" [showTargetControls]="false"
+                        [sourceStyle]="{ height: '250px' }" [targetStyle]="{ height: '250px' }">
                         <ng-template let-suino pTemplate="item">
                             <div>{{suino.brinco}}</div>
                         </ng-template>
@@ -31,7 +39,11 @@
                 </div>
                 <div>
                     <label for="vacinas">Vacinas</label>
-                    <p-pickList [source]="vacinas" [target]="selectedVacinas" id="vacinas" filterBy="nome" sourceFilterPlaceholder="Buscar por nome" targetFilterPlaceholder="Buscar por nome" sourceHeader="Lista de Vacinas" targetHeader="Vacinas adicionados a sessão" [dragdrop]="true" [responsive]="true" [showSourceControls]="false" [showTargetControls]="false" [sourceStyle]="{ height: '250px' }" [targetStyle]="{ height: '250px' }">
+                    <p-pickList [source]="vacinas" [target]="selectedVacinas" id="vacinas" filterBy="nome"
+                        sourceFilterPlaceholder="Buscar por nome" targetFilterPlaceholder="Buscar por nome"
+                        sourceHeader="Lista de Vacinas" targetHeader="Vacinas adicionados a sessão" [dragdrop]="true"
+                        [responsive]="true" [showSourceControls]="false" [showTargetControls]="false"
+                        [sourceStyle]="{ height: '250px' }" [targetStyle]="{ height: '250px' }">
                         <ng-template let-vacina pTemplate="item">
                             <div>{{vacina.nome}}</div>
                         </ng-template>

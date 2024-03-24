@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SessaoService } from '../../../services/sessao.service';
 import { SessaoViewModel } from '../../../models/Sessao/SessaoViewModel';
 import { SessaoInputModel } from '../../../models/Sessao/SessaoInputModel';
@@ -9,6 +8,7 @@ import { SuinoViewModel } from '../../../models/Suino/SuinoViewModel';
 import { VacinaService } from '../../../services/vacina.service';
 import { VacinaViewModel } from '../../../models/Vacina/VacinaViewModel';
 import Swal from 'sweetalert2';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-sessao',
@@ -55,7 +55,7 @@ export class AddSessaoComponent {
 
   addSessaoForm: FormGroup = new FormGroup({
     nome: new FormControl(null, [Validators.required]),
-    data: new FormControl(null, [Validators.required])
+    data: new FormControl(null, [Validators.required, this.dataFuturaValidator.bind(this)]),
   });
 
   ngOnInit() {
@@ -83,6 +83,16 @@ export class AddSessaoComponent {
 
   public create() {
     const sessao = this.getDataFromForm();
+    if (sessao.data && new Date(sessao.data) > new Date() || this.addSessaoForm.invalid) {
+      Swal.fire({
+        title: 'Erro!',
+        icon: 'error',
+        text: 'Ops... A data da sessão não pode ser futura e todos os campos são obrigatórios',
+        showConfirmButton: true,
+      });
+      console.error('Por favor, preencha todos os campos obrigatórios antes de criar.');
+      return;
+    }
     this.service.create(sessao).subscribe({
       next: _ => {
         this.router.navigate(['app/sessoes']);
@@ -146,4 +156,14 @@ export class AddSessaoComponent {
 
     return sessao;
   }
+
+  public dataFuturaValidator(control: FormControl): { [s: string]: boolean } {
+    const data = control.value;
+    if (data && new Date(data) > new Date()) {
+      return { 'dataFutura': true };
+    }
+
+    return {};
+  }
+
 }

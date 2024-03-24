@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-import { SuinoService } from '../../../services/suino.service';
 import { SessaoViewModel } from '../../../models/Sessao/SessaoViewModel';
+import { SessaoService } from '../../../services/sessao.service';
 
 @Component({
   selector: 'app-card-sessao',
@@ -13,7 +13,7 @@ export class CardSessaoComponent {
   @Input() sessao: SessaoViewModel = {} as SessaoViewModel;
   @Output() onDelete: any = new EventEmitter();
 
-  constructor(private service: SuinoService, private router: Router) { }
+  constructor(private service: SessaoService, private router: Router) { }
 
   public contextMenuItems: MenuItem[] = [
     { label: 'Excluir', command: _ => this.delete(this.sessao.id) },
