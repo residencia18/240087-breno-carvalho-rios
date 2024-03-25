@@ -1,0 +1,12 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: max(50vw, 500px);
+    margin: auto;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+}

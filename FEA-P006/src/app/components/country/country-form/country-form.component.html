@@ -1,0 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2>Dados do País</h2>
+    <div *ngFor="let field of formJson" class="form-control">
+        <label [for]="field.name">{{field.rotulo | titlecase}}</label>
+        <input pInputText [type]="field.tipo" [id]="field.name" [name]="field.name" [formControlName]="field.nome">
+    </div>
+    <button pButton type="submit" label="Enviar"></button>
+</form>
