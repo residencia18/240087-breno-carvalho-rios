@@ -8,8 +8,8 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { authGuard } from './guards/auth.guard';
 import { AddPesoComponent } from './components/peso-components/add-peso/add-peso.component';
-import { AddVacinaComponent } from './components/vacina-components/add-vacina/add-vacina.component';
-import { ListaVacinasComponent } from './components/vacina-components/lista-vacinas/lista-vacinas.component';
+import { AddAtividadeComponent } from './components/atividade-components/add-atividade/add-atividade.component';
+import { ListaAtividadesComponent } from './components/atividade-components/lista-atividades/lista-atividades.component';
 import { ListaSessoesComponent } from './components/sessao-components/lista-sessoes/lista-sessoes.component';
 import { AddSessaoComponent } from './components/sessao-components/add-sessao/add-sessao.component';
 import { DetalhesSessaoComponent } from './components/sessao-components/detalhes-sessao/detalhes-sessao.component';
@@ -59,14 +59,14 @@ const routes: Routes = [
         canActivate: [authGuard],
         children: [
           {
-            path: "vacinas",
+            path: "atividades",
             children: [
-              { path: "nova", component: AddVacinaComponent },
-              { path: "editar/:id", component: AddVacinaComponent },
-              { path: "", component: ListaVacinasComponent }
+              { path: "nova", component: AddAtividadeComponent },
+              { path: "editar/:id", component: AddAtividadeComponent },
+              { path: "", component: ListaAtividadesComponent }
             ]
           },
-          { path: "", component: ListaVacinasComponent }
+          { path: "", component: ListaAtividadesComponent }
         ]
       },
       {

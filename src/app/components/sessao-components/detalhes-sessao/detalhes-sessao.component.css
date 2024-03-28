@@ -1,3 +1,11 @@
+.atividade-realizada {
+    color: green;
+}
+
+.atividade-nao-realizada {
+    color: red;
+}
+
 ::ng-deep .sessao-card .p-card {
     margin: 15px 30px;
 }

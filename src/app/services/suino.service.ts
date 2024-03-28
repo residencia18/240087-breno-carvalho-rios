@@ -63,7 +63,7 @@ export class SuinoService {
 
     const difAnos = hoje.getFullYear() - nascimento.getFullYear();
     const difMeses = (hoje.getMonth() + 1) - (nascimento.getMonth() + 1);
-    const difDias = nascimento.getDay() - hoje.getDay();
+    const difDias = hoje.getDay() - nascimento.getDay();
     var idade = difAnos * 12 + difMeses;
 
     return (difDias < 0 && difMeses > 0) ? idade - 1 : idade;

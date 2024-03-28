@@ -25,11 +25,11 @@ export class DetalhesSessaoComponent {
     return this.sessao.suinos.length;
   }
 
-  public getVacinasCount() {
-    if (!this.sessao.vacinas) {
+  public getAtividadesCount() {
+    if (!this.sessao.atividades) {
       return 0;
     }
-    return this.sessao.vacinas.length;
+    return this.sessao.atividades.length;
   }
 
   public getById() {

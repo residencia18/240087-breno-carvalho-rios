@@ -23,14 +23,14 @@
     <div class="sessao-property-group">
         <div class="sessao-property">
             <div class="sessao-property-label">
-                Vacinas na sessão:
+                Atividades na sessão:
             </div>
             <div class="sessao-property-value">
-                {{ getVacinasCount() }}
+                {{ getAtividadesCount() }}
             </div>
         </div>
     </div>
-    <p-table [columns]="sessao.vacinas" [value]="sessao.aplicacoes || []" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [columns]="sessao.atividades" [value]="sessao.realizacoes || []" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th>Suinos</th>
@@ -42,8 +42,8 @@
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr>
                 <td>{{ rowData.suino }}</td>
-                <td *ngFor="let vacina of rowData.vacinas">
-                    {{ vacina.aplicada ? 'Aplicada' : 'Não Aplicada' }}
+                <td *ngFor="let atividade of rowData.atividades" [ngClass]="{'atividade-realizada': atividade.realizada, 'atividade-nao-realizada': !atividade.realizada}">
+                    {{ atividade.realizada ? 'Realizada' : 'Não Realizada' }}
                 </td>
             </tr>
         </ng-template>

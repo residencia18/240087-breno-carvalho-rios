@@ -10,7 +10,7 @@
         </div>
     </ng-template>
 
-    <p-table [columns]="sessao.vacinas" [value]="sessao.aplicacoes || []" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [columns]="sessao.atividades" [value]="sessao.realizacoes || []" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th>Suinos</th>
@@ -22,8 +22,8 @@
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr>
                 <td>{{ rowData.suino }}</td>
-                <td *ngFor="let vacina of rowData.vacinas">
-                    <p-toggleButton onLabel="Sim" offLabel="Não" [(ngModel)]="vacina.aplicada"></p-toggleButton>
+                <td *ngFor="let atividade of rowData.atividades">
+                    <p-toggleButton onLabel="Sim" offLabel="Não" [(ngModel)]="atividade.realizada"></p-toggleButton>
                 </td>
             </tr>
         </ng-template>

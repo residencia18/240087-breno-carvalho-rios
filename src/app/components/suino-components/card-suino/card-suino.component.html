@@ -37,7 +37,8 @@
                 Idade:
             </div>
             <div class="suino-property-value">
-                {{ calculateAge(suino.dataNascimento) | number }} meses
+                {{ calculateAge(suino.dataNascimento) == 0 ? 'Menos de 1' : (calculateAge(suino.dataNascimento) | number)}}
+                {{ calculateAge(suino.dataNascimento) > 1 ? 'meses' : 'mês' }}
             </div>
         </div>
     </div>

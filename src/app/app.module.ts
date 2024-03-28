@@ -35,9 +35,9 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AddPesoComponent } from './components/peso-components/add-peso/add-peso.component';
 import { CardPesoComponent } from './components/suino-components/card-peso/card-peso.component';
-import { AddVacinaComponent } from './components/vacina-components/add-vacina/add-vacina.component';
-import { ListaVacinasComponent } from './components/vacina-components/lista-vacinas/lista-vacinas.component';
-import { CardVacinaComponent } from './components/vacina-components/card-vacina/card-vacina.component';
+import { AddAtividadeComponent } from './components/atividade-components/add-atividade/add-atividade.component';
+import { ListaAtividadesComponent } from './components/atividade-components/lista-atividades/lista-atividades.component';
+import { CardAtividadeComponent } from './components/atividade-components/card-atividade/card-atividade.component';
 import { AddSessaoComponent } from './components/sessao-components/add-sessao/add-sessao.component';
 import { ListaSessoesComponent } from './components/sessao-components/lista-sessoes/lista-sessoes.component';
 import { CardSessaoComponent } from './components/sessao-components/card-sessao/card-sessao.component';
@@ -58,9 +58,9 @@ registerLocaleData(localePt);
     SignupComponent,
     AddPesoComponent,
     CardPesoComponent,
-    AddVacinaComponent,
-    ListaVacinasComponent,
-    CardVacinaComponent,
+    AddAtividadeComponent,
+    ListaAtividadesComponent,
+    CardAtividadeComponent,
     AddSessaoComponent,
     ListaSessoesComponent,
     CardSessaoComponent,

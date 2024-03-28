@@ -1,12 +1,12 @@
 import { SuinoViewModel } from "../Suino/SuinoViewModel";
-import { VacinaViewModel } from "../Vacina/VacinaViewModel";
-import { Aplicacao } from "./Aplicacao";
+import { AtividadeViewModel } from "../Atividade/AtividadeViewModel";
+import { Realizacao } from "./Realizacao";
 
 export interface SessaoViewModel {
     id: string,
     nome: string,
     data: Date,
-    vacinas: VacinaViewModel[],
+    atividades: AtividadeViewModel[],
     suinos: SuinoViewModel[],
-    aplicacoes: Aplicacao[]
+    realizacoes: Realizacao[]
 }

@@ -1,0 +1,73 @@
+::ng-deep .atividade-card .p-card {
+  padding: 1.25rem;
+  overflow: auto;
+}
+
+::ng-deep .atividade-card .p-card-header,
+::ng-deep .atividade-card .p-card-body,
+::ng-deep .atividade-card .p-card-content,
+::ng-deep .atividade-card .p-card-footer {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+::ng-deep .atividade-card .p-card-footer {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+::ng-deep .atividade-card .p-card-footer button {
+  font-size: 0.95rem;
+  padding: 10px 14px;
+}
+
+::ng-deep .atividade-card .p-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 75px;
+}
+
+::ng-deep .atividade-card .p-card-header h2,
+::ng-deep .atividade-card .p-card-header h3 {
+  margin: 0;
+}
+
+::ng-deep .atividade-card .p-card-header h2 {
+  color: black;
+  font-size: 1.5rem;
+}
+
+::ng-deep .atividade-card .p-card-header h2 a {
+  cursor: pointer;
+}
+
+::ng-deep .atividade-card .p-card-header h2 a:hover {
+  text-decoration: underline;
+}
+
+::ng-deep .atividade-card .p-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 0.95rem;
+}
+
+.atividade-property-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.atividade-property {
+  display: flex;
+  flex-direction: column;
+}
+
+.atividade-property-label {
+  font-weight: bold;
+  margin-bottom: 3px;
+}

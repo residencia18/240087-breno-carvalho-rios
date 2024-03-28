@@ -5,8 +5,8 @@ import { SessaoViewModel } from '../../../models/Sessao/SessaoViewModel';
 import { SessaoInputModel } from '../../../models/Sessao/SessaoInputModel';
 import { SuinoService } from '../../../services/suino.service';
 import { SuinoViewModel } from '../../../models/Suino/SuinoViewModel';
-import { VacinaService } from '../../../services/vacina.service';
-import { VacinaViewModel } from '../../../models/Vacina/VacinaViewModel';
+import { AtividadeService } from '../../../services/atividade.service';
+import { AtividadeViewModel } from '../../../models/Atividade/AtividadeViewModel';
 import Swal from 'sweetalert2';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -28,48 +28,56 @@ export class AddSessaoComponent {
   ]
 
   private _suinos: SuinoViewModel[] = [];
-  private _vacinas: VacinaViewModel[] = [];
+  private _atividades: AtividadeViewModel[] = [];
   public id = this.route.snapshot.paramMap.get('id');
   public sessao: SessaoViewModel = {} as SessaoViewModel;
   public suinos: SuinoViewModel[] = [];
-  public vacinas: VacinaViewModel[] = [];
+  public atividades: AtividadeViewModel[] = [];
   public selectedSuinos: SuinoViewModel[] = [];
-  public selectedVacinas: VacinaViewModel[] = [];
+  public selectedAtividades: AtividadeViewModel[] = [];
 
   constructor(
     private service: SessaoService,
     private suinoService: SuinoService,
-    private vacinasService: VacinaService,
+    private atividadesService: AtividadeService,
     private router: Router,
     private route: ActivatedRoute,
-  ) {
-    this.suinoService.getAll().subscribe(suinos => {
-      this._suinos = suinos;
-      this.suinos = this._suinos;
-    });
-    this.vacinasService.getAll().subscribe(vacinas => {
-      this._vacinas = vacinas;
-      this.vacinas = this._vacinas;
-    });
-  }
+  ) { }
 
   addSessaoForm: FormGroup = new FormGroup({
     nome: new FormControl(null, [Validators.required]),
     data: new FormControl(null, [Validators.required, this.dataFuturaValidator.bind(this)]),
   });
 
-  ngOnInit() {
-    if (this.id) {
-      this.service.getById(this.id).subscribe(sessao => {
-        this.sessao = sessao;
-        this.addSessaoForm.patchValue(sessao);
-        this.selectedSuinos = sessao.suinos;
-        this.selectedVacinas = sessao.vacinas;
+  async ngOnInit() {
+    await this.getDataFromDb().then(() => {
+      if (this.id) {
+        this.filterDataFromDb(this.id);
+      }
+    });
+  }
 
-        this.suinos = this._suinos.filter(suino => !this.sessao.suinos.some(s => s.brinco == suino.brinco));
-        this.vacinas = this._vacinas.filter(vacina => !this.sessao.vacinas.some(v => v.nome == vacina.nome));
-      });
-    }
+  public async filterDataFromDb(id: string) {
+    this.service.getById(id).subscribe(sessao => {
+      this.sessao = sessao;
+      this.addSessaoForm.patchValue(sessao);
+      this.selectedSuinos = sessao.suinos;
+      this.selectedAtividades = sessao.atividades;
+
+      this.suinos = this._suinos.filter(suino => !this.sessao.suinos.some(s => s.brinco == suino.brinco));
+      this.atividades = this._atividades.filter(atividade => !this.sessao.atividades.some(v => v.nome == atividade.nome));
+    });
+  }
+
+  public async getDataFromDb() {
+    this.suinoService.getAll().subscribe(suinos => {
+      this._suinos = suinos;
+      this.suinos = this._suinos;
+    });
+    this.atividadesService.getAll().subscribe(atividades => {
+      this._atividades = atividades;
+      this.atividades = this._atividades;
+    });
   }
 
   public submit() {
@@ -102,6 +110,17 @@ export class AddSessaoComponent {
 
   public update(id: string) {
     const sessao = this.getDataFromForm();
+    if (this.selectedSuinos.length < 1 || this.selectedAtividades.length < 1) {
+      Swal.fire({
+        title: 'Erro!',
+        icon: 'error',
+        text: 'Ops... É necessário pelo menos um suino e uma atividade para atualizar.',
+        showConfirmButton: true,
+      });
+      console.error('Por favor, adicione pelo menos um suino e uma atividade antes de atualizar.');
+      return;
+    }
+
     if (this.addSessaoForm.invalid) {
       Swal.fire({
         title: 'Erro!',
@@ -120,38 +139,42 @@ export class AddSessaoComponent {
 
   public getDataFromForm(): SessaoInputModel {
     const suinos = this.selectedSuinos;
-    const vacinas = this.selectedVacinas;
-    const aplicacoes: any = [];
+    const atividades = this.selectedAtividades;
+    const realizacoes: any = [];
 
     suinos.forEach(suino => {
-      const _vacinas: any = []
-      vacinas.forEach(vacina => {
-        let aplicada = false;
-        // if (this.sessao) {
-        //   let _aplicacao: any = this.sessao.aplicacoes.find(a => parseInt(a.suino) == suino.brinco);
-        //   let _vacina: any = _aplicacao.vacinas.find((v: any) => v.nome == vacina.nome);
-        //   if (_vacina) {
-        //     aplicada = _vacina.aplicada;
-        //   }
-        // }
+      const _realizacoesSuino: any = { suino: '', atividades: [] };
+      atividades.forEach(atividade => {
+        let realizada = false;
+        _realizacoesSuino.suino = suino.brinco;
+        if (this.id) {
+          let _realizacao: any = this.sessao.realizacoes.find(a => parseInt(a.suino) == suino.brinco);
+          let _atividade: any;
 
-        _vacinas.push({
-          nome: vacina.nome,
-          aplicada: aplicada
+          if (_realizacao) {
+            _atividade = _realizacao.atividades.find((v: any) => v.nome == atividade.nome);
+          }
+
+          if (_atividade) {
+            realizada = _atividade.realizada;
+          }
+        }
+
+        _realizacoesSuino.atividades.push({
+          nome: atividade.nome,
+          realizada: realizada
         })
       })
-      aplicacoes.push({
-        suino: suino.brinco,
-        vacinas: _vacinas
-      })
+
+      realizacoes.push(_realizacoesSuino);
     });
 
     let sessao: SessaoInputModel = {
       nome: this.addSessaoForm.value.nome,
       data: this.addSessaoForm.value.data,
       suinos: this.selectedSuinos,
-      vacinas: this.selectedVacinas,
-      aplicacoes: aplicacoes
+      atividades: this.selectedAtividades,
+      realizacoes: realizacoes
     };
 
     return sessao;

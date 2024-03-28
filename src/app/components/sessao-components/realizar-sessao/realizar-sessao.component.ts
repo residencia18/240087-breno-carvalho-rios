@@ -3,7 +3,7 @@ import { SessaoViewModel } from '../../../models/Sessao/SessaoViewModel';
 import { SessaoService } from '../../../services/sessao.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessaoInputModel } from '../../../models/Sessao/SessaoInputModel';
-import { Aplicacao } from '../../../models/Sessao/Aplicacao';
+import { Realizacao } from '../../../models/Sessao/Realizacao';
 
 @Component({
   selector: 'app-realizar-sessao',
@@ -13,7 +13,7 @@ import { Aplicacao } from '../../../models/Sessao/Aplicacao';
 export class RealizarSessaoComponent {
   public id = this.route.snapshot.paramMap.get('id')!;
   public sessao: SessaoViewModel = {} as SessaoViewModel;
-  public aplicacoes: Aplicacao[] = [];
+  public realizacoes: Realizacao[] = [];
 
   constructor(private service: SessaoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -32,9 +32,9 @@ export class RealizarSessaoComponent {
     const sessao: SessaoInputModel = {
       nome: this.sessao.nome,
       data: this.sessao.data,
-      vacinas: this.sessao.vacinas,
+      atividades: this.sessao.atividades,
       suinos: this.sessao.suinos,
-      aplicacoes: this.sessao.aplicacoes as any
+      realizacoes: this.sessao.realizacoes as any
     };
 
     this.service.update(this.id, sessao).subscribe(_ => {

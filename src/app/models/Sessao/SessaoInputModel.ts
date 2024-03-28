@@ -1,11 +1,11 @@
 import { SuinoInputModel } from "../Suino/SuinoInputModel";
-import { VacinaInputModel } from "../Vacina/VacinaInputModel";
-import { Aplicacao } from "./Aplicacao";
+import { AtividadeInputModel } from "../Atividade/AtividadeInputModel";
+import { Realizacao } from "./Realizacao";
 
 export interface SessaoInputModel {
     nome: string,
     data: Date,
-    vacinas: VacinaInputModel[],
+    atividades: AtividadeInputModel[],
     suinos: SuinoInputModel[],
-    aplicacoes: Aplicacao
+    realizacoes: Realizacao
 }
