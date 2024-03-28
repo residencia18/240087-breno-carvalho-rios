@@ -46,7 +46,7 @@ export class AddSessaoComponent {
 
   addSessaoForm: FormGroup = new FormGroup({
     nome: new FormControl(null, [Validators.required]),
-    data: new FormControl(null, [Validators.required, this.dataFuturaValidator.bind(this)]),
+    data: new FormControl(null, [Validators.required]),
   });
 
   async ngOnInit() {
@@ -179,14 +179,4 @@ export class AddSessaoComponent {
 
     return sessao;
   }
-
-  public dataFuturaValidator(control: FormControl): { [s: string]: boolean } {
-    const data = control.value;
-    if (data && new Date(data) > new Date()) {
-      return { 'dataFutura': true };
-    }
-
-    return {};
-  }
-
 }

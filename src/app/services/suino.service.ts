@@ -30,14 +30,6 @@ export class SuinoService {
     return this.http.get<SuinoViewModel>(`${this.baseUrl}/suinos/${id}.json`);
   }
 
-  // public getAll() {
-  //   return this.http.get<SuinoViewModel>(`${this.baseUrl}/suinos.json`).pipe(
-  //     map((suinos) => {
-  //       return Object.entries(suinos).map(([key, value]) => ({ ...value, id: key }) as SuinoViewModel)
-  //     })
-  //   );
-  // }
-
   public getAll() {
     return this.http.get<{ [key: string]: SuinoViewModel }>(`${this.baseUrl}/suinos.json`).pipe(
       map((suinos) => {
