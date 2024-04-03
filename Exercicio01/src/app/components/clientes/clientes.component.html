@@ -1,0 +1,18 @@
+<p-table [value]="clientes">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Data Nascimento</th>
+      <th>E-mail</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-cliente>
+    <tr>
+      <td>{{cliente.nome}}</td>
+      <td>{{cliente.cpf}}</td>
+      <td>{{cliente.dataNascimento | date: 'dd/MM/yyyy'}}</td>
+      <td>{{cliente.email}}</td>
+    </tr>
+  </ng-template>
+</p-table>
