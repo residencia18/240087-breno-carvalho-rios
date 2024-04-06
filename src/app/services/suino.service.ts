@@ -30,14 +30,6 @@ export class SuinoService {
     return this.http.get<SuinoViewModel>(`${this.baseUrl}/suinos/${id}.json`);
   }
 
-  // public getAll() {
-  //   return this.http.get<SuinoViewModel>(`${this.baseUrl}/suinos.json`).pipe(
-  //     map((suinos) => {
-  //       return Object.entries(suinos).map(([key, value]) => ({ ...value, id: key }) as SuinoViewModel)
-  //     })
-  //   );
-  // }
-
   public getAll() {
     return this.http.get<{ [key: string]: SuinoViewModel }>(`${this.baseUrl}/suinos.json`).pipe(
       map((suinos) => {
@@ -63,7 +55,7 @@ export class SuinoService {
 
     const difAnos = hoje.getFullYear() - nascimento.getFullYear();
     const difMeses = (hoje.getMonth() + 1) - (nascimento.getMonth() + 1);
-    const difDias = nascimento.getDay() - hoje.getDay();
+    const difDias = hoje.getDay() - nascimento.getDay();
     var idade = difAnos * 12 + difMeses;
 
     return (difDias < 0 && difMeses > 0) ? idade - 1 : idade;

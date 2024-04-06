@@ -29,6 +29,6 @@ export class CardPesoComponent {
   }
 
   public update(id: string) {
-    this.router.navigate([`/pesos/editar/${this.id}/${id}`]);
+    this.router.navigate([`app/pesos/editar/${this.id}/${id}`]);
   }
 }

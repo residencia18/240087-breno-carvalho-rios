@@ -1,0 +1,14 @@
+<p-dataView [value]="atividades" layout="list">
+    <ng-template pTemplate="header">
+        <div></div>
+        <h2>Lista de Atividades</h2>
+        <p-button icon="pi pi-plus" (click)="addAtividade()" severity="success"></p-button>
+    </ng-template>
+    <ng-template pTemplate="list">
+        <div class="atividades-list">
+            <div class="atividade" *ngFor="let atividade of atividades">
+                <app-card-atividade [atividade]="atividade" (onDelete)="getAll()"></app-card-atividade>
+            </div>
+        </div>
+    </ng-template>
+</p-dataView>

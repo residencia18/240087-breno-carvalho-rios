@@ -1,7 +1,15 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100%;
+  background-color: rgb(247, 253, 255);
+}
+
 ::ng-deep .p-dataview-header {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border-top: none;
 }
 
 ::ng-deep .p-dataview-header .controls {
@@ -30,11 +38,19 @@
   width: 235px;
 }
 
+::ng-deep .p-dataview-header .buttons {
+  display: flex;
+  gap: 5px;
+}
+
+::ng-deep .p-dataview-content {
+  background-color: transparent;
+}
+
 ::ng-deep .suinos-list {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background-color: lightgray;
   padding: 20px;
 }
 
@@ -42,7 +58,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  background-color: lightgray;
   padding: 20px;
   box-sizing: border-box;
 }

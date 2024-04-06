@@ -1,0 +1,13 @@
+<p-card class="atividade-card">
+    <ng-template pTemplate="header">
+        <div>
+            <h2>
+                {{ atividade.nome }}
+            </h2>
+        </div>
+        <div #contextMenu>
+            <p-button icon="pi pi-ellipsis-v" (click)="menu.toggle($event)"></p-button>
+            <p-menu #menu [model]="contextMenuItems" [popup]="true" appendTo="body"></p-menu>
+        </div>
+    </ng-template>
+</p-card>

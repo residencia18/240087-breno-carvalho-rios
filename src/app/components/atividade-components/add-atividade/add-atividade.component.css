@@ -1,0 +1,64 @@
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.form-content {
+  width: 50vw;
+  padding: 30px;
+  border: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border-radius: 10px;
+}
+
+h2 {
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group-title > h3 {
+  margin: 0;
+}
+
+::ng-deep .form-group-title .p-divider {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.form-group-content div {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group-content label {
+  color: gray;
+  font-size: 0.95em;
+  margin-bottom: 3px;
+}
+
+.error_message {
+  color: #bd2828;
+}

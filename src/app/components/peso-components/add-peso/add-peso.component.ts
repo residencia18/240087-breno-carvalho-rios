@@ -91,7 +91,7 @@ export class AddPesoComponent {
   private addPeso(peso: any) {
     this.service.create(this.suinoId!, peso).subscribe({
       next: (_) => {
-        this.router.navigate([`/suinos/detalhes/${this.suinoId}`]);
+        this.router.navigate([`app/suinos/detalhes/${this.suinoId}`]);
       },
       error: (error: any) => {
         this.handlePesoError(error);
@@ -141,7 +141,7 @@ export class AddPesoComponent {
     const peso = this.getDataFromForm();
 
     this.service.update(id, this.suinoId!, peso).subscribe(_ => {
-      this.router.navigate([`/suinos/detalhes/${this.suinoId}`]);
+      this.router.navigate([`app/suinos/detalhes/${this.suinoId}`]);
     });
   }
 

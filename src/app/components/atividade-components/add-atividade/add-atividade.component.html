@@ -1,0 +1,23 @@
+<div class="form-content">
+    <h2>{{id ? 'Alterar Atividade' : 'Cadastrar Atividade'}}</h2>
+    <form [formGroup]="atividadeForm" (ngSubmit)="submit()">
+        <div class="form-group">
+            <div class="form-group-title">
+                <h3>Dados da Atividade</h3>
+                <p-divider></p-divider>
+            </div>
+            <div class="form-group-content">
+                <div>
+                    <label for="nome">Nome da Atividade</label>
+                    <input id="nome" pInputText placeholder="Ex.: Vacinação para Circovirose suína" formControlName="nome" />
+                    <div *ngIf="atividadeForm.get('nome')?.errors?.['required'] && atividadeForm.get('nome')?.touched">
+                        <span class="error_message">O nome da atividade é obrigatório.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-fluid">
+            <p-button [label]="id ? 'Alterar Atividade' : 'Cadastrar Atividade'" type="submit"></p-button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,11 @@
+:host {
+    display: block;
+    width: 100%;
+    min-height: 100%;
+    background-color: rgb(247, 253, 255);
+}
+
+::ng-deep .p-dataview-header {
+    display: flex;
+    justify-content: space-between;
+}

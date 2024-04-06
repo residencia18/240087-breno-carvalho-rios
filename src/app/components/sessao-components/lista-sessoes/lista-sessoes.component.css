@@ -1,0 +1,68 @@
+:host {
+    display: block;
+    width: 100%;
+    min-height: 100%;
+    background-color: rgb(247, 253, 255);
+}
+
+::ng-deep .p-dataview-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: none;
+}
+
+::ng-deep .p-dataview-header .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+::ng-deep .p-dataview-header .filters {
+    display: flex;
+    gap: 5px;
+}
+
+::ng-deep .p-dataview-header .filters .filter-value,
+::ng-deep .p-dataview-header .filters .filter-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+::ng-deep .p-dataview-header .filters .filter-value {
+    flex-grow: 1;
+}
+
+::ng-deep .p-dataview-header .filters .filter-dropdown {
+    width: 235px;
+}
+
+::ng-deep .p-dataview-header .buttons {
+    display: flex;
+    gap: 5px;
+}
+
+::ng-deep .p-dataview-content {
+    background-color: transparent;
+}
+
+::ng-deep .sessoes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+::ng-deep .sessoes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+::ng-deep .sessoes-grid .sessao {
+    width: 30%;
+    max-width: 450px;
+}

@@ -1,5 +1,5 @@
 <div class="form-content">
-    <h2>Cadastrar um novo suíno</h2>
+    <h2>{{id ? 'Alterar Suíno' : 'Cadastrar Suíno'}}</h2>
     <form [formGroup]="addSuinoForm" (ngSubmit)="submit()">
         <div class="form-group">
             <div class="form-group-title">

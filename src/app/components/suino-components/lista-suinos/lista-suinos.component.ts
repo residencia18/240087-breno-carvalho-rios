@@ -28,7 +28,6 @@ export class ListaSuinosComponent {
 
   public suinos: SuinoViewModel[] = []
   public filtersIsVisible = false;
-  public filter = "BP";
   public filterValue = "";
 
   public filterOptions = [
@@ -39,6 +38,8 @@ export class ListaSuinosComponent {
     { label: "Sexo", value: "SX" },
     { label: "Status", value: "ST" },
   ]
+  public filter = this.filterOptions.at(0)?.value;
+
   public sexoOptions = [
     { label: "M" },
     { label: "F" },

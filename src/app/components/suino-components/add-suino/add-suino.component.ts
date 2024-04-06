@@ -73,11 +73,11 @@ export class AddSuinoComponent {
         return;
       } else {
         // Se não houver suíno com o mesmo brinco, continua com a criação
-        if (!this.isValidForm(suino)) {
+        if (!this.isValidForm(suino) || suino.dataNascimento > new Date()) {
           Swal.fire({
             title: 'Erro!',
             icon: 'error',
-            text: 'Ops... Houve um erro ao enviar o formulário, verifique os campos e tente novamente.',
+            text: 'Ops... Houve um erro ao enviar o formulário, verifique os campos obrigatórios, ou se a data é futura.',
             showConfirmButton: true,
           });
           console.error('Por favor, corrija os erros no formulário.');
@@ -94,11 +94,11 @@ export class AddSuinoComponent {
   public update(id: string) {
     const suino = this.getDataFromForm();
 
-    if (!this.isValidForm(suino)) {
+    if (!this.isValidForm(suino) || suino.dataNascimento > new Date()) {
       Swal.fire({
         title: 'Erro!',
         icon: 'error',
-        text: 'Ops... Preencha todos os campos obrigatórios antes de atualizar.',
+        text: 'Ops... Preencha todos os campos obrigatórios antes de atualizar, ou verifique se a data é futura.',
         showConfirmButton: true,
       });
       console.error('Por favor, preencha todos os campos obrigatórios antes de atualizar.');
@@ -106,7 +106,7 @@ export class AddSuinoComponent {
     }
 
     this.service.update(id, suino).subscribe(_ => {
-      this.router.navigate([`/suinos/detalhes/${id}`]);
+      this.router.navigate([`app/suinos/detalhes/${id}`]);
     });
   }
 
