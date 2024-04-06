@@ -35,14 +35,14 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AddPesoComponent } from './components/peso-components/add-peso/add-peso.component';
 import { CardPesoComponent } from './components/suino-components/card-peso/card-peso.component';
-import { AddAtividadeComponent } from './components/atividade-components/add-atividade/add-atividade.component';
-import { ListaAtividadesComponent } from './components/atividade-components/lista-atividades/lista-atividades.component';
-import { CardAtividadeComponent } from './components/atividade-components/card-atividade/card-atividade.component';
 import { AddSessaoComponent } from './components/sessao-components/add-sessao/add-sessao.component';
 import { ListaSessoesComponent } from './components/sessao-components/lista-sessoes/lista-sessoes.component';
 import { CardSessaoComponent } from './components/sessao-components/card-sessao/card-sessao.component';
 import { DetalhesSessaoComponent } from './components/sessao-components/detalhes-sessao/detalhes-sessao.component';
 import { RealizarSessaoComponent } from './components/sessao-components/realizar-sessao/realizar-sessao.component';
+import { AtividadesModule } from './atividades/atividades.module';
+import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(localePt);
 
@@ -53,14 +53,8 @@ registerLocaleData(localePt);
     ListaSuinosComponent,
     CardSuinoComponent,
     DetalhesSuinoComponent,
-    AuthComponent,
-    LoginComponent,
-    SignupComponent,
     AddPesoComponent,
     CardPesoComponent,
-    AddAtividadeComponent,
-    ListaAtividadesComponent,
-    CardAtividadeComponent,
     AddSessaoComponent,
     ListaSessoesComponent,
     CardSessaoComponent,
@@ -69,11 +63,12 @@ registerLocaleData(localePt);
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    FormsModule,
+
+    SharedModule,
+    AuthModule,
+    AtividadesModule,
+
     DataViewModule,
     CardModule,
     MenubarModule,
