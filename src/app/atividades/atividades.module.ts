@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { AddAtividadeComponent } from '../components/atividade-components/add-atividade/add-atividade.component';
-import { CardAtividadeComponent } from '../components/atividade-components/card-atividade/card-atividade.component';
-import { ListaAtividadesComponent } from '../components/atividade-components/lista-atividades/lista-atividades.component';
+import { AddAtividadeComponent } from './components/add-atividade/add-atividade.component';
+import { CardAtividadeComponent } from './components/card-atividade/card-atividade.component';
+import { ListaAtividadesComponent } from './components/lista-atividades/lista-atividades.component';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';

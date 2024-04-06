@@ -25,13 +25,10 @@ import { PickListModule } from 'primeng/picklist';
 import { TableModule } from 'primeng/table';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddSuinoComponent } from './components/suino-components/add-suino/add-suino.component';
 import { CardSuinoComponent } from './components/suino-components/card-suino/card-suino.component';
 import { DetalhesSuinoComponent } from './components/suino-components/detalhes-suino/detalhes-suino.component';
-import { AuthComponent } from './components/auth/auth.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AddPesoComponent } from './components/peso-components/add-peso/add-peso.component';
 import { CardPesoComponent } from './components/suino-components/card-peso/card-peso.component';

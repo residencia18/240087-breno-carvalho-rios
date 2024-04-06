@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { AuthComponent } from '../components/auth/auth.component';
-import { LoginComponent } from '../components/auth/login/login.component';
-import { SignupComponent } from '../components/auth/signup/signup.component';
+import { AuthComponent } from './components/auth.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SharedModule } from '../shared/shared.module';
