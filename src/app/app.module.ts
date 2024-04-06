@@ -37,7 +37,7 @@ import { DetalhesSessaoComponent } from './components/sessao-components/detalhes
 import { RealizarSessaoComponent } from './components/sessao-components/realizar-sessao/realizar-sessao.component';
 import { AtividadesModule } from './modules/atividades/atividades.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './modules/shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 
 registerLocaleData(localePt);
