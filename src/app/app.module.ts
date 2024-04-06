@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { DataViewModule } from 'primeng/dataview';
@@ -37,8 +35,8 @@ import { ListaSessoesComponent } from './components/sessao-components/lista-sess
 import { CardSessaoComponent } from './components/sessao-components/card-sessao/card-sessao.component';
 import { DetalhesSessaoComponent } from './components/sessao-components/detalhes-sessao/detalhes-sessao.component';
 import { RealizarSessaoComponent } from './components/sessao-components/realizar-sessao/realizar-sessao.component';
-import { AtividadesModule } from './atividades/atividades.module';
-import { AuthModule } from './auth/auth.module';
+import { AtividadesModule } from './modules/atividades/atividades.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(localePt);

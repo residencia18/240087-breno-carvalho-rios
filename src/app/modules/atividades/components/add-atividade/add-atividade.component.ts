@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { AtividadeViewModel } from '../../../models/Atividade/AtividadeViewModel';
-import { AtividadeService } from '../../../services/atividade.service';
+import { AtividadeViewModel } from '../../../../models/Atividade/AtividadeViewModel';
+import { AtividadeService } from '../../../../services/atividade.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { AtividadeInputModel } from '../../../models/Atividade/AtividadeInputModel';
+import { AtividadeInputModel } from '../../../../models/Atividade/AtividadeInputModel';
 
 @Component({
   selector: 'app-add-atividade',

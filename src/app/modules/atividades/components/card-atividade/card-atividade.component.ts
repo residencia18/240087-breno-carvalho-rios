@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AtividadeViewModel } from '../../../models/Atividade/AtividadeViewModel';
-import { AtividadeService } from '../../../services/atividade.service';
+import { AtividadeViewModel } from '../../../../models/Atividade/AtividadeViewModel';
+import { AtividadeService } from '../../../../services/atividade.service';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
