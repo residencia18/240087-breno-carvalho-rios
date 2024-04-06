@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { SessaoViewModel } from '../../../models/Sessao/SessaoViewModel';
-import { SessaoService } from '../../../services/sessao.service';
+import { SessaoViewModel } from '../../../../../models/Sessao/SessaoViewModel';
+import { SessaoService } from '../../../../../services/sessao.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SessaoInputModel } from '../../../models/Sessao/SessaoInputModel';
-import { Realizacao } from '../../../models/Sessao/Realizacao';
+import { SessaoInputModel } from '../../../../../models/Sessao/SessaoInputModel';
+import { Realizacao } from '../../../../../models/Sessao/Realizacao';
 
 @Component({
   selector: 'app-realizar-sessao',

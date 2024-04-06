@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { SuinoViewModel } from '../../../models/Suino/SuinoViewModel';
-import { SuinoService } from '../../../services/suino.service';
+import { SuinoViewModel } from '../../../../../models/Suino/SuinoViewModel';
+import { SuinoService } from '../../../../../services/suino.service';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 

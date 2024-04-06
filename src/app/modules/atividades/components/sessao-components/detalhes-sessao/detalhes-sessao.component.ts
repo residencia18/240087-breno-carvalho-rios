@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { SessaoService } from '../../../services/sessao.service';
+import { SessaoService } from '../../../../../services/sessao.service';
 import { ActivatedRoute } from '@angular/router';
-import { SessaoViewModel } from '../../../models/Sessao/SessaoViewModel';
+import { SessaoViewModel } from '../../../../../models/Sessao/SessaoViewModel';
 
 @Component({
   selector: 'app-detalhes-sessao',

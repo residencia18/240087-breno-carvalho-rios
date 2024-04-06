@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { SuinoService } from '../../../services/suino.service';
-import { SuinoViewModel } from '../../../models/Suino/SuinoViewModel';
+import { SuinoService } from '../../../../../services/suino.service';
+import { SuinoViewModel } from '../../../../../models/Suino/SuinoViewModel';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({

@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { DataViewModule } from 'primeng/dataview';
 import { CardModule } from 'primeng/card';
 import { MenubarModule } from 'primeng/menubar';
-import { ListaSuinosComponent } from './components/suino-components/lista-suinos/lista-suinos.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
@@ -24,37 +23,37 @@ import { TableModule } from 'primeng/table';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AddSuinoComponent } from './components/suino-components/add-suino/add-suino.component';
-import { CardSuinoComponent } from './components/suino-components/card-suino/card-suino.component';
-import { DetalhesSuinoComponent } from './components/suino-components/detalhes-suino/detalhes-suino.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { AddPesoComponent } from './components/peso-components/add-peso/add-peso.component';
-import { CardPesoComponent } from './components/suino-components/card-peso/card-peso.component';
-import { AddSessaoComponent } from './components/sessao-components/add-sessao/add-sessao.component';
-import { ListaSessoesComponent } from './components/sessao-components/lista-sessoes/lista-sessoes.component';
-import { CardSessaoComponent } from './components/sessao-components/card-sessao/card-sessao.component';
-import { DetalhesSessaoComponent } from './components/sessao-components/detalhes-sessao/detalhes-sessao.component';
-import { RealizarSessaoComponent } from './components/sessao-components/realizar-sessao/realizar-sessao.component';
-import { AtividadesModule } from './modules/atividades/atividades.module';
+import { AddPesoComponent } from './modules/atividades/components/peso-components/add-peso/add-peso.component';
+
 import { AuthModule } from './modules/auth/auth.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
+import { AddSuinoComponent } from './modules/atividades/components/suino-components/add-suino/add-suino.component';
+import { CardSuinoComponent } from './modules/atividades/components/suino-components/card-suino/card-suino.component';
+import { DetalhesSuinoComponent } from './modules/atividades/components/suino-components/detalhes-suino/detalhes-suino.component';
+import { CardPesoComponent } from './modules/atividades/components/suino-components/card-peso/card-peso.component';
+import { ListaSuinosComponent } from './modules/atividades/components/suino-components/lista-suinos/lista-suinos.component';
+import { AddSessaoComponent } from './modules/atividades/components/sessao-components/add-sessao/add-sessao.component';
+import { CardSessaoComponent } from './modules/atividades/components/sessao-components/card-sessao/card-sessao.component';
+import { RealizarSessaoComponent } from './modules/atividades/components/sessao-components/realizar-sessao/realizar-sessao.component';
+import { ListaSessoesComponent } from './modules/atividades/components/sessao-components/lista-sessoes/lista-sessoes.component';
 
 registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddSuinoComponent,
-    ListaSuinosComponent,
-    CardSuinoComponent,
-    DetalhesSuinoComponent,
-    AddPesoComponent,
-    CardPesoComponent,
+    // AddSuinoComponent,
+    // ListaSuinosComponent,
+    // CardSuinoComponent,
+    // DetalhesSuinoComponent,
+    // AddPesoComponent,
+    // CardPesoComponent,
     AddSessaoComponent,
     ListaSessoesComponent,
     CardSessaoComponent,
-    DetalhesSessaoComponent,
+    // DetalhesSessaoComponent,
     RealizarSessaoComponent
   ],
   imports: [
@@ -64,7 +63,6 @@ registerLocaleData(localePt);
 
     SharedModule,
     AuthModule,
-    AtividadesModule,
 
     DataViewModule,
     CardModule,
