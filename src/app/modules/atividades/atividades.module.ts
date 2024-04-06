@@ -8,6 +8,7 @@ import { CardModule } from 'primeng/card';
 import { MenuModule } from 'primeng/menu';
 import { DataViewModule } from 'primeng/dataview';
 import { SharedModule } from '../../shared/shared.module';
+import { AtividadesRoutingModule } from './atividades-routing.module';
 
 
 
@@ -18,6 +19,7 @@ import { SharedModule } from '../../shared/shared.module';
     ListaAtividadesComponent
   ],
   imports: [
+    AtividadesRoutingModule,
     SharedModule,
     DividerModule,
     ButtonModule,

@@ -5,8 +5,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SharedModule } from '../../shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
-
+import { AuthRoutingModule } from './auth-routing.module';
 
 
 @NgModule({
@@ -16,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent
   ],
   imports: [
+    AuthRoutingModule,
     SharedModule,
     ButtonModule,
     InputTextModule

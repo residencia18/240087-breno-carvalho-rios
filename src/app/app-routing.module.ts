@@ -3,13 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddSuinoComponent } from './components/suino-components/add-suino/add-suino.component';
 import { ListaSuinosComponent } from './components/suino-components/lista-suinos/lista-suinos.component';
 import { DetalhesSuinoComponent } from './components/suino-components/detalhes-suino/detalhes-suino.component';
-import { AuthComponent } from './modules/auth/components/auth.component';
-import { LoginComponent } from './modules/auth/components/login/login.component';
-import { SignupComponent } from './modules/auth/components/signup/signup.component';
 import { authGuard } from './guards/auth.guard';
 import { AddPesoComponent } from './components/peso-components/add-peso/add-peso.component';
-import { AddAtividadeComponent } from './modules/atividades/components/add-atividade/add-atividade.component';
-import { ListaAtividadesComponent } from './modules/atividades/components/lista-atividades/lista-atividades.component';
 import { ListaSessoesComponent } from './components/sessao-components/lista-sessoes/lista-sessoes.component';
 import { AddSessaoComponent } from './components/sessao-components/add-sessao/add-sessao.component';
 import { DetalhesSessaoComponent } from './components/sessao-components/detalhes-sessao/detalhes-sessao.component';
@@ -18,12 +13,7 @@ import { RealizarSessaoComponent } from './components/sessao-components/realizar
 const routes: Routes = [
   {
     path: 'auth',
-    component: AuthComponent,
-    children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'signin', component: SignupComponent },
-      { path: '', component: LoginComponent },
-    ],
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: "app",
@@ -40,7 +30,6 @@ const routes: Routes = [
       },
       {
         path: "",
-        canActivate: [authGuard],
         children: [
           {
             path: "pesos",
@@ -55,23 +44,11 @@ const routes: Routes = [
         ]
       },
       {
-        path: "",
-        canActivate: [authGuard],
-        children: [
-          {
-            path: "atividades",
-            children: [
-              { path: "nova", component: AddAtividadeComponent },
-              { path: "editar/:id", component: AddAtividadeComponent },
-              { path: "", component: ListaAtividadesComponent }
-            ]
-          },
-          { path: "", component: ListaAtividadesComponent }
-        ]
+        path: "atividades",
+        loadChildren: () => import('./modules/atividades/atividades.module').then(m => m.AtividadesModule)
       },
       {
         path: "",
-        canActivate: [authGuard],
         children: [
           {
             path: "sessoes",
@@ -90,6 +67,7 @@ const routes: Routes = [
     ]
   },
   { path: '', redirectTo: 'app/suinos', pathMatch: 'full' },
+  { path: '**', redirectTo: 'app/suinos' }
 ];
 
 @NgModule({

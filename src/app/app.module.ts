@@ -38,6 +38,7 @@ import { RealizarSessaoComponent } from './components/sessao-components/realizar
 import { AtividadesModule } from './modules/atividades/atividades.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
 
 registerLocaleData(localePt);
 
@@ -57,6 +58,7 @@ registerLocaleData(localePt);
     RealizarSessaoComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
 
