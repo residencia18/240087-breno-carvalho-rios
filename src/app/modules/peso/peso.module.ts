@@ -7,13 +7,12 @@ import { ChartModule } from 'primeng/chart';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
-import { SharedModule } from 'primeng/api';
+import { SharedModule } from '../shared/shared.module';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { DataViewModule } from 'primeng/dataview';
 import { CardModule } from 'primeng/card';
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,14 +22,13 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     PesoRoutingModule,
-    ReactiveFormsModule,
+    SharedModule,
 
     TableModule,
     ChartModule,
     DropdownModule,
     InputTextModule,
     CalendarModule,
-    SharedModule,
     DividerModule,
     ButtonModule,
     CardModule,

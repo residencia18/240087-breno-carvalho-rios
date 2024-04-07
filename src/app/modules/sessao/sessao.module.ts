@@ -6,12 +6,12 @@ import { CardSessaoComponent } from './components/card-sessao/card-sessao.compon
 import { DetalhesSessaoComponent } from './components/detalhes-sessao/detalhes-sessao.component';
 import { ListaSessoesComponent } from './components/lista-sessoes/lista-sessoes.component';
 import { RealizarSessaoComponent } from './components/realizar-sessao/realizar-sessao.component';
-import { TableModule } from 'primeng/table';
-import { ChartModule } from 'primeng/chart';
-import { DropdownModule } from 'primeng/dropdown';
-import { InputTextModule } from 'primeng/inputtext';
-import { CalendarModule } from 'primeng/calendar';
 import { SharedModule } from '../shared/shared.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthModule } from '../auth/auth.module';
+import { MenubarModule } from 'primeng/menubar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -19,12 +19,11 @@ import { MenuModule } from 'primeng/menu';
 import { DataViewModule } from 'primeng/dataview';
 import { PickListModule } from 'primeng/picklist';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthModule } from '../auth/auth.module';
-import { MenubarModule } from 'primeng/menubar';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { ReactiveFormsModule } from '@angular/forms';
+import { TableModule } from 'primeng/table';
+import { ChartModule } from 'primeng/chart';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -38,7 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     SessaoRoutingModule,
-    ReactiveFormsModule,
+    SharedModule,
 
     BrowserModule,
     BrowserAnimationsModule,
@@ -50,7 +49,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     InputTextModule,
     InputTextareaModule,
     CalendarModule,
-    SharedModule,
     DividerModule,
     ButtonModule,
     CardModule,
