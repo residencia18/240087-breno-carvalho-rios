@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SessaoService } from '../../../../../services/sessao.service';
-import { SessaoViewModel } from '../../../../../models/Sessao/SessaoViewModel';
-import { SessaoInputModel } from '../../../../../models/Sessao/SessaoInputModel';
-import { SuinoService } from '../../../../../services/suino.service';
-import { SuinoViewModel } from '../../../../../models/Suino/SuinoViewModel';
-import { AtividadeService } from '../../../../../services/atividade.service';
-import { AtividadeViewModel } from '../../../../../models/Atividade/AtividadeViewModel';
 import Swal from 'sweetalert2';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SuinoViewModel } from '../../../../models/Suino/SuinoViewModel';
+import { AtividadeViewModel } from '../../../../models/Atividade/AtividadeViewModel';
+import { SessaoViewModel } from '../../../../models/Sessao/SessaoViewModel';
+import { SessaoService } from '../../../../services/sessao.service';
+import { SuinoService } from '../../../../services/suino.service';
+import { AtividadeService } from '../../../../services/atividade.service';
+import { SessaoInputModel } from '../../../../models/Sessao/SessaoInputModel';
+
 
 @Component({
   selector: 'app-add-sessao',

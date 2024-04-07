@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { SuinoViewModel } from '../../../../../models/Suino/SuinoViewModel';
-import { SuinoService } from '../../../../../services/suino.service';
 import { ActivatedRoute } from '@angular/router';
-import { PesoService } from '../../../../../services/peso.service';
-import { PesoViewModel } from '../../../../../models/Peso/PesoViewModel';
+import { SuinoViewModel } from '../../../../models/Suino/SuinoViewModel';
+import { PesoViewModel } from '../../../../models/Peso/PesoViewModel';
+import { SuinoService } from '../../../../services/suino.service';
+import { PesoService } from '../../../../services/peso.service';
 
 @Component({
   selector: 'app-detalhes-suino',

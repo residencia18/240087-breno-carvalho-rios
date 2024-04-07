@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-import { SessaoViewModel } from '../../../../../models/Sessao/SessaoViewModel';
-import { SessaoService } from '../../../../../services/sessao.service';
+import { SessaoViewModel } from '../../../../models/Sessao/SessaoViewModel';
+import { SessaoService } from '../../../../services/sessao.service';
+
 
 @Component({
   selector: 'app-card-sessao',

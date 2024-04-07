@@ -21,16 +21,20 @@
                     <input type="text" pInputText [(ngModel)]="filterValue" placeholder="Brinco da Mãe" />
                 </div>
                 <div class="filter p-fluid" *ngIf="filter == 'DN'">
-                    <p-calendar [(ngModel)]="filterValue" dateFormat="dd/mm/yy" placeholder="Data de Nascimento"></p-calendar>
+                    <p-calendar [(ngModel)]="filterValue" dateFormat="dd/mm/yy"
+                        placeholder="Data de Nascimento"></p-calendar>
                 </div>
                 <div class="filter p-fluid" *ngIf="filter == 'DS'">
-                    <p-calendar [(ngModel)]="filterValue" dateFormat="dd/mm/yy" placeholder="Data de Saída"></p-calendar>
+                    <p-calendar [(ngModel)]="filterValue" dateFormat="dd/mm/yy"
+                        placeholder="Data de Saída"></p-calendar>
                 </div>
                 <div class="filter p-fluid" *ngIf="filter == 'SX'">
-                    <p-dropdown [(ngModel)]="filterValue" [options]="sexoOptions" optionValue="label" placeholder="Sexo (M/F)"></p-dropdown>
+                    <p-dropdown [(ngModel)]="filterValue" [options]="sexoOptions" optionValue="label"
+                        placeholder="Sexo (M/F)"></p-dropdown>
                 </div>
                 <div class="filter p-fluid" *ngIf="filter == 'ST'">
-                    <p-dropdown [(ngModel)]="filterValue" [options]="statusOptions" optionValue="label" placeholder="Status"></p-dropdown>
+                    <p-dropdown [(ngModel)]="filterValue" [options]="statusOptions" optionValue="label"
+                        placeholder="Status"></p-dropdown>
                 </div>
             </div>
             <div class="filter-button">

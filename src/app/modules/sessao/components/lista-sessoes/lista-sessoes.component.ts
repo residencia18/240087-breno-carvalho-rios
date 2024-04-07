@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { SessaoService } from '../../../../../services/sessao.service';
-import { SessaoViewModel } from '../../../../../models/Sessao/SessaoViewModel';
+import { SessaoViewModel } from '../../../../models/Sessao/SessaoViewModel';
+import { SessaoService } from '../../../../services/sessao.service';
+
 
 @Component({
   selector: 'app-lista-sessoes',

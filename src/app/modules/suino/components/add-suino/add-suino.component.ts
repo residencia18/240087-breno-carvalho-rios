@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SuinoViewModel } from '../../../../../models/Suino/SuinoViewModel';
-import { SuinoService } from '../../../../../services/suino.service';
-import { SuinoInputModel } from '../../../../../models/Suino/SuinoInputModel';
-import { AuthService } from '../../../../../services/auth.service';
 import Swal from 'sweetalert2';
+import { SuinoViewModel } from '../../../../models/Suino/SuinoViewModel';
+import { SuinoService } from '../../../../services/suino.service';
+import { SuinoInputModel } from '../../../../models/Suino/SuinoInputModel';
+import { AuthService } from '../../../../services/auth.service';
+
 
 @Component({
   selector: 'app-add-suino',

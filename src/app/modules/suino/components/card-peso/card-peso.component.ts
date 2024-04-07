@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { PesoService } from '../../../../../services/peso.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PesoViewModel } from '../../../../../models/Peso/PesoViewModel';
+import { PesoViewModel } from '../../../../models/Peso/PesoViewModel';
+import { PesoService } from '../../../../services/peso.service';
 
 @Component({
   selector: 'app-card-peso',
