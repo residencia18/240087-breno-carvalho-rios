@@ -1,5 +1,7 @@
 ﻿using Cepedi.BancoCentral.Domain;
 using Cepedi.BancoCentral.Domain.Repository;
+using Cepedi.BancoCentral.Shareable.Requests;
+using Cepedi.BancoCentral.Shareable.Responses;
 using Cepedi.Shareable.Exceptions;
 using Cepedi.Shareable.Requests;
 using Cepedi.Shareable.Responses;
@@ -22,18 +24,25 @@ public class UserController : ControllerBase
         _mediator = mediator;
     }
 
-    //[HttpGet("{idUsuario}")]
-    //public async Task<ActionResult<CriarUsuarioResponse>> ObterUsuarioAsync([FromRoute] int idUsuario)
-    //{
-    //    return await _mediator.Send(new CriarUsuarioRequest();
-    //}
-    
+    [HttpGet("{idUsuario}")]
+    [ProducesResponseType(typeof(CriarUsuarioResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ObterUsuarioResponse>> ObterUsuarioAsync([FromRoute] int idUsuario)
+    {
+        var request = new ObterUsuarioRequest()
+        {
+            IdUsuario = idUsuario
+        };
+
+        return await _mediator.Send(request);
+    }
+
     //[HttpGet()]
     //public async Task<ActionResult<IEnumerable<CriarUsuarioResponse>>> ConsultarCursosAsync()
     //{
     //    return Ok(await _obtemCursoHandler.ObterCursosAsync());
     //}
-    
+
     [HttpPost]
     [ProducesResponseType(typeof(CriarUsuarioResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
@@ -43,10 +52,11 @@ public class UserController : ControllerBase
         return await _mediator.Send(request);
     }
 
-    //[HttpPut]
-    //public async Task<ActionResult<int>> AlterarCursoAsync([FromBody] CriarUsuarioRequest request)
-    //{
-    //    var cursoId = await _alteraCursoHandler.AlterarCursoAsync(request);
-    //    return Ok(cursoId);
-    //}
+    [HttpPut]
+    [ProducesResponseType(typeof(CriarUsuarioResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<AtualizarUsuarioResponse>> AlterarUsuarioAsync([FromBody] AtualizarUsuarioRequest request)
+    {
+       return await _mediator.Send(request);
+    }
 }

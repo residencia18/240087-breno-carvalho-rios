@@ -1,6 +1,7 @@
 using Cepedi.BancoCentral.Domain;
 using Cepedi.BancoCentral.Domain.Entities;
 using Cepedi.BancoCentral.Domain.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cepedi.BancoCentral.Data.Repositories
 {
@@ -21,6 +22,18 @@ namespace Cepedi.BancoCentral.Data.Repositories
             await _context.SaveChangesAsync();
 
             return usuario;
+        }
+
+        public async Task<UsuarioEntity> ObterUsuarioAsync(int idUsuario)
+        {
+            var usuario = await _context.Usuario.FirstOrDefaultAsync(usuario => usuario.Id == idUsuario);
+
+            return usuario;
+        }
+
+        public async Task<int> AtualizarUsuarioAsync(UsuarioEntity usuario){
+            _context.Usuario.Update(usuario);
+            return await _context.SaveChangesAsync();
         }
     }
 }
