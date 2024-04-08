@@ -17,13 +17,10 @@ namespace Cepedi.IoC
         {
             ConfigureDbContext(services, configuration);
 
-            services.AddScoped<IObtemCursoHandler, ObtemCursoHandler>();
-            services.AddScoped<IObtemTodosCursosHandler, ObtemTodosCursosHandler>();
-            services.AddScoped<ICadastraCursoHandler, CadastraCursoHandler>();
-            services.AddScoped<IEditaCursoHandler, EditaCursoHandler>();
-            services.AddScoped<IDeletaCursoHandler, DeletaCursoHandler>();
-            services.AddScoped<IProfessorRepository, ProfessorRepository>();
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
+
             services.AddScoped<ICursoRepository, CursoRepository>();
+            services.AddScoped<IProfessorRepository, ProfessorRepository>();
 
             //services.AddHttpContextAccessor();
 
@@ -36,8 +33,12 @@ namespace Cepedi.IoC
             services.AddDbContext<ApplicationDbContext>((sp, options) =>
             {
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
-                //options.UseSqlServer(connectionString);
+                // options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
+
+            // "ConnectionStrings": {
+            //   "DefaultConnection": "Server=cepedi-rds.ctoouoyswtmi.us-east-2.rds.amazonaws.com,1433;Database=BrenoRios;User Id=cepedi;Password=ipv$!SAPj8U$n!qy;TrustServerCertificate=True"
+            // }
 
             services.AddScoped<ApplicationDbContextInitialiser>();
         }

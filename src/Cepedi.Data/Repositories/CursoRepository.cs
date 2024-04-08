@@ -16,15 +16,15 @@ public class CursoRepository : ICursoRepository
 
     public Task<CursoEntity> CadastraCursoAsync(CadastraCursoRequest request)
     {
-        var professor = _context.Professor.FirstOrDefaultAsync(professor => professor.Id == request.professorId);
-        var duracao = $"O curso tem duração de {request.inicio} até {request.fim}";
+        var professor = _context.Professor.FirstOrDefaultAsync(professor => professor.Id == request.ProfessorId);
+        var duracao = $"O curso tem duração de {request.Inicio} até {request.Fim}";
 
         var curso = new CursoEntity()
         {
-            Nome = request.nome,
-            Descricao = request.descricao,
-            DataInicio = request.inicio,
-            DataFim = request.fim,
+            Nome = request.Nome,
+            Descricao = request.Descricao,
+            DataInicio = request.Inicio,
+            DataFim = request.Fim,
             ProfessorId = professor.Id
         };
 

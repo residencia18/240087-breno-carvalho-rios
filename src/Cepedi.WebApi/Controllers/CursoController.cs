@@ -3,6 +3,7 @@ using Cepedi.Domain.Services;
 using Cepedi.Shareable;
 using Cepedi.Shareable.Requests;
 using Cepedi.Shareable.Responses;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cepedi.WebApi.Controllers;
@@ -12,55 +13,50 @@ namespace Cepedi.WebApi.Controllers;
 public class CursoController : ControllerBase
 {
     private readonly ILogger<CursoController> _logger;
-    private readonly IObtemCursoHandler _obtemCursoHandler;
-    private readonly IObtemTodosCursosHandler _obtemTodosCursosHandler;
-    private readonly ICadastraCursoHandler _cadastraCursoHandler;
-    private readonly IEditaCursoHandler _editaCursoHandler;
-    private readonly IDeletaCursoHandler _deletaCursoHandler;
+    private readonly IMediator _mediator;
 
     public CursoController(
         ILogger<CursoController> logger,
-        IObtemCursoHandler obtemCursoHandler,
-        IObtemTodosCursosHandler obtemTodosCursosHandler,
-        ICadastraCursoHandler cadastraCursoHandler,
-        IEditaCursoHandler editaCursoHandler,
-        IDeletaCursoHandler deletaCursoHandler
+        IMediator mediator
     )
     {
         _logger = logger;
-        _obtemCursoHandler = obtemCursoHandler;
-        _obtemTodosCursosHandler = obtemTodosCursosHandler;
-        _cadastraCursoHandler = cadastraCursoHandler;
-        _editaCursoHandler = editaCursoHandler;
-        _deletaCursoHandler = deletaCursoHandler;
+        _mediator = mediator;
     }
 
     [HttpGet("{idCurso}")]
     public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
     {
-        return Ok(await _obtemCursoHandler.ObterCursoAsync(idCurso));
+        return Ok();
+        // return Ok(await _obtemCursoHandler.ObterCursoAsync(idCurso));
     }
 
     [HttpGet]
     public async Task<ActionResult<ObtemTodosCursosResponse>> ConsultarTodosCursosAsync()
     {
-        return Ok(await _obtemTodosCursosHandler.ObterTodosCursosAsync());
+        return Ok();
+        // return Ok(await _obtemTodosCursosHandler.ObterTodosCursosAsync());
     }
 
     [HttpPost]
-    public async Task<ActionResult<ObtemCursoResponse>> CadastrarCursoAsync([FromBody] CadastraCursoRequest curso)
+
+    [ProducesResponseType(typeof(CadastraCursoResponse), StatusCodes.Status200OK)]
+    public async Task<ActionResult<CadastraCursoResponse>> CadastrarCursoAsync([FromBody] CadastraCursoRequest request)
     {
-        return Ok(await _cadastraCursoHandler.CadastraCursoAsync(curso));
+        return await _mediator.Send(request);
+        // return Ok(await _cadastraCursoHandler.CadastraCursoAsync(curso));
     }
 
     [HttpPut("{cursoId}")]
     public async Task<ActionResult<EditaCursoResponse>> EditarCursoAsync([FromRoute] int cursoId, [FromBody] EditaCursoRequest curso)
     {
-        return Ok(await _editaCursoHandler.EditaCursoAsync(cursoId, curso));
+        return Ok();
+        // return Ok(await _editaCursoHandler.EditaCursoAsync(cursoId, curso));
     }
     [HttpDelete("{cursoId}")]
     public async Task<ActionResult<ObtemCursoResponse>> DeletarCursoAsync([FromRoute] int cursoId)
     {
-        return Ok(await _deletaCursoHandler.DeletaCursoAsync(cursoId));
+        return Ok();
+        // return Ok(await _deletaCursoHandler.DeletaCursoAsync(cursoId));
     }
 }
