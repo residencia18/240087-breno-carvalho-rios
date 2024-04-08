@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "zZ7VSASaBF0n7lw/lFcC9N0esUTiVf1WZqJssfJ+bMoS/ZhYqV+gSR5AQg1undTd7vBfHi5ooC9lkKgyL8Hnnw==",
+  "success": true,
+  "projectFilePath": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/Cepedi.BancoCentral.Domain.csproj",
+  "expectedPackageFiles": [
+    "/home/breno-carvalho-rios/.nuget/packages/mediatr/12.0.1/mediatr.12.0.1.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/microsoft.extensions.dependencyinjection/7.0.0/microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/microsoft.extensions.logging/7.0.0/microsoft.extensions.logging.7.0.0.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/microsoft.extensions.logging.abstractions/7.0.0/microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/microsoft.extensions.options/7.0.0/microsoft.extensions.options.7.0.0.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/refit/7.0.0/refit.7.0.0.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/system.net.http.json/7.0.1/system.net.http.json.7.0.1.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/system.text.json/7.0.3/system.text.json.7.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

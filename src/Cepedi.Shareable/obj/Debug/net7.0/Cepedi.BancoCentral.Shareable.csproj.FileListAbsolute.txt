@@ -1,0 +1,12 @@
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/bin/Debug/net7.0/Cepedi.BancoCentral.Shareable.deps.json
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/bin/Debug/net7.0/Cepedi.BancoCentral.Shareable.dll
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/bin/Debug/net7.0/Cepedi.BancoCentral.Shareable.pdb
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.BancoCentral.Shareable.csproj.AssemblyReference.cache
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.BancoCentral.Shareable.GeneratedMSBuildEditorConfig.editorconfig
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.BancoCentral.Shareable.AssemblyInfoInputs.cache
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.BancoCentral.Shareable.AssemblyInfo.cs
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.BancoCentral.Shareable.csproj.CoreCompileInputs.cache
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.BancoCentral.Shareable.dll
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/obj/Debug/net7.0/refint/Cepedi.BancoCentral.Shareable.dll
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.BancoCentral.Shareable.pdb
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/obj/Debug/net7.0/ref/Cepedi.BancoCentral.Shareable.dll

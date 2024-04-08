@@ -1,25 +1,27 @@
-# Ol谩! 馃憢 Meu nome 茅 Breno Rios
+# Cepedi.CleanArch
 
-### Este 茅 o reposit贸rio dedicado as atividades desenvolvidas nos m贸dulos da Resid锚ncia em Desenvolvimento de Software TIC18
+Executar o projeto `src\Cepedi.BancoCentral.WebApi` para abrir o swagger
 
-## Minha Trilha na Resid锚ncia TIC18
-![.Net](https://skillicons.dev/icons?i=dotnet)
+## Caracter韘ticas do projeto
 
-## Modulos Neste Reposit贸rio
+- .NET 7.0
+- ORM Entity Framework
+- Framework de testes: xUnit
+- Framework de assertions: FluentAssertions
+- Framework de Mock: NSubstitute
+- Framework de fake data generator: Bogus
+- Code Analyzer: NetAnalyzers, SonarAnalyzer.Csharp
+- Banco de dados: SqlServer
+- Projeto de testes de unidade
+- Controllers e Actinos atendendo o padr鉶 RestFull
+- Tratamento de Warning como Error
+- Healthcheck
+    - Liveness
+    - Readyness
+- Log com Serilog
 
-### M贸dulo de Nivelamento (M贸dulo 1)
-![C++](https://skillicons.dev/icons?i=cpp)
+## Setup
 
-### M贸dulo B谩sico (M贸dulo 2)
-![.Net](https://skillicons.dev/icons?i=dotnet)
-![Java](https://skillicons.dev/icons?i=java)
-![Python](https://skillicons.dev/icons?i=python)
-![Angular](https://skillicons.dev/icons?i=angular)
+* Quais ferramentas necess醨ias
+ - Visual Studio, .NET Core SDK 7+, etc
 
-### Trilha B谩sica (M贸dulo 3)
-![.Net](https://skillicons.dev/icons?i=dotnet)
-![Angular](https://skillicons.dev/icons?i=angular)
-
-### Trilha Avan莽ada (M贸dulo 4)
-![.Net](https://skillicons.dev/icons?i=dotnet)
-![Angular](https://skillicons.dev/icons?i=angular)

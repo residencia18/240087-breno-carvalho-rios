@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "m5eFnbpHVCYyVboE5Dg5SyztVtUpdreAqAQg40emc28=",
+  "Source": "Cepedi.BancoCentral.WebApi",
+  "BasePath": "_content/Cepedi.BancoCentral.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

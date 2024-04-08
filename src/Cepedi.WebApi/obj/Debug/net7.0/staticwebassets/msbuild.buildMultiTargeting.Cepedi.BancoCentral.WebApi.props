@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Cepedi.BancoCentral.WebApi.props" />
+</Project>

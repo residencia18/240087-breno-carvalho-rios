@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "QhgjYfZ0N8TBTE7J76X2BSEqOLFCLi0swIteb3uYKUhKa/8SYCVCaniiSQASh/eFeKVYbKxh0q3bfm0pcN2leg==",
+  "success": true,
+  "projectFilePath": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/Cepedi.BancoCentral.Shareable.csproj",
+  "expectedPackageFiles": [
+    "/home/breno-carvalho-rios/.nuget/packages/mediatr/12.0.1/mediatr.12.0.1.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/refit/7.0.0/refit.7.0.0.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/system.net.http.json/7.0.1/system.net.http.json.7.0.1.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
+    "/home/breno-carvalho-rios/.nuget/packages/system.text.json/7.0.3/system.text.json.7.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

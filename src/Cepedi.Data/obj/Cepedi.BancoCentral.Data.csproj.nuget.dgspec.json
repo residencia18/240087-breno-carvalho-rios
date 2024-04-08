@@ -1,0 +1,213 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Data/Cepedi.BancoCentral.Data.csproj": {}
+  },
+  "projects": {
+    "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Data/Cepedi.BancoCentral.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Data/Cepedi.BancoCentral.Data.csproj",
+        "projectName": "Cepedi.BancoCentral.Data",
+        "projectPath": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Data/Cepedi.BancoCentral.Data.csproj",
+        "packagesPath": "/home/breno-carvalho-rios/.nuget/packages/",
+        "outputPath": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Data/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/breno-carvalho-rios/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/Cepedi.BancoCentral.Domain.csproj": {
+                "projectPath": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/Cepedi.BancoCentral.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.17, )"
+            },
+            "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.17, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.115/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/Cepedi.BancoCentral.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/Cepedi.BancoCentral.Domain.csproj",
+        "projectName": "Cepedi.BancoCentral.Domain",
+        "projectPath": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/Cepedi.BancoCentral.Domain.csproj",
+        "packagesPath": "/home/breno-carvalho-rios/.nuget/packages/",
+        "outputPath": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/breno-carvalho-rios/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/Cepedi.BancoCentral.Shareable.csproj": {
+                "projectPath": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/Cepedi.BancoCentral.Shareable.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.115/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/Cepedi.BancoCentral.Shareable.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/Cepedi.BancoCentral.Shareable.csproj",
+        "projectName": "Cepedi.BancoCentral.Shareable",
+        "projectPath": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/Cepedi.BancoCentral.Shareable.csproj",
+        "packagesPath": "/home/breno-carvalho-rios/.nuget/packages/",
+        "outputPath": "/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Shareable/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/breno-carvalho-rios/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Refit": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.115/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

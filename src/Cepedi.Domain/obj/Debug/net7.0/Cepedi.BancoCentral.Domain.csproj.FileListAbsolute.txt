@@ -1,0 +1,15 @@
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/bin/Debug/net7.0/Cepedi.BancoCentral.Domain.deps.json
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/bin/Debug/net7.0/Cepedi.BancoCentral.Domain.dll
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/bin/Debug/net7.0/Cepedi.BancoCentral.Domain.pdb
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/bin/Debug/net7.0/Cepedi.BancoCentral.Shareable.dll
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/bin/Debug/net7.0/Cepedi.BancoCentral.Shareable.pdb
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.csproj.AssemblyReference.cache
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.AssemblyInfoInputs.cache
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.AssemblyInfo.cs
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.csproj.CoreCompileInputs.cache
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.csproj.CopyComplete
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.dll
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/obj/Debug/net7.0/refint/Cepedi.BancoCentral.Domain.dll
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.pdb
+/home/breno-carvalho-rios/Workspace/240087-breno-carvalho-rios/src/Cepedi.Domain/obj/Debug/net7.0/ref/Cepedi.BancoCentral.Domain.dll
