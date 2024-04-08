@@ -32,7 +32,7 @@ namespace Cepedi.IoC
         {
             services.AddDbContext<ApplicationDbContext>((sp, options) =>
             {
-                options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlite(configuration.GetConnectionString("SqliteConnection"));
                 // options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 

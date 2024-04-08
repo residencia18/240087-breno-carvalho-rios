@@ -60,9 +60,9 @@ public class CursoRepository : ICursoRepository
         return _curso;
     }
 
-    public async Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso)
+    public async Task<CursoEntity> ObtemCursoPorIdAsync(ObtemCursoRequest request)
     {
-        return await _context.Curso.Where(curso => curso.Id == idCurso).FirstOrDefaultAsync();
+        return await _context.Curso.Where(curso => curso.Id == request.IdCurso).FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<CursoEntity>> ObtemTodosCursosAsync()

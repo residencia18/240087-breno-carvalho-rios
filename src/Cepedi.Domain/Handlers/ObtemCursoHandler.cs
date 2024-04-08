@@ -1,10 +1,11 @@
 ﻿using Cepedi.Domain.Repository;
-using Cepedi.Domain.Services;
+using Cepedi.Shareable.Requests;
 using Cepedi.Shareable.Responses;
+using MediatR;
 
 namespace Cepedi.Domain.Handlers;
 
-public class ObtemCursoHandler : IObtemCursoHandler
+public class ObtemCursoHandler : IRequestHandler<ObtemCursoRequest, ObtemCursoResponse>
 {
     private readonly ICursoRepository _cursoRepository;
     private readonly IProfessorRepository _professorRepository;
@@ -17,9 +18,9 @@ public class ObtemCursoHandler : IObtemCursoHandler
         _professorRepository = professorRepository;
     }
 
-    public async Task<ObtemCursoResponse> ObterCursoAsync(int idCurso)
+    public async Task<ObtemCursoResponse> Handle(ObtemCursoRequest request, CancellationToken cancellationToken)
     {
-        var curso = await _cursoRepository.ObtemCursoPorIdAsync(idCurso);
+        var curso = await _cursoRepository.ObtemCursoPorIdAsync(request);
 
         var professor = await _professorRepository.ObtemProfessorPorIdAsync(curso.ProfessorId);
 

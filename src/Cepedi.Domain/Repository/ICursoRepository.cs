@@ -5,7 +5,7 @@ namespace Cepedi.Domain.Repository;
 
 public interface ICursoRepository
 {
-    Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso);
+    Task<CursoEntity> ObtemCursoPorIdAsync(ObtemCursoRequest request);
     Task<IEnumerable<CursoEntity>> ObtemTodosCursosAsync();
     Task<CursoEntity> CadastraCursoAsync(CadastraCursoRequest request);
     Task<CursoEntity> EditaCursoAsync(int cursoId, EditaCursoRequest request);

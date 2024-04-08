@@ -27,8 +27,10 @@ public class CursoController : ControllerBase
     [HttpGet("{idCurso}")]
     public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
     {
-        return Ok();
-        // return Ok(await _obtemCursoHandler.ObterCursoAsync(idCurso));
+        var request = new ObtemCursoRequest(){
+            IdCurso = idCurso
+        };
+        return await _mediator.Send(request);
     }
 
     [HttpGet]
@@ -44,7 +46,6 @@ public class CursoController : ControllerBase
     public async Task<ActionResult<CadastraCursoResponse>> CadastrarCursoAsync([FromBody] CadastraCursoRequest request)
     {
         return await _mediator.Send(request);
-        // return Ok(await _cadastraCursoHandler.CadastraCursoAsync(curso));
     }
 
     [HttpPut("{cursoId}")]
