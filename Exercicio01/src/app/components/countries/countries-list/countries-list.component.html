@@ -7,12 +7,12 @@
             <th>Capital</th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product>
+    <ng-template pTemplate="body" let-country>
         <tr>
-            <td>{{ product.name.official }}</td>
-            <td>{{ product.region }}</td>
-            <td>{{ product.population }}</td>
-            <td>{{ (product.capital || []).join(', ') }}</td>
+            <td>{{ country.name.official }}</td>
+            <td>{{ country.region }}</td>
+            <td>{{ country.population }}</td>
+            <td>{{ (country.capital || []).join(', ') }}</td>
         </tr>
     </ng-template>
 </p-table>
