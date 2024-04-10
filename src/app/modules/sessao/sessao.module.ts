@@ -39,8 +39,6 @@ import { CalendarModule } from 'primeng/calendar';
     SessaoRoutingModule,
     SharedModule,
 
-    BrowserModule,
-    BrowserAnimationsModule,
     AuthModule,
 
     TableModule,

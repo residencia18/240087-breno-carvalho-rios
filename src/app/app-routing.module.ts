@@ -22,49 +22,21 @@ const routes: Routes = [
     children: [
       {
         path: "suinos",
-        children: [
-          { path: "novo", component: AddSuinoComponent },
-          { path: "editar/:id", component: AddSuinoComponent },
-          { path: "detalhes/:id", component: DetalhesSuinoComponent },
-          { path: "", component: ListaSuinosComponent }
-        ]
+        loadChildren: () => import('./modules/suino/suino.module').then(m => m.SuinoModule)
       },
       {
-        path: "",
-        children: [
-          {
-            path: "pesos",
-            children: [
-              { path: "novo/:suinoId", component: AddPesoComponent },
-              { path: "editar/:suinoId/:id", component: AddPesoComponent },
-              { path: "detalhes/:suinoId/:id", component: DetalhesSuinoComponent },
-              { path: "", component: ListaSuinosComponent }
-            ]
-          },
-          { path: "", component: ListaSuinosComponent }
-        ]
+        path: "pesos",
+        loadChildren: () => import('./modules/peso/peso.module').then(m => m.PesoModule)
       },
       {
         path: "atividades",
         loadChildren: () => import('./modules/atividades/atividades.module').then(m => m.AtividadesModule)
       },
       {
-        path: "",
-        children: [
-          {
-            path: "sessoes",
-            children: [
-              { path: "nova", component: AddSessaoComponent },
-              { path: "editar/:id", component: AddSessaoComponent },
-              { path: "detalhes/:id", component: DetalhesSessaoComponent },
-              { path: "realizar/:id", component: RealizarSessaoComponent },
-              { path: "", component: ListaSessoesComponent }
-            ]
-          },
-          { path: "", component: ListaSessoesComponent }
-        ]
+        path: "sessoes",
+        loadChildren: () => import('./modules/sessao/sessao.module').then(m => m.SessaoModule)
       },
-      { path: "", component: ListaSuinosComponent }
+      { path: "", redirectTo: "app/suinos", pathMatch: "full" }
     ]
   },
   { path: '', redirectTo: 'app/suinos', pathMatch: 'full' },
