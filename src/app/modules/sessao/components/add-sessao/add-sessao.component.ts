@@ -92,11 +92,11 @@ export class AddSessaoComponent {
 
   public create() {
     const sessao = this.getDataFromForm();
-    if (sessao.data && new Date(sessao.data) > new Date() || this.addSessaoForm.invalid) {
+    if (this.addSessaoForm.invalid) {
       Swal.fire({
         title: 'Erro!',
         icon: 'error',
-        text: 'Ops... A data da sessão não pode ser futura e todos os campos são obrigatórios',
+        text: 'Ops... Todos os campos são obrigatórios',
         showConfirmButton: true,
       });
       console.error('Por favor, preencha todos os campos obrigatórios antes de criar.');
@@ -147,6 +147,7 @@ export class AddSessaoComponent {
       const _realizacoesSuino: any = { suino: '', atividades: [] };
       atividades.forEach(atividade => {
         let realizada = false;
+        let updatedAt = new Date().toISOString();
         _realizacoesSuino.suino = suino.brinco;
         if (this.id) {
           let _realizacao: any = this.sessao.realizacoes.find(a => parseInt(a.suino) == suino.brinco);
@@ -158,12 +159,14 @@ export class AddSessaoComponent {
 
           if (_atividade) {
             realizada = _atividade.realizada;
+            updatedAt = _atividade.updatedAt;
           }
         }
 
         _realizacoesSuino.atividades.push({
           nome: atividade.nome,
-          realizada: realizada
+          realizada: realizada,
+          updatedAt: updatedAt
         })
       })
 

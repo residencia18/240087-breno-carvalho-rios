@@ -25,7 +25,6 @@ export class RealizarSessaoComponent {
   public getById() {
     this.service.getById(this.id).subscribe(sessao => {
       this.sessao = sessao;
-      console.log(this.sessao)
     });
   }
 
@@ -41,5 +40,9 @@ export class RealizarSessaoComponent {
     this.service.update(this.id, sessao).subscribe(_ => {
       this.router.navigate([`app/sessoes/detalhes/${this.id}`]);
     });
+  }
+
+  public statusChange(atividade: any){
+    atividade.updatedAt = new Date().toISOString();
   }
 }

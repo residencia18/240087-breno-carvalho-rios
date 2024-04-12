@@ -15,6 +15,7 @@ import { MenuModule } from 'primeng/menu';
 import { DataViewModule } from 'primeng/dataview';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
+import { HistoricoSuinoComponent } from './components/historico-suino/historico-suino.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { InputTextModule } from 'primeng/inputtext';
     SuinoRoutingModule,
     SharedModule,
     
+    HistoricoSuinoComponent,
     InputTextModule,
     ChartModule,
     DropdownModule,

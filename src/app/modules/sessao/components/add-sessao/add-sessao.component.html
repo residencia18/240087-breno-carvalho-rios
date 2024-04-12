@@ -20,9 +20,6 @@
                     <div *ngIf="addSessaoForm.get('data')?.errors?.['required'] && addSessaoForm.get('data')?.touched">
                         <span class="error_message"> A data é obrigatória.</span>
                     </div>
-                    <div *ngIf="addSessaoForm.get('data')?.errors?.['dataFutura']">
-                        <span class="error_message"> A data da sessão não poder ser futura!. </span>
-                    </div>
                 </div>
                 <div>
                     <label for="suinos">Suínos</label>

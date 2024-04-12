@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { SuinoInputModel } from '../models/Suino/SuinoInputModel';
 import { SuinoViewModel } from '../models/Suino/SuinoViewModel';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { env } from '../environment/environment';
+import { AtividadeViewModel } from '../models/Atividade/AtividadeViewModel';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,32 @@ export class SuinoService {
       catchError(error => {
         console.error('Erro ao buscar suíno:', error);
         return of(null); // Retorna null em caso de erro
+      })
+    );
+  }
+
+  getAtividadesByBrinco(brinco: number) {
+    return this.http.get<{ [key: string]: AtividadeViewModel }>(`${this.baseUrl}/sessoes.json`).pipe(
+      map((sessoes) => {
+        return Object.keys(sessoes).map((key) => ({ ...sessoes[key], id: key }));
+      }),
+      map(sessoes => {
+        return sessoes.filter(sessao => sessao.suinos.some(suino => suino.brinco == brinco));
+      }),
+      map(sessoes => {
+        return sessoes.map((sessao: any) => sessao.realizacoes)
+      }),
+      map(realizacoes => {
+        return realizacoes.map((_realizacoes: any) => {
+          return _realizacoes.find((_realizacao: any) => {
+            return _realizacao.suino == brinco
+          });
+        })
+      }),
+      map(realizacoes => {
+        return realizacoes.map((_realizacao: any) => {
+          return _realizacao.atividades.find((atividade: any) => atividade.realizada = true);
+        });
       })
     );
   }

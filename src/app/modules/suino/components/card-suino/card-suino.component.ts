@@ -19,6 +19,7 @@ export class CardSuinoComponent {
     { label: 'Excluir', command: _ => this.delete(this.suino.id) },
     { label: 'Editar', command: _ => this.update(this.suino.id) },
     { label: 'Pesar', command: _ => this.pesar(this.suino.id) },
+    { label: 'Ver Histórico', command: _ => this.history(this.suino.id) },
     { label: 'Ver Detalhes', command: _ => this.view(this.suino.id) },
   ]
 
@@ -34,6 +35,10 @@ export class CardSuinoComponent {
 
   public view(id: string) {
     this.router.navigate([`app/suinos/detalhes/${id}`]);
+  }
+
+  public history(id: string) {
+    this.router.navigate([`app/suinos/historico/${id}`]);
   }
 
   public pesar(id: string) {

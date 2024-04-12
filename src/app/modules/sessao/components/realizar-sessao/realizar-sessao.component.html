@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ rowData.suino }}</td>
                 <td *ngFor="let atividade of rowData.atividades">
-                    <p-toggleButton onLabel="Sim" offLabel="Não" [(ngModel)]="atividade.realizada"></p-toggleButton>
+                    <p-toggleButton onLabel="Sim" offLabel="Não" [(ngModel)]="atividade.realizada" (ngModelChange)="statusChange(atividade)"></p-toggleButton>
                 </td>
             </tr>
         </ng-template>

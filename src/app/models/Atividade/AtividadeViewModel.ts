@@ -1,4 +1,5 @@
 export interface AtividadeViewModel {
     id: string,
-    nome: string
+    nome: string,
+    suinos: any[]
 }

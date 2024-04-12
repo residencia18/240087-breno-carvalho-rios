@@ -1,0 +1,20 @@
+<div>
+    <h2>Suíno {{suino.brinco | number:'3.0':'pt-BR'}}</h2>
+    <h2>Historico de Atividades/Pesagem</h2>
+</div>
+<p-table #tableAtividades [value]="historico">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Data</th>
+            <th>Atividade</th>
+            <th>-</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-atividade>
+        <tr>
+            <td>{{ atividade.data | date:'dd/MM/yyyy' }}</td>
+            <td>{{ atividade.descricao }}</td>
+            <td>{{ atividade.detalhes }}</td>
+        </tr>
+    </ng-template>
+</p-table>
