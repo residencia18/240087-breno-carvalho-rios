@@ -2,16 +2,19 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { SuinoService } from '../../../../services/suino.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PesoService } from '../../../../services/peso.service';
 import { firstValueFrom } from 'rxjs';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-historico-suino',
   standalone: true,
   imports: [
     CommonModule,
-    TableModule
+    TableModule,
+    ButtonModule,
+    RouterLink,
   ],
   templateUrl: './historico-suino.component.html',
   styleUrl: './historico-suino.component.css'
