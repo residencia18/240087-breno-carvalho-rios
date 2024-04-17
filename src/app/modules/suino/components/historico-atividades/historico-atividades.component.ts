@@ -64,12 +64,12 @@ export class HistoricoAtividadesComponent {
       return { data: pesagem.data, descricao: 'Pesagem', detalhes: `${pesagem.peso} Kg` }
     });
     this.historico = atividades.concat(pesos).sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime()).reverse();
+    this.chartData = this.createChartData();
   }
 
   public createChartData() {
-    const labels = this.atividades.map(atividade => atividade.data.toString().slice(0, 10).split('-').reverse().join('/'));
-    const data = this.historico.map(peso => peso.peso);
-    return { labels, datasets: [{ label: "Peso", data }] }
+    const data = this.contarAtividades(this.historico);
+    return { labels: Object.keys(data), datasets: [{ label: 'Atividades', data: Object.values(data) }] };
   }
 
   public contarAtividades(atividades: any[]): { [descricao: string]: number } {
@@ -86,7 +86,4 @@ export class HistoricoAtividadesComponent {
     return contagem;
   }
 
-  //No createChartData:
-  //labels vão ser as keys de contagem,
-  //data vai ser o value de contagem
 }
