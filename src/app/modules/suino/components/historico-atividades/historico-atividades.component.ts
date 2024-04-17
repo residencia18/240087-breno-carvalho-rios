@@ -3,11 +3,14 @@ import { SuinoService } from '../../../../services/suino.service';
 import { PesoService } from '../../../../services/peso.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { ChartModule } from 'primeng/chart';
 
 @Component({
   selector: 'app-historico-atividades',
   standalone: true,
-  imports: [],
+  imports: [
+    ChartModule
+  ],
   templateUrl: './historico-atividades.component.html',
   styleUrl: './historico-atividades.component.css'
 })
@@ -17,6 +20,7 @@ export class HistoricoAtividadesComponent {
   public historico: any[] = [];
   public pesos: any[] = [];
   public atividades: any[] = [];
+  public chartData: any = {};
 
   constructor(private service: SuinoService, private pesoService: PesoService, private route: ActivatedRoute, private router: Router) {
     if (!this.id) {
@@ -67,4 +71,22 @@ export class HistoricoAtividadesComponent {
     const data = this.historico.map(peso => peso.peso);
     return { labels, datasets: [{ label: "Peso", data }] }
   }
+
+  public contarAtividades(atividades: any[]): { [descricao: string]: number } {
+    const contagem: { [descricao: string]: number } = {};
+
+    for (const atividade of atividades) {
+      if (contagem[atividade.descricao]) {
+        contagem[atividade.descricao]++;
+      } else {
+        contagem[atividade.descricao] = 1;
+      }
+    }
+
+    return contagem;
+  }
+
+  //No createChartData:
+  //labels vão ser as keys de contagem,
+  //data vai ser o value de contagem
 }

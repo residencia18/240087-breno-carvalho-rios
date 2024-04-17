@@ -20,7 +20,7 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './historico-suino.component.css'
 })
 export class HistoricoSuinoComponent {
-  private readonly id = this.route.snapshot.paramMap.get('id');
+  public readonly id = this.route.snapshot.paramMap.get('id');
   public suino: any = {};
   public historico: any[] = [];
 
