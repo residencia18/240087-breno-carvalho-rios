@@ -1,6 +1,6 @@
 <div>
     <h2>Suíno {{suino.brinco | number:'3.0':'pt-BR'}}</h2>
-    <h2>Historico de Atividades/Pesagem</h2>
+    <h2>Historico Completo de Atividades</h2>
 </div>
 <p-table #tableAtividades [value]="historico">
     <ng-template pTemplate="header">
@@ -20,5 +20,6 @@
 </p-table>
 
 <div class="button-row">
-    <p-button icon="pi pi-clock" label="Histórico de Atividades" [routerLink]="['/app/suinos/atividades', id]"></p-button>
+    <p-button icon="pi pi-chart-bar" label="Visualizar Gráfico de Atividades" [routerLink]="['/app/suinos/atividades', id]"></p-button>
+    <p-button icon="pi pi-chart-bar" label="Visualizar Gráfico de Pesagens" [routerLink]="['/app/suinos/detalhes', id]"></p-button>
 </div>

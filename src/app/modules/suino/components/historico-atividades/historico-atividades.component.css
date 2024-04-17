@@ -13,6 +13,10 @@ h2, h3 {
   margin: 0;
   padding: 30px;
   background-color: rgb(249, 250, 251);
-  border-bottom: 1px solid lightgray;
   text-align: center;
+  padding: 10px;
+}
+
+:host > div > div {
+  padding: 20px 0;
 }

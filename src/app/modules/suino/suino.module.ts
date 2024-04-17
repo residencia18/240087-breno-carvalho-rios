@@ -16,6 +16,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { HistoricoSuinoComponent } from './components/historico-suino/historico-suino.component';
+import { HistoricoPesosComponent } from './components/historico-pesos/historico-pesos.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HistoricoSuinoComponent } from './components/historico-suino/historico-
     CardSuinoComponent,
     DetalhesSuinoComponent,
     AddSuinoComponent,
-    CardPesoComponent
+    CardPesoComponent,
+    HistoricoPesosComponent
   ],
   imports: [
     SuinoRoutingModule,

@@ -18,6 +18,12 @@ h3 {
   text-align: center;
 }
 
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
 .button-row p-button {
   margin-top: 10px;
 }

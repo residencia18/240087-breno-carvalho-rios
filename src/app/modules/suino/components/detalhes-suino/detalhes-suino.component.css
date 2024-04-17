@@ -74,3 +74,9 @@
   display: flex;
   gap: 5px;
 }
+
+.buttons {
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+}

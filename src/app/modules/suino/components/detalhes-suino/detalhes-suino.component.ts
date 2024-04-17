@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SuinoViewModel } from '../../../../models/Suino/SuinoViewModel';
 import { PesoViewModel } from '../../../../models/Peso/PesoViewModel';
 import { SuinoService } from '../../../../services/suino.service';
@@ -12,7 +12,7 @@ import { PesoService } from '../../../../services/peso.service';
 })
 export class DetalhesSuinoComponent {
 
-  private id = this.route.snapshot.paramMap.get('id');
+  public readonly id = this.route.snapshot.paramMap.get('id');
   public suino: SuinoViewModel = {} as SuinoViewModel;
   public pesos: PesoViewModel[] = [];
 
@@ -45,7 +45,7 @@ export class DetalhesSuinoComponent {
     },
   };
 
-  constructor(private service: SuinoService, private pesosService: PesoService, private route: ActivatedRoute) { }
+  constructor(private service: SuinoService, private pesosService: PesoService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.getById();
@@ -90,5 +90,17 @@ export class DetalhesSuinoComponent {
 
   public calculateAge(dataNascimento: Date): number {
     return this.service.calculateAge(dataNascimento);
+  }
+
+  public update(id: string) {
+    this.router.navigate([`app/suinos/editar/${id}`]);
+  }
+
+  public history(id: string) {
+    this.router.navigate([`app/suinos/historico/${id}`]);
+  }
+
+  public pesar(id: string) {
+    this.router.navigate([`app/pesos/novo/${id}`]);
   }
 }

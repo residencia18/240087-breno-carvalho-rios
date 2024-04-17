@@ -4,11 +4,13 @@ import { PesoService } from '../../../../services/peso.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ChartModule } from 'primeng/chart';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-historico-atividades',
   standalone: true,
   imports: [
+    CommonModule,
     ChartModule
   ],
   templateUrl: './historico-atividades.component.html',

@@ -74,7 +74,13 @@
         </div>
     </div>
 
-    <p-chart type="bar" [data]="chartData" [options]="chartOptions" width="100%" height="300px"></p-chart>
+    <app-historico-pesos [data]="chartData" [options]="chartOptions"></app-historico-pesos>
+
+    <div class="buttons">
+        <p-button (click)="update(id!)" icon="pi pi-pencil" label="Editar Suíno"></p-button>
+        <p-button (click)="pesar(id!)" icon="pi pi-calculator" label="Realizar Pesagem"></p-button>
+        <p-button (click)="history(id!)" icon="pi pi-clock" label="Historico de Atividades"></p-button>
+    </div>
 
     <ng-template pTemplate="grid">
         <div class="suinos-grid">
