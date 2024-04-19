@@ -17,7 +17,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './item.component.css'
 })
 export class ItemComponent {
-  @Input() item!: Item;
+  @Input() item: Item = {} as Item;
 
   constructor(public service: ItemsService, private router: Router) { }
 
