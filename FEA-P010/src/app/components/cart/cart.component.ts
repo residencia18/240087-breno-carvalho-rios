@@ -4,6 +4,7 @@ import { Item } from '../../interfaces/Item';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { CartService } from '../../services/cart.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,8 @@ import { CartService } from '../../services/cart.service';
   imports: [
     CommonModule,
     CartItemComponent,
-    ButtonModule
+    ButtonModule,
+    RouterModule
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'

@@ -11,6 +11,9 @@
     </div>
     <div class="footer">
         <div>Subtotal ({{quantity()}} {{quantity() > 1 ? 'produtos' : 'produto'}}): <span class="price text-medium text-bold">{{total() | currency:'BRL'}}</span></div>
-        <p-button label="Finalizar Compra" [disabled]="true"></p-button>
+        <div class="actions">
+            <p-button label="Continuar Comprando" [routerLink]="['/']"></p-button>
+            <p-button label="Finalizar Compra" [disabled]="true"></p-button>
+        </div>
     </div>
 </div>

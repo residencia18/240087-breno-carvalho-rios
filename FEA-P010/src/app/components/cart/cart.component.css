@@ -24,3 +24,9 @@ h1 {
     padding-top: 10px;
     gap: 10px;
 }
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}

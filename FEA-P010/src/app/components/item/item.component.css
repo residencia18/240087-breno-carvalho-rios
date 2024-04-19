@@ -51,3 +51,40 @@
     align-items: center;
     justify-content: end;
 }
+
+@media (max-width: 600px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container>div,
+    .details,
+    .details>div,
+    .details-container {
+        width: 100%;
+    }
+
+    .image {
+        margin-right: 0;
+        justify-content: center;
+    }
+
+    .details,
+    .details-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .details .list li {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .actions,
+    .actions>div {
+        width: 100%;
+    }
+}
