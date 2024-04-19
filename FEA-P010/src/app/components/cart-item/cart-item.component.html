@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="check">
+        <p-checkbox [binary]="true"></p-checkbox>
+    </div>
+    <div class="image">
+        <img [src]="item.imageURL" alt="Corsair Memória de computador compatível com Vengance RGB PRO DDR4 32 GB (2 x 16 GB) 3200 MHz CL16 Intel XMP 2.0 iCUE - Preto (CMW32GX4M2E3200C16), Abre em uma nova aba" width="180" height="180" />
+    </div>
+    <div class="details">
+        <div>
+            <div class="title text-medium">
+                {{item.name}}
+            </div>
+            <ul class="list">
+                <li>
+                    <span class="text-small" [ngClass]="{'in-stock': item.inStock, 'out-of-stock': !item.inStock}">
+                        {{item.inStock ? 'Em Estoque' : 'Fora de Estoque'}}
+                    </span>
+                </li>
+                <li>
+                    <p-checkbox [(ngModel)]="item.gift" (ngModelChange)="onGiftChange()" [binary]="true" [inputId]="item.id.toString()"></p-checkbox>
+                    <label [for]="item.id.toString()" class="text-small">
+                        Este pedido é para presente - <a>Saiba mais</a>
+                    </label>
+                </li>
+                <div *ngIf="item.properties">
+                    <li>
+                        <span class="text-small text-bold">Cor: </span>
+                        <span class="text-small">{{item.properties ? item.properties.color : ''}}</span>
+                    </li>
+                    <li>
+                        <span class="text-small text-bold">Capacidade: </span>
+                        <span class="text-small">{{item.properties ? item.properties.capacity : ''}}</span>
+                    </li>
+                    <li>
+                        <span class="text-small text-bold">Estilo: </span>
+                        <span class="text-small">{{item.properties ? item.properties.style : ''}}</span>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div class="price">
+            <span class="text-medium text-bold">{{item.price | currency:'BRL'}}</span>
+        </div>
+        <div class="actions text-small">
+            <div class="quantity p-fluid">
+                <p-inputNumber [(ngModel)]="item.quantity" (onInput)="quantityChange()" class="text-small" inputId="integeronly" [min]="1" [max]="999" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" incrementButtonIcon="pi pi-plus" incrementButtonClass="p-button-secondary" decrementButtonIcon="pi pi-minus" decrementButtonClass="p-button-secondary"></p-inputNumber>
+            </div>
+            <div class="separator"></div>
+            <div>
+                <a (click)="removeItem()">Excluir</a>
+            </div>
+            <div class="separator"></div>
+            <div>
+                <a>Salvar para mais tarde</a>
+            </div>
+            <div class="separator"></div>
+            <div>
+                <a>Comparar com itens similares</a>
+            </div>
+            <div class="separator"></div>
+            <div>
+                <a>Compartilhar</a>
+            </div>
+        </div>
+    </div>
+</div>

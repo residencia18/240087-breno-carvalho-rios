@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="image">
+        <img [src]="item.imageURL" alt="Corsair Memória de computador compatível com Vengance RGB PRO DDR4 32 GB (2 x 16 GB) 3200 MHz CL16 Intel XMP 2.0 iCUE - Preto (CMW32GX4M2E3200C16), Abre em uma nova aba" width="180" height="180" />
+    </div>
+    <div class="details-container">
+        <div class="details">
+            <div>
+                <div class="title text-medium">
+                    {{item.name}}
+                </div>
+                <ul class="list">
+                    <li>
+                        <span class="text-small" [ngClass]="{'in-stock': item.inStock, 'out-of-stock': !item.inStock}">
+                            {{item.inStock ? 'Em Estoque' : 'Fora de Estoque'}}
+                        </span>
+                    </li>
+                    <div *ngIf="item.properties">
+                        <li>
+                            <span class="text-small text-bold">Cor: </span>
+                            <span class="text-small">{{item.properties ? item.properties.color : ''}}</span>
+                        </li>
+                        <li>
+                            <span class="text-small text-bold">Capacidade: </span>
+                            <span class="text-small">{{item.properties ? item.properties.capacity : ''}}</span>
+                        </li>
+                        <li>
+                            <span class="text-small text-bold">Estilo: </span>
+                            <span class="text-small">{{item.properties ? item.properties.style : ''}}</span>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+            <div class="price">
+                <span class="text-medium text-bold">{{item.price | currency:'BRL'}}</span>
+            </div>
+        </div>
+        <div class="actions">
+            <div><p-button (click)="addToCart()" icon="pi pi-shopping-cart" label="Adicionar ao Carrinho"></p-button></div>
+        </div>
+    </div>
+</div>
