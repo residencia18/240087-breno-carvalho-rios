@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/fea-p011",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
