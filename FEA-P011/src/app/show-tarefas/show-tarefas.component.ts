@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { selectorSelecionaTarefa } from '../store/tarefa.seletors';
 import { Tarefa } from '../tarefa.model';
 import { removerTarefa } from '../store/tarefa.actions';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-show-tarefas',
@@ -19,7 +19,7 @@ export class ShowTarefasComponent {
   tarefas: Tarefa[] = [{ id: '1', descricao: 'Descrição 1' },];
   tasks$!: Observable<TarefaState>;
 
-  constructor(private store: Store<{ tarefas: TarefaState }>) { }
+  constructor(private store: Store<{ tarefas: TarefaState }>, private router: Router) { }
 
   ngOnInit() {
     this.tasks$ = this.store.select(selectorSelecionaTarefa);
@@ -30,5 +30,11 @@ export class ShowTarefasComponent {
 
   removeTarefa(id: string) {
     this.store.dispatch(removerTarefa({ id: id }));
+  }
+
+  updateTarefa(id: string) {
+    this.router.navigate(['/']).then(() => {
+      this.router.navigate(['/update', id]);
+    });
   }
 }

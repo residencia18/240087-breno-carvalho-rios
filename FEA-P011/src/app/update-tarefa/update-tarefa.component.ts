@@ -5,8 +5,9 @@ import { atualizarTarefa } from '../store/tarefa.actions';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { selectorSelecionaTarefa } from '../store/tarefa.seletors';
+import { Tarefa } from '../tarefa.model';
 
 @Component({
   selector: 'app-update-tarefa',
@@ -20,19 +21,24 @@ import { selectorSelecionaTarefa } from '../store/tarefa.seletors';
   styleUrls: ['./update-tarefa.component.css']
 })
 export class UpdateTarefaComponent {
-  private readonly id = this.route.snapshot.paramMap.get("id")!;
+  private id = this.route.snapshot.paramMap.get("id")!;
   descricao = '';
   tasks$!: Observable<TarefaState>;
 
-  constructor(private store: Store<{ tarefas: TarefaState }>, private route: ActivatedRoute) {
-    this.tasks$ = this.store.select(selectorSelecionaTarefa);
-    this.tasks$.subscribe((t) => {
-      this.descricao = t.tarefas.find((t) => t.id === this.id)!.descricao;
-    });
+  constructor(private store: Store<{ tarefas: TarefaState }>, private route: ActivatedRoute) { }
+
+  async ngOnInit() {
+    let _tasks = await firstValueFrom(this.store.select(selectorSelecionaTarefa));
+    this.descricao = _tasks.tarefas.find((t) => t.id === this.id)!.descricao;
+    let _params = await firstValueFrom(this.route.params);
+    this.id = _params['id'];
   }
 
-  updateTask() {
-    let descricao = this.descricao as string;
-    this.store.dispatch(atualizarTarefa({ id: this.id, descricao }));
+  async updateTask() {
+    let task = {
+      id: this.id,
+      descricao: this.descricao
+    }
+    this.store.dispatch(atualizarTarefa({ task }));
   }
 }
