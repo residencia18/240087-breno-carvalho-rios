@@ -1,4 +1,5 @@
-﻿using Cepedi.Banco.Pessoa.Dominio.Entidades;
+﻿using System.Net;
+using Cepedi.Banco.Pessoa.Dominio.Entidades;
 using Cepedi.Banco.Pessoa.Dominio.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -53,5 +54,22 @@ public class EnderecoRepository : IEnderecoRepository
     {
         var enderecos = await _context.Endereco.ToListAsync();
         return enderecos;
+    }
+
+    public async Task<bool> ConsultaCepValido(string cep){
+        var apiUrl = $"https://viacep.com.br/ws/{cep}/json/";
+        var httpClient = new HttpClient();
+
+        var response = await httpClient.GetAsync(apiUrl);        
+
+        if(!response.IsSuccessStatusCode) {
+            if (response.StatusCode == HttpStatusCode.BadRequest) {
+                return false;
+            } else {
+                throw new Exception($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+            }
+        }
+
+        return true;
     }
 }

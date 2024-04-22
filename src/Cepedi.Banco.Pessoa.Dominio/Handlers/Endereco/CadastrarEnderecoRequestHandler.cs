@@ -1,4 +1,5 @@
-﻿using Cepedi.Banco.Pessoa.Compartilhado.Requests;
+﻿using System.Net;
+using Cepedi.Banco.Pessoa.Compartilhado.Requests;
 using Cepedi.Banco.Pessoa.Compartilhado.Responses;
 using Cepedi.Banco.Pessoa.Dominio.Entidades;
 using Cepedi.Banco.Pessoa.Dominio.Repository;
@@ -17,6 +18,7 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
         _enderecoRepository = enderecoRepository;
         _logger = logger;
     }
+
     public async Task<Result<CadastrarEnderecoResponse>> Handle(CadastrarEnderecoRequest request, CancellationToken cancellationToken)
     {
         var endereco = new EnderecoEntity()
@@ -31,6 +33,12 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
             Numero = request.Numero,
             IdPessoa = request.IdPessoa
         };
+
+        var enderecoValido = await _enderecoRepository.ConsultaCepValido(request.Cep);
+        
+        if(!enderecoValido) {            
+            return Result.Error<CadastrarEnderecoResponse>(new Compartilhado.Exceptions.SemResultadosExcecao());
+        }
 
         await _enderecoRepository.CadastrarEnderecoAsync(endereco);
 
