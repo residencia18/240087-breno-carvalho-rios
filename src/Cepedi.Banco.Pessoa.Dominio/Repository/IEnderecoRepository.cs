@@ -10,5 +10,5 @@ public interface IEnderecoRepository
     Task<EnderecoEntity> CadastrarEnderecoAsync(EnderecoEntity endereco);
     Task<EnderecoEntity> AtualizarEnderecoAsync(EnderecoEntity endereco);
     Task<EnderecoEntity> ExcluirEnderecoAsync(EnderecoEntity endereco);
-    Task<bool> ConsultaCepValido(string cep);
+    Task<EnderecoEntity> ConsultaCepValido(string cep);
 }

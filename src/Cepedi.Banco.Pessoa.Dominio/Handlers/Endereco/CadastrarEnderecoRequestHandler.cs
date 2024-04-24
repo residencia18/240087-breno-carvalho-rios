@@ -35,8 +35,9 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
         };
 
         var enderecoValido = await _enderecoRepository.ConsultaCepValido(request.Cep);
-        
-        if(!enderecoValido) {            
+
+        if (enderecoValido is null)
+        {
             return Result.Error<CadastrarEnderecoResponse>(new Compartilhado.Exceptions.SemResultadosExcecao());
         }
 

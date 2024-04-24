@@ -18,7 +18,8 @@ public class ObterEnderecoPorCepRequestHandler : IRequestHandler<ObterEnderecoPo
     }
     public async Task<Result<ObterEnderecoPorCepResponse>> Handle(ObterEnderecoPorCepRequest request, CancellationToken cancellationToken)
     {
-        var endereco = await _enderecoRepository.ObterEnderecoPorCepAsync(request.Cep);
+        var endereco = await _enderecoRepository.ObterEnderecoPorCepAsync(request.Cep) ?? await _enderecoRepository.ConsultaCepValido(request.Cep);
+
         if (endereco == null)
         {
             return Result.Error<ObterEnderecoPorCepResponse>(new Compartilhado.Exceptions.SemResultadosExcecao());

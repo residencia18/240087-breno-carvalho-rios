@@ -1,4 +1,6 @@
 ﻿using System.Net;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Cepedi.Banco.Pessoa.Dominio.Entidades;
 using Cepedi.Banco.Pessoa.Dominio.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -56,20 +58,38 @@ public class EnderecoRepository : IEnderecoRepository
         return enderecos;
     }
 
-    public async Task<bool> ConsultaCepValido(string cep){
+    public async Task<EnderecoEntity?> ConsultaCepValido(string cep)
+    {
         var apiUrl = $"https://viacep.com.br/ws/{cep}/json/";
         var httpClient = new HttpClient();
 
-        var response = await httpClient.GetAsync(apiUrl);        
+        var response = await httpClient.GetAsync(apiUrl);
 
-        if(!response.IsSuccessStatusCode) {
-            if (response.StatusCode == HttpStatusCode.BadRequest) {
-                return false;
-            } else {
+        if (!response.IsSuccessStatusCode)
+        {
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                return null;
+            }
+            else
+            {
                 throw new Exception($"Error: {response.StatusCode} - {response.ReasonPhrase}");
             }
         }
 
-        return true;
+        var responseContent = await response.Content.ReadAsStringAsync();
+        var responseData = JsonSerializer.Deserialize<EnderecoViaCepDto>(responseContent);
+
+        return new EnderecoEntity()
+        {
+            Cep = responseData.Cep,
+            Bairro = responseData.Bairro,
+            Cidade = responseData.Localidade,
+            Complemento = responseData.Complemento,
+            Logradouro = responseData.Logradouro,
+            Numero = "",
+            Pais = "",
+            Uf = responseData.Uf
+        };
     }
 }
