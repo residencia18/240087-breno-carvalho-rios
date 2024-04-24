@@ -9,6 +9,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Namespace;
 
 namespace Cepedi.Banco.Pessoa.IoC
 {
@@ -27,6 +28,7 @@ namespace Cepedi.Banco.Pessoa.IoC
             ConfigurarFluentValidation(services);
 
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+            services.AddScoped<RabbitMQProducer>();
 
             //services.AddHttpContextAccessor();
 

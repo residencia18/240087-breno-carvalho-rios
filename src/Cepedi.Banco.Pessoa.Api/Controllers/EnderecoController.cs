@@ -1,8 +1,12 @@
-﻿using Cepedi.Banco.Pessoa.Compartilhado.Requests;
+﻿using System.Text;
+using Cepedi.Banco.Pessoa.Compartilhado.Requests;
 using Cepedi.Banco.Pessoa.Compartilhado.Responses;
 using Cepedi.Banco.Pessoa.Dados;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Namespace;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 
 namespace Cepedi.Banco.Pessoa.Api.Controllers;
 
@@ -12,11 +16,13 @@ public class EnderecoController : BaseController
 {
     private readonly ILogger<EnderecoController> _logger;
     private readonly ApplicationDbContext _context;
+    private readonly RabbitMQProducer _rabbitMQProducer;
 
-    public EnderecoController(IMediator mediator, ILogger<EnderecoController> logger, ApplicationDbContext context) : base(mediator)
+    public EnderecoController(IMediator mediator, ILogger<EnderecoController> logger, ApplicationDbContext context, RabbitMQProducer rabbitMQProducer) : base(mediator)
     {
         _logger = logger;
         _context = context;
+        _rabbitMQProducer = rabbitMQProducer;
     }
 
     [HttpGet]
@@ -56,4 +62,10 @@ public class EnderecoController : BaseController
         return await SendCommand(request);
     }
 
+    [HttpGet("rabbitMQ")]
+    public ActionResult SendMessage()
+    {
+        _rabbitMQProducer.Send("Hello World");
+        return Ok();
+    }
 }

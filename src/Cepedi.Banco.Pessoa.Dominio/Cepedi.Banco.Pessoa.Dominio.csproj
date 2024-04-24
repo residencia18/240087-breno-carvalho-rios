@@ -11,6 +11,7 @@
   <ItemGroup>
     <Folder Include="Notifications\" />
     <Folder Include="Repository\Queries\" />
+    <Folder Include="Services/" />
     <Folder Include="Services\" />
   </ItemGroup>
 

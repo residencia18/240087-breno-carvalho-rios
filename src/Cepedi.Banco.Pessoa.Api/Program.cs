@@ -1,6 +1,5 @@
 using Serilog;
 using Cepedi.Banco.Pessoa.IoC;
-using Cepedi.Banco.Pessoa.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,4 +38,3 @@ app.MapControllers();
 app.Map("/", () => Results.Redirect("/swagger"));
 
 app.Run();
-
