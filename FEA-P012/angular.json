@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/fea-2",
+            "outputPath": "dist/fea-p012",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
