@@ -1,0 +1,5 @@
+<div class="task-input">
+    <button [routerLink]="['/']" class=" task-button">Adicionar Tarefas</button>
+    <input type="text" placeholder="Atualize uma tarefa" [(ngModel)]="descricao" class="task-field">
+    <button (click)="updateTask()" class="task-button">Salvar Alteração</button>
+</div>
