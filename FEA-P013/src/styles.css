@@ -1,0 +1,81 @@
+/* @import "primeng/resources/themes/aura-light-blue/theme.css"; */
+@import "primeng/resources/themes/aura-custom/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+html,
+body {
+    margin: 0;
+}
+
+a {
+    color: darkcyan;
+    text-decoration: none;
+}
+
+h2 {
+    color: #324454;
+    margin: 10px 0;
+}
+
+.app-table .p-datatable-wrapper {
+    overflow: hidden;
+}
+
+.app-table .p-datatable tr th,
+.app-table .p-datatable tr td {
+    text-overflow: ellipsis;
+}
+
+.app-table .p-datatable tr th {
+    border: unset;
+    border-bottom: 3px solid rgba(173, 216, 230, 0.4);
+    color: darkcyan;
+    font-weight: bold;
+}
+
+.app-table .p-datatable-thead tr th,
+.app-table .p-datatable-thead tr td {
+    background-color: unset;
+}
+
+@media screen and (max-width: 600px) {
+    .app-table .p-datatable-thead tr th {
+        display: none;
+    }
+
+    .app-table .p-datatable-tbody {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .app-table .p-datatable-tbody tr {
+        border: 1px solid lightgray;
+    }
+
+    .app-table .p-datatable-tbody tr td::before {
+        content: attr(data-label);
+    }
+
+    .app-table .p-datatable-tbody tr td {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .app-table .p-datatable-tbody tr td:nth-last-child(2) {
+        border-bottom: 0;
+    }
+
+    .app-table .p-datatable-tbody tr .options {
+        display: none;
+    }
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.underlined {
+    text-decoration: underline;
+}

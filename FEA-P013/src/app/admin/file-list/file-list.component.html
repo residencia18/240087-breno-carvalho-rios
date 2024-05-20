@@ -1,0 +1,21 @@
+<h2>Lista de Arquivos</h2>
+<p-table [value]="files" class="app-table">
+    <ng-template pTemplate="header">
+        <tr class="head">
+            <th>Arquivo</th>
+            <th>Data</th>
+            <th class="options-column">Opções</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-file>
+        <tr>
+            <td data-label="Nome"><a [href]="file.url" target="_blank">{{ file.name }}</a></td>
+            <td data-label="Email">{{ file.createdAt }}</td>
+            <td class="options">
+                <div>
+                    <p-button aria-label="Excluir" icon="pi pi-trash" iconPos="right" severity="danger"></p-button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

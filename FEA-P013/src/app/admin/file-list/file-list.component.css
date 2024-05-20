@@ -1,0 +1,18 @@
+:host {
+    width: 100%;
+}
+
+.app-table .head th {
+    width: 30%;
+}
+
+.app-table .head .options-column {
+    width: 1%;
+}
+
+.options div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}

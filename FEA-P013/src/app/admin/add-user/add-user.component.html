@@ -1,0 +1,11 @@
+<p-dialog header="Upload de Arquivo" [modal]="true" [visible]="visible()" class="upload-container" [breakpoints]="{ '1199px': '75vw', '600px': '90vw' }" [style]="{ width: '50vw', maxWidth: '500px' }">
+    <div class="upload-file-body">
+        <img src="assets/common/pdf-file-icon.svg" alt="Clique para fazer o upload de um arquivo pdf">
+        <p><span class="bold">Selecione um arquivo</span></p>
+    </div>
+
+    <div class="upload-file-actions p-fluid">
+        <p-button label="Cancelar" (click)="visible.set(false)" severity="secondary" />
+        <p-button label="Enviar" />
+    </div>
+</p-dialog>

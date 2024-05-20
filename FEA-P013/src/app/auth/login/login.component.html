@@ -1,0 +1,32 @@
+<div class="login-wrap">
+    <div class="login-container">
+        <div class="welcome">
+            <img class="logo" src="assets/common/app-logo.jpg" alt="Logo" />
+            <h3>Bem Vindo(a) de volta!</h3>
+        </div>
+        <form class="form-login" [formGroup]="loginForm" (ngSubmit)="submit()">
+            <div class="form-control">
+                <label for="email">Email: </label>
+                <input pInputText formControlName="email" id="email" type="text" placeholder="Email" />
+                <div *ngIf="!loginForm.get('email')?.valid &&  loginForm.get('email')?.touched">
+                    <span class="error_message">Informe um e-mail válido</span>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="password">Senha: </label>
+                <input pInputText formControlName="password" id="password" type="password" placeholder="Senha" />
+                <div *ngIf="!loginForm.get('password')?.valid &&  loginForm.get('password')?.touched">
+                    <span class="error_message">Mínimo de 8 caracteres</span>
+                </div>
+            </div>
+            <div class="p-fluid">
+                <p-button label="Entrar" type="submit" [disabled]="loginForm.invalid"></p-button>
+            </div>
+            <div *ngIf="error" class="error">{{error}}</div>
+        </form>
+        <div class="help">
+            <h4>Dica: Verifique sua senha em seu email!</h4>
+            <h4>Não recebeu sua senha? <a [routerLink]="['/']" class="underlined">Clique aqui</a><br></h4>
+        </div>
+    </div>
+</div>
