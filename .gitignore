@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignorar diretórios de testes para cada atividade
+/Atividade06.Tests/Atividade06.Tests.csproj
+/Atividade07.Tests/Atividade07.Tests.csproj
+/Atividade08.Tests/Atividade08.Tests.csproj
+/Atividade09.Tests/Atividade09.Tests.csproj
