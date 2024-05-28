@@ -367,3 +367,8 @@ FodyWeavers.xsd
 /Atividade07.Tests/Atividade07.Tests.csproj
 /Atividade08.Tests/Atividade08.Tests.csproj
 /Atividade09.Tests/Atividade09.Tests.csproj
+/Atividade08.Tests/StatisticsTests.cs
+/Atividade09.Tests/ItemCollectionTests.cs
+/Atividade07.Tests/UserServiceTests.cs
+/Atividade06.Tests/PointTests.cs
+/Atividade06.Tests/PointTests.cs
