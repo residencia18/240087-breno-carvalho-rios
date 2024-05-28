@@ -1,0 +1,28 @@
+<p-dialog header="Upload de Arquivo" [closable]="false" [modal]="true" [visible]="visible()" class="upload-container" [breakpoints]="{ '1199px': '75vw', '600px': '90vw' }" [style]="{ width: '50vw', maxWidth: '500px' }">
+    <p-fileUpload class="file-uploader" #fileUpload name="uploadedFile" url="https://www.primefaces.org/cdn/api/upload.php" accept="application/pdf" [maxFileSize]="1000000">
+        <ng-template pTemplate="header">
+            <div class="upload-file-button" (click)="choose()">
+                <img src="assets/common/pdf-file-icon.svg" alt="Clique para fazer o upload de um arquivo pdf">
+                <p><span class="bold">Selecione um arquivo</span></p>
+            </div>
+        </ng-template>
+        <ng-template let-file pTemplate="file">
+            <p-progressBar [value]="progress" [showValue]="false"></p-progressBar>
+            <div class="file-template">
+                <img src="assets/common/pdf-file-icon.svg" [alt]="file.name">
+                <div class="file-info-container">
+                    <div class="file-info">
+                        <div class="filename bold">
+                            {{ file.name }} - {{ (file.size / 1024) | number: '1.2-2' }} KB
+                        </div>
+                        <div class="progress">{{progress}}%</div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-fileUpload>
+    <div class="upload-file-actions p-fluid">
+        <p-button label="Cancelar" (click)="closeDialog()" severity="secondary" />
+        <p-button label="Enviar" (click)="uploadFile()" />
+    </div>
+</p-dialog>

@@ -1,0 +1,64 @@
+.file-uploader .p-fileupload-content,
+.file-uploader .p-fileupload-buttonbar {
+    padding: 0;
+    border: none;
+}
+
+.file-uploader .p-fileupload-files {
+    margin-bottom: 10px;
+}
+
+.upload-file-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(249 250 251);
+    border: 3px dashed rgb(209 213 219);
+    border-radius: 10px;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.upload-file-button:hover {
+    background-color: rgb(243, 243, 243);
+}
+
+.upload-file-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.upload-file-actions p-button {
+    flex-grow: 1;
+}
+
+.file-template {
+    display: flex;
+    gap: 15px;
+    background-color: #E9F0FF;
+    padding: 1rem;
+}
+
+.file-template img {
+    width: 50px;
+}
+
+.file-template .file-info-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.file-template .file-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.file-template .file-info-container .progress-bar {
+    height: 30px;
+}

@@ -2,8 +2,9 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { UserListComponent } from './admin/user-list/user-list.component';
 import { MainComponent } from './common/main/main.component';
-import { FileListComponent } from './admin/file-list/file-list.component';
 import { authGuard } from './guards/auth.guard';
+import { UserFilesComponent as AdminUserFilesComponent } from './admin/user-files/user-files.component';
+import { UserFilesComponent } from './user/user-files/user-files.component';
 
 export const routes: Routes = [
     {
@@ -16,12 +17,18 @@ export const routes: Routes = [
         path: '', canActivate: [authGuard], component: MainComponent, children: [
             {
                 path: 'admin', children: [
+                    { path: 'users/:id/files', component: AdminUserFilesComponent },
                     { path: 'users', component: UserListComponent },
-                    { path: 'users/:id/files', component: FileListComponent },
                     { path: '**', redirectTo: 'users', pathMatch: 'full' }
                 ]
             },
-            { path: '**', redirectTo: 'admin', pathMatch: 'full' },
+            {
+                path: 'me', children: [
+                    { path: 'files', component: UserFilesComponent },
+                    { path: '**', redirectTo: '../', pathMatch: 'full' }
+                ]
+            },
+            { path: '**', redirectTo: 'me', pathMatch: 'full' },
         ]
     },
     { path: '**', redirectTo: 'auth/login', pathMatch: 'full' }

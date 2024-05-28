@@ -1,0 +1,29 @@
+<p-dialog header="Editar Usuário" [closable]="false" (onShow)="patchValue()" (onHide)="resetForm()" [modal]=" true" [visible]="visible()" class="upload-container" [breakpoints]="{ '1199px': '75vw', '600px': '90vw' }" [style]="{ width: '50vw', maxWidth: '500px' }">
+    <div class="edit-user-body">
+        <form [formGroup]="editUserForm">
+            <div class="form-group">
+                <div class="p-fluid">
+                    <label for="name">Nome</label>
+                    <input id="name" formControlName="name" pInputText type="text" />
+                </div>
+                <div class="p-fluid">
+                    <label for="mail">Email</label>
+                    <input id="mail" formControlName="mail" pInputText type="text" />
+                </div>
+                <div class="p-fluid">
+                    <label for="birthDate">Data de Nascimento</label>
+                    <input id="birthDate" formControlName="birthDate" pInputText type="date" />
+                </div>
+                <div class="p-fluid">
+                    <label for="height">Altura</label>
+                    <input id="height" formControlName="height" pInputText type="text" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="edit-user-actions p-fluid">
+        <p-button label="Cancelar" (click)="visible.set(false)" severity="secondary" />
+        <p-button label="Salvar" (click)="updateUser()" />
+    </div>
+</p-dialog>

@@ -3,11 +3,10 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 95lvh;
 }
 
 .login-wrap {
-    width: 500px;
+    width: 550px;
     padding: 5px;
     position: relative;
     background: linear-gradient(180deg, #375B7D 10%, rgba(33, 150, 243, 0) 50%);
@@ -68,6 +67,10 @@ h4 {
 }
 
 @media screen and (max-width: 600px) {
+    :host {
+        padding: 10px;
+    }
+
     .login-wrap {
         background: none;
     }

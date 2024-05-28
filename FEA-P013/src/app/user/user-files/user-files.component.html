@@ -1,0 +1,28 @@
+<div>
+    <div class="profile">
+        <div class="image">
+            BR
+        </div>
+        <div class="info">
+            <div>Nome: <span>{{ user.name }}</span></div>
+            <div>Nascimento: <span>{{ user.birthDate | date: 'dd/MM/yyyy' }}</span></div>
+            <div>Altura: <span>{{ user.height }}</span></div>
+        </div>
+    </div>
+    <div class="files">
+        <p-table [value]="files" class="app-table">
+            <ng-template pTemplate="header">
+                <tr class="head">
+                    <th>Nome do Arquivo</th>
+                    <th>Data</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-file>
+                <tr>
+                    <td data-label="Nome"><a [href]="file.url" target="_blank">{{ file.originalName }}</a></td>
+                    <td data-label="Email">{{ file.createdAt }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

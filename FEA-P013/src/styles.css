@@ -3,10 +3,37 @@
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    /* border-radius: 10px; */
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    /* border-radius: 10px; */
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #375B7D;
+}
+
 html,
 body {
     margin: 0;
+    overflow: hidden;
 }
+
+.bold {
+    font-weight: bold;
+}
+
+.underlined {
+    text-decoration: underline;
+}
+
 
 a {
     color: darkcyan;
@@ -40,6 +67,27 @@ h2 {
 }
 
 @media screen and (max-width: 600px) {
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: unset;
+        background-color: unset;
+    }
+
+    ::-webkit-scrollbar {
+        width: unset;
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        -webkit-box-shadow: unset;
+        background-color: unset;
+    }
+
+    html,
+    body {
+        margin: 0;
+        overflow: auto;
+    }
+
     .app-table .p-datatable-thead tr th {
         display: none;
     }
@@ -70,12 +118,4 @@ h2 {
     .app-table .p-datatable-tbody tr .options {
         display: none;
     }
-}
-
-.bold {
-    font-weight: bold;
-}
-
-.underlined {
-    text-decoration: underline;
 }

@@ -4,7 +4,7 @@
         <p-inputIcon styleClass="pi pi-search" />
         <input [(ngModel)]="search" (input)="filterUserList()" type="text" pInputText placeholder="Pesquisar por nome..." />
     </p-iconField>
-    <p-button label="Cadastrar" icon="pi pi-plus" (click)="registerUserDialogVisible = true" />
+    <p-button label="Cadastrar" icon="pi pi-plus" (click)="addUserDialogVisible.set(true)" />
 </div>
 <p-table [value]="users" class="app-table">
     <ng-template pTemplate="header">
@@ -17,60 +17,29 @@
     </ng-template>
     <ng-template pTemplate="body" let-user>
         <tr>
-            <td data-label="Nome">{{ user.name }}</td>
+            <td data-label="Nome" (click)="seeFiles(user.id)">{{ user.name }}</td>
             <td data-label="Email">{{ user.mail }}</td>
-            <td data-label="Último Arquivo">{{ user.pdf }}</td>
+            <td data-label="Último Arquivo">
+                <a target="_blank" *ngIf="user.trainings" [href]="user.trainings[0]?.url">{{ user.trainings[0]?.originalName }}</a>
+            </td>
             <td class="options">
                 <div>
-                    <p-button aria-label="Editar" icon="pi pi-pencil" iconPos="right" (click)="addUserVisible.set(true)"></p-button>
-                    <p-button aria-label="Adicionar PDF" icon="pi pi-file-pdf" iconPos="right" (click)="uploadFile(user.id)"></p-button>
-                    <p-button aria-label="Excluir" icon="pi pi-trash" iconPos="right" severity="danger"></p-button>
+                    <p-button aria-label="Editar" icon="pi pi-pencil" iconPos="right" (click)="showEditUserDialog(user)"></p-button>
+                    <p-button aria-label="Adicionar PDF" icon="pi pi-file-pdf" iconPos="right" (click)="showUploadFileDialog(user.id)"></p-button>
+                    <p-button aria-label="Excluir" icon="pi pi-trash" iconPos="right" severity="danger" (click)="confirmDeleteUser(user.id, user.name)"></p-button>
                 </div>
             </td>
         </tr>
     </ng-template>
 </p-table>
 
-<app-add-user [visible]="addUserVisible"></app-add-user>
+<app-add-user (visibleChange)="fetch()" [visible]="addUserDialogVisible"></app-add-user>
+<app-edit-user (visibleChange)="fetch()" [visible]="editUserDialogVisible" [user]="user"></app-edit-user>
+<app-upload-file (visibleChange)="fetch()" [visible]="uploadFileDialogVisible" [userId]="userId"></app-upload-file>
 
-<p-dialog header="Upload de Arquivo" [modal]="true" [(visible)]="uploadFileDialogVisible" class="upload-container" [breakpoints]="{ '1199px': '75vw', '600px': '90vw' }" [style]="{ width: '50vw', maxWidth: '500px' }">
-    <div class="upload-file-body">
-        <img src="assets/common/pdf-file-icon.svg" alt="Clique para fazer o upload de um arquivo pdf">
-        <p><span class="bold">Selecione um arquivo</span></p>
-    </div>
-
-    <div class="upload-file-actions p-fluid">
-        <p-button label="Cancelar" (click)="uploadFileDialogVisible = false" severity="secondary" />
-        <p-button label="Enviar" />
-    </div>
-</p-dialog>
-
-<p-dialog header="Cadastro de Usuário" [modal]="true" [(visible)]="registerUserDialogVisible" class="upload-container" [breakpoints]="{ '1199px': '75vw', '600px': '90vw' }" [style]="{ width: '50vw', maxWidth: '500px' }">
-    <div class="register-user-body">
-        <form [formGroup]="registerUserForm">
-            <div class="form-group">
-                <div class="p-fluid">
-                    <label for="name">Nome</label>
-                    <input id="name" formControlName="name" pInputText type="text" />
-                </div>
-                <div class="p-fluid">
-                    <label for="mail">Email</label>
-                    <input id="mail" formControlName="mail" pInputText type="text" />
-                </div>
-                <div class="p-fluid">
-                    <label for="birthDate">Data de Nascimento</label>
-                    <input id="birthDate" formControlName="birthDate" pInputText type="date" />
-                </div>
-                <div class="p-fluid">
-                    <label for="height">Altura</label>
-                    <input id="height" formControlName="height" pInputText type="text" />
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div class="register-user-actions p-fluid">
-        <p-button label="Cancelar" (click)="registerUserDialogVisible = false" severity="secondary" />
-        <p-button label="Cadastrar" (click)="registerUser()" />
-    </div>
-</p-dialog>
+<p-confirmDialog #confirmDeleteUserDialog [breakpoints]="{ '1199px': '40vw', '600px': '85vw' }" class="confirm-delete-user-dialog" header="Confirmar Exclusão">
+    <ng-template pTemplate="footer">
+        <button type="button" pButton label="Cancelar" (click)="confirmDeleteUserDialog.reject()"></button>
+        <button type="button" pButton label="Excluir" (click)="confirmDeleteUserDialog.accept()" severity="danger"></button>
+    </ng-template>
+</p-confirmDialog>

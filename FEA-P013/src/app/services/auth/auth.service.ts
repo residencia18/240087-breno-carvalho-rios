@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { User } from '../../../models/User';
 import { AuthResponse } from '../../../models/AuthResponse';
+import { getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { FirebaseApp } from '@angular/fire/app';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,13 @@ import { AuthResponse } from '../../../models/AuthResponse';
 export class AuthService {
   private readonly loginUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseConfig.apiKey}`;
   private readonly signupUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseConfig.apiKey}`;
+  private readonly forgotPasswordUrl = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${environment.firebaseConfig.apiKey}`;
+
+  private readonly auth = getAuth(this.app);
 
   usuario = new BehaviorSubject<User>(new User('', '', '', new Date()));
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private app: FirebaseApp) { }
 
   loginUser(email: string, password: string) {
     return this.http.post<AuthResponse>(this.loginUrl,
@@ -35,6 +40,12 @@ export class AuthService {
           localStorage.setItem('user', JSON.stringify(usuario));
         })
       );
+  }
+
+  loginUser2(email: string, password: string) {
+    signInWithEmailAndPassword(this.auth, email, password).then((userCredential) => {
+      console.log(this.auth.currentUser?.email)
+    });
   }
 
   signupUser(email: string) {
@@ -83,6 +94,33 @@ export class AuthService {
     if (loadedUser.token) {
       this.usuario.next(loadedUser);
     }
+  }
+
+  // getUser() {
+  //   const userData: {
+  //     email: string;
+  //     id: string;
+  //     _token: string;
+  //     _tokenExpirationDate: string;
+
+  //   } = JSON.parse(localStorage.getItem('user') as string);
+  //   if (!userData) {
+  //     return;
+  //   }
+
+  //   const loadedUser = new User(
+  //     userData.email,
+  //     userData.id,
+  //     userData._token,
+  //     new Date(userData._tokenExpirationDate)
+  //   );
+  // }
+
+  sendRecoveryPassword(email: string) {
+    return this.http.post(this.forgotPasswordUrl, {
+      requestType: "PASSWORD_RESET",
+      email: email
+    });
   }
 
   logout() {

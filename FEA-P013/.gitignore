@@ -12,6 +12,9 @@ npm-debug.log
 yarn-error.log
 
 # IDEs and editors
+.angular/
+.firebase/
+.vscode/
 .idea/
 .project
 .classpath

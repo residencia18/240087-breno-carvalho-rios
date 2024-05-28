@@ -1,0 +1,27 @@
+.edit-user-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.edit-user-body form {
+    width: 100%;
+}
+
+.edit-user-body form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-user-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.edit-user-actions p-button {
+    flex-grow: 1;
+}
