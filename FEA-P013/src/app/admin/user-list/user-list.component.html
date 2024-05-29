@@ -17,16 +17,16 @@
     </ng-template>
     <ng-template pTemplate="body" let-user>
         <tr>
-            <td data-label="Nome" (click)="seeFiles(user.id)">{{ user.name }}</td>
+            <td data-label="Nome"><a [routerLink]="['/admin/users', user.id, 'files']">{{ user.name }}</a></td>
             <td data-label="Email">{{ user.mail }}</td>
             <td data-label="Último Arquivo">
                 <a target="_blank" *ngIf="user.trainings" [href]="user.trainings[0]?.url">{{ user.trainings[0]?.originalName }}</a>
             </td>
             <td class="options">
                 <div>
-                    <p-button aria-label="Editar" icon="pi pi-pencil" iconPos="right" (click)="showEditUserDialog(user)"></p-button>
-                    <p-button aria-label="Adicionar PDF" icon="pi pi-file-pdf" iconPos="right" (click)="showUploadFileDialog(user.id)"></p-button>
-                    <p-button aria-label="Excluir" icon="pi pi-trash" iconPos="right" severity="danger" (click)="confirmDeleteUser(user.id, user.name)"></p-button>
+                    <p-button class="p-fluid option" aria-label="Editar" icon="pi pi-pencil" iconPos="right" (click)="showEditUserDialog(user)"></p-button>
+                    <p-button class="p-fluid option" aria-label="Adicionar PDF" icon="pi pi-file-pdf" iconPos="right" (click)="showUploadFileDialog(user.id)"></p-button>
+                    <p-button class="p-fluid option" aria-label="Excluir" icon="pi pi-trash" iconPos="right" severity="danger" (click)="confirmDeleteUser(user.id, user.name)"></p-button>
                 </div>
             </td>
         </tr>
@@ -43,3 +43,5 @@
         <button type="button" pButton label="Excluir" (click)="confirmDeleteUserDialog.accept()" severity="danger"></button>
     </ng-template>
 </p-confirmDialog>
+
+<p-toast position="top-center" />

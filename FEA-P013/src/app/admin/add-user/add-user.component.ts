@@ -28,7 +28,7 @@ export class AddUserComponent {
       'name': ["", [Validators.required]],
       'mail': ["", [Validators.required, Validators.email]],
       'birthDate': ["", [Validators.required]],
-      'height': ["", [Validators.required]],
+      'height': ["", [Validators.required, this.heightValidator.bind(this)]],
     });
   }
 
@@ -95,8 +95,20 @@ export class AddUserComponent {
       this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Altura obrigatória' });
     }
 
-    if (parseFloat(height?.value) < 0 || parseFloat(height?.value) > 3) {
-      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Digite uma altura válida' });
+    if (height?.hasError('invalidHeight')) {
+      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Altura inválida' });
     }
+
+    if (parseFloat(height?.value) < 0 || parseFloat(height?.value) > 3) {
+      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Altura inválida' });
+    }
+  }
+
+  public heightValidator(control: any) {
+    if (isNaN(control.value)) {
+      return { 'invalidHeight': true };
+    }
+
+    return null;
   }
 }

@@ -27,35 +27,37 @@ export class LoginComponent {
     });
   }
 
-  submit() {
+  async submit() {
     if (this.loginForm.valid) {
-      this.authService.loginUser2(this.loginForm.value.email, this.loginForm.value.password);
-      // this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-      //   next: (res) => {
-      //     this.messageService.add({ severity: 'success', summary: 'Login', detail: 'Login realizado com sucesso' });
-      //     this.router.navigate(['/']);
-      //   },
-      //   error: (error) => {
-      //     switch (error.error.error.message) {
-      //       case 'EMAIL_NOT_FOUND':
-      //         this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'E-mail não encontrado' });
-      //         break;
-      //       case 'INVALID_PASSWORD':
-      //         this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Senha inválida' });
-      //         break;
-      //       case 'INVALID_LOGIN_CREDENTIALS':
-      //         this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Dados de login inválidos' });
-      //         break;
-      //       case 'TOO_MANY_ATTEMPTS_TRY_LATER':
-      //         this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Muitas tentativas, tente mais tarde' });
-      //         break;
-      //       case 'USER_DISABLED':
-      //         this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Conta desativada' });
-      //         break;
-      //     }
-      //   }
-      // });
+      let user: any = await this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
+
+      if (user.success) {
+        this.messageService.add({ severity: 'success', summary: 'Login', detail: 'Login realizado com sucesso' });
+        return this.router.navigate(['/']);
+      }
+
+      switch (user.error.error.error.message) {
+        case 'EMAIL_NOT_FOUND':
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'E-mail não encontrado' });
+          break;
+        case 'INVALID_PASSWORD':
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Senha inválida' });
+          break;
+        case 'INVALID_LOGIN_CREDENTIALS':
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Dados de login inválidos' });
+          break;
+        case 'TOO_MANY_ATTEMPTS_TRY_LATER':
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Muitas tentativas, tente mais tarde' });
+          break;
+        case 'USER_DISABLED':
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Conta desativada' });
+          break;
+      }
+
+      return;
     }
+
+    return this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Preencha todos os campos' });
   }
 
   forgotPassword() {

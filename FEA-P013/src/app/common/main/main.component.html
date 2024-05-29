@@ -1,8 +1,13 @@
 <div class="main-container">
-    <div class="sidebar-menu">
+    <div class="sidebar-menu" [ngClass]="{'sidebar-menu-open': menuIsOpen}">
         <app-sidebar-menu></app-sidebar-menu>
     </div>
     <div class="container">
+        <div class="spacer">
+            <div class="show-menu-button" [ngClass]="{menuOpen: menuIsOpen}">
+                <i class="pi" [ngClass]="menuIsOpen ? 'pi-angle-left' : 'pi-bars'" (click)="menuIsOpen = !menuIsOpen"></i>
+            </div>
+        </div>
         <router-outlet></router-outlet>
     </div>
 </div>

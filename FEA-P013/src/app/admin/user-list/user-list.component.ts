@@ -11,8 +11,9 @@ import { AddUserComponent } from '../add-user/add-user.component';
 import { UploadFileComponent } from '../upload-file/upload-file.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Router, RouterModule } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-user-list',
@@ -29,9 +30,10 @@ import { Router, RouterModule } from '@angular/router';
     AddUserComponent,
     EditUserComponent,
     UploadFileComponent,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ToastModule
   ],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService, MessageService],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css',
 })
@@ -47,7 +49,7 @@ export class UserListComponent {
 
   public search: string = "";
 
-  constructor(private userService: UserService, private confirmationService: ConfirmationService, private router: Router) { }
+  constructor(private userService: UserService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   async ngOnInit() {
     this.fetch();
@@ -78,6 +80,7 @@ export class UserListComponent {
       message: `<p>Deseja realmente excluir o usuário abaixo?</p> <p class="bold underlined">${name}</p>`,
       accept: () => {
         this.deleteUser(id);
+        this.messageService.add({ severity: 'success', summary: 'Usuário excluído', detail: 'Usuário excluído com sucesso' });
       }
     });
   }
@@ -98,9 +101,5 @@ export class UserListComponent {
         createdAt: ''
       };
     }
-  }
-
-  seeFiles(id: string) {
-    this.router.navigate([`/admin/users/${id}/files`]);
   }
 }

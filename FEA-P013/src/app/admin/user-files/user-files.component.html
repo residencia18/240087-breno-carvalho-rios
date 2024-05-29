@@ -24,7 +24,7 @@
                     <td data-label="Email">{{ file.createdAt }}</td>
                     <td class="options">
                         <div>
-                            <p-button aria-label="Excluir" icon="pi pi-trash" iconPos="right" severity="danger"></p-button>
+                            <p-button class="p-fluid option" aria-label="Excluir" icon="pi pi-trash" iconPos="right" severity="danger" (click)="confirmDeleteFile(file.id, file.name, file.originalName)"></p-button>
                         </div>
                     </td>
                 </tr>
@@ -32,3 +32,10 @@
         </p-table>
     </div>
 </div>
+<p-confirmDialog #confirmDeleteUserDialog [breakpoints]="{ '1199px': '40vw', '600px': '85vw' }" class="confirm-delete-user-dialog" header="Confirmar Exclusão">
+    <ng-template pTemplate="footer">
+        <button type="button" pButton label="Cancelar" (click)="confirmDeleteUserDialog.reject()"></button>
+        <button type="button" pButton label="Excluir" (click)="confirmDeleteUserDialog.accept()" severity="danger"></button>
+    </ng-template>
+</p-confirmDialog>
+<p-toast position="top-center" />

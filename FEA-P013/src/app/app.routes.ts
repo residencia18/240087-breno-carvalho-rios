@@ -2,9 +2,12 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { UserListComponent } from './admin/user-list/user-list.component';
 import { MainComponent } from './common/main/main.component';
-import { authGuard } from './guards/auth.guard';
 import { UserFilesComponent as AdminUserFilesComponent } from './admin/user-files/user-files.component';
 import { UserFilesComponent } from './user/user-files/user-files.component';
+import { AuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['auth/login']);
 
 export const routes: Routes = [
     {
@@ -14,7 +17,7 @@ export const routes: Routes = [
         ]
     },
     {
-        path: '', canActivate: [authGuard], component: MainComponent, children: [
+        path: '', canActivate: [AuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }, component: MainComponent, children: [
             {
                 path: 'admin', children: [
                     { path: 'users/:id/files', component: AdminUserFilesComponent },
@@ -24,12 +27,13 @@ export const routes: Routes = [
             },
             {
                 path: 'me', children: [
+                    { path: 'profile', component: UserProfileComponent },
                     { path: 'files', component: UserFilesComponent },
-                    { path: '**', redirectTo: '../', pathMatch: 'full' }
+                    { path: '**', redirectTo: 'files', pathMatch: 'full' }
                 ]
             },
             { path: '**', redirectTo: 'me', pathMatch: 'full' },
         ]
     },
-    { path: '**', redirectTo: 'auth/login', pathMatch: 'full' }
+    { path: '**', redirectTo: 'auth', pathMatch: 'full' }
 ];

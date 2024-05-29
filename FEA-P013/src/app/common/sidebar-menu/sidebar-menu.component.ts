@@ -25,7 +25,7 @@ export class SidebarMenuComponent {
     {
       name: 'Usuário',
       items: [
-        { label: 'Perfil', routerLink: '/auth/login' },
+        { label: 'Perfil', routerLink: '/me/profile' },
         { label: 'Arquivos', routerLink: '/me/files' },
       ] as MenuItem[],
     }

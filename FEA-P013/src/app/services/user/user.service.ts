@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from '@angular/fire/firestore';
 import { getStorage, ref } from '@firebase/storage';
-import { uploadBytesResumable } from '@angular/fire/storage';
+import { deleteObject, uploadBytesResumable } from '@angular/fire/storage';
 import { sha256 } from 'js-sha256';
 
 @Injectable({
@@ -24,24 +24,21 @@ export class UserService {
     });
 
     return Promise.all(users);
-    // let users = (await getDocs(query(this.usersCollection))).docs.map((user) => {
-    //   return { ...user.data(), id: user.id };
-    // });
-
-    // users.forEach((user: any) => {
-    //   let trainings = collection(this.firestore, 'users', user.id, 'trainings');
-    //   getDocs(trainings).then((querySnapshot) => {
-    //     user.trainings = querySnapshot.docs.map((doc) => doc.data());
-    //   });
-    // });
-
-    // return users;
   }
 
   async getById(id: string) {
     let userDoc = await getDoc(doc(this.firestore, 'users', id));
 
     return userDoc.data();
+  }
+
+  async getByLoginId(id: string) {
+    let userDocs = await getDocs(query(this.usersCollection, where('loginId', '==', id)));
+    let user = userDocs.docs.map((user) => {
+      return { ...user.data(), id: user.id };
+    })[0];
+
+    return user;
   }
 
   async getFilesById(id: string) {
@@ -54,21 +51,10 @@ export class UserService {
   }
 
   public async create(user: any) {
-    let newUser;
-    try {
-      newUser = await firstValueFrom(this.authService.signupUser(user.mail));
-    } catch (e) {
-      return {
-        success: false,
-        error: e
-      };
-    }
-    user.loginId = newUser.localId;
-    this.authService.sendRecoveryPassword(user.mail).subscribe(
-      () => {
-        console.log('Email para redefinição de senha enviado');
-      },
-    );
+    let newUser: any = await this.authService.signupUser(user.mail);
+
+    user.loginId = newUser.uid;
+    await this.authService.sendRecoveryPassword(user.mail);
     return await addDoc(this.usersCollection, user);
   }
 
@@ -94,6 +80,29 @@ export class UserService {
     const storageRef = ref(this.storage, filePath);
 
     return uploadBytesResumable(storageRef, file);
+  }
+
+  public async deleteTraining(userId: string, trainingId: string) {
+    let filesCollection = collection(this.firestore, 'users', userId, 'trainings');
+    let trainingDoc = doc(filesCollection, trainingId);
+    return await deleteDoc(trainingDoc);
+  }
+
+  public async deleteFileObject(id: string, fileName: string) {
+    const filePath = `trainings/${id}/${fileName}`;
+    const storageRef = ref(this.storage, filePath);
+
+    return deleteObject(storageRef).then(() => {
+      return {
+        success: true,
+        message: 'Arquivo excluido com sucesso'
+      }
+    }).catch((error) => {
+      return {
+        success: false,
+        error: error
+      }
+    });
   }
 
   public generateFileHash(text: string) {
