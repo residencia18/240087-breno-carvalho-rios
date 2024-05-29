@@ -72,6 +72,7 @@ export class UserListComponent {
   private deleteUser(id: string) {
     this.userService.delete(id).then(() => {
       this.fetch();
+      this.messageService.add({ severity: 'success', summary: 'Usuário excluído', detail: 'Usuário excluído com sucesso' });
     })
   }
 
@@ -80,14 +81,13 @@ export class UserListComponent {
       message: `<p>Deseja realmente excluir o usuário abaixo?</p> <p class="bold underlined">${name}</p>`,
       accept: () => {
         this.deleteUser(id);
-        this.messageService.add({ severity: 'success', summary: 'Usuário excluído', detail: 'Usuário excluído com sucesso' });
       }
     });
   }
 
   public async fetch() {
     this._users = await this.userService.getAll();
-    this.users = this._users;
+    this.users = this._users.filter(user => user.admin != true);
   }
 
   getLastFile(user: any) {

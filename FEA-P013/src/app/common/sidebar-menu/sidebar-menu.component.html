@@ -3,12 +3,14 @@
     <hr>
     <div class="menu-groups">
         <div *ngFor="let group of menuGroups">
-            <h3 class="menu-group-title">{{group.name}}</h3>
-            <ul>
-                <li class="menu-group-item" *ngFor="let item of group.items" [routerLink]="item.routerLink">
-                    <a>{{item.label}}</a>
-                </li>
-            </ul>
+            <div *ngIf="(group.admin && user.admin) || (!group.admin)">
+                <h3 class="menu-group-title">{{group.name}}</h3>
+                <ul>
+                    <li class="menu-group-item" *ngFor="let item of group.items" [routerLink]="item.routerLink">
+                        <a>{{item.label}}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div>
             <h3 class="menu-group-title">Conta</h3>

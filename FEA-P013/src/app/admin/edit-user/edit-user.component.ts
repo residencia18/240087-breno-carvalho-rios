@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Input, Output, ViewChild, signal } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user/user.service';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { Dialog, DialogModule } from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
 import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-edit-user',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, InputTextModule, DialogModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, InputTextModule, DialogModule, ToastModule],
   providers: [MessageService],
   templateUrl: './edit-user.component.html',
   styleUrl: './edit-user.component.css'
@@ -28,10 +29,9 @@ export class EditUserComponent {
 
   async ngOnInit() {
     this.editUserForm = this.formBuilder.group({
-      'name': [null, []],
-      'mail': [null, []],
-      'birthDate': [null, []],
-      'height': [null, []],
+      'name': ["", [Validators.required]],
+      'birthDate': ["", [Validators.required]],
+      'height': ["", [Validators.required, this.heightValidator.bind(this)]],
     });
   }
 
@@ -46,7 +46,7 @@ export class EditUserComponent {
   public updateUser() {
     if (this.editUserForm.valid && this.editUserForm.dirty) {
       this.userService.update(this.user().id, this.editUserForm.value).then(() => {
-        console.log("Usuário editado com sucesso");
+        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Usário atualizado com sucesso' });
         this.visible.set(false);
         this.visibleChange.emit();
       });
@@ -56,7 +56,6 @@ export class EditUserComponent {
 
   public showErrors() {
     this.showNameErrors();
-    this.showMailErrors();
     this.showBirthDateErrors();
     this.showHeightErrors();
   }
@@ -65,17 +64,6 @@ export class EditUserComponent {
     let name = this.editUserForm.get('name');
     if (name?.hasError('required')) {
       this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Nome obrigatório' });;
-    }
-  }
-
-  public showMailErrors() {
-    let mail = this.editUserForm.get('mail');
-    if (mail?.hasError('required')) {
-      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Email obrigatório' });
-    }
-
-    if (mail?.hasError('email')) {
-      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Email inválido' });
     }
   }
 
@@ -88,12 +76,26 @@ export class EditUserComponent {
 
   public showHeightErrors() {
     let height = this.editUserForm.get('height');
+    console.log(height?.value);
+
     if (height?.hasError('required')) {
       this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Altura obrigatória' });
     }
 
-    if (parseFloat(height?.value) < 0 || parseFloat(height?.value) > 3) {
-      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Digite uma altura válida' });
+    if (height?.hasError('invalidHeight')) {
+      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Altura inválida' });
     }
+
+    if (parseFloat(height?.value) < 0 || parseFloat(height?.value) > 3) {
+      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Altura inválida' });
+    }
+  }
+
+  public heightValidator(control: any) {
+    if (isNaN(control.value)) {
+      return { 'invalidHeight': true };
+    }
+
+    return null;
   }
 }

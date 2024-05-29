@@ -29,28 +29,22 @@ export class LoginComponent {
 
   async submit() {
     if (this.loginForm.valid) {
-      let user: any = await this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
+      let response: any = await this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
 
-      if (user.success) {
+      if (response.success) {
         this.messageService.add({ severity: 'success', summary: 'Login', detail: 'Login realizado com sucesso' });
         return this.router.navigate(['/']);
       }
 
-      switch (user.error.error.error.message) {
-        case 'EMAIL_NOT_FOUND':
-          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'E-mail não encontrado' });
+      switch (response.error.code) {
+        case 'auth/invalid-credential':
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Email e/ou senha inválidos' });
           break;
-        case 'INVALID_PASSWORD':
-          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Senha inválida' });
+        case 'auth/user-not-found':
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Usuário não encontrado' });
           break;
-        case 'INVALID_LOGIN_CREDENTIALS':
-          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Dados de login inválidos' });
-          break;
-        case 'TOO_MANY_ATTEMPTS_TRY_LATER':
+        case 'auth/too-many-requests':
           this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Muitas tentativas, tente mais tarde' });
-          break;
-        case 'USER_DISABLED':
-          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Conta desativada' });
           break;
       }
 

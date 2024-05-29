@@ -51,9 +51,13 @@ export class UserService {
   }
 
   public async create(user: any) {
-    let newUser: any = await this.authService.signupUser(user.mail);
+    let response: any = await this.authService.signupUser(user.mail);
+    console.log(response);
+    if (!response.success == false) {
+      return response;
+    }
 
-    user.loginId = newUser.uid;
+    user.loginId = response.uid;
     await this.authService.sendRecoveryPassword(user.mail);
     return await addDoc(this.usersCollection, user);
   }

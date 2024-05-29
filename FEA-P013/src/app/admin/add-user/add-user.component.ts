@@ -33,17 +33,19 @@ export class AddUserComponent {
   }
 
   public addUser() {
+    this.registerUserForm.get('height')?.setValue(this.registerUserForm.get('height')?.value.replace(',', '.'));
+
     if (this.registerUserForm.valid && this.registerUserForm.dirty) {
       this.userService.create(this.registerUserForm.value).then((res: any) => {
-        if (!res.success) {
-          switch (res.error.error.error.message) {
-            case 'EMAIL_EXISTS':
+        if (res.success == false) {
+          switch (res.error.code) {
+            case 'auth/email-already-in-use':
               this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Este e-mail ja está cadastrado' });
               break;
-            case 'OPERATION_NOT_ALLOWED':
+            case 'auth/operation-not-allowed':
               this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'O login por senha está desabilitado' });
               break;
-            case 'TOO_MANY_ATTEMPTS_TRY_LATER':
+            case 'auth/too-many-requests':
               this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Muitas tentativas, tente mais tarde' });
               break;
           }
@@ -91,6 +93,8 @@ export class AddUserComponent {
 
   public showHeightErrors() {
     let height = this.registerUserForm.get('height');
+    console.log(height?.value);
+
     if (height?.hasError('required')) {
       this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Altura obrigatória' });
     }

@@ -27,5 +27,6 @@ export class UserProfileComponent {
     }
 
     this.user = await this.userService.getByLoginId(loggedUser.uid);
+    this.user.mail = loggedUser.email;
   }
 }

@@ -6,6 +6,7 @@ import { UserFilesComponent as AdminUserFilesComponent } from './admin/user-file
 import { UserFilesComponent } from './user/user-files/user-files.component';
 import { AuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { HelpComponent } from './others/help/help.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['auth/login']);
 
@@ -32,6 +33,7 @@ export const routes: Routes = [
                     { path: '**', redirectTo: 'files', pathMatch: 'full' }
                 ]
             },
+            { path: 'help', component: HelpComponent },
             { path: '**', redirectTo: 'me', pathMatch: 'full' },
         ]
     },

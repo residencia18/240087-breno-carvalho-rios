@@ -4,7 +4,7 @@
         <p-inputIcon styleClass="pi pi-search" />
         <input [(ngModel)]="search" (input)="filterUserList()" type="text" pInputText placeholder="Pesquisar por nome..." />
     </p-iconField>
-    <p-button label="Cadastrar" icon="pi pi-plus" (click)="addUserDialogVisible.set(true)" />
+    <p-button label="Cadastrar" icon="pi pi-user-plus" (click)="addUserDialogVisible.set(true)" />
 </div>
 <p-table [value]="users" class="app-table">
     <ng-template pTemplate="header">
